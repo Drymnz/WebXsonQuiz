@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">WebXsonQuiz</string>
+    <string name="text_welcome">Bienvenido a la aplicacion WebXsonQuiz</string>
+    <string name="insert_text">En este area ingre el texto a analizar</string>
+    <string name="compi">Compilar</string>
+</resources>
