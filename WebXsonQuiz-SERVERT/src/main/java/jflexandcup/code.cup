@@ -1,0 +1,62 @@
+package jflexandcup;
+
+import java_cup.runtime.*;
+import java.util.ArrayList;
+
+import analyzer.Token;
+import reports.ReportErrorInterpreter;
+import reports.ReportingConstants;
+import reports.TypeIntreprete;
+
+/**
+     * ***STAR CODE*******
+     */
+    parser code {:
+
+private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
+
+
+	  public MyParserLoginUser(LexemaUser lexer) {
+        super(lexer);
+    }
+
+    //erorr
+    public void syntax_error(Symbol cur_token) {
+        String nameTerminal = symbl_name_from_id(this.cur_token.sym);
+        int numberTerminal = this.cur_token.sym;
+        String lexema = this.cur_token.value.toString();
+        int line = cur_token.left+1;
+        int columna = cur_token.right +1;
+        //System.err.println("Numero del teminal->"+this.cur_token.sym);
+        ///codigo para el objeto
+        TypeIntreprete type = TypeIntreprete.SYNTACTIC;
+        Token token = new Token(line, columna, lexema);
+        this.listError.add(new ReportErrorInterpreter(type, token, ReportingConstants.ERROR_SICTATICO));
+    }
+
+    //Returnar el listado de errores
+    public ArrayList<ReportErrorInterpreter> getListError() {
+        return this.listError;
+    }
+
+    /**
+     * ***END CODE*******
+     */
+:}
+
+/* Terminales */
+/*SIMBOLOS DE OPERACION*/
+terminal String REAL_NUMEBERS;
+
+/* No terminales */
+non terminal inico_opereacion,operacion,parente;
+non terminal inicio;
+
+/* Gramática */
+start with inicio;
+/******operaciones matematicas*****/
+inicio ::= inico_opereacion
+    | error inico_opereacion
+    ;
+
+inico_opereacion ::= REAL_NUMEBERS ;

@@ -1,6 +1,7 @@
 /home/drymnz/Proyect/Proyecto de compi/WebXsonQuiz-SERVERT/src/main/java/usac/cunoc/webxsonquiz/resources/JakartaEE8Resource.java
 /home/drymnz/Proyect/Proyecto de compi/WebXsonQuiz-SERVERT/src/main/java/usac/cunoc/webxsonquiz/JakartaRestConfiguration.java
 /home/drymnz/Proyect/Proyecto de compi/WebXsonQuiz-SERVERT/src/main/java/Lengua/LanguageConstants.java
+/home/drymnz/Proyect/Proyecto de compi/WebXsonQuiz-SERVERT/src/main/java/analyzer/Analyzer.java
 /home/drymnz/Proyect/Proyecto de compi/WebXsonQuiz-SERVERT/src/main/java/servlets/SVUsers.java
 /home/drymnz/Proyect/Proyecto de compi/WebXsonQuiz-SERVERT/src/main/java/servlets/socket/ClientHandler.java
 /home/drymnz/Proyect/Proyecto de compi/WebXsonQuiz-SERVERT/src/main/java/servlets/SocketServletListener.java
