@@ -1,4 +1,4 @@
-package analyzer;
+package LexicalAndSyntacticAnalyzer.analyzer;
 
 public class Token {
     private int line;

@@ -1,6 +1,6 @@
 package reports;
 
-import analyzer.Token;
+import LexicalAndSyntacticAnalyzer.analyzer.Token;
 
 public class ReportErrorInterpreter {
     private TypeIntreprete type;

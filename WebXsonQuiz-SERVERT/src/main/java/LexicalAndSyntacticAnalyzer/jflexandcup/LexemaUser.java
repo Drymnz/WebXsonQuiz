@@ -3,7 +3,7 @@
 // source: code.jflex
 
 /*primer seccion: codigo de usuario*/
-package jflexandcup;
+package LexicalAndSyntacticAnalyzer.jflexandcup;
 
 import java_cup.runtime.Symbol;
 
@@ -13,7 +13,7 @@ import reports.TypeIntreprete;
 
 import java.util.ArrayList;
 
-import analyzer.Token;
+import LexicalAndSyntacticAnalyzer.analyzer.Token;
 
 
 @SuppressWarnings("fallthrough")
@@ -378,12 +378,12 @@ public class LexemaUser implements java_cup.runtime.Scanner {
     /*START-CODE*/
     private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
   
-    private void print() {
-        //System.out.println("\n< " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
+    private void print(String token) {
+        //System.out.println(" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
     }
 
     private void addError(){
-        print();
+        print("error");
         TypeIntreprete type = TypeIntreprete.LEXICON;
         Token toke = new Token(yyline + 1, yycolumn + 1, yytext());
         this.listError.add(new ReportErrorInterpreter(type, toke, ReportingConstants.ERROR_LEXEMA));
@@ -821,7 +821,7 @@ public class LexemaUser implements java_cup.runtime.Scanner {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
             { //MANEJAR EL ERROR LEXICO
-                        print();
+                        print("ERROR");
                         addError();
             }
           // fall through
@@ -832,157 +832,157 @@ public class LexemaUser implements java_cup.runtime.Scanner {
           // fall through
           case 35: break;
           case 3:
-            { print(); return new Symbol(MySymLoginUser.PARENTESIS_A,yyline,yycolumn,yytext());
+            { print("("); return new Symbol(MySymLoginUser.PARENTESIS_A,yyline,yycolumn,yytext());
             }
           // fall through
           case 36: break;
           case 4:
-            { print(); return new Symbol(MySymLoginUser.PARENTESIS_C,yyline,yycolumn,yytext());
+            { print(")"); return new Symbol(MySymLoginUser.PARENTESIS_C,yyline,yycolumn,yytext());
             }
           // fall through
           case 37: break;
           case 5:
-            { print(); return new Symbol(MySymLoginUser.MULTIPLICAR,yyline,yycolumn, (yytext()));
+            { print("*"); return new Symbol(MySymLoginUser.MULTIPLICAR,yyline,yycolumn, (yytext()));
             }
           // fall through
           case 38: break;
           case 6:
-            { print(); return new Symbol(MySymLoginUser.SUMAR,yyline,yycolumn, (yytext()));
+            { print("+"); return new Symbol(MySymLoginUser.SUMAR,yyline,yycolumn, (yytext()));
             }
           // fall through
           case 39: break;
           case 7:
-            { print(); return new Symbol(MySymLoginUser.COMA,yyline,yycolumn, (yytext()));
+            { print(","); return new Symbol(MySymLoginUser.COMA,yyline,yycolumn, (yytext()));
             }
           // fall through
           case 40: break;
           case 8:
-            { print(); return new Symbol(MySymLoginUser.RESTAR,yyline,yycolumn, (yytext()));
+            { print("-"); return new Symbol(MySymLoginUser.RESTAR,yyline,yycolumn, (yytext()));
             }
           // fall through
           case 41: break;
           case 9:
-            { print(); return new Symbol(MySymLoginUser.DIVIDIR,yyline,yycolumn, (yytext()));
+            { print("/"); return new Symbol(MySymLoginUser.DIVIDIR,yyline,yycolumn, (yytext()));
             }
           // fall through
           case 42: break;
           case 10:
-            { print(); return new Symbol(MySymLoginUser.REAL_NUMEBERS ,yyline,yycolumn,yytext());
+            { print("REAL_NUMEBERS"); return new Symbol(MySymLoginUser.REAL_NUMEBERS ,yyline,yycolumn,yytext());
             }
           // fall through
           case 43: break;
           case 11:
-            { print(); return new Symbol(MySymLoginUser.COLNO,yyline,yycolumn, (yytext()));
+            { print(":"); return new Symbol(MySymLoginUser.COLNO,yyline,yycolumn, (yytext()));
             }
           // fall through
           case 44: break;
           case 12:
-            { print(); return new Symbol(MySymLoginUser.OPEN ,yyline,yycolumn,yytext());
+            { print("<" ); return new Symbol(MySymLoginUser.OPEN ,yyline,yycolumn,yytext());
             }
           // fall through
           case 45: break;
           case 13:
-            { print(); return new Symbol(MySymLoginUser.EQUAL,yyline,yycolumn, (yytext()));
+            { print("="); return new Symbol(MySymLoginUser.EQUAL,yyline,yycolumn, (yytext()));
             }
           // fall through
           case 46: break;
           case 14:
-            { print(); return new Symbol(MySymLoginUser.CLOSE ,yyline,yycolumn,yytext());
+            { print(">" ); return new Symbol(MySymLoginUser.CLOSE ,yyline,yycolumn,yytext());
             }
           // fall through
           case 47: break;
           case 15:
-            { print(); return new Symbol(MySymLoginUser.BRACKETS_O ,yyline,yycolumn,yytext());
+            { print("["); return new Symbol(MySymLoginUser.BRACKETS_O ,yyline,yycolumn,yytext());
             }
           // fall through
           case 48: break;
           case 16:
-            { print(); return new Symbol(MySymLoginUser.BRACKETS_C ,yyline,yycolumn,yytext());
+            { print("]"); return new Symbol(MySymLoginUser.BRACKETS_C ,yyline,yycolumn,yytext());
             }
           // fall through
           case 49: break;
           case 17:
-            { print(); return new Symbol(MySymLoginUser.KEYS_O ,yyline,yycolumn,yytext());
+            { print("{"); return new Symbol(MySymLoginUser.KEYS_O ,yyline,yycolumn,yytext());
             }
           // fall through
           case 50: break;
           case 18:
-            { print(); return new Symbol(MySymLoginUser.KEYS_C ,yyline,yycolumn,yytext());
+            { print("}"); return new Symbol(MySymLoginUser.KEYS_C ,yyline,yycolumn,yytext());
             }
           // fall through
           case 51: break;
           case 19:
-            { print(); return new Symbol(MySymLoginUser.CLOSE_REQUEST ,yyline,yycolumn,yytext());
+            { print("!>" ); return new Symbol(MySymLoginUser.CLOSE_REQUEST ,yyline,yycolumn,yytext());
             }
           // fall through
           case 52: break;
           case 20:
-            { print(); return new Symbol(MySymLoginUser.STRING ,yyline,yycolumn,yytext());
+            { print("STRING"); return new Symbol(MySymLoginUser.STRING ,yyline,yycolumn,yytext());
             }
           // fall through
           case 53: break;
           case 21:
-            { print(); return new Symbol(MySymLoginUser.OPEN_REQUEST ,yyline,yycolumn,yytext());
+            { print("<!" ); return new Symbol(MySymLoginUser.OPEN_REQUEST ,yyline,yycolumn,yytext());
             }
           // fall through
           case 54: break;
           case 22:
-            { print(); return new Symbol(MySymLoginUser.OPEN_VERSION ,yyline,yycolumn,yytext());
+            { print("<?" ); return new Symbol(MySymLoginUser.OPEN_VERSION ,yyline,yycolumn,yytext());
             }
           // fall through
           case 55: break;
           case 23:
-            { print(); return new Symbol(MySymLoginUser.CLOSE_VERSION ,yyline,yycolumn,yytext());
+            { print("?>" ); return new Symbol(MySymLoginUser.CLOSE_VERSION ,yyline,yycolumn,yytext());
             }
           // fall through
           case 56: break;
           case 24:
-            { print(); return new Symbol(MySymLoginUser.XSON ,yyline,yycolumn,yytext());
+            { print("xson"); return new Symbol(MySymLoginUser.XSON ,yyline,yycolumn,yytext());
             }
           // fall through
           case 57: break;
           case 25:
-            { print(); return new Symbol(MySymLoginUser.VERSION ,yyline,yycolumn,yytext());
+            { print("version"); return new Symbol(MySymLoginUser.VERSION ,yyline,yycolumn,yytext());
             }
           // fall through
           case 58: break;
           case 26:
-            { print(); return new Symbol(MySymLoginUser.NAME_PERSONAL_USER ,yyline,yycolumn,yytext());
+            { print("\"NOMBRE\""); return new Symbol(MySymLoginUser.NAME_PERSONAL_USER ,yyline,yycolumn,yytext());
             }
           // fall through
           case 59: break;
           case 27:
-            { print(); return new Symbol(MySymLoginUser.NAME_USER ,yyline,yycolumn,yytext());
+            { print("\"USUARIO\""); return new Symbol(MySymLoginUser.NAME_USER ,yyline,yycolumn,yytext());
             }
           // fall through
           case 60: break;
           case 28:
-            { print(); return new Symbol(MySymLoginUser.PASS_USER ,yyline,yycolumn,yytext());
+            { print("\"PASSWORD\""); return new Symbol(MySymLoginUser.PASS_USER ,yyline,yycolumn,yytext());
             }
           // fall through
           case 61: break;
           case 29:
-            { print(); return new Symbol(MySymLoginUser.INSTITUCION ,yyline,yycolumn,yytext());
+            { print("INSTITUCION"); return new Symbol(MySymLoginUser.INSTITUCION ,yyline,yycolumn,yytext());
             }
           // fall through
           case 62: break;
           case 30:
-            { print(); return new Symbol(MySymLoginUser.USER_DATA ,yyline,yycolumn,yytext());
+            { print("\"DATOS_USUARIO\""); return new Symbol(MySymLoginUser.USER_DATA ,yyline,yycolumn,yytext());
             }
           // fall through
           case 63: break;
           case 31:
-            { print(); return new Symbol(MySymLoginUser.NEW_USER ,yyline,yycolumn,yytext());
+            { print("\"USUARIO_NUEVO\""); return new Symbol(MySymLoginUser.NEW_USER ,yyline,yycolumn,yytext());
             }
           // fall through
           case 64: break;
           case 32:
-            { print(); return new Symbol(MySymLoginUser.MAKE_REQUEST ,yyline,yycolumn,yytext());
+            { print("realizar_solicitud"); return new Symbol(MySymLoginUser.MAKE_REQUEST ,yyline,yycolumn,yytext());
             }
           // fall through
           case 65: break;
           case 33:
-            { print(); return new Symbol(MySymLoginUser.FINAL_REQUEST ,yyline,yycolumn,yytext());
+            { print("fin_solicitud_realizada"); return new Symbol(MySymLoginUser.FINAL_REQUEST ,yyline,yycolumn,yytext());
             }
           // fall through
           case 66: break;
