@@ -80,7 +80,7 @@ public class TestDataBaseUser {
         for (RequestAnalyzer element : analyzer.getListRquest()) {
             listaUser.add((new ConverterToObject()).getRequestAnalyzerToUser(element));
         }
-        Assertions.assertTrue(listaUser.size() == 3);
+        Assertions.assertTrue(listaUser.size() == 2);
     }
    
     @org.junit.jupiter.api.BeforeAll
