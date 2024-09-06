@@ -5,22 +5,18 @@ import java.io.StringReader;
 import java.util.ArrayList;
 
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
-import LexicalAndSyntacticAnalyzer.jflexandcup.LexemaUser;
-import LexicalAndSyntacticAnalyzer.jflexandcup.MyParserLoginUser;
+import LexicalAndSyntacticAnalyzer.jflexAndcupJSON.LexemaJSONUser;
+import LexicalAndSyntacticAnalyzer.jflexAndcupJSON.MyParserLoginDataBaseUser;
 import reports.ReportErrorInterpreter;
 
-/**
- *
- * @author drymnz
- */
-public class AnalyzerLogin {
-    private LexemaUser lexeman;
-    private MyParserLoginUser parse;
+public class AnalyzerDataBase {
+    private LexemaJSONUser lexeman;
+    private MyParserLoginDataBaseUser parse;
 
-    public AnalyzerLogin(String text) {
+    public AnalyzerDataBase(String text) {
         Reader reader = new StringReader(text);
-        this.lexeman = new LexemaUser(reader);
-        this.parse = new MyParserLoginUser(this.lexeman);
+        this.lexeman = new LexemaJSONUser(reader);
+        this.parse = new MyParserLoginDataBaseUser(this.lexeman);
     }
 
     public void Anilisar() {

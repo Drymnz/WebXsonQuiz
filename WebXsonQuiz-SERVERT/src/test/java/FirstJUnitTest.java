@@ -10,6 +10,7 @@ import LexicalAndSyntacticAnalyzer.jflexandcup.LexemaUser;
 import LexicalAndSyntacticAnalyzer.jflexandcup.MyParserLoginUser;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.User;
+import fileManager.FileInput;
 import fileManager.FileOutput;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -72,7 +73,18 @@ public class FirstJUnitTest {
         ConverterToObject converter = new ConverterToObject();
         User userSaved = new User("admin", "admin", "Benjamin de Jesus Perez Aguilar", "CUNOC", converter.getDate());
         String directorioActual = System.getProperty("user.dir");
-        File archivoTxt = new File(directorioActual, "DataBase.json");
+        File archivoTxt = new File(directorioActual, "DataBaseUser.json");
+        Gson gson = new Gson();
+        String json = gson.toJson(userSaved);
+        Assertions.assertTrue((new FileOutput()).aguardarTexto(archivoTxt, json));
+    }
+
+    @Test
+    public void testSevedUsers() {
+        ConverterToObject converter = new ConverterToObject();
+        User userSaved = new User("admin", "admin", "Benjamin de Jesus Perez Aguilar", "CUNOC", converter.getDate());
+        String directorioActual = System.getProperty("user.dir");
+        File archivoTxt = new File(directorioActual, "DataBaseUser.json");
         Gson gson = new Gson();
         String json = gson.toJson(userSaved);
         Assertions.assertTrue((new FileOutput()).aguardarTexto(archivoTxt, json));
