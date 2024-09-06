@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import com.google.gson.Gson;
+
 import java_cup.parser;
 import LexicalAndSyntacticAnalyzer.ListRequests;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerLogin;
@@ -8,9 +10,11 @@ import LexicalAndSyntacticAnalyzer.jflexandcup.LexemaUser;
 import LexicalAndSyntacticAnalyzer.jflexandcup.MyParserLoginUser;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.User;
+import fileManager.FileOutput;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.io.Reader;
 import java.io.StringReader;
 
@@ -49,7 +53,7 @@ public class FirstJUnitTest {
         for (RequestAnalyzer iterable_element : analyzer.getListRquest()) {
             satisfactoryTest = iterable_element.getType() == ListRequests.NEW_USER && iterable_element.getList().size() == 4;
         }
-        Assertions.assertTrue(!analyzer.isError() || satisfactoryTest);
+        Assertions.assertTrue(!analyzer.isError() && satisfactoryTest);
     }
 
     @Test
@@ -57,9 +61,21 @@ public class FirstJUnitTest {
         AnalyzerLogin analyzer = new AnalyzerLogin(textosdepureva);
         analyzer.Anilisar();
         boolean satisfactoryTest  = false;
-        User newUser = (new ConverterToObject()).getRequestAnalyzerToUser(analyzer.getListRquest().get(0));
-        satisfactoryTest = newUser.toString().equals("ID:\"juanito619\" password:\"12345678\" name:\"JUAN PEREZ\" institution:\"CUNOC\"");
-        Assertions.assertTrue(!analyzer.isError() || satisfactoryTest);
+        ConverterToObject converter = new ConverterToObject();
+        User newUser = (converter).getRequestAnalyzerToUser(analyzer.getListRquest().get(0));
+        satisfactoryTest = newUser.toString().equals("ID:\"juanito619\" password:\"12345678\" name:\"JUAN PEREZ\" institution:\"CUNOC\" date:"+converter.getDate());
+        Assertions.assertTrue(!analyzer.isError() && satisfactoryTest);
+    }
+
+    @Test
+    public void testSevedUser() {
+        ConverterToObject converter = new ConverterToObject();
+        User userSaved = new User("admin", "admin", "Benjamin de Jesus Perez Aguilar", "CUNOC", converter.getDate());
+        String directorioActual = System.getProperty("user.dir");
+        File archivoTxt = new File(directorioActual, "DataBase.json");
+        Gson gson = new Gson();
+        String json = gson.toJson(userSaved);
+        Assertions.assertTrue((new FileOutput()).aguardarTexto(archivoTxt, json));
     }
 
     @org.junit.jupiter.api.BeforeAll

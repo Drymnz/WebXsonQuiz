@@ -50,6 +50,8 @@ WHOLE = {DIGIT}+
 DECIMAL = {WHOLE}[.]{WHOLE}
 REAL_NUMEBERS = {DECIMAL}|{WHOLE}
 
+DATE = {DIGIT}{DIGIT}{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}
+
 STRING = \"([^\"\\]|\\.)*\"
 
 espacio =[\n|\r|\t|\f|\b|\s| ]+
@@ -84,6 +86,7 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "\"PASSWORD\""      {print("\"PASSWORD\""); return new Symbol(MySymLoginUser.PASS_USER ,yyline,yycolumn,yytext());}
 "\"NOMBRE\""        {print("\"NOMBRE\""); return new Symbol(MySymLoginUser.NAME_PERSONAL_USER ,yyline,yycolumn,yytext());}
 "\“INSTITUCION\”"   {print("INSTITUCION"); return new Symbol(MySymLoginUser.INSTITUCION ,yyline,yycolumn,yytext());}
+"\FECHA_CREACION\”" {print("INSTITUCION"); return new Symbol(MySymLoginUser.DATE ,yyline,yycolumn,yytext());}
 /*SIMBOLOS ARIMETICOS*/
 "+"                     {print("+"); return new Symbol(MySymLoginUser.SUMAR,yyline,yycolumn, (yytext()));}
 "-"                     {print("-"); return new Symbol(MySymLoginUser.RESTAR,yyline,yycolumn, (yytext()));}
@@ -95,6 +98,7 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 /*SIMBOLOS DE AGRUPACION*/
 "("                     {print("("); return new Symbol(MySymLoginUser.PARENTESIS_A,yyline,yycolumn,yytext());}
 ")"                     {print(")"); return new Symbol(MySymLoginUser.PARENTESIS_C,yyline,yycolumn,yytext());}
+{DATE}                  {print("DATE"); return new Symbol(MySymLoginUser.STRING_DATE,yyline,yycolumn,yytext());}
 {REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymLoginUser.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
 {STRING}                {print("STRING"); return new Symbol(MySymLoginUser.STRING ,yyline,yycolumn,yytext());}
 /*ERROR LEXICO*/

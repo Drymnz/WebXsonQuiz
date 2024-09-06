@@ -6,12 +6,15 @@ public class User {
     private String password;
     private String name;
     private String institution;
+    private String date;
 
-    public User(String id, String password, String name, String institution) {
+
+    public User(String id, String password, String name, String institution,String date) {
         this.id = id;
         this.password = password;
         this.name = name;
         this.institution = institution;
+        this.date = date;
     }
 
     public String getId() {
@@ -51,7 +54,13 @@ public class User {
         return "ID:" + id +
                 " password:" + password +
                 " name:" + name +
-                " institution:" + institution;
+                " institution:" + institution+
+                " date:" + date
+                ;
+    }
+
+    public String getDate() {
+        return date;
     }
 
 }

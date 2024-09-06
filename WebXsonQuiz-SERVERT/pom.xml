@@ -1,12 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>usac.cunoc</groupId>
     <artifactId>WebXsonQuiz</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>WebXsonQuiz-1.0-SNAPSHOT</name>
-    
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -15,9 +16,9 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <jakartaee>8.0.0</jakartaee>
     </properties>
-    
+
     <dependencies>
-    <!-- Dependencias de jakartaee-api -->
+        <!-- Dependencias de jakartaee-api -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
@@ -48,6 +49,12 @@
             <groupId>com.github.vbmacher</groupId>
             <artifactId>java-cup</artifactId>
             <version>11b</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.11.0</version>
         </dependency>
     </dependencies>
     <build>

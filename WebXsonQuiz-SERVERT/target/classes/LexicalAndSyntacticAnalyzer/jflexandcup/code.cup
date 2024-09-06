@@ -64,7 +64,7 @@ terminal COLNO,CLOSE,OPEN;
 terminal String STRING;
 /*SIMBOLOS DE OPERACION*/
 terminal SUMAR,RESTAR,DIVIDIR,MULTIPLICAR;
-terminal String REAL_NUMEBERS;
+terminal String REAL_NUMEBERS,STRING_DATE;
 /*AGRUPACION*/
 terminal PARENTESIS_A,PARENTESIS_C;
 terminal BRACKETS_O,BRACKETS_C;
@@ -73,7 +73,7 @@ terminal KEYS_O,KEYS_C;
 terminal  OPEN_REQUEST,FINAL_REQUEST,CLOSE_REQUEST,MAKE_REQUEST,COMA;
 //tipos de solicitud
 terminal NEW_USER;
-terminal USER_DATA,NAME_USER,PASS_USER,NAME_PERSONAL_USER,INSTITUCION;
+terminal USER_DATA,NAME_USER,PASS_USER,NAME_PERSONAL_USER,INSTITUCION,DATE;
 /* No terminales */
 //operaicones
 non terminal inico_opereacion,operacion,parente;
@@ -141,6 +141,8 @@ data_user::=
    {:if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.NAME,a.toString()));:}
   |INSTITUCION data:a
    {:if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.INSTITUTION,a.toString()));:}
+  |DATE STRING_DATE:a
+  {:if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.DATE,a.toString()));:}
   | error
   | 
   ;
