@@ -2,6 +2,7 @@ package LexicalAndSyntacticAnalyzer.objectAnalyzer;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.DataAnalyzer;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
@@ -9,33 +10,47 @@ import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 public class ConverterToObject {
 
     public User getRequestAnalyzerToUser(RequestAnalyzer element) {
+        boolean[] list = { false, false, false, false };
+        User newUser = createUserListDataAnalyzer(element.getList(),list);
+        if (isListTrue(list)) {
+            return newUser;
+        }else{
+            return null;
+        }
+    }
+
+    public User createUserListDataAnalyzerLogin(ArrayList<DataAnalyzer> listDataAnalyzer ){
+        boolean[] list = { false, false, false, false };
+        return createUserListDataAnalyzer(listDataAnalyzer,list);
+    }
+
+    public User createUserListDataAnalyzer(ArrayList<DataAnalyzer> listDataAnalyzer, boolean[] list ){
         String id = "";
         String password= "";
         String name= "";
         String institution= "";
         String date= null;
-        boolean[] list = { false, false, false, false };
         
-        for (DataAnalyzer dataElement : element.getList()) {
+        for (DataAnalyzer dataElement : listDataAnalyzer) {
             switch (dataElement.getType()) {
                 case INSTITUTION:
-                    institution = dataElement.getData();
+                    institution = dataElement.getData().replace("\"", "");
                     list[0] = true;
                     break;
                 case NAME:
-                    name = dataElement.getData();
+                    name = dataElement.getData().replace("\"", "");
                     list[1] = true;
                     break;
                 case PASSWORD:
-                    password = dataElement.getData();
+                    password = dataElement.getData().replace("\"", "");
                     list[2] = true;
                     break;
                 case USUARIO:
-                    id = dataElement.getData();
+                    id = dataElement.getData().replace("\"", "");
                     list[3] = true;
                     break;
                 case DATE:
-                    id = dataElement.getData();
+                    date = dataElement.getData().replace("\"", "");
                     list[3] = true;
                     break;
                 default:
@@ -43,12 +58,8 @@ public class ConverterToObject {
             }
         }
 
-        if (isListTrue(list)) {
-            date = (date==null)? getDate() : date; 
-            return new User(id, password, name, institution,date);
-        }else{
-            return null;
-        }
+        date = (date==null)? getDate() : date; 
+        return new User(id, password, name, institution,date);
     }
 
     public String getDate() {

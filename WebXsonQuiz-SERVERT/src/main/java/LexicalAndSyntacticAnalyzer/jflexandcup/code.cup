@@ -72,7 +72,7 @@ terminal KEYS_O,KEYS_C;
 /*SOLICITUD*/
 terminal  OPEN_REQUEST,FINAL_REQUEST,CLOSE_REQUEST,MAKE_REQUEST,COMA;
 //tipos de solicitud
-terminal NEW_USER;
+terminal NEW_USER,LOGIN_USER;
 terminal USER_DATA,NAME_USER,PASS_USER,NAME_PERSONAL_USER,INSTITUCION,DATE;
 /* No terminales */
 //operaicones
@@ -81,7 +81,7 @@ non terminal inico_opereacion,operacion,parente;
 non terminal inicio_xson,bucle_inicio;
 non terminal inicio;
 //solicitud
-non terminal solicitud,json,cerrar_solicitud;
+non terminal solicitud,json,cerrar_solicitud,solicitud_usuario;
 non terminal obj_json,data,data_user,datas_user;
 
 /*************************************PRECEDENCIA******************************************************/
@@ -108,24 +108,34 @@ inicio_xson ::=
 
 solicitud ::=
   NEW_USER CLOSE json 
+  {:
+    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.NEW_USER));
+    dataStack = new ArrayList();
+  :}
+  |LOGIN_USER CLOSE json 
+  {:
+    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.LOGIN_USER));
+    dataStack = new ArrayList();
+  :}
   ;
+  
 cerrar_solicitud 
   ::= OPEN FINAL_REQUEST CLOSE_REQUEST
   ;
+
 json::=
   KEYS_O obj_json KEYS_C
   | error
   | 
   ;
-obj_json ::=
-  USER_DATA COLNO BRACKETS_O  KEYS_O datas_user KEYS_C  BRACKETS_C 
-  {:
-  listRquest.add(new RequestAnalyzer(dataStack, ListRequests.NEW_USER));
-  dataStack = new ArrayList();
-  :}
+
+obj_json 
+  ::= USER_DATA solicitud_usuario
   | error
   | 
   ;
+
+solicitud_usuario ::=COLNO BRACKETS_O  KEYS_O datas_user KEYS_C  BRACKETS_C ;
 
 datas_user 
   ::= datas_user COMA  data_user
@@ -149,7 +159,7 @@ data_user::=
 
 data ::=COLNO STRING:a {:RESULT = a;:}
   | COLNO inico_opereacion:a {:RESULT = a;:}
-  | COLNO STRING_DATE:a
+  | COLNO STRING_DATE:a {:RESULT = a;:}
   | error
   | 
   ;

@@ -64,7 +64,7 @@ public class FirstJUnitTest {
         boolean satisfactoryTest  = false;
         ConverterToObject converter = new ConverterToObject();
         User newUser = (converter).getRequestAnalyzerToUser(analyzer.getListRquest().get(0));
-        satisfactoryTest = newUser.toString().equals("ID:\"juanito619\" password:\"12345678\" name:\"JUAN PEREZ\" institution:\"CUNOC\" date:"+converter.getDate());
+        satisfactoryTest = newUser.toString().equals("ID:juanito619 password:12345678 name:JUAN PEREZ institution:CUNOC date:"+converter.getDate());
         Assertions.assertTrue(!analyzer.isError() && satisfactoryTest);
     }
 

@@ -11,6 +11,8 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import reactions.SystemAcess;
+
 /**
  *
  * @author drymnz
@@ -27,11 +29,11 @@ public class ClientHandler implements Runnable {
     private String interprets(Object get) {
         if (get instanceof String) {
             String text = (String) get;
-            System.out.println(text);/// mostrar el mensaje
-            if (text.isEmpty()) {
-                return "";
+            boolean getIn =  (!text.isEmpty()) && ((new SystemAcess(text)).isAcceder());
+            if (getIn) {
+                return "true";
             } else {
-                return "Todo bien te has conectado al socket";
+                return "false";
             }
         }
         return NADA;
@@ -46,9 +48,10 @@ public class ClientHandler implements Runnable {
             ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
 
             Object getCliente = in.readObject();
-            String json = interprets(getCliente);
             /* analysis process */
-            out.writeObject(json);
+            String answer = interprets(getCliente);
+            
+            out.writeObject(answer);
         } catch (IOException ex) {
             Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

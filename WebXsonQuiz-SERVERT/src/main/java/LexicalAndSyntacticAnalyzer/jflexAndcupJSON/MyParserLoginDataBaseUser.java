@@ -37,13 +37,14 @@ public class MyParserLoginDataBaseUser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\025\000\002\002\004\000\002\003\003\000\002\003" +
-    "\004\000\002\002\004\000\002\002\003\000\002\004\006" +
-    "\000\002\004\003\000\002\005\005\000\002\010\005\000" +
-    "\002\010\003\000\002\007\004\000\002\007\004\000\002" +
+    "\000\027\000\002\002\004\000\002\003\003\000\002\003" +
+    "\004\000\002\002\004\000\002\002\003\000\002\004\005" +
+    "\000\002\004\003\000\002\011\005\000\002\011\003\000" +
+    "\002\005\005\000\002\010\005\000\002\010\003\000\002" +
     "\007\004\000\002\007\004\000\002\007\004\000\002\007" +
-    "\003\000\002\007\002\000\002\006\004\000\002\006\004" +
-    "\000\002\006\003\000\002\006\002" });
+    "\004\000\002\007\004\000\002\007\003\000\002\007\002" +
+    "\000\002\006\004\000\002\006\004\000\002\006\003\000" +
+    "\002\006\002" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -51,32 +52,34 @@ public class MyParserLoginDataBaseUser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\042\000\010\003\005\005\011\007\010\001\002\000" +
-    "\010\002\ufffb\005\ufffb\007\ufffb\001\002\000\006\005\011" +
-    "\007\010\001\002\000\010\002\ufffd\005\ufffd\007\ufffd\001" +
-    "\002\000\010\002\000\005\011\007\010\001\002\000\022" +
-    "\003\021\010\ufff1\012\ufff1\014\026\015\017\016\025\017" +
-    "\024\020\023\001\002\000\004\007\010\001\002\000\004" +
-    "\002\013\001\002\000\004\002\001\001\002\000\004\012" +
-    "\015\001\002\000\004\006\016\001\002\000\010\002\ufffc" +
-    "\005\ufffc\007\ufffc\001\002\000\012\003\030\010\uffed\011" +
-    "\027\012\uffed\001\002\000\006\010\040\012\037\001\002" +
-    "\000\006\010\ufff2\012\ufff2\001\002\000\006\010\ufff8\012" +
-    "\ufff8\001\002\000\012\003\030\010\uffed\011\027\012\uffed" +
-    "\001\002\000\012\003\030\010\uffed\011\027\012\uffed\001" +
-    "\002\000\012\003\030\010\uffed\011\027\012\uffed\001\002" +
-    "\000\012\003\030\010\uffed\011\027\012\uffed\001\002\000" +
-    "\006\004\033\013\032\001\002\000\006\010\uffee\012\uffee" +
-    "\001\002\000\006\010\ufff7\012\ufff7\001\002\000\006\010" +
-    "\uffef\012\uffef\001\002\000\006\010\ufff0\012\ufff0\001\002" +
-    "\000\006\010\ufff5\012\ufff5\001\002\000\006\010\ufff4\012" +
-    "\ufff4\001\002\000\006\010\ufff3\012\ufff3\001\002\000\022" +
-    "\003\021\010\ufff1\012\ufff1\014\026\015\017\016\025\017" +
-    "\024\020\023\001\002\000\012\002\ufffa\005\ufffa\007\ufffa" +
-    "\012\ufffa\001\002\000\006\010\ufff9\012\ufff9\001\002\000" +
-    "\006\010\ufff6\012\ufff6\001\002\000\010\002\ufffe\005\ufffe" +
-    "\007\ufffe\001\002\000\010\002\uffff\005\011\007\010\001" +
-    "\002" });
+    "\000\044\000\010\003\006\005\012\007\010\001\002\000" +
+    "\010\002\ufffb\005\ufffb\007\ufffb\001\002\000\014\002\ufff9" +
+    "\005\ufff9\006\ufff9\007\ufff9\012\045\001\002\000\006\005" +
+    "\012\007\010\001\002\000\010\002\ufffd\005\ufffd\007\ufffd" +
+    "\001\002\000\022\003\022\010\uffef\012\uffef\014\026\015" +
+    "\020\016\027\017\025\020\024\001\002\000\010\002\000" +
+    "\005\012\007\010\001\002\000\004\007\010\001\002\000" +
+    "\004\002\014\001\002\000\004\002\001\001\002\000\004" +
+    "\006\016\001\002\000\010\002\ufffc\005\ufffc\007\ufffc\001" +
+    "\002\000\010\002\ufffe\005\ufffe\007\ufffe\001\002\000\012" +
+    "\003\030\010\uffeb\011\031\012\uffeb\001\002\000\006\010" +
+    "\041\012\040\001\002\000\006\010\ufff0\012\ufff0\001\002" +
+    "\000\006\010\ufff6\012\ufff6\001\002\000\012\003\030\010" +
+    "\uffeb\011\031\012\uffeb\001\002\000\012\003\030\010\uffeb" +
+    "\011\031\012\uffeb\001\002\000\012\003\030\010\uffeb\011" +
+    "\031\012\uffeb\001\002\000\012\003\030\010\uffeb\011\031" +
+    "\012\uffeb\001\002\000\006\010\uffec\012\uffec\001\002\000" +
+    "\006\004\034\013\033\001\002\000\006\010\ufff3\012\ufff3" +
+    "\001\002\000\006\010\uffed\012\uffed\001\002\000\006\010" +
+    "\uffee\012\uffee\001\002\000\006\010\ufff5\012\ufff5\001\002" +
+    "\000\006\010\ufff2\012\ufff2\001\002\000\006\010\ufff1\012" +
+    "\ufff1\001\002\000\022\003\022\010\uffef\012\uffef\014\026" +
+    "\015\020\016\027\017\025\020\024\001\002\000\014\002" +
+    "\ufff8\005\ufff8\006\ufff8\007\ufff8\012\ufff8\001\002\000\006" +
+    "\010\ufff7\012\ufff7\001\002\000\006\010\ufff4\012\ufff4\001" +
+    "\002\000\010\002\uffff\005\012\007\010\001\002\000\004" +
+    "\007\010\001\002\000\012\002\ufffa\005\ufffa\006\ufffa\007" +
+    "\ufffa\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -84,20 +87,22 @@ public class MyParserLoginDataBaseUser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\042\000\012\002\006\003\011\004\005\005\003\001" +
-    "\001\000\002\001\001\000\010\002\043\004\005\005\003" +
-    "\001\001\000\002\001\001\000\006\004\042\005\003\001" +
-    "\001\000\006\007\021\010\017\001\001\000\004\005\013" +
+    "\000\044\000\014\002\010\003\012\004\006\005\004\011" +
+    "\003\001\001\000\002\001\001\000\002\001\001\000\012" +
+    "\002\043\004\006\005\004\011\003\001\001\000\002\001" +
+    "\001\000\006\007\022\010\020\001\001\000\010\004\016" +
+    "\005\004\011\003\001\001\000\006\005\004\011\014\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\006\042\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\004\006\036\001\001\000\004\006\035\001\001\000" +
+    "\004\006\034\001\001\000\004\006\031\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\004\006\041" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\004\006\035\001\001\000\004\006\034\001\001" +
-    "\000\004\006\033\001\001\000\004\006\030\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\004\007\040\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\006\004\042\005\003\001\001" });
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\004\007\041\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\010\004\016" +
+    "\005\004\011\003\001\001\000\006\005\004\011\045\001" +
+    "\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -255,16 +260,16 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // json ::= BRACKETS_O obj_json COMA BRACKETS_C 
+          case 5: // json ::= BRACKETS_O secuenci_json BRACKETS_C 
             {
               Object RESULT =null;
 
-              CUP$MyParserLoginDataBaseUser$result = parser.getSymbolFactory().newSymbol("json",2, ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.elementAt(CUP$MyParserLoginDataBaseUser$top-3)), ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()), RESULT);
+              CUP$MyParserLoginDataBaseUser$result = parser.getSymbolFactory().newSymbol("json",2, ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.elementAt(CUP$MyParserLoginDataBaseUser$top-2)), ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()), RESULT);
             }
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // json ::= obj_json 
+          case 6: // json ::= secuenci_json 
             {
               Object RESULT =null;
 
@@ -273,7 +278,25 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // obj_json ::= KEYS_O datas_user KEYS_C 
+          case 7: // secuenci_json ::= obj_json COMA secuenci_json 
+            {
+              Object RESULT =null;
+
+              CUP$MyParserLoginDataBaseUser$result = parser.getSymbolFactory().newSymbol("secuenci_json",7, ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.elementAt(CUP$MyParserLoginDataBaseUser$top-2)), ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()), RESULT);
+            }
+          return CUP$MyParserLoginDataBaseUser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // secuenci_json ::= obj_json 
+            {
+              Object RESULT =null;
+
+              CUP$MyParserLoginDataBaseUser$result = parser.getSymbolFactory().newSymbol("secuenci_json",7, ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()), RESULT);
+            }
+          return CUP$MyParserLoginDataBaseUser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // obj_json ::= KEYS_O datas_user KEYS_C 
             {
               Object RESULT =null;
 		
@@ -285,7 +308,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // datas_user ::= datas_user COMA data_user 
+          case 10: // datas_user ::= datas_user COMA data_user 
             {
               Object RESULT =null;
 
@@ -294,7 +317,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // datas_user ::= data_user 
+          case 11: // datas_user ::= data_user 
             {
               Object RESULT =null;
 
@@ -303,7 +326,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // data_user ::= NAME_USER data 
+          case 12: // data_user ::= NAME_USER data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()).left;
@@ -315,7 +338,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // data_user ::= PASS_USER data 
+          case 13: // data_user ::= PASS_USER data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()).left;
@@ -327,7 +350,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // data_user ::= NAME_PERSONAL_USER data 
+          case 14: // data_user ::= NAME_PERSONAL_USER data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()).left;
@@ -339,7 +362,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // data_user ::= INSTITUCION data 
+          case 15: // data_user ::= INSTITUCION data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()).left;
@@ -351,7 +374,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // data_user ::= DATE data 
+          case 16: // data_user ::= DATE data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()).left;
@@ -363,7 +386,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // data_user ::= error 
+          case 17: // data_user ::= error 
             {
               Object RESULT =null;
 
@@ -372,7 +395,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // data_user ::= 
+          case 18: // data_user ::= 
             {
               Object RESULT =null;
 
@@ -381,7 +404,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // data ::= COLNO STRING 
+          case 19: // data ::= COLNO STRING 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()).left;
@@ -393,19 +416,19 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // data ::= COLNO STRING_DATE 
+          case 20: // data ::= COLNO STRING_DATE 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserLoginDataBaseUser$stack.peek()).value;
-
+		RESULT = a;
               CUP$MyParserLoginDataBaseUser$result = parser.getSymbolFactory().newSymbol("data",4, ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.elementAt(CUP$MyParserLoginDataBaseUser$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserLoginDataBaseUser$stack.peek()), RESULT);
             }
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // data ::= error 
+          case 21: // data ::= error 
             {
               Object RESULT =null;
 
@@ -414,7 +437,7 @@ class CUP$MyParserLoginDataBaseUser$actions {
           return CUP$MyParserLoginDataBaseUser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // data ::= 
+          case 22: // data ::= 
             {
               Object RESULT =null;
 

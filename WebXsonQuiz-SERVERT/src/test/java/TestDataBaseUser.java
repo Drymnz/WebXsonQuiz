@@ -47,17 +47,16 @@ public class TestDataBaseUser {
         analyzer.Anilisar();
         boolean satisfactoryTest  = false;
         User newUser = (new ConverterToObject()).getRequestAnalyzerToUser(analyzer.getListRquest().get(0));
-        Assertions.assertTrue(newUser.toString().equals("ID:\"admin\" password:\"admin\" name:\"Benjamin de Jesus Perez Aguilar\" institution:\"CUNOC\" date:"+converter.getDate()));
+        Assertions.assertTrue(newUser.toString().equals("ID:admin password:admin name:Benjamin de Jesus Perez Aguilar institution:CUNOC date:"+converter.getDate()));
     }
 
      @Test
-    public void testSevedUsers() {
-
+    public void testSevedListUsersToFile() {
         List<User> listaUser = new ArrayList<>();
 
         listaUser.add(new User("admin", "admin", "Benjamin de Jesus Perez Aguilar", "CUNOC", converter.getDate()));
-        listaUser.add(new User("ADMIN", "admin", "Benjamin de Jesus Perez Aguilar", "CUNOC", converter.getDate()));
-        listaUser.add(new User("SR", "admin", "Benjamin de Jesus Perez Aguilar", "CUNOC", converter.getDate()));
+        listaUser.add(new User("ADMIN", "admin", "Benjamin de Jesus Perez Aguilar", "CUNOC", "2001-04-2"));
+        listaUser.add(new User("BJ_97", "admin", "Benjamin de Jesus Perez Aguilar", "CUNOC", "1997-07-28"));
 
         String directorioActual = System.getProperty("user.dir");
         File archivoTxt = new File(directorioActual, "DataBaseUsers.json");
@@ -82,7 +81,9 @@ public class TestDataBaseUser {
         for (RequestAnalyzer element : analyzer.getListRquest()) {
             listaUser.add((new ConverterToObject()).getRequestAnalyzerToUser(element));
         }
-        Assertions.assertTrue(true);
+        
+        satisfactoryTest = listaUser.size() == 3;
+        Assertions.assertTrue(satisfactoryTest);
     }
    
     @org.junit.jupiter.api.BeforeAll

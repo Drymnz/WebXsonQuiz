@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import java.io.IOException;
@@ -37,7 +33,7 @@ public class SocketServletListener implements ServletContextListener {
             try {
                 serverSocket = new ServerSocket(this.PORT_SOCKET);
                 while (!serverSocket.isClosed()) {
-                    System.out.println( "El puerto esta ubicado en " + this.PORT_SOCKET);
+                    System.out.println( LanguageConstants.LOCATION_ON_THE_PORT + this.PORT_SOCKET);
                     this.printConsole();
                     Socket clientSocket = serverSocket.accept();
                     // Manejar la conexión del cliente en un hilo separado
@@ -73,7 +69,7 @@ public class SocketServletListener implements ServletContextListener {
                 Pattern pattern = Pattern.compile("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)(\\.(?!$)|$)){4}$");
                 Matcher verify = pattern.matcher(i.getHostAddress());
                 if (verify.find()) {
-                    System.out.println("\nPosible ip para : "+ i.getHostAddress());
+                    System.out.println(LanguageConstants.POSSIBLE_IP_SOCKET+ i.getHostAddress());
                 }
             }
         }

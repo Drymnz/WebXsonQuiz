@@ -74,6 +74,7 @@ non terminal inicio;
 //solicitud
 non terminal json;
 non terminal obj_json,data,data_user,datas_user;
+non terminal secuenci_json;
 /* Gramática */
 start with inicio;
 /******operaciones matematicas*****/
@@ -87,9 +88,15 @@ bucle_inicio
   ;
 
 json::=
-  BRACKETS_O obj_json COMA BRACKETS_C
-  |obj_json
+  BRACKETS_O secuenci_json BRACKETS_C
+  |secuenci_json
   ;
+
+secuenci_json 
+  ::=obj_json COMA secuenci_json
+  |obj_json
+  ;  
+
 obj_json ::=
   KEYS_O datas_user KEYS_C   
   {:
@@ -119,7 +126,7 @@ data_user::=
   ;
 
 data ::=COLNO STRING:a {:RESULT = a;:}
-  | COLNO STRING_DATE:a
+  | COLNO STRING_DATE:a {:RESULT = a;:}
   | error
   | 
   ;

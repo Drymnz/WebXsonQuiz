@@ -74,6 +74,7 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "fin_solicitud_realizada"   {print("fin_solicitud_realizada"); return new Symbol(MySymLoginUser.FINAL_REQUEST ,yyline,yycolumn,yytext());}
 //TIPOS DE SOLICITUD
 "\"USUARIO_NUEVO\""     {print("\"USUARIO_NUEVO\""); return new Symbol(MySymLoginUser.NEW_USER ,yyline,yycolumn,yytext());}
+"\"LOGIN_USUARIO\""     {print("\"LOGIN_USUARIO\""); return new Symbol(MySymLoginUser.LOGIN_USER ,yyline,yycolumn,yytext());}
 /*JSON*/
 "{"                     {print("{"); return new Symbol(MySymLoginUser.KEYS_O ,yyline,yycolumn,yytext());}
 "}"                     {print("}"); return new Symbol(MySymLoginUser.KEYS_C ,yyline,yycolumn,yytext());}

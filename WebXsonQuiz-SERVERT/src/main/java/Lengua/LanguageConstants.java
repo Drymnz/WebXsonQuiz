@@ -10,6 +10,6 @@ package Lengua;
  * @author drymnz
  */
 public class LanguageConstants {
-    public final String LOCATION_ON_THE_PORT = "El puerto esta ubicado en ";
-    
+    public final static String LOCATION_ON_THE_PORT = "El puerto esta ubicado en ";
+    public final static String POSSIBLE_IP_SOCKET = "El puerto esta ubicado en ";
 }
