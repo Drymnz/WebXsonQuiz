@@ -1,24 +1,10 @@
 import org.junit.jupiter.api.Test;
 
-import com.google.gson.Gson;
-
-import java_cup.parser;
 import reactions.SystemAcess;
-import LexicalAndSyntacticAnalyzer.ListRequests;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerLogin;
-import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
-import LexicalAndSyntacticAnalyzer.jflexandcup.LexemaUser;
-import LexicalAndSyntacticAnalyzer.jflexandcup.MyParserLoginUser;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.User;
-import fileManager.FileInput;
-import fileManager.FileOutput;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.File;
-import java.io.Reader;
-import java.io.StringReader;
 
 import org.junit.jupiter.api.Assertions;
 

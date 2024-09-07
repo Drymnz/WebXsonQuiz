@@ -41,11 +41,15 @@ public class FileInput {
         if (verificar.exists()) {
             return verificar;
         } else {
-            if (verificar.mkdirs()) {
-                System.out.println("FUE CREADO " + verificar.getName());
-                return verificar;
-            } else {
-                System.out.println("NO SE PUDO CREAR " + verificar.getName());
+            try {
+                if (verificar.createNewFile()) {
+                    System.out.println("FUE CREADO " + verificar.getName());
+                    return verificar;
+                } else {
+                    System.out.println("NO SE PUDO CREAR " + verificar.getName());
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(FileInput.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
