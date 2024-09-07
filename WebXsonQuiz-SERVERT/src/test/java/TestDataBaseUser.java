@@ -33,7 +33,6 @@ public class TestDataBaseUser {
         String directorioActual = System.getProperty("user.dir");
         File archivoTxt = new File(directorioActual, "DataBaseUser.json");
         String json = (new FileInput().cargarArchivoTexto(archivoTxt));
-        System.out.println(json);
         Assertions.assertTrue(json.equals("{\"id\":\"admin\",\"password\":\"admin\",\"name\":\"Benjamin de Jesus Perez Aguilar\",\"institution\":\"CUNOC\",\"date\":\""+converter.getDate()+"\"}"));
     }
 

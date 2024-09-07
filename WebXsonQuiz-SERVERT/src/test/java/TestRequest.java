@@ -44,8 +44,6 @@ public class TestRequest {
         boolean satisfactoryTest = false;
         ConverterToObject converter = new ConverterToObject();
         User newUser = (converter).createUserListDataAnalyzerLogin(analyzer.getListRquest().get(0).getList());
-        System.out.println("newUser" + newUser.toString());
-        System.out.println("checkLogin" + checkLogin.toString());
         satisfactoryTest = checkLogin.getId().equals(newUser.getId())
                 && checkLogin.getPassword().equals(newUser.getPassword());
         Assertions.assertTrue(!analyzer.isError() && satisfactoryTest);
@@ -54,10 +52,7 @@ public class TestRequest {
     @Test
     public void testSystemAccesUser() {
         SystemAcess userSy = new SystemAcess(textLoginBJ);
-        System.out.println(textLoginBJ.isEmpty());
-
         boolean getIn = (!textLoginBJ.isEmpty()) && (userSy.isAcceder());
-
         Assertions.assertTrue(getIn);
     }
 
