@@ -25,7 +25,11 @@ public class SystemAcess {
         String json = (new FileInput().cargarArchivoTexto(archivoTxt));
         User checkUser = searchByID(getListUserDataBase(json), UserWantToAccess.getId());
 
-        return isEquetUser(checkUser,UserWantToAccess );
+        if (checkUser!= null & UserWantToAccess!=null) {
+            return isEquetUser(checkUser,UserWantToAccess );
+        } else {
+            return false;
+        }
     }
 
     private boolean isEquetUser(User one, User two){

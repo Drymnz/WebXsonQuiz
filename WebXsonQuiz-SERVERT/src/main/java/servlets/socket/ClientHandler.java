@@ -11,6 +11,8 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 import reactions.SystemAcess;
 
 /**
@@ -46,12 +48,16 @@ public class ClientHandler implements Runnable {
             // Lógica para manejar la conexión del cliente
             in = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-
-            Object getCliente = in.readObject();
-            /* analysis process */
-            String answer = interprets(getCliente);
             
-            out.writeObject(answer);
+            /* El mensaje que manda el cliente */
+            Object getCliente = in.readObject();
+
+            if (getCliente instanceof String) {
+                String text = (String) getCliente;
+                boolean systemAcess =  (!text.isEmpty()) && ((new SystemAcess(text)).isAcceder());
+                out.writeObject(systemAcess);
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

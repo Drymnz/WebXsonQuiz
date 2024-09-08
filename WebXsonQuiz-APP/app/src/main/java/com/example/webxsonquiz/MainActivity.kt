@@ -30,22 +30,9 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
 
         val textSend = textsend.getText()
         val  portN:Int = 8956
-        println("Envie "+ textSend)
         val task = MyTask("192.168.1.47", portN, textSend.toString())//create the object
         task.delegate = this
         task.execute()
-    }
-
-    /**
-     * return ip entered
-     * */
-    private fun getIpServert():String {
-        val text:String = findViewById<EditText>(R.id.textView).text.toString().replace("\\s".toRegex(), "")
-        Log.d("IP SERVER",text)
-        if (!text.isEmpty()){
-            return text
-        }
-        return ""
     }
 
     override fun processResponse(output: String?) {

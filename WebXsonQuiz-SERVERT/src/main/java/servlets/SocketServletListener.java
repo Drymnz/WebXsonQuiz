@@ -46,12 +46,12 @@ public class SocketServletListener implements ServletContextListener {
                 serverSocket = new ServerSocket(this.PORT_SOCKET);
                 while (!serverSocket.isClosed()) {
                     System.out.println(LanguageConstants.LOCATION_ON_THE_PORT + this.PORT_SOCKET);
+                    //Esta parte espera una coneccion 
                     this.printConsole();
                     Socket clientSocket = serverSocket.accept();
                     // Manejar la conexión del cliente en un hilo separado
                     new Thread(new ClientHandler(clientSocket)).start();
                 }
-                serverSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

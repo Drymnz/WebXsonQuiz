@@ -22,13 +22,17 @@ class MyTask(val ip: String, val port: Int, val message: String) : AsyncTask<Voi
             outputStream.writeObject(message)
 
             // receiving message
-            val response: String = inputStream.readObject() as String;
-            // showing message
-            return response.toString()
+            val report = inputStream.readObject()
+            if (report is Boolean){
+                val reportBlo : Boolean = report as Boolean
+                val stringValue = if (reportBlo) "Entraste a las trivias" else "Lo siento tu usario esta incoreccto"
+                return stringValue
+            }
         }catch (e: Exception) {
             System.out.println("Ip incorrecta->" + e.message)
             return ""
         }
+        return ""
     }
 
     override fun onPostExecute(result: String?) {
