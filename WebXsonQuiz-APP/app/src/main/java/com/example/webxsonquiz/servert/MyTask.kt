@@ -9,7 +9,7 @@ class MyTask(val ip: String, val port: Int, val message: String) : AsyncTask<Voi
 
     var delegate: AsyncResponse? = null
     val direccion:String = "192.168.1.47"
-            val portDi:Int = 7090
+    val portDi:Int = 7090
 
 
     override fun doInBackground(vararg p0: Void?): String {

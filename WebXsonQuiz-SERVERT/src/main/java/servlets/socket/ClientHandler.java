@@ -58,6 +58,7 @@ public class ClientHandler implements Runnable {
                 out.writeObject(systemAcess);
             }
             
+            clientSocket.close();
         } catch (IOException ex) {
             Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
