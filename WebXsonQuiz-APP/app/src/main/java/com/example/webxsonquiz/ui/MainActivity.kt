@@ -1,22 +1,26 @@
-package com.example.webxsonquiz
+package com.example.webxsonquiz.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.webxsonquiz.R
 import com.example.webxsonquiz.servert.AsyncResponse
 import com.example.webxsonquiz.servert.MyTask
 
 class MainActivity : AppCompatActivity(), AsyncResponse {
+
+    private val viewModel by viewModels<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        viewModel.example()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
