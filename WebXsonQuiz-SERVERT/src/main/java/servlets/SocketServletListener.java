@@ -21,7 +21,6 @@ import fileManager.FileOutput;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import reactions.ConstantSystem;
 import servlets.socket.ClientHandler;
 
@@ -34,7 +33,7 @@ public class SocketServletListener implements ServletContextListener {
 
     private ServerSocket serverSocket;
     private Thread socketThread;
-    private int PORT_SOCKET = 7090;
+    private final int PORT_SOCKET = 5348;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -49,6 +48,7 @@ public class SocketServletListener implements ServletContextListener {
                     //Esta parte espera una coneccion 
                     this.printConsole();
                     Socket clientSocket = serverSocket.accept();
+                    System.out.println("----------------- SE CONECTO ALGUIEN -----------------");
                     // Manejar la conexión del cliente en un hilo separado
                     new Thread(new ClientHandler(clientSocket)).start();
                 }
@@ -65,8 +65,8 @@ public class SocketServletListener implements ServletContextListener {
         File archivoTxt = new File(ConstantSystem.SYSTEM_DIR, ConstantSystem.NAME_FILE_DATA_BASE_USER);
         boolean create = false;
         if (archivoTxt.exists()) {
-            String tue = (new FileInput().cargarArchivoTexto(archivoTxt));
-            if (tue.isBlank()) {
+            String getDataBaseFile = (new FileInput().cargarArchivoTexto(archivoTxt));
+            if (getDataBaseFile.isEmpty()) {
                 create = !create;
             }
         } else {

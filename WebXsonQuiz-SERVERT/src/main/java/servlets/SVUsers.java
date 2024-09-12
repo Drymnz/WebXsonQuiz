@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author drymnz
  */
-@WebServlet(name = "SVUsers", urlPatterns = {"/SVUsers"})
+@WebServlet(name = "SVUsers", urlPatterns = {"/WebXsonQuiz"})
 public class SVUsers extends HttpServlet {
 
     /**

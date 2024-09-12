@@ -8,8 +8,8 @@ import java.net.Socket
 class MyTask(val ip: String, val port: Int, val message: String) : AsyncTask<Void, Void, String>() {
 
     var delegate: AsyncResponse? = null
-    val direccion:String = "192.168.1.47"
-    val portDi:Int = 7090
+    val direccion:String = "192.168.1.11"
+    val portDi:Int = 5348
 
 
     override fun doInBackground(vararg p0: Void?): String {
