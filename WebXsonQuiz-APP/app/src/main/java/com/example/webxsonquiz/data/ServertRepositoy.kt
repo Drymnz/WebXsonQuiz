@@ -1,20 +1,24 @@
 package com.example.webxsonquiz.data
 
+import android.util.Log
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
 import java.net.Socket
 
 class ServertRepositoy(ip: String, port: Int) {
 
-    val counter: Flow<Socket> = flow {
-        var socket = Socket(ip, port)
+    val flowSocket: Flow<Socket> = flow {
+        val socket = Socket(ip, port)
+        var booleanReturn:Boolean =  true
         while (socket.isConnected) {
-            emit(socket)
-            delay(1000)
+            if (booleanReturn && socket.isConnected){
+                emit(socket)
+                booleanReturn = !booleanReturn
+            }
+            delay(100) // Add a small delay to reduce CPU usage
         }
+        socket.close()
     }
 
     /*

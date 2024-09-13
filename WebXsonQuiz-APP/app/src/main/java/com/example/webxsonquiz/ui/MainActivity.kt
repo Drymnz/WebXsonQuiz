@@ -14,12 +14,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.lifecycle.viewModelScope
 import com.example.webxsonquiz.R
 import com.example.webxsonquiz.servert.AsyncResponse
-import com.example.webxsonquiz.servert.MyTask
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.ObjectInputStream
@@ -31,6 +29,8 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
     private val viewModel by viewModels<MainViewModel>()
     private var firtsSocket: Boolean = false
     private var socket: Socket? = null
+    private var INICIO:String = "INICIO"
+    private val stateFlow = MutableStateFlow(INICIO)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +51,9 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
                         is MainUIState.Error -> {
                             this@MainActivity.disebleCompi(false)
                         }
-
                         MainUIState.Loging -> {}
                         is MainUIState.Success -> {
+                            //&& !this@MainActivity.firtsSocket
                             if (uiState.socket.isConnected && !this@MainActivity.firtsSocket) {
                                 this@MainActivity.disebleCompi(true)
                                 this@MainActivity.setSocket(uiState.socket)
@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
         this.firtsSocket = enable
         findViewById<TextView>(R.id.buttonCompi).setEnabled(enable)
         findViewById<TextView>(R.id.textArea).setEnabled(enable)
+        findViewById<TextView>(R.id.textArea).setEnabled(enable)
         findViewById<TextView>(R.id.textIPServert).setEnabled(!enable)
         findViewById<TextView>(R.id.portServert).setEnabled(!enable)
         findViewById<TextView>(R.id.bConection).setEnabled(!enable)
@@ -80,6 +81,14 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
             messText,
             Toast.LENGTH_LONG
         ).show()
+        if (messText.equals(getString(R.string.connected_true)))
+        {
+            findViewById<TextView>(R.id.textArea).setHint(getString(R.string.insert_text))
+        }else
+        {
+            findViewById<TextView>(R.id.textArea).setHint(getString(R.string.first_ip))
+        }
+
     }
 
     fun clickConnectIP(view: View) {
@@ -95,31 +104,40 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
     }
 
     fun clickCompi(view: View) {
-        lifecycleScope.launch (Dispatchers.IO){
-            if (this@MainActivity.socket != null) {
-                val textsend: String = findViewById<EditText>(R.id.textArea).getText().toString()
-                sendMessage(textsend)
-            }
+        if (stateFlow.value.equals(this.INICIO)) {
+            stateFlow.value =findViewById<EditText>(R.id.textArea).getText().toString()
+                lifecycleScope.launch(Dispatchers.IO) {
+                    val outputStream = ObjectOutputStream(this@MainActivity.socket?.getOutputStream())
+                    val inputStream = ObjectInputStream(this@MainActivity.socket?.getInputStream())
+                    // sending message
+                    val job = launch {
+                        stateFlow.collect { newValue ->
+                            outputStream.writeObject(newValue)
+                            // receiving message
+                            val report = inputStream.readObject()
+                            if (report is Boolean) {
+
+                            }
+                            if (report is String) {
+                                withContext(Dispatchers.Main) {//Siempre Activites de vista en el primer hilo
+                                    val setText = findViewById<TextView>(R.id.textView)
+                                    setText.setText(report)
+                                }
+                            }
+                        }
+                    }
+//                    if (stateFlow.value.equals("X")){
+//                        job.cancel()
+//                    }
+                }
+        }else{
+            stateFlow.value =findViewById<EditText>(R.id.textArea).getText().toString()
         }
     }
 
     suspend fun sendMessage(message: String) {
         try {
-            val outputStream = ObjectOutputStream(this.socket?.getOutputStream())
-            val inputStream = ObjectInputStream(this.socket?.getInputStream())
-            // sending message
-            outputStream.writeObject(message)
-            // receiving message
-            val report = inputStream.readObject()
-            if (report is Boolean) {
-                val reportBlo: Boolean = report as Boolean
-                val stringValue =
-                if (reportBlo) "Entraste a las trivias" else "Lo siento tu usario esta incoreccto"
-                withContext(Dispatchers.Main){//Siempre Activites de vista en el primer hilo
-                    val setText = findViewById<TextView>(R.id.textView)
-                    setText.setText(stringValue)
-                }
-            }
+
         } catch (e: ArithmeticException) {
             Toast.makeText(
                 this,

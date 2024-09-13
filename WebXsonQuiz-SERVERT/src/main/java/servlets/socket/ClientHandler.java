@@ -10,7 +10,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.JOptionPane;
 
 import reactions.SystemAcess;
@@ -31,7 +30,7 @@ public class ClientHandler implements Runnable {
     private String interprets(Object get) {
         if (get instanceof String) {
             String text = (String) get;
-            boolean getIn =  (!text.isEmpty()) && ((new SystemAcess(text)).isAcceder());
+            boolean getIn = (!text.isEmpty()) && ((new SystemAcess(text)).isAcceder());
             if (getIn) {
                 return "true";
             } else {
@@ -48,16 +47,20 @@ public class ClientHandler implements Runnable {
             // Lógica para manejar la conexión del cliente
             in = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-            
+            boolean outCliente = false;
             /* El mensaje que manda el cliente */
-            Object getCliente = in.readObject();
-
-            if (getCliente instanceof String) {
-                String text = (String) getCliente;
-                boolean systemAcess =  (!text.isEmpty()) && ((new SystemAcess(text)).isAcceder());
-                out.writeObject(systemAcess);
+            while (!outCliente) {
+                Object getCliente = in.readObject();
+                if (getCliente instanceof String) {
+                    /* El mensaje que manda el cliente */
+                    String text = (String) getCliente;
+                    outCliente = text.endsWith("X");
+                    //boolean systemAcess =  (!text.isEmpty()) && ((new SystemAcess(text)).isAcceder());
+                    out.writeObject(JOptionPane.showInputDialog( String.format("El cliente dice \"%s\" y tu ?", text)));
+                    out.flush();
+                }
             }
-            
+            System.out.println("----------------- SE DESCONECTO ALGUIEN -----------------");
             clientSocket.close();
         } catch (IOException ex) {
             //Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);

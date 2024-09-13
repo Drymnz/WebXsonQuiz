@@ -19,7 +19,7 @@ class MainViewModel: ViewModel() {
     fun connectionToServer (ip:String,port:Int){
         val servertRepositoy = ServertRepositoy(ip,port)
         viewModelScope.launch {
-            servertRepositoy.counter
+            servertRepositoy.flowSocket
                 //.map { it.toString() }//modificar
                 //.onEach { usar(it) }// usar el dato
                 .catch {
