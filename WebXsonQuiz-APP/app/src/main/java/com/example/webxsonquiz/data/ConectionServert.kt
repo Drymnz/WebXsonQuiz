@@ -8,18 +8,23 @@ import java.io.ObjectOutputStream
 import java.net.Socket
 
 
-class ConectionServert(ip: String, port: Int) {
-    private val socket:Socket
-    private val outputStream:ObjectOutputStream
-    private val inputStream:ObjectInputStream
+class ConectionServert<T>(ip: String, port: Int) {
+
+    private val socket: Socket
+    private val outputStream: ObjectOutputStream
+    private val inputStream: ObjectInputStream
 
     init {
+
         this.socket = Socket(ip, port)
         this.outputStream = ObjectOutputStream(this.socket?.getOutputStream())
         this.inputStream = ObjectInputStream(this.socket?.getInputStream())
 
     }
 
-
+    public fun sendMessage(messagen: T): T {
+        outputStream.writeObject(messagen)
+        return inputStream.readObject() as T
+    }
 
 }

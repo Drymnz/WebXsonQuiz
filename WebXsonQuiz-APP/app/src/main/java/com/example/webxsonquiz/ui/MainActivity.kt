@@ -15,7 +15,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.webxsonquiz.R
-import com.example.webxsonquiz.servert.AsyncResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -24,7 +23,7 @@ import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.net.Socket
 
-class MainActivity : AppCompatActivity(), AsyncResponse {
+class MainActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
     private var firtsSocket: Boolean = false
@@ -106,6 +105,7 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
     fun clickCompi(view: View) {
         if (stateFlow.value.equals(this.INICIO)) {
             stateFlow.value =findViewById<EditText>(R.id.textArea).getText().toString()
+
                 lifecycleScope.launch(Dispatchers.IO) {
                     val outputStream = ObjectOutputStream(this@MainActivity.socket?.getOutputStream())
                     val inputStream = ObjectInputStream(this@MainActivity.socket?.getInputStream())
@@ -115,9 +115,7 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
                             outputStream.writeObject(newValue)
                             // receiving message
                             val report = inputStream.readObject()
-                            if (report is Boolean) {
 
-                            }
                             if (report is String) {
                                 withContext(Dispatchers.Main) {//Siempre Activites de vista en el primer hilo
                                     val setText = findViewById<TextView>(R.id.textView)
@@ -133,24 +131,6 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
         }else{
             stateFlow.value =findViewById<EditText>(R.id.textArea).getText().toString()
         }
-    }
-
-    suspend fun sendMessage(message: String) {
-        try {
-
-        } catch (e: ArithmeticException) {
-            Toast.makeText(
-                this,
-                getString(R.string.connected_false),
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
-
-
-    override fun processResponse(output: String?) {
-        val setText = findViewById<TextView>(R.id.textView)
-        setText.setText(output)
     }
 
     private fun setSocket(socket: Socket) {
