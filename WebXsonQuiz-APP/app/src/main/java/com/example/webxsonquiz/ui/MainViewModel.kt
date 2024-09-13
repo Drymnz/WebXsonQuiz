@@ -1,6 +1,7 @@
 package com.example.webxsonquiz.ui
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.webxsonquiz.data.ServertRepositoy
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import java.net.Socket
 
 
 class MainViewModel: ViewModel() {
@@ -19,8 +21,8 @@ class MainViewModel: ViewModel() {
     private val _uiState = MutableStateFlow<MainUIState>(MainUIState.Loging)
     val uiState: StateFlow<MainUIState> = _uiState
 
-    fun coneccion (login:String){
-        val servertRepositoy = ServertRepositoy(login)
+    fun connectionToServer (ip:String,port:Int){
+        val servertRepositoy = ServertRepositoy(ip,port)
         viewModelScope.launch {
             servertRepositoy.counter
                 //.map { it.toString() }//modificar
@@ -33,7 +35,7 @@ class MainViewModel: ViewModel() {
                 .flowOn(Dispatchers.IO)
                 .collect{
                 // esto lo esta imprimiendo en log
-                _uiState.value = MainUIState.Success(it.toString())
+                _uiState.value = MainUIState.Success(it)
             }
         }
     }

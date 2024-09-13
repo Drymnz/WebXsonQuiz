@@ -26,11 +26,11 @@ import java.net.Socket
 class MainActivity : AppCompatActivity(), AsyncResponse {
 
     private val viewModel by viewModels<MainViewModel>()
+    private var firtsSocket:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()//pnatalla completa
-        connectedToServer()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -39,65 +39,55 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
         }
     }
 
-
-    fun connectedToServer(){
+    fun connectedToServer(ip: String, port: Int) {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.uiState.collect{
-                        uiState ->
-                    when(uiState){
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { uiState ->
+                    when (uiState) {
                         is MainUIState.Error -> {
-                            Toast.makeText(
-                                this@MainActivity
-                                ,"Error"
-                                ,Toast.LENGTH_LONG
-                            ).show()
+                            this@MainActivity.disebleCompi(false)
                         }
-                        MainUIState.Loging -> {
-
-                        }
+                        MainUIState.Loging -> {}
                         is MainUIState.Success -> {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Numero de suscriptores guays: ${uiState.numSubscribers}",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            if (uiState.socket.isConnected && !this@MainActivity.firtsSocket) {
+                                this@MainActivity.disebleCompi(true)
+                            }
                         }
                     }
                 }
             }
         }
+        viewModel.connectionToServer(ip, port)
     }
 
-    fun clickConnectIP(view: View){
+    fun disebleCompi(enable: Boolean) {
+        this.firtsSocket = enable
+        findViewById<TextView>(R.id.buttonCompi).setEnabled(enable)
+        findViewById<TextView>(R.id.textArea).setEnabled(enable)
+        findViewById<TextView>(R.id.textIPServert).setEnabled(!enable)
+        findViewById<TextView>(R.id.portServert).setEnabled(!enable)
+        findViewById<TextView>(R.id.bConection).setEnabled(!enable)
+        val messText: String = if (enable) getString(R.string.connected_true) else getString(R.string.connected_false)
+        Toast.makeText(
+            this@MainActivity,
+            messText,
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    fun clickConnectIP(view: View) {
         val getIp = findViewById<TextView>(R.id.textIPServert)
         val getPort = findViewById<TextView>(R.id.portServert)
-        try {
-            val ipv4Regex = """^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$""".toRegex()
-            val ip = getIp.text.toString()
-            val port = getPort.text.toString().toIntOrNull() // Convierte el puerto de forma segura
-            if (port != null && ipv4Regex.matches(ip)) {
-                Toast.makeText(this,"Esta mal los datos${ip}:${port}",Toast.LENGTH_SHORT).show()
-                val socket = Socket("http://localhost/", port)
-                val outputStream = ObjectOutputStream(socket.getOutputStream())
-                val inputStream = ObjectInputStream(socket.getInputStream())
-
-                // sending message
-                outputStream.writeObject("")
-                if (socket.isConnected)
-                {
-                    Toast.makeText(this,"si",Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(this,"Esta mal los datos${ip}:${port}",Toast.LENGTH_SHORT).show()
-            }
-        } catch (e: Exception) {
-            Toast.makeText(this,"ERROR AL CONECTARSE",Toast.LENGTH_SHORT).show()
-            Log.i("Error","Error al intentar conectar al socket: ${e.message}")
+        val ipv4Regex =
+            """^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$""".toRegex()
+        val ip = getIp.text.toString()
+        val port = getPort.text.toString().toIntOrNull() // Convierte el puerto de forma segura
+        if (port != null && ipv4Regex.matches(ip)) {
+            this.connectedToServer(ip, port)
         }
     }
 
-    fun clickCompi(view: View){
+    fun clickCompi(view: View) {
         Toast.makeText(
             this@MainActivity,
             "Numero de suscriptores guays:",
@@ -106,7 +96,7 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
         val textsend = findViewById<EditText>(R.id.textArea)
 
         val textSend = textsend.getText()
-        val  portN:Int = 8956
+        val portN: Int = 8956
         val task = MyTask("192.168.1.47", portN, textSend.toString())//create the object
         task.delegate = this
         task.execute()

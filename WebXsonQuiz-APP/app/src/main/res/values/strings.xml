@@ -1,10 +1,14 @@
 <resources>
+    <!-- Actividad Principal -->
     <string name="app_name">WebXsonQuiz</string>
-    <string name="text_welcome">Bienvenido a la aplicacion WebXsonQuiz</string>
-    <string name="insert_text">En este area ingre el texto a analizar</string>
-    <string name="first_ip">Primero ingrese realize la coneccion del servidor</string>
-    <string name="ip_servert">Ingrese la ip del servidor</string>
-    <string name="port_servert">Ingrese la puerto del servidor</string>
-    <string name="button_connect">Coneccion</string>
-    <string name="compi">Compilar</string>
+    <string name="text_welcome">Bienvenido a la aplicación WebXsonQuiz</string>
+    <string name="insert_text">En esta área, ingrese el texto a analizar.</string>
+    <string name="first_ip">Primero, realice la conexión al servidor.</string>
+    <string name="ip_server">Ingrese la IP del servidor.</string>
+    <string name="port_server">Ingrese el puerto del servidor.</string>
+    <string name="button_connect">Conectar</string>
+    <string name="compile">Compilar</string>
+    <!-- Actividad Principal del Backend -->
+    <string name="connected_true">Está conectado al servidor.</string>
+    <string name="connected_false">Los datos son incorrectos.</string>
 </resources>

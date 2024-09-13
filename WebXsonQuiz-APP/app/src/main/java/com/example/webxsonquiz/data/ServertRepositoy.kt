@@ -7,25 +7,19 @@ import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.net.Socket
 
-class ServertRepositoy (login:String) {
+class ServertRepositoy(ip: String, port: Int) {
 
-    val counter: Flow<Int> = flow {
-        var bombitas = 1
-        while (true){
-            bombitas += 1
-            emit(bombitas)
+    val counter: Flow<Socket> = flow {
+        var socket = Socket(ip, port)
+        while (socket.isConnected) {
+            emit(socket)
             delay(1000)
         }
     }
 
-    /* val direccion:String = "192.168.1.47"
-    val portDi:Int = 7090
-
-    val counter : Flow<String> = flow{
-        val socket = Socket(direccion, portDi)
-        val outputStream = ObjectOutputStream(socket.getOutputStream())
-        val inputStream = ObjectInputStream(socket.getInputStream())
-
+    /*
+            val outputStream = ObjectOutputStream(socket.getOutputStream())
+            val inputStream = ObjectInputStream(socket.getInputStream())
         // sending message
         outputStream.writeObject(login)
         var bombitas:String  = inputStream.readObject() as String
