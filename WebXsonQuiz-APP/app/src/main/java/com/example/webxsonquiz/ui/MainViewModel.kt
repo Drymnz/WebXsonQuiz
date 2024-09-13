@@ -1,7 +1,5 @@
 package com.example.webxsonquiz.ui
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.webxsonquiz.data.ServertRepositoy
@@ -10,10 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import java.net.Socket
 
 
 class MainViewModel: ViewModel() {
@@ -30,18 +25,15 @@ class MainViewModel: ViewModel() {
                 .catch {
                     _uiState.value = MainUIState.Error(it.message.orEmpty())
                 }
-                //Dispatchers.Main hilo principal
+                //Dispatchers.Main hilo principal --->>>>> Siempre Activites de vista en el primer hilo
                 //Dispatchers.IO hilo secundario
+                //Dispatchers.Default n^x
                 .flowOn(Dispatchers.IO)
                 .collect{
                 // esto lo esta imprimiendo en log
                 _uiState.value = MainUIState.Success(it)
             }
         }
-    }
-
-    private fun usar(it: String) {
-
     }
 
 }
