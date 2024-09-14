@@ -8,7 +8,8 @@ import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 import LexicalAndSyntacticAnalyzer.jflexandcup.LexemaUser;
 import LexicalAndSyntacticAnalyzer.jflexandcup.MyParserLoginUser;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
-import LexicalAndSyntacticAnalyzer.objectAnalyzer.User;
+import com.cunoc.webxsonquiz.data.servert.User;
+
 import fileManager.FileOutput;
 
 import java.io.File;

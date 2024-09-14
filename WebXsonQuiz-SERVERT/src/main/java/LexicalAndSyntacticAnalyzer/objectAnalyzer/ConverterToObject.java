@@ -1,5 +1,6 @@
 package LexicalAndSyntacticAnalyzer.objectAnalyzer;
 
+import com.cunoc.webxsonquiz.data.servert.User;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

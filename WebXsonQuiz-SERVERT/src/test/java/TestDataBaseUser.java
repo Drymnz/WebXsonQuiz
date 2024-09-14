@@ -5,7 +5,8 @@ import com.google.gson.Gson;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerDataBase;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
-import LexicalAndSyntacticAnalyzer.objectAnalyzer.User;
+import com.cunoc.webxsonquiz.data.servert.User;
+
 import fileManager.FileInput;
 import fileManager.FileOutput;
 

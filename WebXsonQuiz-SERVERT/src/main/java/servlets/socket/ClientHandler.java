@@ -4,7 +4,7 @@
  */
 package servlets.socket;
 
-import LexicalAndSyntacticAnalyzer.objectAnalyzer.User;
+import com.cunoc.webxsonquiz.data.servert.User;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -31,10 +31,12 @@ public class ClientHandler implements Runnable {
     private Boolean loginClient(Object get) {
         if (get instanceof String) {
             String text = (String) get;
-            if (!text.isEmpty()) {
+            System.out.println(text.isEmpty());
+            if (text.isEmpty()) {
                 return false;
             }
             this.userclient = (new SystemAcess(text)).loginSystem();
+            System.out.println(this.userclient.toString());
             return this.userclient != null;
         }
         return false;
@@ -56,7 +58,7 @@ public class ClientHandler implements Runnable {
                 if (getCliente instanceof String) {
                     String text = (String) getCliente;
                     System.out.println("Peticion > " + text);
-                    if (text.endsWith("false")) {
+                    if (text.equals("false")) {
                         outCliente = !outCliente;
                         System.out.println("CERRAR");
                         out.writeObject(false);

@@ -7,7 +7,7 @@ import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerDataBase;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerLogin;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
-import LexicalAndSyntacticAnalyzer.objectAnalyzer.User;
+import com.cunoc.webxsonquiz.data.servert.User;
 import fileManager.FileInput;
 
 public class SystemAcess {

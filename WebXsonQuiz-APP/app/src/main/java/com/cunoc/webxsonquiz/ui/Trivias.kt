@@ -1,4 +1,4 @@
-package com.example.webxsonquiz.ui
+package com.cunoc.webxsonquiz.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

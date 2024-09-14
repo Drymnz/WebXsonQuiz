@@ -1,4 +1,4 @@
-package com.example.webxsonquiz.ui
+package com.cunoc.webxsonquiz.ui
 
 import android.content.Context
 import android.content.Intent
@@ -17,8 +17,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.webxsonquiz.R
-import com.example.webxsonquiz.data.ConectionServert
-import com.example.webxsonquiz.data.servert.User
+import com.cunoc.webxsonquiz.data.ConectionServert
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -115,6 +114,7 @@ class MainActivity : AppCompatActivity() {
                         if (report is Boolean) {
                             this@MainActivity.irTrivias(report,this@MainActivity )
                         }
+                        println(report.toString())
                         //if (report is User) {
                         //    this@MainActivity.irTrivias(report,this@MainActivity )
                         //}

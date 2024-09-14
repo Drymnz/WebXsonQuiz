@@ -1,4 +1,4 @@
-package com.example.webxsonquiz.data
+package com.cunoc.webxsonquiz.data
 
 
 import kotlinx.coroutines.delay

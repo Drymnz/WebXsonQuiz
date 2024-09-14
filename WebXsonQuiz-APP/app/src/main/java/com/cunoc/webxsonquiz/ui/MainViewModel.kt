@@ -1,8 +1,8 @@
-package com.example.webxsonquiz.ui
+package com.cunoc.webxsonquiz.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.webxsonquiz.data.ServertRepositoy
+import com.cunoc.webxsonquiz.data.ServertRepositoy
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

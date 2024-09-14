@@ -14,7 +14,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import Lengua.LanguageConstants;
-import LexicalAndSyntacticAnalyzer.objectAnalyzer.User;
+import com.cunoc.webxsonquiz.data.servert.User;
 import com.google.gson.Gson;
 import fileManager.FileInput;
 import fileManager.FileOutput;

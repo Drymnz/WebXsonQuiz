@@ -1,8 +1,10 @@
-package LexicalAndSyntacticAnalyzer.objectAnalyzer;
+package com.cunoc.webxsonquiz.data.servert;
 
 import java.io.Serializable;
 
 public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String id;
     private String password;
@@ -10,8 +12,7 @@ public class User implements Serializable {
     private String institution;
     private String date;
 
-
-    public User(String id, String password, String name, String institution,String date)  {
+    public User(String id, String password, String name, String institution, String date) {
         this.id = id;
         this.password = password;
         this.name = name;
@@ -19,6 +20,7 @@ public class User implements Serializable {
         this.date = date;
     }
 
+    // Getters y Setters
     public String getId() {
         return id;
     }
@@ -51,18 +53,20 @@ public class User implements Serializable {
         this.institution = institution;
     }
 
-    @Override
-    public String toString() {
-        return "ID:" + id +
-                " password:" + password +
-                " name:" + name +
-                " institution:" + institution+
-                " date:" + date
-                ;
-    }
-
     public String getDate() {
         return date;
     }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + id +
+               ", password: " + password +
+               ", name: " + name +
+               ", institution: " + institution +
+               ", date: " + date;
+    }
 }
