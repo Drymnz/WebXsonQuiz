@@ -50,6 +50,7 @@ public class ClientHandler implements Runnable {
             in = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
             boolean outCliente = false;
+            System.out.println("Se conecto"+clientSocket.getLocalAddress().getHostAddress());
             /* El mensaje que manda el cliente */
             while (!outCliente) {
                 System.out.println("----------------- ESPERANDO MENSAJE-----------------");
@@ -57,15 +58,15 @@ public class ClientHandler implements Runnable {
                 Object getCliente = in.readObject();
                 if (getCliente instanceof String) {
                     String text = (String) getCliente;
-                    System.out.println("Peticion > " + text);
+                    System.out.println(clientSocket.getLocalAddress().getHostAddress()+"Peticion > " + text);
                     if (text.equals("false")) {
                         outCliente = !outCliente;
-                        System.out.println("CERRAR");
+                        System.out.println("CERRAR a "+ clientSocket.getLocalAddress().getHostAddress());
                         out.writeObject(false);
                         out.flush();
                     } else {
                         boolean login = this.loginClient(text);
-                        System.out.println("envio > " + login);
+                        System.out.println(clientSocket.getLocalAddress().getHostAddress()+"envio > " + login);
                         if (login) {
                             out.writeObject(this.userclient);
                             out.flush();

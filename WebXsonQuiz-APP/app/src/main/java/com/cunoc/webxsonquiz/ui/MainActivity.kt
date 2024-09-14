@@ -18,6 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.webxsonquiz.R
 import com.cunoc.webxsonquiz.data.ConectionServert
+import com.cunoc.webxsonquiz.data.servert.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -112,12 +113,12 @@ class MainActivity : AppCompatActivity() {
                         // receiving message
                         val report = this@MainActivity.conectionServert?.sendMessage(newValue)
                         if (report is Boolean) {
-                            this@MainActivity.irTrivias(report,this@MainActivity )
+                            this@MainActivity.irTrivias(report,this@MainActivity ,null)
                         }
                         println(report.toString())
-                        //if (report is User) {
-                        //    this@MainActivity.irTrivias(report,this@MainActivity )
-                        //}
+                        if (report is User) {
+                            this@MainActivity.irTrivias(true,this@MainActivity ,report)
+                        }
                     }
                 }
             }
@@ -138,14 +139,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    suspend fun irTrivias(requestServert: Boolean,context: Context) {
+    suspend fun irTrivias(requestServert: Boolean,context: Context,user: User?) {
         val messText: String =
             if (requestServert) getString(R.string.login_true) else getString(R.string.connected_false)
         this@MainActivity.messeg(context,messText)
-        if (requestServert){
+        if (requestServert && user != null){
             withContext(Dispatchers.Main) {//Siempre Activites de vista en el primer hilo
                 val intent = Intent(context, Trivias::class.java)
-                //intent.putExtra("listado_reportes_mate", map)//send map
+                intent.putExtra("user", user)//send map
+                //intent.putExtra("conectionServert", conectionServert)//send map
                 startActivity(intent)
             }
         }
@@ -156,4 +158,5 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(context, messText, Toast.LENGTH_SHORT).show()
         }
     }
+
 }

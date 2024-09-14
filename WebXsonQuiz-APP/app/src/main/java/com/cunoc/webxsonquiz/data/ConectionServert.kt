@@ -1,24 +1,30 @@
 package com.cunoc.webxsonquiz.data
 
-import com.cunoc.webxsonquiz.data.servert.User
+import android.os.Parcel
+import android.os.Parcelable
 import java.io.IOException
+import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.net.Socket
-import java.io.ObjectInputStream
 
+class ConectionServert(private val ip: String, private val port: Int) : Parcelable {
 
-class ConectionServert(ip: String, port: Int) {
+    private val socket: Socket = Socket(ip, port)
+    private val outputStream: ObjectOutputStream = ObjectOutputStream(this.socket.getOutputStream())
+    private val inputStream: ObjectInputStream = ObjectInputStream(this.socket.getInputStream())
 
-    private val socket: Socket
-    private val outputStream: ObjectOutputStream
-    private val inputStream: ObjectInputStream
+    constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
+        parcel.readInt()
+    )
 
-    init {
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(ip)
+        parcel.writeInt(port)
+    }
 
-        this.socket = Socket(ip, port)
-        this.outputStream = ObjectOutputStream(this.socket?.getOutputStream())
-        this.inputStream = ObjectInputStream(this.socket?.getInputStream())
-
+    override fun describeContents(): Int {
+        return 0
     }
 
     public fun sendMessage(messagen: Any?): Any? {
@@ -26,9 +32,6 @@ class ConectionServert(ip: String, port: Int) {
         var dataRequest: Any? = null
         try {
             val user = inputStream.readObject()
-            if (user is User){
-                println(user.toString())
-            }
             dataRequest = user
         } catch (e: ClassNotFoundException) {
             println("Error: La clase del objeto no pudo ser encontrada. Detalles: ${e.message}")
@@ -42,7 +45,17 @@ class ConectionServert(ip: String, port: Int) {
         return dataRequest
     }
 
-    public fun getSocket():Socket{
-        return  this.socket
+    public fun getSocket(): Socket {
+        return this.socket
+    }
+
+    companion object CREATOR : Parcelable.Creator<ConectionServert> {
+        override fun createFromParcel(parcel: Parcel): ConectionServert {
+            return ConectionServert(parcel)
+        }
+
+        override fun newArray(size: Int): Array<ConectionServert?> {
+            return arrayOfNulls(size)
+        }
     }
 }
