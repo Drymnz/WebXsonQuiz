@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                         MainUIState.Loging -> {}
                         is MainUIState.Success -> {
                             //&& !this@MainActivity.firtsSocket
-                            if (uiState.socket.getSocket().isConnected && !this@MainActivity.firtsSocket) {
+                            if (uiState.socket.getSocket()!!.isConnected && !this@MainActivity.firtsSocket) {
                                 this@MainActivity.disebleCompi(true)
                                 this@MainActivity.setSocket(uiState.socket)
                             }
@@ -131,23 +131,28 @@ class MainActivity : AppCompatActivity() {
         this.conectionServert = conectionServert
     }
 
+    private fun getConectionServer(): ConectionServert? {
+        return this.conectionServert
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        if (conectionServert != null && conectionServert!!.getSocket().isConnected) {
+        if (conectionServert != null && conectionServert!!.getSocket()!!.isConnected) {
             conectionServert!!.sendMessage("false")
-            conectionServert!!.getSocket().close()
+            conectionServert!!.getSocket()!!.close()
         }
     }
 
     suspend fun irTrivias(requestServert: Boolean,context: Context,user: User?) {
         val messText: String =
             if (requestServert) getString(R.string.login_true) else getString(R.string.connected_false)
-        this@MainActivity.messeg(context,messText)
-        if (requestServert && user != null){
-            withContext(Dispatchers.Main) {//Siempre Activites de vista en el primer hilo
+        this@MainActivity.messeg(context, messText)
+
+        if (requestServert && user != null) {
+            withContext(Dispatchers.Main) {
                 val intent = Intent(context, Trivias::class.java)
-                intent.putExtra("user", user)//send map
-                //intent.putExtra("conectionServert", conectionServert)//send map
+                intent.putExtra("user", user) // Enviar el usuario
+                intent.putExtra("ConectionServert", this@MainActivity.getConectionServer()) // Enviar la conexión
                 startActivity(intent)
             }
         }

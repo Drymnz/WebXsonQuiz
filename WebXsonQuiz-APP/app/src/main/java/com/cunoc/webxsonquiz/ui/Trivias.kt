@@ -3,29 +3,47 @@ package com.cunoc.webxsonquiz.ui
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.cunoc.webxsonquiz.data.ConectionServert
 import com.cunoc.webxsonquiz.data.servert.User
 import com.example.webxsonquiz.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 
 class Trivias : AppCompatActivity() {
     private var user: User? = null
     private var conectionServer: ConectionServert? = null
+    private var INICIO: String = "INICIO"
+    private val stateFlow = MutableStateFlow(INICIO)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_trivias)
         val user: User = getIntent().getSerializableExtra("user") as User
-        //val conectionServer = getIntent().getSerializableExtra("conectionServert") as ConectionServert
+        lifecycleScope.launch(Dispatchers.IO) {
+            this@Trivias.conectionServer = getIntent().getParcelableExtra("ConectionServert")
+            // sending message
+            val job = launch {
+                stateFlow.collect { newValue ->
+                    if (!newValue.equals(this@Trivias.INICIO)){
+                        val report = this@Trivias.conectionServer?.sendMessage(newValue)
+                    }
+                }
+            }
+        }
         if (  user != null) {
+            this.conectionServer = conectionServer // Asigna la conexión
             this.info(user)
         }else{
-            // Si las condiciones no se cumplen, enviar un resultado y regresar
             finish() // Cerrar la actividad actual y regresar
         }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

@@ -50,7 +50,7 @@ public class ClientHandler implements Runnable {
             in = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
             boolean outCliente = false;
-            System.out.println("Se conecto"+clientSocket.getLocalAddress().getHostAddress());
+            System.out.println("Se conecto ->"+clientSocket.getLocalAddress().getHostAddress());
             /* El mensaje que manda el cliente */
             while (!outCliente) {
                 System.out.println("----------------- ESPERANDO MENSAJE-----------------");
@@ -66,12 +66,13 @@ public class ClientHandler implements Runnable {
                         out.flush();
                     } else {
                         boolean login = this.loginClient(text);
-                        System.out.println(clientSocket.getLocalAddress().getHostAddress()+"envio > " + login);
+                        String nameCliente = this.clientSocket!=null ? this.userclient.getId() : clientSocket.getLocalAddress().getHostAddress();
+                        System.out.println(nameCliente+" envio > " + login);
                         if (login) {
                             out.writeObject(this.userclient);
                             out.flush();
                         } else {
-                            out.writeObject(this.loginClient(text));
+                            out.writeObject(login);
                             out.flush();
                         }
                     }

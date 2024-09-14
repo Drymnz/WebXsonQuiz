@@ -9,30 +9,30 @@ import java.net.Socket
 
 class ConectionServert(private val ip: String, private val port: Int) : Parcelable {
 
-    private val socket: Socket = Socket(ip, port)
-    private val outputStream: ObjectOutputStream = ObjectOutputStream(this.socket.getOutputStream())
-    private val inputStream: ObjectInputStream = ObjectInputStream(this.socket.getInputStream())
+    private var socket: Socket? = null
+    private var outputStream: ObjectOutputStream? = null
+    private var inputStream: ObjectInputStream? = null
+
+    init {
+        initializeConnection()
+    }
+
+    private fun initializeConnection() {
+        socket = Socket(ip, port)
+        outputStream = ObjectOutputStream(socket?.getOutputStream())
+        inputStream = ObjectInputStream(socket?.getInputStream())
+    }
 
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
         parcel.readInt()
     )
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(ip)
-        parcel.writeInt(port)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    public fun sendMessage(messagen: Any?): Any? {
-        outputStream.writeObject(messagen)
+    fun sendMessage(message: Any?): Any? {
+        outputStream?.writeObject(message)
         var dataRequest: Any? = null
         try {
-            val user = inputStream.readObject()
-            dataRequest = user
+            dataRequest = inputStream?.readObject()
         } catch (e: ClassNotFoundException) {
             println("Error: La clase del objeto no pudo ser encontrada. Detalles: ${e.message}")
         } catch (e: IOException) {
@@ -45,8 +45,15 @@ class ConectionServert(private val ip: String, private val port: Int) : Parcelab
         return dataRequest
     }
 
-    public fun getSocket(): Socket {
-        return this.socket
+    fun getSocket(): Socket? = socket
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(ip)
+        parcel.writeInt(port)
+    }
+
+    override fun describeContents(): Int {
+        return 0
     }
 
     companion object CREATOR : Parcelable.Creator<ConectionServert> {
@@ -56,6 +63,17 @@ class ConectionServert(private val ip: String, private val port: Int) : Parcelab
 
         override fun newArray(size: Int): Array<ConectionServert?> {
             return arrayOfNulls(size)
+        }
+    }
+
+    // Método para cerrar la conexión
+    fun closeConnection() {
+        try {
+            inputStream?.close()
+            outputStream?.close()
+            socket?.close()
+        } catch (e: IOException) {
+            println("Error al cerrar la conexión: ${e.message}")
         }
     }
 }

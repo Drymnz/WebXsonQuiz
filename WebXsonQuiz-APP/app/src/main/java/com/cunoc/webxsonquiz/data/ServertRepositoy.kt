@@ -12,14 +12,14 @@ class ServertRepositoy(ip: String, port: Int) {
         val conectionServert = ConectionServert(ip, port)
         //val socket = Socket(ip, port)
         var booleanReturn:Boolean =  true
-        while (conectionServert.getSocket().isConnected) {
-            if (booleanReturn && conectionServert.getSocket().isConnected){
+        while (conectionServert.getSocket()!!.isConnected) {
+            if (booleanReturn && conectionServert.getSocket()!!.isConnected){
                 emit(conectionServert)
                 booleanReturn = !booleanReturn
             }
             delay(100) // Add a small delay to reduce CPU usage
         }
-        conectionServert.getSocket().close()
+        conectionServert.getSocket()!!.close()
     }
 
     /*
