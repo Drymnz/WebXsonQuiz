@@ -1,5 +1,7 @@
 package com.example.webxsonquiz.ui
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,20 +17,19 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.webxsonquiz.R
+import com.example.webxsonquiz.data.ConectionServert
+import com.example.webxsonquiz.data.servert.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
-import java.net.Socket
 
 class MainActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
     private var firtsSocket: Boolean = false
-    private var socket: Socket? = null
-    private var INICIO:String = "INICIO"
+    private var conectionServert: ConectionServert? = null
+    private var INICIO: String = "INICIO"
     private val stateFlow = MutableStateFlow(INICIO)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,10 +51,11 @@ class MainActivity : AppCompatActivity() {
                         is MainUIState.Error -> {
                             this@MainActivity.disebleCompi(false)
                         }
+
                         MainUIState.Loging -> {}
                         is MainUIState.Success -> {
                             //&& !this@MainActivity.firtsSocket
-                            if (uiState.socket.isConnected && !this@MainActivity.firtsSocket) {
+                            if (uiState.socket.getSocket().isConnected && !this@MainActivity.firtsSocket) {
                                 this@MainActivity.disebleCompi(true)
                                 this@MainActivity.setSocket(uiState.socket)
                             }
@@ -80,11 +82,9 @@ class MainActivity : AppCompatActivity() {
             messText,
             Toast.LENGTH_LONG
         ).show()
-        if (messText.equals(getString(R.string.connected_true)))
-        {
+        if (messText.equals(getString(R.string.connected_true))) {
             findViewById<TextView>(R.id.textArea).setHint(getString(R.string.insert_text))
-        }else
-        {
+        } else {
             findViewById<TextView>(R.id.textArea).setHint(getString(R.string.first_ip))
         }
 
@@ -103,37 +103,57 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun clickCompi(view: View) {
+        Log.i("clickCompi,MainActivity",findViewById<EditText>(R.id.textArea).getText().toString())
         if (stateFlow.value.equals(this.INICIO)) {
-            stateFlow.value =findViewById<EditText>(R.id.textArea).getText().toString()
-
-                lifecycleScope.launch(Dispatchers.IO) {
-                    val outputStream = ObjectOutputStream(this@MainActivity.socket?.getOutputStream())
-                    val inputStream = ObjectInputStream(this@MainActivity.socket?.getInputStream())
-                    // sending message
-                    val job = launch {
-                        stateFlow.collect { newValue ->
-                            outputStream.writeObject(newValue)
-                            // receiving message
-                            val report = inputStream.readObject()
-
-                            if (report is String) {
-                                withContext(Dispatchers.Main) {//Siempre Activites de vista en el primer hilo
-                                    val setText = findViewById<TextView>(R.id.textView)
-                                    setText.setText(report)
-                                }
-                            }
+            stateFlow.value = findViewById<EditText>(R.id.textArea).getText().toString()
+            lifecycleScope.launch(Dispatchers.IO) {
+                // sending message
+                val job = launch {
+                    stateFlow.collect { newValue ->
+                        // receiving message
+                        val report = this@MainActivity.conectionServert?.sendMessage(newValue)
+                        if (report is Boolean) {
+                            this@MainActivity.irTrivias(report,this@MainActivity )
                         }
+                        //if (report is User) {
+                        //    this@MainActivity.irTrivias(report,this@MainActivity )
+                        //}
                     }
-//                    if (stateFlow.value.equals("X")){
-//                        job.cancel()
-//                    }
                 }
-        }else{
-            stateFlow.value =findViewById<EditText>(R.id.textArea).getText().toString()
+            }
+        } else {
+            stateFlow.value = findViewById<EditText>(R.id.textArea).getText().toString()
         }
     }
 
-    private fun setSocket(socket: Socket) {
-        this.socket = socket
+    private fun setSocket(conectionServert: ConectionServert) {
+        this.conectionServert = conectionServert
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (conectionServert != null && conectionServert!!.getSocket().isConnected) {
+            conectionServert!!.sendMessage("false")
+            conectionServert!!.getSocket().close()
+        }
+    }
+
+    suspend fun irTrivias(requestServert: Boolean,context: Context) {
+        val messText: String =
+            if (requestServert) getString(R.string.login_true) else getString(R.string.connected_false)
+        this@MainActivity.messeg(context,messText)
+        if (requestServert){
+            withContext(Dispatchers.Main) {//Siempre Activites de vista en el primer hilo
+                val intent = Intent(context, Trivias::class.java)
+                //intent.putExtra("listado_reportes_mate", map)//send map
+                startActivity(intent)
+            }
+        }
+    }
+
+    suspend fun messeg(context: Context,messText:String){
+        withContext(Dispatchers.Main) {//Siempre Activites de vista en el primer hilo
+            Toast.makeText(context, messText, Toast.LENGTH_SHORT).show()
+        }
     }
 }

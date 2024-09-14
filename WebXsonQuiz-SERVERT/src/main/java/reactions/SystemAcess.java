@@ -13,9 +13,18 @@ import fileManager.FileInput;
 public class SystemAcess {
     private String textAnalyzer;
     private String Error;
+    private User userClient;
 
     public SystemAcess(String textAnalyzer) {
         this.textAnalyzer = textAnalyzer;
+    }
+    
+    public User loginSystem(){
+        if (isAcceder()) {
+            return this.userClient;
+        }else{
+            return null;
+        }
     }
     
     public boolean isAcceder(){
@@ -23,10 +32,10 @@ public class SystemAcess {
         File archivoTxt = new File(ConstantSystem.SYSTEM_DIR, ConstantSystem.NAME_FILE_DATA_BASE_USER);
         
         String json = (new FileInput().cargarArchivoTexto(archivoTxt));
-        User checkUser = searchByID(getListUserDataBase(json), UserWantToAccess.getId());
+        this.userClient = searchByID(getListUserDataBase(json), UserWantToAccess.getId());
 
-        if (checkUser!= null & UserWantToAccess!=null) {
-            return isEquetUser(checkUser,UserWantToAccess );
+        if (this.userClient!= null & UserWantToAccess!=null) {
+            return isEquetUser(this.userClient,UserWantToAccess );
         } else {
             return false;
         }

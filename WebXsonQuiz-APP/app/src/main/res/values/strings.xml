@@ -11,4 +11,5 @@
     <!-- Actividad Principal del Backend -->
     <string name="connected_true">Está conectado al servidor.</string>
     <string name="connected_false">Los datos son incorrectos.</string>
+    <string name="login_true">Has entrado con existos.</string>
 </resources>

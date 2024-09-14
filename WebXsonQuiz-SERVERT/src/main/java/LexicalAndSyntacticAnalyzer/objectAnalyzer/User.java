@@ -1,6 +1,8 @@
 package LexicalAndSyntacticAnalyzer.objectAnalyzer;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String id;
     private String password;
@@ -9,7 +11,7 @@ public class User {
     private String date;
 
 
-    public User(String id, String password, String name, String institution,String date) {
+    public User(String id, String password, String name, String institution,String date)  {
         this.id = id;
         this.password = password;
         this.name = name;

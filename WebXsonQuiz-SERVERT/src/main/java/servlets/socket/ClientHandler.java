@@ -4,13 +4,13 @@
  */
 package servlets.socket;
 
+import LexicalAndSyntacticAnalyzer.objectAnalyzer.User;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 import reactions.SystemAcess;
 
@@ -22,22 +22,22 @@ public class ClientHandler implements Runnable {
 
     private Socket clientSocket;
     private final String NADA = "error";
+    private User userclient = null;
 
     public ClientHandler(Socket clientSocket) {
         this.clientSocket = clientSocket;
     }
 
-    private String interprets(Object get) {
+    private Boolean loginClient(Object get) {
         if (get instanceof String) {
             String text = (String) get;
-            boolean getIn = (!text.isEmpty()) && ((new SystemAcess(text)).isAcceder());
-            if (getIn) {
-                return "true";
-            } else {
-                return "false";
+            if (!text.isEmpty()) {
+                return false;
             }
+            this.userclient = (new SystemAcess(text)).loginSystem();
+            return this.userclient != null;
         }
-        return NADA;
+        return false;
     }
 
     @Override
@@ -50,15 +50,30 @@ public class ClientHandler implements Runnable {
             boolean outCliente = false;
             /* El mensaje que manda el cliente */
             while (!outCliente) {
+                System.out.println("----------------- ESPERANDO MENSAJE-----------------");
+                /* El mensaje que manda el cliente */
                 Object getCliente = in.readObject();
                 if (getCliente instanceof String) {
-                    /* El mensaje que manda el cliente */
                     String text = (String) getCliente;
-                    outCliente = text.endsWith("X");
-                    //boolean systemAcess =  (!text.isEmpty()) && ((new SystemAcess(text)).isAcceder());
-                    out.writeObject(JOptionPane.showInputDialog( String.format("El cliente dice \"%s\" y tu ?", text)));
-                    out.flush();
+                    System.out.println("Peticion > " + text);
+                    if (text.endsWith("false")) {
+                        outCliente = !outCliente;
+                        System.out.println("CERRAR");
+                        out.writeObject(false);
+                        out.flush();
+                    } else {
+                        boolean login = this.loginClient(text);
+                        System.out.println("envio > " + login);
+                        if (login) {
+                            out.writeObject(this.userclient);
+                            out.flush();
+                        } else {
+                            out.writeObject(this.loginClient(text));
+                            out.flush();
+                        }
+                    }
                 }
+                System.out.println("----------------- REPUESTA-----------------");
             }
             System.out.println("----------------- SE DESCONECTO ALGUIEN -----------------");
             clientSocket.close();
