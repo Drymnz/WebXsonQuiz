@@ -4,13 +4,15 @@
  */
 package servlets;
 
+import com.cunoc.webxsonquiz.data.servert.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import reactions.SystemAcess;
 
 /**
  *
@@ -30,7 +32,7 @@ public class SVUsers extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,18 +62,17 @@ public class SVUsers extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String user = request.getParameter("user");
-        System.out.println(user);
-        // Aquí puedes procesar el valor como necesites
-        // Por ejemplo, validarlo o verificarlo contra una base de datos
-
-        // Para devolver algún mensaje de respuesta
         if (user != null && !user.trim().isEmpty()) {
-            request.setAttribute("result", "Usuario recibido: " + user);
+            User userclient = (new SystemAcess(user)).loginSystem();
+            // Almacenar el objeto en la sesión
+            HttpSession session = request.getSession();
+            session.setAttribute("usuario", userclient);
+
+            // Redirigir a la siguiente página JSP
+            response.sendRedirect("user_manager.jsp");
         } else {
             request.setAttribute("result", "Usuario no ingresado.");
         }
-        // Redirigir de vuelta al JSP con la respuesta
-        //request.getRequestDispatcher("/tuPagina.jsp").forward(request, response);
     }
 
     /**

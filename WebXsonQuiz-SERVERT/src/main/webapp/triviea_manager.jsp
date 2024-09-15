@@ -1,9 +1,9 @@
 <%-- 
-    Document   : menuTrivias
-    Created on : 14 sep 2024, 9:05:41 p.m.
+    Document   : triviea_manager
+    Created on : 15 sep 2024, 12:19:09 a.m.
     Author     : drymnz
 --%>
-
+<%@page import="com.cunoc.webxsonquiz.data.servert.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,18 +11,26 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="stely_menu.css.css">
+        <% 
+            // Obtener el objeto Usuario almacenado en la sesión
+            User usuario = (User) session.getAttribute("usuario");
+        %>
     </head>
 <body>
     <div class="container">
         <header>
             <h1>Sistema de Creación de Trivias</h1>
+             <%  if (usuario != null) {  %>
+            Nombre: <%= usuario.getId()  %><br>
+        <% 
+            } 
+        %>
         </header>
         <nav>
             <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Mis Trivias</a></li>
-                <li><a href="#">Crear Trivia</a></li>
-                <li><a href="#">Reportes</a></li>
+                <li><a href="user_manager.jsp">Gestor de Usuarios</a></li>
+                <li><a href="triviea_manager.jsp">Gestor de Trivias</a></li>
+                <li><a href="report.jsp">Reportes</a></li>
                 <li><a href="#">Cerrar Sesión</a></li>
             </ul>
         </nav>
@@ -31,9 +39,6 @@
                 <h2>Editor XSON</h2>
                 <textarea placeholder="Escribe tu código XSON aquí..."></textarea>
                 <button>Ejecutar</button>
-                <h2>Consultas SQLKV</h2>
-                <textarea placeholder="Escribe tu consulta SQLKV aquí..."></textarea>
-                <button>Ejecutar Consulta</button>
             </div>
             <div class="results">
                 <h2>Resultados</h2>
