@@ -10,44 +10,33 @@
 <body>
     <div class="ide">
         <header>
-            <div class="ide-title">My IDE</div>
+            <div class="ide-title">Web Xson Quiz</div>
         </header>
-        <div class="editor">
-            <textarea class="code-input" placeholder="Type your code here..."></textarea>
-        </div>
-        <div class="console">
-            <div class="console-title">Console</div>
-            <div class="console-output" id="consoleOutput">No output yet...</div>
+        <!-- Formulario para enviar el usuario al servlet SvUsers por POST -->
+        <form action="SvUsers" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
+            <div class="editor">
+                <textarea name="user" class="code-input" placeholder="Ingrese el usuario"></textarea>
+            </div>
+            <div class="console">
+                <div class="console-header">
+                    <div class="console-title">Console</div>
+                    <!-- Botón para enviar el formulario -->
+                    <button type="submit" class="execute-btn">Login</button>
+                </div>
+            </div>
+        </form>
+        <div class="console-output">
+            <% 
+                String result = (String) request.getAttribute("result");
+                if (result != null) {
+            %>
+                <div><%= result %></div>
+            <% 
+                } else { 
+            %>
+                No output yet...
+            <% } %>
         </div>
     </div>
-    <!-- <script>
-        const codeInput = document.querySelector('.code-input');
-        const consoleOutput = document.getElementById('consoleOutput');
-        
-        codeInput.addEventListener('input', () => {
-            consoleOutput.textContent = "Running code...";
-            
-            // Simulate a delay and send the code to the server via AJAX
-            setTimeout(() => {
-                const code = codeInput.value;
-
-                // Fetching output from the server
-                fetch('processCode.jsp', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: 'code=' + encodeURIComponent(code)
-                })
-                .then(response => response.text())
-                .then(data => {
-                    consoleOutput.textContent = data;
-                })
-                .catch(error => {
-                    consoleOutput.textContent = "Error: " + error;
-                });
-            }, 1000);
-        });
-    </script> -->
 </body>
 </html>

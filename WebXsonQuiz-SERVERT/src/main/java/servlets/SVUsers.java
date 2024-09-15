@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author drymnz
  */
-@WebServlet(name = "SVUsers", urlPatterns = {"/WebXsonQuiz"})
+@WebServlet(name = "SVUsers", urlPatterns = {"/SvUsers"})
 public class SVUsers extends HttpServlet {
 
     /**
@@ -30,12 +30,7 @@ public class SVUsers extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-
-            //out.println("</html>");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,7 +59,19 @@ public class SVUsers extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String user = request.getParameter("user");
+        System.out.println(user);
+        // Aquí puedes procesar el valor como necesites
+        // Por ejemplo, validarlo o verificarlo contra una base de datos
+
+        // Para devolver algún mensaje de respuesta
+        if (user != null && !user.trim().isEmpty()) {
+            request.setAttribute("result", "Usuario recibido: " + user);
+        } else {
+            request.setAttribute("result", "Usuario no ingresado.");
+        }
+        // Redirigir de vuelta al JSP con la respuesta
+        //request.getRequestDispatcher("/tuPagina.jsp").forward(request, response);
     }
 
     /**
