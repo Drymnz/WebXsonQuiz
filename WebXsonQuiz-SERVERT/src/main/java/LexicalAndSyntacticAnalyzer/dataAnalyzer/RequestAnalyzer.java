@@ -20,5 +20,17 @@ public class RequestAnalyzer {
     public ListRequests getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return "Type :"+this.type.toString() + getDataString ();
+    }
     
+    private String getDataString (){
+        String listData = "";
+        for (DataAnalyzer elemet : this.list) {
+            listData = listData+ "\n" +elemet.toString();
+        }
+        return listData;
+    }
 }

@@ -27,8 +27,8 @@ public class DataAnalyzer {
 
     @Override
     public String toString() {
-        return  "token"+token.toString()+
-        "type:"+type.toString()+
-        "data:"+data;
+        return  " token "+token.toString()+
+        " type: "+type.toString()+
+        " data: "+data;
     }
 }

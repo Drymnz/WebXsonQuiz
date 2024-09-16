@@ -31,7 +31,6 @@ public class ClientHandler implements Runnable {
     private Boolean loginClient(Object get) {
         if (get instanceof String) {
             String text = (String) get;
-            System.out.println(text.isEmpty());
             if (text.isEmpty()) {
                 return false;
             }

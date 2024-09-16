@@ -206,17 +206,12 @@ private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
         int numberTerminal = this.cur_token.sym;
         ///codigo para el objeto
         TypeIntreprete type = TypeIntreprete.SYNTACTIC;
-        Token token = getMyToken();
+        int line = cur_token.left+1;
+        int columna = cur_token.right +1;
+        String lexema = this.cur_token.value.toString();
+        Token token =  new Token(line, columna, lexema);
         System.out.println(token.toString());
         this.listError.add(new ReportErrorInterpreter(type, token, ReportingConstants.ERROR_SICTATICO));
-    }
-
-    // get current token 
-    private Token getMyToken(){
-      int line = cur_token.left+1;
-      int columna = cur_token.right +1;
-      String lexema = this.cur_token.value.toString();
-      return new Token(line, columna, lexema);
     }
 
     //Returnar el listado de errores
@@ -447,7 +442,7 @@ class CUP$MyParserLoginUser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserLoginUser$stack.peek()).value;
-		if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.USUARIO,a.toString()));
+		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO,a.toString()));
               CUP$MyParserLoginUser$result = parser.getSymbolFactory().newSymbol("data_user",12, ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.elementAt(CUP$MyParserLoginUser$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()), RESULT);
             }
           return CUP$MyParserLoginUser$result;
@@ -459,7 +454,7 @@ class CUP$MyParserLoginUser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserLoginUser$stack.peek()).value;
-		if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.PASSWORD,a.toString()));
+		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.PASSWORD,a.toString()));
               CUP$MyParserLoginUser$result = parser.getSymbolFactory().newSymbol("data_user",12, ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.elementAt(CUP$MyParserLoginUser$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()), RESULT);
             }
           return CUP$MyParserLoginUser$result;
@@ -471,7 +466,7 @@ class CUP$MyParserLoginUser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserLoginUser$stack.peek()).value;
-		if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.NAME,a.toString()));
+		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.NAME,a.toString()));
               CUP$MyParserLoginUser$result = parser.getSymbolFactory().newSymbol("data_user",12, ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.elementAt(CUP$MyParserLoginUser$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()), RESULT);
             }
           return CUP$MyParserLoginUser$result;
@@ -483,7 +478,7 @@ class CUP$MyParserLoginUser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserLoginUser$stack.peek()).value;
-		if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.INSTITUTION,a.toString()));
+		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.INSTITUTION,a.toString()));
               CUP$MyParserLoginUser$result = parser.getSymbolFactory().newSymbol("data_user",12, ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.elementAt(CUP$MyParserLoginUser$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()), RESULT);
             }
           return CUP$MyParserLoginUser$result;
@@ -495,7 +490,7 @@ class CUP$MyParserLoginUser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserLoginUser$stack.peek()).value;
-		if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.DATE,a.toString()));
+		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.DATE,a.toString()));
               CUP$MyParserLoginUser$result = parser.getSymbolFactory().newSymbol("data_user",12, ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.elementAt(CUP$MyParserLoginUser$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserLoginUser$stack.peek()), RESULT);
             }
           return CUP$MyParserLoginUser$result;

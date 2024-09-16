@@ -1,5 +1,6 @@
 package reactions;
 
+import LexicalAndSyntacticAnalyzer.ListRequests;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -56,7 +57,7 @@ public class SystemAcess {
         if(list.size()==0)return null;
         for (RequestAnalyzer element : list) {
             User checkUser = (new ConverterToObject()).getRequestAnalyzerToUser(element);
-            if(checkUser.getId().equals(id)) return checkUser;
+            if(checkUser.getId().equals(id) && element.getType() == ListRequests.LOGIN_USER ) return checkUser;
         }
         return null;
     }
