@@ -72,8 +72,8 @@ terminal KEYS_O,KEYS_C;
 /*SOLICITUD*/
 terminal  OPEN_REQUEST,FINAL_REQUEST,CLOSE_REQUEST,MAKE_REQUEST,COMA;
 //tipos de solicitud
-terminal NEW_USER,MODIFICAR_USUARIO;
-terminal USUARIO_ANTIGUO;
+terminal NEW_USER,MODIFICAR_USUARIO,ELIMINAR_USUARIO;
+terminal USUARIO_ANTIGUO,NUEVO_PASSWORD;
 terminal USER_DATA,NAME_USER,PASS_USER,NAME_PERSONAL_USER,INSTITUCION,DATE;
 /* No terminales */
 //operaicones
@@ -84,6 +84,7 @@ non terminal inicio;
 //solicitud
 non terminal solicitud,cerrar_solicitud;
 //non terminal json, obj_json,solicitud_usuario,datas,data;
+non terminal json_del_user, obj_json_del_user,solicitud_usuario_del_user,datas_del_user,data_del_user;
 non terminal json_modificar_user, obj_json_modificar_user,solicitud_usuario_modificar_user,datas_user_modificar_user,datas_user_modificar;
 non terminal json_new_user, obj_json_new_user,solicitud_usuario_new_user,datas_new_user,data_new_user;
 non terminal data;
@@ -124,6 +125,7 @@ solicitud ::=
     listRquest.add(new RequestAnalyzer(dataStack, ListRequests.MODIFICAR_USUARIO));
     dataStack = new ArrayList();
   :}
+  | ELIMINAR_USUARIO CLOSE json_del_user
   ;
   
 /* json::=
@@ -145,6 +147,29 @@ datas_user
   |data_user
   ; */
 
+/*ELIMINAR USARIO*/
+json_del_user::=
+  KEYS_O obj_json_del_user KEYS_C
+  | error
+  | 
+  ;
+
+obj_json_del_user 
+  ::= USER_DATA solicitud_usuario_del_user
+  | error
+  | 
+  ;
+
+solicitud_usuario_del_user ::=COLNO BRACKETS_O  KEYS_O datas_del_user KEYS_C  BRACKETS_C ;
+
+datas_del_user 
+  ::= datas_del_user COMA  data_del_user
+  |data_del_user
+  ; 
+data_del_user
+  ::= NAME_USER data:a 
+   {:if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.USUARIO,a.toString()));:}
+  ;
 /*MODIFICAR USARIO*/
 
 json_modificar_user::=
@@ -165,10 +190,13 @@ datas_user_modificar_user
   ::= datas_user_modificar_user COMA  datas_user_modificar
   |datas_user_modificar
   ;
+
 datas_user_modificar
   ::= USUARIO_ANTIGUO data:a 
    {:if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.USUARIO,a.toString()));:}
-  | USUARIO_ANTIGUO data:a 
+  | NEW_USER data:a 
+   {:if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.USUARIO,a.toString()));:}
+  | NUEVO_PASSWORD data:a 
    {:if(a!=null)dataStack.add(new DataAnalyzer(getMyToken(),ListTypeData.USUARIO,a.toString()));:}
   ;
 /*NEW USER*/

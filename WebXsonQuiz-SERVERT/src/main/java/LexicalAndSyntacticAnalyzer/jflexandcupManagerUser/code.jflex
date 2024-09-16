@@ -74,8 +74,10 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 //TIPOS DE SOLICITUD
 "\"USUARIO_NUEVO\""         {print("\"USUARIO_NUEVO\""); return new Symbol(MySymUser.NEW_USER ,yyline,yycolumn,yytext());}
 "\"MODIFICAR_USUARIO\""     {print("\"MODIFICAR_USUARIO\""); return new Symbol(MySymUser.MODIFICAR_USUARIO  ,yyline,yycolumn,yytext());}
+"\"ELIMINAR_USUARIO\""      {print("\"ELIMINAR_USUARIO\""); return new Symbol(MySymUser.ELIMINAR_USUARIO  ,yyline,yycolumn,yytext());}
 //DATA USSER
 "\"USUARIO_ANTIGUO\""       {print("\"USUARIO_ANTIGUO\""); return new Symbol(MySymUser.USUARIO_ANTIGUO ,yyline,yycolumn,yytext());}
+"\"NUEVO_PASSWORD\""        {print("\"NUEVO_PASSWORD\""); return new Symbol(MySymUser.NUEVO_PASSWORD ,yyline,yycolumn,yytext());}
 /*JSON*/
 "{"                     {print("{"); return new Symbol(MySymUser.KEYS_O ,yyline,yycolumn,yytext());}
 "}"                     {print("}"); return new Symbol(MySymUser.KEYS_C ,yyline,yycolumn,yytext());}
