@@ -44,6 +44,7 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
     /*FINAL-CODE*/
 %}
 
+INSTITUCION = "\"""I""N""S""T""I""T""U""C""I""O""N""\""
 DIGIT = [0-9]
 WHOLE = {DIGIT}+
 DECIMAL = {WHOLE}[.]{WHOLE}
@@ -59,6 +60,7 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 
 /*tercer seccion: reglase lexicas*/
 /*INGNORAR*/
+"<!--" ~"-->"              {/*COMENTARIO*/}
 {espacio}               {/* print(); */}
 "<?"                    {print("<?" ); return new Symbol(MySymUser.OPEN_VERSION ,yyline,yycolumn,yytext());}
 "?>"                    {print("?>" ); return new Symbol(MySymUser.CLOSE_VERSION ,yyline,yycolumn,yytext());}
@@ -69,6 +71,8 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 /*SOLICITUD*/
 "<!"                        {print("<!" ); return new Symbol(MySymUser.OPEN_REQUEST ,yyline,yycolumn,yytext());}
 "!>"                        {print("!>" ); return new Symbol(MySymUser.CLOSE_REQUEST ,yyline,yycolumn,yytext());}
+"realizar_solicitudes"      {print("realizar_solicitudes"); return new Symbol(MySymUser.MAKE_REQUESTS ,yyline,yycolumn,yytext());}
+"fin_solicitudes_realizada" {print("fin_solicitudes_realizada"); return new Symbol(MySymUser.FINAL_REQUESTS ,yyline,yycolumn,yytext());}
 "realizar_solicitud"        {print("realizar_solicitud"); return new Symbol(MySymUser.MAKE_REQUEST ,yyline,yycolumn,yytext());}
 "fin_solicitud_realizada"   {print("fin_solicitud_realizada"); return new Symbol(MySymUser.FINAL_REQUEST ,yyline,yycolumn,yytext());}
 //TIPOS DE SOLICITUD
@@ -89,8 +93,8 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "\"USUARIO\""       {print("\"USUARIO\""); return new Symbol(MySymUser.NAME_USER ,yyline,yycolumn,yytext());}
 "\"PASSWORD\""      {print("\"PASSWORD\""); return new Symbol(MySymUser.PASS_USER ,yyline,yycolumn,yytext());}
 "\"NOMBRE\""        {print("\"NOMBRE\""); return new Symbol(MySymUser.NAME_PERSONAL_USER ,yyline,yycolumn,yytext());}
-"\“INSTITUCION\”"   {print("INSTITUCION"); return new Symbol(MySymUser.INSTITUCION ,yyline,yycolumn,yytext());}
-"\FECHA_CREACION\”" {print("INSTITUCION"); return new Symbol(MySymUser.DATE ,yyline,yycolumn,yytext());}
+{INSTITUCION}       {print("INSTITUCION"); return new Symbol(MySymUser.INSTITUCION ,yyline,yycolumn,yytext());}
+"\FECHA_CREACION\”" {print("DATE"); return new Symbol(MySymUser.DATE ,yyline,yycolumn,yytext());}
 /*SIMBOLOS ARIMETICOS*/
 "+"                     {print("+"); return new Symbol(MySymUser.SUMAR,yyline,yycolumn, (yytext()));}
 "-"                     {print("-"); return new Symbol(MySymUser.RESTAR,yyline,yycolumn, (yytext()));}

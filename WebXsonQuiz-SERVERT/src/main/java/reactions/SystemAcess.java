@@ -1,19 +1,15 @@
 package reactions;
 
 import LexicalAndSyntacticAnalyzer.ListRequests;
-import java.io.File;
 import java.util.ArrayList;
 
-import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerDataBase;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerLogin;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
 import com.cunoc.webxsonquiz.data.servert.User;
-import fileManager.FileInput;
 
 public class SystemAcess {
     private String textAnalyzer;
-    private String Error;
     private User userClient;
 
     public SystemAcess(String textAnalyzer) {
@@ -30,11 +26,7 @@ public class SystemAcess {
     
     public boolean isAcceder(){
         User UserWantToAccess = userWantToAccess();
-        File archivoTxt = new File(ConstantSystem.SYSTEM_DIR, ConstantSystem.NAME_FILE_DATA_BASE_USER);
-        
-        String json = (new FileInput().cargarArchivoTexto(archivoTxt));
-        this.userClient = searchByID(getListUserDataBase(json), UserWantToAccess.getId());
-
+        this.userClient = searchByID(new DataBaseListUser().getDataBaseUserToRequetsAnalyzer(), UserWantToAccess.getId());
         if (this.userClient!= null & UserWantToAccess!=null) {
             return isEquetUser(this.userClient,UserWantToAccess );
         } else {
@@ -61,12 +53,5 @@ public class SystemAcess {
         }
         return null;
     }
-
-    private ArrayList<RequestAnalyzer> getListUserDataBase(String json){
-        AnalyzerDataBase analyzer = new AnalyzerDataBase(json);
-        analyzer.Anilisar();
-        return analyzer.getListRquest();
-    }
-
 
 }
