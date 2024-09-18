@@ -13,7 +13,7 @@
             <div class="ide-title">Web Xson Quiz</div>
         </header>
         <!-- Formulario para enviar el usuario al servlet SvUsers por POST -->
-        <form action="SvUsers" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
+        <form action="Login" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
             <div class="editor">
                 <textarea name="user" class="code-input" placeholder="Ingrese el usuario"></textarea>
             </div>

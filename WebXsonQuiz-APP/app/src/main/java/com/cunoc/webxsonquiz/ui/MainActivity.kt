@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                 // sending message
                 val job = launch {
                     stateFlow.collect { newValue ->
-                        // receiving message
+                        // receiving message`
                         val report = this@MainActivity.conectionServert?.sendMessage(newValue)
                         if (report is Boolean) {
                             this@MainActivity.irTrivias(report,this@MainActivity ,null)

@@ -26,8 +26,9 @@ public class SystemAcess {
     
     public boolean isAcceder(){
         User UserWantToAccess = userWantToAccess();
+        if (UserWantToAccess == null) return false;
         this.userClient = searchByID(new DataBaseListUser().getDataBaseUserToRequetsAnalyzer(), UserWantToAccess.getId());
-        if (this.userClient!= null & UserWantToAccess!=null) {
+        if (this.userClient!= null ) {
             return isEquetUser(this.userClient,UserWantToAccess );
         } else {
             return false;
@@ -41,15 +42,17 @@ public class SystemAcess {
     private User userWantToAccess(){
         AnalyzerLogin analyzer = new AnalyzerLogin(this.textAnalyzer);
         analyzer.Anilisar();
+        RequestAnalyzer userLogin = analyzer.getListRquest().get(0);
+        if (!(userLogin.getType() == ListRequests.LOGIN_USER)) return null;
         ConverterToObject converter = new ConverterToObject();
-        return (converter).createUserListDataAnalyzerLogin(analyzer.getListRquest().get(0).getList());
+        return (converter).createUserListDataAnalyzerLogin(userLogin.getList());
     }
 
     private User searchByID( ArrayList<RequestAnalyzer> list , String id){
         if(list.size()==0)return null;
         for (RequestAnalyzer element : list) {
             User checkUser = (new ConverterToObject()).getRequestAnalyzerToUser(element);
-            if(checkUser.getId().equals(id) && element.getType() == ListRequests.LOGIN_USER ) return checkUser;
+            if(checkUser.getId().equals(id)) return checkUser;
         }
         return null;
     }

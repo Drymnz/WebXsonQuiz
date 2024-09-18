@@ -82,4 +82,54 @@ public class ConverterToObject {
         }
         return true;
     }
+
+    public User getDelUser(RequestAnalyzer element){
+        String id = "";
+        for (DataAnalyzer dataElement : element.getList()) {
+            switch (dataElement.getType()) {
+                case USUARIO:
+                    id = dataElement.getData().replace("\"", "");
+                    break;
+                default:
+                    break;
+            }
+        }
+        return new User(id, "", "", "","");
+    }
+
+    public User getModifyOneUser(RequestAnalyzer element){
+        String id = "";
+        for (DataAnalyzer dataElement : element.getList()) {
+            switch (dataElement.getType()) {
+                case USUARIO_ANTIGUO:
+                    id = dataElement.getData().replace("\"", "");
+                    break;
+                default:
+                    break;
+            }
+        }
+        return new User(id, "", "", "","");
+    }
+
+    public User getModifyTwoUser(RequestAnalyzer element){
+        String id = "";
+        String password = "";
+        String institution = "";
+        for (DataAnalyzer dataElement : element.getList()) {
+            switch (dataElement.getType()) {
+                case USUARIO:
+                    id = dataElement.getData().replace("\"", "");
+                    break;
+                case NUEVO_PASSWORD:
+                    password = dataElement.getData().replace("\"", "");
+                    break;
+                    case INSTITUTION:
+                    password = dataElement.getData().replace("\"", "");
+                    break;
+                default:
+                    break;
+            }
+        }
+        return new User(id, password, "", institution,getDate());
+    }
 }

@@ -39,8 +39,8 @@ public class TestRequest {
     @Test
     public void testSystemAccesUser() {
         SystemAcess userSy = new SystemAcess(textLoginBJ);
-        //boolean getIn = (!textLoginBJ.isEmpty()) && (userSy.isAcceder());
-        Assertions.assertTrue(true);
+         boolean getIn = (!textLoginBJ.isEmpty()) && (userSy.isAcceder());
+        Assertions.assertTrue(getIn);
     }
 
     @org.junit.jupiter.api.BeforeAll

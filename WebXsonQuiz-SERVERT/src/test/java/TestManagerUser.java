@@ -130,6 +130,7 @@ public class TestManagerUser {
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser());
         requetSystaxValidator.checkRequests();
         boolean goodText= !analizer.isError() && analizer.getListRquest().size() == 5;
+        requetSystaxValidator.upDataBase();
         Assertions.assertTrue(goodText);
     }
 }
