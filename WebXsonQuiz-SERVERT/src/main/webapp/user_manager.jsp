@@ -37,8 +37,10 @@
             <div class="main-content">
                 <div class="editor">
                     <h2>Editor XSON</h2>
-                    <textarea placeholder="Escribe tu código XSON aquí..."></textarea>
-                    <button class="execute-btn" >Ejecutar</button>
+                    <form action="${pageContext.request.contextPath}/SvUsers" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
+                        <textarea name="textArea" class="code-input" placeholder="Ingrese el usuario"></textarea>
+                        <button type="submit" class="execute-btn">Login</button>
+                    </form>
                 </div>
                 <div class="results">
                     <h2>Resultados</h2>

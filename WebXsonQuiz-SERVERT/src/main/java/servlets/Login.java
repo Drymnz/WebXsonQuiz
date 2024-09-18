@@ -32,11 +32,11 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String user = request.getParameter("user");
+        String user = request.getParameter("user");
         String errorMessage = null;
         
         if (user == null || user.trim().isEmpty()) {
-            errorMessage = "El nombre de usuario no puede estar vacío.";
+            errorMessage = LanguageConstants.EMPTY_TEXT;
         } else {
             User userclient = (new SystemAcess(user)).loginSystem();
             if (userclient != null) {

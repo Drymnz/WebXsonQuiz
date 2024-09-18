@@ -16,4 +16,6 @@ public class LanguageConstants {
     public final static String DATA_USER_INCORECT = "Datos de usuario incorrectos.";
     public final static String LOCATION_ON_THE_PORT = "El puerto está ubicado en ";
     public final static String POSSIBLE_IP_SOCKET = "La dirección IP del socket es ";
+    public final static String EMPTY_TEXT = "No hay nada en la peticion.";
+    
 }

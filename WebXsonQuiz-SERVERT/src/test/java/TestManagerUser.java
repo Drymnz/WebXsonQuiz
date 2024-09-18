@@ -125,12 +125,13 @@ public class TestManagerUser {
 
     @Test
     public void testRequestSyntaxValidatorManagerUser() {
-        AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepurevatestListRequery);
+         AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepurevatestListRequery);
         analizer.Anilisar();
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser());
         requetSystaxValidator.checkRequests();
         boolean goodText= !analizer.isError() && analizer.getListRquest().size() == 5;
-        requetSystaxValidator.upDataBase();
+        requetSystaxValidator.upDataBase(); 
         Assertions.assertTrue(goodText);
+        //Assertions.assertTrue(true);
     }
 }
