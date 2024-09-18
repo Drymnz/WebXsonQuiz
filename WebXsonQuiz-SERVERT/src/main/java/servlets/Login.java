@@ -4,6 +4,7 @@
  */
 package servlets;
 
+import Lengua.LanguageConstants;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +21,7 @@ import reactions.SystemAcess;
  *
  * @author drymnz
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
+@WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -31,17 +32,26 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String user = request.getParameter("user");
-        if (user != null && !user.trim().isEmpty()) {
-            User userclient = (new SystemAcess(user)).loginSystem();
-            // Almacenar el objeto en la sesión
-            HttpSession session = request.getSession();
-            session.setAttribute("usuario", userclient);
-
-            // Redirigir a la siguiente página JSP
-            response.sendRedirect("user_manager.jsp");
+         String user = request.getParameter("user");
+        String errorMessage = null;
+        
+        if (user == null || user.trim().isEmpty()) {
+            errorMessage = "El nombre de usuario no puede estar vacío.";
         } else {
-            request.setAttribute("result", "Usuario no ingresado.");
+            User userclient = (new SystemAcess(user)).loginSystem();
+            if (userclient != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("usuario", userclient);
+                response.sendRedirect("user_manager.jsp");
+                return; // Importante: salir del método después de la redirección
+            } else {
+                errorMessage = LanguageConstants.DATA_USER_INCORECT;
+            }
+        }
+        
+        if (errorMessage != null) {
+            request.setAttribute("errorMessage", errorMessage);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         }
     }
 }

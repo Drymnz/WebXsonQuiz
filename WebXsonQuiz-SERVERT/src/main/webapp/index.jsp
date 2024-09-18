@@ -12,29 +12,27 @@
         <header>
             <div class="ide-title">Web Xson Quiz</div>
         </header>
-        <!-- Formulario para enviar el usuario al servlet SvUsers por POST -->
-        <form action="Login" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
+        <form action="${pageContext.request.contextPath}/login" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
             <div class="editor">
                 <textarea name="user" class="code-input" placeholder="Ingrese el usuario"></textarea>
             </div>
             <div class="console">
                 <div class="console-header">
                     <div class="console-title">Console</div>
-                    <!-- Botón para enviar el formulario -->
                     <button type="submit" class="execute-btn">Login</button>
                 </div>
             </div>
         </form>
         <div class="console-output">
             <% 
-                String result = (String) request.getAttribute("result");
-                if (result != null) {
+                String errorMessage = (String) request.getAttribute("errorMessage");
+                if (errorMessage != null && !errorMessage.isEmpty()) {
             %>
-                <div><%= result %></div>
+                <div style="color: red;"><%= errorMessage %></div>
             <% 
                 } else { 
             %>
-                No output yet...
+                <div>No output yet...</div>
             <% } %>
         </div>
     </div>

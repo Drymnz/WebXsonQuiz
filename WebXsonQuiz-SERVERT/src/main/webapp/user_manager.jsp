@@ -30,7 +30,6 @@
             <nav>
                 <ul>
                     <li><a href="user_manager.jsp">Gestor de Usuarios</a></li>
-                    <li><a href="triviea_manager.jsp">Gestor de Trivias</a></li>
                     <li><a href="report.jsp">Reportes</a></li>
                     <li><a href="#">Cerrar Sesión</a></li>
                 </ul>
@@ -39,7 +38,7 @@
                 <div class="editor">
                     <h2>Editor XSON</h2>
                     <textarea placeholder="Escribe tu código XSON aquí..."></textarea>
-                    <button>Ejecutar</button>
+                    <button class="execute-btn" >Ejecutar</button>
                 </div>
                 <div class="results">
                     <h2>Resultados</h2>

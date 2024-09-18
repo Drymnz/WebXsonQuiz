@@ -29,7 +29,6 @@
         <nav>
             <ul>
                 <li><a href="user_manager.jsp">Gestor de Usuarios</a></li>
-                <li><a href="triviea_manager.jsp">Gestor de Trivias</a></li>
                 <li><a href="report.jsp">Reportes</a></li>
                 <li><a href="#">Cerrar Sesión</a></li>
             </ul>
