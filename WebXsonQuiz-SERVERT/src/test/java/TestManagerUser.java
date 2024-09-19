@@ -125,7 +125,7 @@ public class TestManagerUser {
 
     @Test
     public void testRequestSyntaxValidatorManagerUser() {
-         AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepurevatestListRequery);
+        AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepurevatestListRequery);
         analizer.Anilisar();
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser());
         requetSystaxValidator.checkRequests();

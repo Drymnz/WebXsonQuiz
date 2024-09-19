@@ -30,25 +30,24 @@ public class SVUsers extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String user = request.getParameter("textArea");
+        String textArea = request.getParameter("textArea");
         String errorMessage = null;
         
-        if (user == null || user.trim().isEmpty()) {
+        if (textArea == null || textArea.trim().isEmpty()) {
             errorMessage = LanguageConstants.EMPTY_TEXT;
         } else {
-            // insertar el texto y analiar
-            //if (userclient != null) {
-            //    HttpSession session = request.getSession();
-            //    session.setAttribute("usuario", userclient);
-            //    response.sendRedirect("user_manager.jsp");
-            //    return; // Importante: salir del método después de la redirección
-            //} else {
-            //    errorMessage = LanguageConstants.DATA_USER_INCORECT;
-            //}
+            AnalyzerManagerUser analizer = new AnalyzerManagerUser(textArea);
+            analizer.Anilisar();
+            RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser());
+            requetSystaxValidator.checkRequests();
+            requetSystaxValidator.upDataBase(); 
+            HttpSession session = request.getSession();
+            session.setAttribute("results", requetSystaxValidator.getListErrorRequest());
+            response.sendRedirect("user_manager.jsp");
         }
         
         if (errorMessage != null) {
-            request.setAttribute("errores", errorMessage);
+            request.setAttribute("results", errorMessage);
             request.getRequestDispatcher("/user_manager.jsp").forward(request, response);
         }
     }
