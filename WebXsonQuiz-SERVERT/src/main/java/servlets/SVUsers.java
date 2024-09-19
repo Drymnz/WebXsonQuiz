@@ -12,6 +12,7 @@ import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
 import javax.servlet.http.HttpSession;
 import reactions.DataBaseListUser;
 import reactions.RequestSyntaxValidatorManagerUser;
+import reports.UserRequestReport;
 
 /**
  *
@@ -40,8 +41,8 @@ public class SVUsers extends HttpServlet {
             requetSystaxValidator.checkRequests();
             requetSystaxValidator.upDataBase(); 
             HttpSession session = request.getSession();
-            session.setAttribute("results", requetSystaxValidator.getListErrorRequest());
-            response.sendRedirect("user_manager.jsp");
+            request.setAttribute("resultsText", (new UserRequestReport(requetSystaxValidator).reportString()));
+            request.getRequestDispatcher("user_manager.jsp").forward(request, response);
         }
         
         if (errorMessage != null) {

@@ -15,6 +15,7 @@
         <%
             // Obtener el objeto Usuario almacenado en la sesión
             User usuario = (User) session.getAttribute("usuario");
+            String textArea = (String) request.getAttribute("resultsText");
         %>
     </head>
     <body>
@@ -38,7 +39,13 @@
                 <div class="editor">
                     <h2>Editor XSON</h2>
                     <form action="${pageContext.request.contextPath}/SvUsers" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
+                        <%  if ((textArea != null) && !textArea.isEmpty()) {%>
+                        <textarea name="textArea" class="code-input" placeholder="Ingrese el usuario">
+                            <%=textArea%>
+                        </textarea>
+                        <%} else {%>
                         <textarea name="textArea" class="code-input" placeholder="Ingrese el usuario"></textarea>
+                        <%}%>
                         <button type="submit" class="execute-btn">Login</button>
                     </form>
                 </div>
