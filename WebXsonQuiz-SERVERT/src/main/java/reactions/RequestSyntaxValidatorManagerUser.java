@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.cunoc.webxsonquiz.data.servert.User;
 
+import Lengua.LanguageConstants;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
@@ -22,6 +23,10 @@ public class RequestSyntaxValidatorManagerUser {
 
     public boolean isErrorRequest() {
         return this.listErrorRequest.size() > 0;
+    }
+
+    public ArrayList<RequestAnalyzer> getListRequest() {
+        return this.listAccept;
     }
 
     public ArrayList<RequestAnalyzer> getListErrorRequest() {
@@ -97,9 +102,9 @@ public class RequestSyntaxValidatorManagerUser {
     
     public void upDataBase(){
         if (this.dataBaseUser.upDataBase()) {
-            System.out.println("Actualizo");
+            System.out.println(LanguageConstants.DATABASE_UPDATA_USER);
         }else{
-            System.out.println("No actualizo");
+            System.out.println(LanguageConstants.NOT_DATABASE_UPDATA_USER);
         }
     }
 }

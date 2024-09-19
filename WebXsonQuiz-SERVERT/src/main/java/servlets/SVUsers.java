@@ -9,11 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
-import com.cunoc.webxsonquiz.data.servert.User;
 import javax.servlet.http.HttpSession;
 import reactions.DataBaseListUser;
 import reactions.RequestSyntaxValidatorManagerUser;
-import reactions.SystemAcess;
 
 /**
  *
