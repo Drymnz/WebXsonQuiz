@@ -10,10 +10,12 @@ public class MySymUser {
   /* terminals */
   public static final int NAME_USER = 36;
   public static final int COLNO = 7;
+  public static final int NEW_TRIVIA = 41;
   public static final int MULTIPLICAR = 14;
   public static final int KEYS_C = 22;
   public static final int CLOSE_REQUEST = 25;
   public static final int OPEN_REQUEST = 23;
+  public static final int ID_TRIVIA = 43;
   public static final int NEW_USER = 30;
   public static final int PASS_USER = 37;
   public static final int MAKE_REQUESTS = 28;
@@ -31,10 +33,14 @@ public class MySymUser {
   public static final int error = 1;
   public static final int COMA = 27;
   public static final int ELIMINAR_USUARIO = 32;
+  public static final int USUARIO_CREACION = 46;
+  public static final int TEMA = 45;
+  public static final int TIEMPO_PREGUNTA = 44;
   public static final int NUEVO_PASSWORD = 34;
   public static final int RESTAR = 12;
   public static final int DIVIDIR = 13;
   public static final int INSTITUCION = 39;
+  public static final int PARAMETROS_TRIVIA = 42;
   public static final int PARENTESIS_C = 18;
   public static final int BRACKETS_O = 19;
   public static final int PARENTESIS_A = 17;
@@ -90,7 +96,13 @@ public class MySymUser {
   "PASS_USER",
   "NAME_PERSONAL_USER",
   "INSTITUCION",
-  "DATE"
+  "DATE",
+  "NEW_TRIVIA",
+  "PARAMETROS_TRIVIA",
+  "ID_TRIVIA",
+  "TIEMPO_PREGUNTA",
+  "TEMA",
+  "USUARIO_CREACION"
   };
 }
 

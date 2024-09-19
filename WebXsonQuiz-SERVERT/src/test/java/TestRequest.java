@@ -44,21 +44,4 @@ public class TestRequest {
         Assertions.assertTrue(getIn || !getIn);
         //Assertions.assertTrue(true);
     }
-
-    @org.junit.jupiter.api.BeforeAll
-    public static void setUpClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
-    }
-
 }

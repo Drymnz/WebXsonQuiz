@@ -71,6 +71,9 @@ terminal MAKE_REQUESTS,FINAL_REQUESTS;
 terminal NEW_USER,MODIFICAR_USUARIO,ELIMINAR_USUARIO;
 terminal USUARIO_ANTIGUO,NUEVO_PASSWORD;
 terminal USER_DATA,NAME_USER,PASS_USER,NAME_PERSONAL_USER,INSTITUCION,DATE;
+/*TRIVIAS*/
+terminal NEW_TRIVIA,PARAMETROS_TRIVIA;
+terminal ID_TRIVIA,TIEMPO_PREGUNTA,TEMA,USUARIO_CREACION;
 /* No terminales */
 //operaicones
 non terminal inico_opereacion,operacion,parente;
@@ -83,6 +86,8 @@ non terminal solicitud,cerrar_solicitud;
 non terminal json_del_user, obj_json_del_user,solicitud_usuario_del_user,datas_del_user,data_del_user;
 non terminal json_modificar_user, obj_json_modificar_user,solicitud_usuario_modificar_user,datas_user_modificar_user,datas_user_modificar;
 non terminal json_new_user, obj_json_new_user,solicitud_usuario_new_user,datas_new_user,data_new_user;
+//non terminal json, obj_json,solicitud_usuario,datas,data;
+non terminal json_new_trivia, obj_json_new_trivia,solicitud_new_trivia,datas_new_trivia,data_new_trivia;
 non terminal data;
 non terminal solicitudes,varios_solicitud,solicitud_unit;
 
@@ -142,6 +147,11 @@ solicitud ::=
     listRquest.add(new RequestAnalyzer(dataStack, ListRequests.ELIMINAR_USUARIO));
     dataStack = new ArrayList();
   :}
+  | NEW_TRIVIA CLOSE json_new_trivia
+  {:
+    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.NEW_TRIVIA));
+    dataStack = new ArrayList();
+  :}
   ;
   
 /* json::=
@@ -162,6 +172,44 @@ datas_user
   ::= datas_user COMA  data_user
   |data_user
   ; */
+
+/*NUEVA TRIVIA*/
+
+json_new_trivia::=
+  KEYS_O obj_json_new_trivia KEYS_C
+  | error
+  | 
+  ;
+
+obj_json_new_trivia 
+  ::= PARAMETROS_TRIVIA solicitud_new_trivia
+  | error
+  | 
+  ;
+
+solicitud_new_trivia ::=COLNO BRACKETS_O  KEYS_O datas_new_trivia KEYS_C  BRACKETS_C ;
+
+datas_new_trivia 
+  ::= datas_new_trivia COMA  data_new_trivia
+  |data_new_trivia
+  ;
+
+data_new_trivia
+  ::=
+  ID_TRIVIA data:a 
+  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID_TRIVIA,a.toString()));:}
+  |TIEMPO_PREGUNTA data:a 
+  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TIEMPO_PREGUNTA,a.toString()));:}
+  |NAME_PERSONAL_USER data:a
+   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.NAME,a.toString()));:}
+  |TEMA data:a
+  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TEMA,a.toString()));:}
+  |USUARIO_CREACION data:a
+  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO_CREACION,a.toString()));:}
+  |DATE data:a
+  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.DATE,a.toString()));:}
+  ;
+
 
 /*ELIMINAR USARIO*/
 json_del_user::=

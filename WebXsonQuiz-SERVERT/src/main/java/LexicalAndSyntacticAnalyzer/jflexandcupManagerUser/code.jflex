@@ -75,7 +75,18 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "fin_solicitudes_realizada" {print("fin_solicitudes_realizada"); return new Symbol(MySymUser.FINAL_REQUESTS ,yyline,yycolumn,yytext());}
 "realizar_solicitud"        {print("realizar_solicitud"); return new Symbol(MySymUser.MAKE_REQUEST ,yyline,yycolumn,yytext());}
 "fin_solicitud_realizada"   {print("fin_solicitud_realizada"); return new Symbol(MySymUser.FINAL_REQUEST ,yyline,yycolumn,yytext());}
-//TIPOS DE SOLICITUD
+/*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*/
+/*TRIVIAS*/
+//TIPOS DE SOLICITUD TRIVIAS
+"\"NUEVA_TRIVIA\""          {print("\"NUEVA_TRIVIA\""); return new Symbol(MySymUser.NEW_TRIVIA ,yyline,yycolumn,yytext());}
+"\"PARAMETROS_TRIVIA\""     {print("\"PARAMETROS_TRIVIA\""); return new Symbol(MySymUser.PARAMETROS_TRIVIA ,yyline,yycolumn,yytext());}
+//DATOS DE TRIVIAS 
+"\"ID_TRIVIA\""             {print("\"ID_TRIVIA\""); return new Symbol(MySymUser.ID_TRIVIA ,yyline,yycolumn,yytext());}
+"\"TIEMPO_PREGUNTA\""       {print("\"TIEMPO_PREGUNTA\""); return new Symbol(MySymUser.TIEMPO_PREGUNTA ,yyline,yycolumn,yytext());}
+"\"TEMA\""                  {print("\"TEMA\""); return new Symbol(MySymUser.TEMA ,yyline,yycolumn,yytext());}
+"\"USUARIO_CREACION\""      {print("\"USUARIO_CREACION\""); return new Symbol(MySymUser.USUARIO_CREACION ,yyline,yycolumn,yytext());}
+//TIPOS DE SOLICITUD USUARIOAS//TIPOS DE SOLICITUD USUARIOAS//TIPOS DE SOLICITUD USUARIOAS//TIPOS DE SOLICITUD USUARIOAS//TIPOS DE SOLICITUD USUARIOAS
+//TIPOS DE SOLICITUD USUARIOAS
 "\"USUARIO_NUEVO\""         {print("\"USUARIO_NUEVO\""); return new Symbol(MySymUser.NEW_USER ,yyline,yycolumn,yytext());}
 "\"MODIFICAR_USUARIO\""     {print("\"MODIFICAR_USUARIO\""); return new Symbol(MySymUser.MODIFICAR_USUARIO  ,yyline,yycolumn,yytext());}
 "\"ELIMINAR_USUARIO\""      {print("\"ELIMINAR_USUARIO\""); return new Symbol(MySymUser.ELIMINAR_USUARIO  ,yyline,yycolumn,yytext());}
@@ -94,7 +105,7 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "\"PASSWORD\""      {print("\"PASSWORD\""); return new Symbol(MySymUser.PASS_USER ,yyline,yycolumn,yytext());}
 "\"NOMBRE\""        {print("\"NOMBRE\""); return new Symbol(MySymUser.NAME_PERSONAL_USER ,yyline,yycolumn,yytext());}
 {INSTITUCION}       {print("INSTITUCION"); return new Symbol(MySymUser.INSTITUCION ,yyline,yycolumn,yytext());}
-"\FECHA_CREACION\”" {print("DATE"); return new Symbol(MySymUser.DATE ,yyline,yycolumn,yytext());}
+"\FECHA_CREACION\”" {print("FECHA_CREACION"); return new Symbol(MySymUser.DATE ,yyline,yycolumn,yytext());}
 /*SIMBOLOS ARIMETICOS*/
 "+"                     {print("+"); return new Symbol(MySymUser.SUMAR,yyline,yycolumn, (yytext()));}
 "-"                     {print("-"); return new Symbol(MySymUser.RESTAR,yyline,yycolumn, (yytext()));}
