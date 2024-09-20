@@ -82,6 +82,10 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "\"PARAMETROS_COMPONENTE\"" {print("\"PARAMETROS_COMPONENTE\""); return new Symbol(MySymUser.PARAMETROS_COMPONENTE ,yyline,yycolumn,yytext());}
 "\"NUEVA_TRIVIA\""          {print("\"NUEVA_TRIVIA\""); return new Symbol(MySymUser.NEW_TRIVIA ,yyline,yycolumn,yytext());}
 "\"AGREGAR_COMPONENTE\""    {print("\"AGREGAR_COMPONENTE\""); return new Symbol(MySymUser.AGREGAR_COMPONENTE ,yyline,yycolumn,yytext());}
+"\"MODIFICAR_TRIVIA\""      {print("\"MODIFICAR_TRIVIA\""); return new Symbol(MySymUser.MODIFICAR_TRIVIA ,yyline,yycolumn,yytext());}
+"\"MODIFICAR_COMPONENTE\""  {print("\"MODIFICAR_COMPONENTE\""); return new Symbol(MySymUser.MODIFICAR_COMPONENTE ,yyline,yycolumn,yytext());}
+"\"ELIMINAR_COMPONENTE\""   {print("\"ELIMINAR_COMPONENTE\""); return new Symbol(MySymUser.ELIMINAR_COMPONENTE ,yyline,yycolumn,yytext());}
+"\"ELIMINAR_TRIVIA\""       {print("\"ELIMINAR_TRIVIA\""); return new Symbol(MySymUser.ELIMINAR_TRIVIA ,yyline,yycolumn,yytext());}
 //DATOS DE TRIVIAS  
 "\"ID\""                    {print("\"ID\""); return new Symbol(MySymUser.ID ,yyline,yycolumn,yytext());}
 "\"INDICE\""                {print("\"INDICE\""); return new Symbol(MySymUser.INDICE ,yyline,yycolumn,yytext());}

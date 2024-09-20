@@ -19,12 +19,14 @@ public class MySymUser {
   public static final int NEW_USER = 30;
   public static final int PASS_USER = 37;
   public static final int MAKE_REQUESTS = 28;
+  public static final int ELIMINAR_TRIVIA = 60;
   public static final int RESPUESTA = 53;
   public static final int SUMAR = 11;
   public static final int INDICE = 54;
   public static final int NAME_PERSONAL_USER = 38;
   public static final int DATE = 40;
   public static final int MODIFICAR_USUARIO = 31;
+  public static final int MODIFICAR_TRIVIA = 58;
   public static final int FINAL_REQUEST = 24;
   public static final int VERSION = 6;
   public static final int TRIVIA = 50;
@@ -46,9 +48,11 @@ public class MySymUser {
   public static final int DIVIDIR = 13;
   public static final int PARAMETROS_COMPONENTE = 48;
   public static final int INSTITUCION = 39;
+  public static final int MODIFICAR_COMPONENTE = 61;
   public static final int PARAMETROS_TRIVIA = 42;
   public static final int PARENTESIS_C = 18;
   public static final int BRACKETS_O = 19;
+  public static final int ELIMINAR_COMPONENTE = 59;
   public static final int PARENTESIS_A = 17;
   public static final int USUARIO_ANTIGUO = 33;
   public static final int AGREGAR_COMPONENTE = 47;
@@ -124,7 +128,11 @@ public class MySymUser {
   "INDICE",
   "OPCIONES",
   "COLUMNAS",
-  "FILAS"
+  "FILAS",
+  "MODIFICAR_TRIVIA",
+  "ELIMINAR_COMPONENTE",
+  "ELIMINAR_TRIVIA",
+  "MODIFICAR_COMPONENTE"
   };
 }
 

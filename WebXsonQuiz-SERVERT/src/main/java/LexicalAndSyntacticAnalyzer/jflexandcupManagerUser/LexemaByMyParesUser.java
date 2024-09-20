@@ -118,15 +118,16 @@ public class LexemaByMyParesUser implements java_cup.runtime.Scanner {
     "\1\30\24\0\1\31\55\0\1\32\13\0\1\33\3\0"+
     "\1\34\17\0\1\35\3\0\1\36\6\0\1\37\2\0"+
     "\1\40\10\0\1\41\24\0\1\42\6\0\1\43\7\0"+
-    "\1\44\1\0\1\45\15\0\1\46\5\0\1\47\10\0"+
-    "\1\50\23\0\1\51\21\0\1\52\15\0\1\53\5\0"+
-    "\1\54\3\0\1\55\1\56\6\0\1\57\15\0\1\60"+
-    "\1\61\5\0\1\62\3\0\1\63\2\0\1\64\1\0"+
-    "\1\65\1\0\1\66\3\0\1\67\3\0\1\70\6\0"+
-    "\1\71\1\72\2\0\1\73";
+    "\1\44\1\0\1\45\17\0\1\46\5\0\1\47\10\0"+
+    "\1\50\31\0\1\51\27\0\1\52\15\0\1\53\11\0"+
+    "\1\54\3\0\1\55\1\56\12\0\1\57\12\0\1\60"+
+    "\6\0\1\61\1\62\6\0\1\63\1\0\1\64\3\0"+
+    "\1\65\2\0\1\66\3\0\1\67\1\0\1\70\3\0"+
+    "\1\71\5\0\1\72\1\73\4\0\1\74\3\0\1\75"+
+    "\1\76\2\0\1\77";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[398];
+    int [] result = new int[434];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -183,27 +184,32 @@ public class LexemaByMyParesUser implements java_cup.runtime.Scanner {
     "\0\u3280\0\u32c0\0\u3300\0\u3340\0\u3380\0\100\0\u33c0\0\u3400"+
     "\0\u3440\0\u3480\0\u34c0\0\u3500\0\u3540\0\100\0\u3580\0\100"+
     "\0\u35c0\0\u3600\0\u3640\0\u3680\0\u36c0\0\u3700\0\u3740\0\u3780"+
-    "\0\u37c0\0\u3800\0\u3840\0\u3880\0\u38c0\0\100\0\u3900\0\u3940"+
-    "\0\u3980\0\u39c0\0\u3a00\0\100\0\u3a40\0\u3a80\0\u3ac0\0\u3b00"+
-    "\0\u3b40\0\u3b80\0\u3bc0\0\u3c00\0\100\0\u3c40\0\u3c80\0\u3cc0"+
+    "\0\u37c0\0\u3800\0\u3840\0\u3880\0\u38c0\0\u3900\0\u3940\0\100"+
+    "\0\u3980\0\u39c0\0\u3a00\0\u3a40\0\u3a80\0\100\0\u3ac0\0\u3b00"+
+    "\0\u3b40\0\u3b80\0\u3bc0\0\u3c00\0\u3c40\0\u3c80\0\100\0\u3cc0"+
     "\0\u3d00\0\u3d40\0\u3d80\0\u3dc0\0\u3e00\0\u3e40\0\u3e80\0\u3ec0"+
     "\0\u3f00\0\u3f40\0\u3f80\0\u3fc0\0\u4000\0\u4040\0\u4080\0\u40c0"+
-    "\0\100\0\u4100\0\u4140\0\u4180\0\u41c0\0\u4200\0\u4240\0\u4280"+
-    "\0\u42c0\0\u4300\0\u4340\0\u4380\0\u43c0\0\u4400\0\u4440\0\u4480"+
-    "\0\u44c0\0\u4500\0\100\0\u4540\0\u4580\0\u45c0\0\u4600\0\u4640"+
-    "\0\u4680\0\u46c0\0\u4700\0\u4740\0\u4780\0\u47c0\0\u4800\0\u4840"+
-    "\0\100\0\u4880\0\u48c0\0\u4900\0\u4940\0\u4980\0\100\0\u49c0"+
-    "\0\u4a00\0\u4a40\0\100\0\100\0\u4a80\0\u4ac0\0\u4b00\0\u4b40"+
-    "\0\u4b80\0\u4bc0\0\100\0\u4c00\0\u4c40\0\u4c80\0\u4cc0\0\u4d00"+
-    "\0\u4d40\0\u4d80\0\u4dc0\0\u4e00\0\u4e40\0\u4e80\0\u4ec0\0\u4f00"+
-    "\0\100\0\100\0\u4f40\0\u4f80\0\u4fc0\0\u5000\0\u5040\0\100"+
-    "\0\u5080\0\u50c0\0\u5100\0\100\0\u5140\0\u5180\0\u51c0\0\u5200"+
-    "\0\100\0\u5240\0\100\0\u5280\0\u52c0\0\u5300\0\100\0\u5340"+
-    "\0\u5380\0\u53c0\0\100\0\u5400\0\u5440\0\u5480\0\u54c0\0\u5500"+
-    "\0\u5540\0\100\0\100\0\u5580\0\u55c0\0\100";
+    "\0\u4100\0\u4140\0\u4180\0\u41c0\0\u4200\0\u4240\0\u4280\0\u42c0"+
+    "\0\100\0\u4300\0\u4340\0\u4380\0\u43c0\0\u4400\0\u4440\0\u4480"+
+    "\0\u44c0\0\u4500\0\u4540\0\u4580\0\u45c0\0\u4600\0\u4640\0\u4680"+
+    "\0\u46c0\0\u4700\0\u4740\0\u4780\0\u47c0\0\u4800\0\u4840\0\u4880"+
+    "\0\100\0\u48c0\0\u4900\0\u4940\0\u4980\0\u49c0\0\u4a00\0\u4a40"+
+    "\0\u4a80\0\u4ac0\0\u4b00\0\u4b40\0\u4b80\0\u4bc0\0\100\0\u4c00"+
+    "\0\u4c40\0\u4c80\0\u4cc0\0\u4d00\0\u4d40\0\u4d80\0\u4dc0\0\u4e00"+
+    "\0\100\0\u4e40\0\u4e80\0\u4ec0\0\100\0\100\0\u4f00\0\u4f40"+
+    "\0\u4f80\0\u4fc0\0\u5000\0\u5040\0\u5080\0\u50c0\0\u5100\0\u5140"+
+    "\0\100\0\u5180\0\u51c0\0\u5200\0\u5240\0\u5280\0\u52c0\0\u5300"+
+    "\0\u5340\0\u5380\0\u53c0\0\100\0\u5400\0\u5440\0\u5480\0\u54c0"+
+    "\0\u5500\0\u5540\0\100\0\100\0\u5580\0\u55c0\0\u5600\0\u5640"+
+    "\0\u5680\0\u56c0\0\100\0\u5700\0\100\0\u5740\0\u5780\0\u57c0"+
+    "\0\100\0\u5800\0\u5840\0\u5880\0\u58c0\0\u5900\0\u5940\0\100"+
+    "\0\u5980\0\100\0\u59c0\0\u5a00\0\u5a40\0\100\0\u5a80\0\u5ac0"+
+    "\0\u5b00\0\u5b40\0\u5b80\0\100\0\100\0\u5bc0\0\u5c00\0\u5c40"+
+    "\0\u5c80\0\100\0\u5cc0\0\u5d00\0\u5d40\0\100\0\100\0\u5d80"+
+    "\0\u5dc0\0\100";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[398];
+    int [] result = new int[434];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -367,91 +373,115 @@ public class LexemaByMyParesUser implements java_cup.runtime.Scanner {
     "\1\u0100\104\0\1\u0101\11\0\4\35\1\36\10\35\1\u0102"+
     "\33\35\1\55\32\35\1\36\32\35\1\u0103\11\35\1\55"+
     "\32\35\1\36\16\35\1\u0104\25\35\1\55\32\35\1\36"+
-    "\37\35\1\u0105\4\35\1\55\32\35\1\u0106\44\35\1\55"+
-    "\32\35\1\36\32\35\1\u0107\11\35\1\55\32\35\1\36"+
-    "\44\35\1\55\1\35\1\u0108\30\35\1\36\40\35\1\u0109"+
-    "\3\35\1\55\32\35\1\36\35\35\1\u010a\6\35\1\55"+
-    "\32\35\1\36\35\35\1\u010b\6\35\1\55\32\35\1\u010c"+
-    "\44\35\1\55\32\35\1\36\26\35\1\u010d\15\35\1\55"+
-    "\32\35\1\36\22\35\1\u010e\21\35\1\55\32\35\1\36"+
-    "\31\35\1\u010f\12\35\1\55\32\35\1\36\34\35\1\u0110"+
-    "\7\35\1\55\32\35\1\36\37\35\1\u0111\4\35\1\55"+
-    "\26\35\25\0\1\u0112\141\0\1\u0113\74\0\1\u0114\13\0"+
-    "\4\35\1\u0115\44\35\1\55\32\35\1\36\30\35\1\u0116"+
-    "\13\35\1\55\32\35\1\36\34\35\1\u0117\7\35\1\55"+
-    "\32\35\1\36\35\35\1\u0118\6\35\1\55\32\35\1\36"+
-    "\31\35\1\u0119\12\35\1\55\32\35\1\36\37\35\1\u011a"+
-    "\4\35\1\55\32\35\1\36\26\35\1\u011b\15\35\1\55"+
-    "\32\35\1\36\41\35\1\u011c\2\35\1\55\32\35\1\36"+
-    "\44\35\1\55\1\35\1\u011d\30\35\1\36\17\35\1\u011e"+
-    "\24\35\1\55\32\35\1\36\24\35\1\u011f\17\35\1\55"+
-    "\32\35\1\36\36\35\1\u0120\5\35\1\55\32\35\1\36"+
-    "\22\35\1\u0121\21\35\1\55\32\35\1\36\22\35\1\u0122"+
-    "\21\35\1\55\26\35\33\0\1\u0123\134\0\1\u0124\71\0"+
-    "\1\u0125\15\0\4\35\1\36\33\35\1\u0126\10\35\1\55"+
-    "\32\35\1\36\26\35\1\u0127\15\35\1\55\32\35\1\36"+
-    "\37\35\1\u0128\4\35\1\55\32\35\1\u0129\44\35\1\55"+
-    "\32\35\1\36\35\35\1\u012a\6\35\1\55\32\35\1\36"+
-    "\16\35\1\u012b\25\35\1\55\32\35\1\36\32\35\1\u012c"+
-    "\11\35\1\55\32\35\1\36\20\35\1\u012d\15\35\1\u012e"+
-    "\5\35\1\55\32\35\1\36\27\35\1\u012f\14\35\1\55"+
-    "\32\35\1\36\37\35\1\u0130\4\35\1\55\32\35\1\36"+
-    "\26\35\1\u0131\15\35\1\55\32\35\1\36\16\35\1\u0132"+
-    "\25\35\1\55\32\35\1\36\40\35\1\u0133\3\35\1\55"+
-    "\26\35\37\0\1\u0134\116\0\1\u0135\102\0\1\u0136\16\0"+
-    "\4\35\1\36\32\35\1\u0137\11\35\1\55\32\35\1\36"+
-    "\32\35\1\u0138\11\35\1\55\32\35\1\36\16\35\1\u0139"+
-    "\25\35\1\55\32\35\1\36\37\35\1\u013a\4\35\1\55"+
-    "\32\35\1\u013b\44\35\1\55\32\35\1\36\34\35\1\u013c"+
-    "\7\35\1\55\32\35\1\36\32\35\1\u013d\11\35\1\55"+
-    "\32\35\1\36\34\35\1\u013e\7\35\1\55\32\35\1\36"+
-    "\22\35\1\u013f\21\35\1\55\32\35\1\36\31\35\1\u0140"+
-    "\12\35\1\55\32\35\1\36\24\35\1\u0141\17\35\1\55"+
-    "\32\35\1\36\20\35\1\u0142\23\35\1\55\32\35\1\36"+
-    "\32\35\1\u0143\11\35\1\55\26\35\36\0\1\u0144\114\0"+
-    "\1\u0145\3\0\1\u0146\75\0\1\u0147\22\0\4\35\1\36"+
-    "\31\35\1\u0148\12\35\1\55\32\35\1\u0149\44\35\1\55"+
-    "\32\35\1\36\34\35\1\u014a\7\35\1\55\32\35\1\36"+
-    "\16\35\1\u014b\25\35\1\55\32\35\1\36\21\35\1\u014c"+
-    "\22\35\1\55\32\35\1\36\30\35\1\u014d\13\35\1\55"+
-    "\32\35\1\36\26\35\1\u014e\15\35\1\55\32\35\1\u014f"+
-    "\44\35\1\55\32\35\1\36\36\35\1\u0150\5\35\1\55"+
-    "\32\35\1\36\37\35\1\u0151\4\35\1\55\32\35\1\36"+
-    "\26\35\1\u0152\15\35\1\55\32\35\1\u0153\44\35\1\55"+
-    "\26\35\76\0\1\u0154\66\0\1\u0155\100\0\1\u0156\72\0"+
-    "\1\u0157\16\0\4\35\1\36\22\35\1\u0158\21\35\1\55"+
+    "\20\35\1\u0105\15\35\1\u0106\1\u0107\4\35\1\55\32\35"+
+    "\1\u0108\44\35\1\55\32\35\1\36\32\35\1\u0109\11\35"+
+    "\1\55\32\35\1\36\44\35\1\55\1\35\1\u010a\30\35"+
+    "\1\36\40\35\1\u010b\3\35\1\55\32\35\1\36\35\35"+
+    "\1\u010c\6\35\1\55\32\35\1\36\35\35\1\u010d\6\35"+
+    "\1\55\32\35\1\u010e\44\35\1\55\32\35\1\36\26\35"+
+    "\1\u010f\15\35\1\55\32\35\1\36\22\35\1\u0110\21\35"+
+    "\1\55\32\35\1\36\31\35\1\u0111\12\35\1\55\32\35"+
+    "\1\36\34\35\1\u0112\7\35\1\55\32\35\1\36\37\35"+
+    "\1\u0113\4\35\1\55\26\35\25\0\1\u0114\141\0\1\u0115"+
+    "\74\0\1\u0116\13\0\4\35\1\u0117\44\35\1\55\32\35"+
+    "\1\36\30\35\1\u0118\13\35\1\55\32\35\1\36\34\35"+
+    "\1\u0119\7\35\1\55\32\35\1\36\32\35\1\u011a\11\35"+
+    "\1\55\32\35\1\36\34\35\1\u011b\7\35\1\55\32\35"+
+    "\1\36\35\35\1\u011c\6\35\1\55\32\35\1\36\31\35"+
+    "\1\u011d\12\35\1\55\32\35\1\36\20\35\1\u011e\15\35"+
+    "\1\u011f\1\u0120\4\35\1\55\32\35\1\36\26\35\1\u0121"+
+    "\15\35\1\55\32\35\1\36\41\35\1\u0122\2\35\1\55"+
+    "\32\35\1\36\44\35\1\55\1\35\1\u0123\30\35\1\36"+
+    "\17\35\1\u0124\24\35\1\55\32\35\1\36\24\35\1\u0125"+
+    "\17\35\1\55\32\35\1\36\36\35\1\u0126\5\35\1\55"+
+    "\32\35\1\36\22\35\1\u0127\21\35\1\55\32\35\1\36"+
+    "\22\35\1\u0128\21\35\1\55\26\35\33\0\1\u0129\134\0"+
+    "\1\u012a\71\0\1\u012b\15\0\4\35\1\36\33\35\1\u012c"+
+    "\10\35\1\55\32\35\1\36\26\35\1\u012d\15\35\1\55"+
+    "\32\35\1\36\30\35\1\u012e\13\35\1\55\32\35\1\36"+
+    "\26\35\1\u012f\15\35\1\55\32\35\1\36\37\35\1\u0130"+
+    "\4\35\1\55\32\35\1\u0131\44\35\1\55\32\35\1\36"+
+    "\32\35\1\u0132\11\35\1\55\32\35\1\36\34\35\1\u0133"+
+    "\7\35\1\55\32\35\1\36\35\35\1\u0134\6\35\1\55"+
+    "\32\35\1\36\16\35\1\u0135\25\35\1\55\32\35\1\36"+
+    "\32\35\1\u0136\11\35\1\55\32\35\1\36\20\35\1\u0137"+
+    "\15\35\1\u0138\5\35\1\55\32\35\1\36\27\35\1\u0139"+
+    "\14\35\1\55\32\35\1\36\37\35\1\u013a\4\35\1\55"+
+    "\32\35\1\36\26\35\1\u013b\15\35\1\55\32\35\1\36"+
+    "\16\35\1\u013c\25\35\1\55\32\35\1\36\40\35\1\u013d"+
+    "\3\35\1\55\26\35\37\0\1\u013e\116\0\1\u013f\102\0"+
+    "\1\u0140\16\0\4\35\1\36\32\35\1\u0141\11\35\1\55"+
+    "\32\35\1\36\32\35\1\u0142\11\35\1\55\32\35\1\36"+
+    "\33\35\1\u0143\10\35\1\55\32\35\1\36\40\35\1\u0144"+
+    "\3\35\1\55\32\35\1\36\16\35\1\u0145\25\35\1\55"+
+    "\32\35\1\36\30\35\1\u0146\13\35\1\55\32\35\1\36"+
+    "\26\35\1\u0147\15\35\1\55\32\35\1\36\37\35\1\u0148"+
+    "\4\35\1\55\32\35\1\u0149\44\35\1\55\32\35\1\36"+
+    "\34\35\1\u014a\7\35\1\55\32\35\1\36\32\35\1\u014b"+
+    "\11\35\1\55\32\35\1\36\34\35\1\u014c\7\35\1\55"+
+    "\32\35\1\36\22\35\1\u014d\21\35\1\55\32\35\1\36"+
+    "\31\35\1\u014e\12\35\1\55\32\35\1\36\24\35\1\u014f"+
+    "\17\35\1\55\32\35\1\36\20\35\1\u0150\23\35\1\55"+
+    "\32\35\1\36\32\35\1\u0151\11\35\1\55\26\35\36\0"+
+    "\1\u0152\114\0\1\u0153\3\0\1\u0154\75\0\1\u0155\22\0"+
+    "\4\35\1\36\31\35\1\u0156\12\35\1\55\32\35\1\u0157"+
+    "\44\35\1\55\32\35\1\36\32\35\1\u0158\11\35\1\55"+
     "\32\35\1\36\26\35\1\u0159\15\35\1\55\32\35\1\36"+
-    "\34\35\1\u015a\7\35\1\55\32\35\1\u015b\44\35\1\55"+
-    "\32\35\1\36\33\35\1\u015c\10\35\1\55\32\35\1\36"+
-    "\40\35\1\u015d\3\35\1\55\32\35\1\36\16\35\1\u015e"+
-    "\25\35\1\55\32\35\1\36\32\35\1\u015f\11\35\1\55"+
-    "\32\35\1\36\32\35\1\u0160\11\35\1\55\26\35\57\0"+
-    "\1\u0161\73\0\1\u0162\113\0\1\u0163\10\0\4\35\1\36"+
-    "\31\35\1\u0164\12\35\1\55\32\35\1\36\32\35\1\u0165"+
-    "\11\35\1\55\32\35\1\36\26\35\1\u0166\15\35\1\55"+
-    "\32\35\1\36\32\35\1\u0167\11\35\1\55\32\35\1\36"+
-    "\26\35\1\u0168\15\35\1\55\32\35\1\u0169\44\35\1\55"+
-    "\32\35\1\u016a\44\35\1\55\32\35\1\36\31\35\1\u016b"+
-    "\12\35\1\55\26\35\54\0\1\u016c\110\0\1\u016d\102\0"+
-    "\1\u016e\7\0\4\35\1\36\36\35\1\u016f\5\35\1\55"+
-    "\32\35\1\u0170\44\35\1\55\32\35\1\36\32\35\1\u0171"+
-    "\11\35\1\55\32\35\1\36\31\35\1\u0172\12\35\1\55"+
-    "\32\35\1\36\16\35\1\u0173\25\35\1\55\32\35\1\u0174"+
-    "\44\35\1\55\26\35\62\0\1\u0175\74\0\1\u0176\76\0"+
-    "\1\u0177\21\0\4\35\1\36\22\35\1\u0178\21\35\1\55"+
-    "\32\35\1\u0179\44\35\1\55\32\35\1\36\22\35\1\u017a"+
-    "\21\35\1\55\32\35\1\u017b\44\35\1\55\26\35\61\0"+
-    "\1\u017c\72\0\1\u017d\102\0\1\u017e\20\0\4\35\1\u017f"+
-    "\44\35\1\55\32\35\1\36\31\35\1\u0180\12\35\1\55"+
-    "\26\35\73\0\1\u0181\66\0\1\u0182\103\0\1\u0183\11\0"+
-    "\4\35\1\36\36\35\1\u0184\5\35\1\55\26\35\54\0"+
-    "\1\u0185\104\0\1\u0186\16\0\4\35\1\36\22\35\1\u0187"+
-    "\21\35\1\55\26\35\56\0\1\u0188\114\0\1\u0189\4\0"+
-    "\4\35\1\u018a\44\35\1\55\26\35\54\0\1\u018b\77\0"+
-    "\1\u018c\101\0\1\u018d\75\0\1\u018e\23\0";
+    "\34\35\1\u015a\7\35\1\55\32\35\1\36\33\35\1\u015b"+
+    "\10\35\1\55\32\35\1\36\40\35\1\u015c\3\35\1\55"+
+    "\32\35\1\36\16\35\1\u015d\25\35\1\55\32\35\1\36"+
+    "\21\35\1\u015e\22\35\1\55\32\35\1\36\30\35\1\u015f"+
+    "\13\35\1\55\32\35\1\36\26\35\1\u0160\15\35\1\55"+
+    "\32\35\1\u0161\44\35\1\55\32\35\1\36\36\35\1\u0162"+
+    "\5\35\1\55\32\35\1\36\37\35\1\u0163\4\35\1\55"+
+    "\32\35\1\36\26\35\1\u0164\15\35\1\55\32\35\1\u0165"+
+    "\44\35\1\55\26\35\76\0\1\u0166\66\0\1\u0167\100\0"+
+    "\1\u0168\72\0\1\u0169\16\0\4\35\1\36\22\35\1\u016a"+
+    "\21\35\1\55\32\35\1\36\31\35\1\u016b\12\35\1\55"+
+    "\32\35\1\36\16\35\1\u016c\25\35\1\55\32\35\1\36"+
+    "\26\35\1\u016d\15\35\1\55\32\35\1\36\32\35\1\u016e"+
+    "\11\35\1\55\32\35\1\36\26\35\1\u016f\15\35\1\55"+
+    "\32\35\1\36\34\35\1\u0170\7\35\1\55\32\35\1\u0171"+
+    "\44\35\1\55\32\35\1\36\33\35\1\u0172\10\35\1\55"+
+    "\32\35\1\36\40\35\1\u0173\3\35\1\55\32\35\1\36"+
+    "\16\35\1\u0174\25\35\1\55\32\35\1\36\32\35\1\u0175"+
+    "\11\35\1\55\32\35\1\36\32\35\1\u0176\11\35\1\55"+
+    "\26\35\57\0\1\u0177\73\0\1\u0178\113\0\1\u0179\10\0"+
+    "\4\35\1\36\31\35\1\u017a\12\35\1\55\32\35\1\36"+
+    "\22\35\1\u017b\21\35\1\55\32\35\1\u017c\44\35\1\55"+
+    "\32\35\1\36\32\35\1\u017d\11\35\1\55\32\35\1\36"+
+    "\31\35\1\u017e\12\35\1\55\32\35\1\36\16\35\1\u017f"+
+    "\25\35\1\55\32\35\1\36\26\35\1\u0180\15\35\1\55"+
+    "\32\35\1\36\32\35\1\u0181\11\35\1\55\32\35\1\36"+
+    "\26\35\1\u0182\15\35\1\55\32\35\1\u0183\44\35\1\55"+
+    "\32\35\1\u0184\44\35\1\55\32\35\1\36\31\35\1\u0185"+
+    "\12\35\1\55\26\35\54\0\1\u0186\110\0\1\u0187\102\0"+
+    "\1\u0188\7\0\4\35\1\36\36\35\1\u0189\5\35\1\55"+
+    "\32\35\1\36\31\35\1\u018a\12\35\1\55\32\35\1\u018b"+
+    "\44\35\1\55\32\35\1\36\22\35\1\u018c\21\35\1\55"+
+    "\32\35\1\u018d\44\35\1\55\32\35\1\36\32\35\1\u018e"+
+    "\11\35\1\55\32\35\1\36\31\35\1\u018f\12\35\1\55"+
+    "\32\35\1\36\16\35\1\u0190\25\35\1\55\32\35\1\u0191"+
+    "\44\35\1\55\26\35\62\0\1\u0192\74\0\1\u0193\76\0"+
+    "\1\u0194\21\0\4\35\1\36\22\35\1\u0195\21\35\1\55"+
+    "\32\35\1\36\36\35\1\u0196\5\35\1\55\32\35\1\36"+
+    "\31\35\1\u0197\12\35\1\55\32\35\1\u0198\44\35\1\55"+
+    "\32\35\1\36\22\35\1\u0199\21\35\1\55\32\35\1\u019a"+
+    "\44\35\1\55\26\35\61\0\1\u019b\72\0\1\u019c\102\0"+
+    "\1\u019d\20\0\4\35\1\u019e\44\35\1\55\32\35\1\36"+
+    "\22\35\1\u019f\21\35\1\55\32\35\1\36\36\35\1\u01a0"+
+    "\5\35\1\55\32\35\1\36\31\35\1\u01a1\12\35\1\55"+
+    "\26\35\73\0\1\u01a2\66\0\1\u01a3\103\0\1\u01a4\11\0"+
+    "\4\35\1\u01a5\44\35\1\55\32\35\1\36\22\35\1\u01a6"+
+    "\21\35\1\55\32\35\1\36\36\35\1\u01a7\5\35\1\55"+
+    "\26\35\54\0\1\u01a8\104\0\1\u01a9\16\0\4\35\1\u01aa"+
+    "\44\35\1\55\32\35\1\36\22\35\1\u01ab\21\35\1\55"+
+    "\26\35\56\0\1\u01ac\114\0\1\u01ad\4\0\4\35\1\u01ae"+
+    "\44\35\1\55\26\35\54\0\1\u01af\77\0\1\u01b0\101\0"+
+    "\1\u01b1\75\0\1\u01b2\23\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[22016];
+    int [] result = new int[24064];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -499,15 +529,16 @@ public class LexemaByMyParesUser implements java_cup.runtime.Scanner {
     "\2\11\30\0\1\1\15\0\1\11\24\0\1\11\55\0"+
     "\1\11\13\0\1\11\3\0\1\11\17\0\1\11\3\0"+
     "\1\11\6\0\1\11\2\0\1\11\10\0\1\11\24\0"+
-    "\1\11\6\0\1\11\7\0\1\11\1\0\1\11\15\0"+
-    "\1\11\5\0\1\11\10\0\1\11\23\0\1\11\21\0"+
-    "\1\11\15\0\1\11\5\0\1\11\3\0\2\11\6\0"+
-    "\1\11\15\0\2\11\5\0\1\11\3\0\1\11\2\0"+
-    "\1\1\1\0\1\11\1\0\1\11\3\0\1\11\3\0"+
-    "\1\11\6\0\2\11\2\0\1\11";
+    "\1\11\6\0\1\11\7\0\1\11\1\0\1\11\17\0"+
+    "\1\11\5\0\1\11\10\0\1\11\31\0\1\11\27\0"+
+    "\1\11\15\0\1\11\11\0\1\11\3\0\2\11\12\0"+
+    "\1\11\12\0\1\11\6\0\2\11\6\0\1\11\1\0"+
+    "\1\11\3\0\1\11\2\0\1\1\3\0\1\11\1\0"+
+    "\1\11\3\0\1\11\5\0\2\11\4\0\1\11\3\0"+
+    "\2\11\2\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[398];
+    int [] result = new int[434];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -1034,297 +1065,317 @@ public class LexemaByMyParesUser implements java_cup.runtime.Scanner {
                         addError();
             }
           // fall through
-          case 60: break;
+          case 64: break;
           case 2:
             { /* print(); */
             }
           // fall through
-          case 61: break;
+          case 65: break;
           case 3:
             { print("("); return new Symbol(MySymUser.PARENTESIS_A,yyline,yycolumn,yytext());
             }
           // fall through
-          case 62: break;
+          case 66: break;
           case 4:
             { print(")"); return new Symbol(MySymUser.PARENTESIS_C,yyline,yycolumn,yytext());
             }
           // fall through
-          case 63: break;
+          case 67: break;
           case 5:
             { print("*"); return new Symbol(MySymUser.MULTIPLICAR,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 64: break;
+          case 68: break;
           case 6:
             { print("+"); return new Symbol(MySymUser.SUMAR,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 65: break;
+          case 69: break;
           case 7:
             { print(","); return new Symbol(MySymUser.COMA,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 66: break;
+          case 70: break;
           case 8:
             { print("-"); return new Symbol(MySymUser.RESTAR,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 67: break;
+          case 71: break;
           case 9:
             { print("/"); return new Symbol(MySymUser.DIVIDIR,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 68: break;
+          case 72: break;
           case 10:
             { print("REAL_NUMEBERS"); return new Symbol(MySymUser.REAL_NUMEBERS ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 69: break;
+          case 73: break;
           case 11:
             { print(":"); return new Symbol(MySymUser.COLNO,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 70: break;
+          case 74: break;
           case 12:
             { print("<" ); return new Symbol(MySymUser.OPEN ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 71: break;
+          case 75: break;
           case 13:
             { print("="); return new Symbol(MySymUser.EQUAL,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 72: break;
+          case 76: break;
           case 14:
             { print(">" ); return new Symbol(MySymUser.CLOSE ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 73: break;
+          case 77: break;
           case 15:
             { print("["); return new Symbol(MySymUser.BRACKETS_O ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 74: break;
+          case 78: break;
           case 16:
             { print("]"); return new Symbol(MySymUser.BRACKETS_C ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 75: break;
+          case 79: break;
           case 17:
             { print("{"); return new Symbol(MySymUser.KEYS_O ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 76: break;
+          case 80: break;
           case 18:
             { print("}"); return new Symbol(MySymUser.KEYS_C ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 77: break;
+          case 81: break;
           case 19:
             { print("!>" ); return new Symbol(MySymUser.CLOSE_REQUEST ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 78: break;
+          case 82: break;
           case 20:
             { print("STRING"); return new Symbol(MySymUser.STRING ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 79: break;
+          case 83: break;
           case 21:
             { print("<!" ); return new Symbol(MySymUser.OPEN_REQUEST ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 80: break;
+          case 84: break;
           case 22:
             { print("<?" ); return new Symbol(MySymUser.OPEN_VERSION ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 81: break;
+          case 85: break;
           case 23:
             { print("?>" ); return new Symbol(MySymUser.CLOSE_VERSION ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 82: break;
+          case 86: break;
           case 24:
             { print("\"ID\""); return new Symbol(MySymUser.ID ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 83: break;
+          case 87: break;
           case 25:
             { print("xson"); return new Symbol(MySymUser.XSON ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 84: break;
+          case 88: break;
           case 26:
             { print("\"TEMA\""); return new Symbol(MySymUser.TEMA ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 85: break;
+          case 89: break;
           case 27:
             { print("\"CLASE\""); return new Symbol(MySymUser.CLASE ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 86: break;
+          case 90: break;
           case 28:
             { print("\"FILAS\""); return new Symbol(MySymUser.FILAS ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 87: break;
+          case 91: break;
           case 29:
             { /*COMENTARIO*/
             }
           // fall through
-          case 88: break;
+          case 92: break;
           case 30:
             { print("version"); return new Symbol(MySymUser.VERSION ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 89: break;
+          case 93: break;
           case 31:
             { print("\"INDICE\""); return new Symbol(MySymUser.INDICE ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 90: break;
+          case 94: break;
           case 32:
             { print("\"NOMBRE\""); return new Symbol(MySymUser.NAME_PERSONAL_USER ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 91: break;
+          case 95: break;
           case 33:
             { print("\"TRIVIA\""); return new Symbol(MySymUser.TRIVIA ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 92: break;
+          case 96: break;
           case 34:
             { print("\"USUARIO\""); return new Symbol(MySymUser.NAME_USER ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 93: break;
+          case 97: break;
           case 35:
             { print("\"COLUMNAS\""); return new Symbol(MySymUser.COLUMNAS ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 94: break;
+          case 98: break;
           case 36:
             { print("\"OPCIONES\""); return new Symbol(MySymUser.OPCIONES ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 95: break;
+          case 99: break;
           case 37:
             { print("\"PASSWORD\""); return new Symbol(MySymUser.PASS_USER ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 96: break;
+          case 100: break;
           case 38:
             { print("\"ID_TRIVIA\""); return new Symbol(MySymUser.ID_TRIVIA ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 97: break;
+          case 101: break;
           case 39:
             { print("\"RESPUESTA\""); return new Symbol(MySymUser.RESPUESTA ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 98: break;
+          case 102: break;
           case 40:
             { print("DATE"); return new Symbol(MySymUser.STRING_DATE,yyline,yycolumn,yytext());
             }
           // fall through
-          case 99: break;
+          case 103: break;
           case 41:
             { print("INSTITUCION"); return new Symbol(MySymUser.INSTITUCION ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 100: break;
+          case 104: break;
           case 42:
             { print("\"NUEVA_TRIVIA\""); return new Symbol(MySymUser.NEW_TRIVIA ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 101: break;
+          case 105: break;
           case 43:
             { print("\"DATOS_USUARIO\""); return new Symbol(MySymUser.USER_DATA ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 102: break;
+          case 106: break;
           case 44:
             { print("\"TEXTO_VISIBLE\""); return new Symbol(MySymUser.TEXTO_VISIBLE ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 103: break;
+          case 107: break;
           case 45:
             { print("\"USUARIO_NUEVO\""); return new Symbol(MySymUser.NEW_USER ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 104: break;
+          case 108: break;
           case 46:
             { print("FECHA_CREACION"); return new Symbol(MySymUser.DATE ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 105: break;
+          case 109: break;
           case 47:
             { print("\"NUEVO_PASSWORD\""); return new Symbol(MySymUser.NUEVO_PASSWORD ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 106: break;
-          case 48:
-            { print("\"TIEMPO_PREGUNTA\""); return new Symbol(MySymUser.TIEMPO_PREGUNTA ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 107: break;
-          case 49:
-            { print("\"USUARIO_ANTIGUO\""); return new Symbol(MySymUser.USUARIO_ANTIGUO ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 108: break;
-          case 50:
-            { print("\"ELIMINAR_USUARIO\""); return new Symbol(MySymUser.ELIMINAR_USUARIO  ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 109: break;
-          case 51:
-            { print("\"USUARIO_CREACION\""); return new Symbol(MySymUser.USUARIO_CREACION ,yyline,yycolumn,yytext());
-            }
-          // fall through
           case 110: break;
-          case 52:
-            { print("realizar_solicitud"); return new Symbol(MySymUser.MAKE_REQUEST ,yyline,yycolumn,yytext());
+          case 48:
+            { print("\"ELIMINAR_TRIVIA\""); return new Symbol(MySymUser.ELIMINAR_TRIVIA ,yyline,yycolumn,yytext());
             }
           // fall through
           case 111: break;
-          case 53:
-            { print("\"MODIFICAR_USUARIO\""); return new Symbol(MySymUser.MODIFICAR_USUARIO  ,yyline,yycolumn,yytext());
+          case 49:
+            { print("\"TIEMPO_PREGUNTA\""); return new Symbol(MySymUser.TIEMPO_PREGUNTA ,yyline,yycolumn,yytext());
             }
           // fall through
           case 112: break;
-          case 54:
-            { print("\"PARAMETROS_TRIVIA\""); return new Symbol(MySymUser.PARAMETROS_TRIVIA ,yyline,yycolumn,yytext());
+          case 50:
+            { print("\"USUARIO_ANTIGUO\""); return new Symbol(MySymUser.USUARIO_ANTIGUO ,yyline,yycolumn,yytext());
             }
           // fall through
           case 113: break;
-          case 55:
-            { print("\"AGREGAR_COMPONENTE\""); return new Symbol(MySymUser.AGREGAR_COMPONENTE ,yyline,yycolumn,yytext());
+          case 51:
+            { print("\"ELIMINAR_USUARIO\""); return new Symbol(MySymUser.ELIMINAR_USUARIO  ,yyline,yycolumn,yytext());
             }
           // fall through
           case 114: break;
-          case 56:
-            { print("realizar_solicitudes"); return new Symbol(MySymUser.MAKE_REQUESTS ,yyline,yycolumn,yytext());
+          case 52:
+            { print("\"MODIFICAR_TRIVIA\""); return new Symbol(MySymUser.MODIFICAR_TRIVIA ,yyline,yycolumn,yytext());
             }
           // fall through
           case 115: break;
-          case 57:
-            { print("\"PARAMETROS_COMPONENTE\""); return new Symbol(MySymUser.PARAMETROS_COMPONENTE ,yyline,yycolumn,yytext());
+          case 53:
+            { print("\"USUARIO_CREACION\""); return new Symbol(MySymUser.USUARIO_CREACION ,yyline,yycolumn,yytext());
             }
           // fall through
           case 116: break;
-          case 58:
-            { print("fin_solicitud_realizada"); return new Symbol(MySymUser.FINAL_REQUEST ,yyline,yycolumn,yytext());
+          case 54:
+            { print("realizar_solicitud"); return new Symbol(MySymUser.MAKE_REQUEST ,yyline,yycolumn,yytext());
             }
           // fall through
           case 117: break;
-          case 59:
-            { print("fin_solicitudes_realizada"); return new Symbol(MySymUser.FINAL_REQUESTS ,yyline,yycolumn,yytext());
+          case 55:
+            { print("\"MODIFICAR_USUARIO\""); return new Symbol(MySymUser.MODIFICAR_USUARIO  ,yyline,yycolumn,yytext());
             }
           // fall through
           case 118: break;
+          case 56:
+            { print("\"PARAMETROS_TRIVIA\""); return new Symbol(MySymUser.PARAMETROS_TRIVIA ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 119: break;
+          case 57:
+            { print("\"AGREGAR_COMPONENTE\""); return new Symbol(MySymUser.AGREGAR_COMPONENTE ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 120: break;
+          case 58:
+            { print("realizar_solicitudes"); return new Symbol(MySymUser.MAKE_REQUESTS ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 121: break;
+          case 59:
+            { print("\"ELIMINAR_COMPONENTE\""); return new Symbol(MySymUser.ELIMINAR_COMPONENTE ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 122: break;
+          case 60:
+            { print("\"MODIFICAR_COMPONENTE\""); return new Symbol(MySymUser.MODIFICAR_COMPONENTE ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 123: break;
+          case 61:
+            { print("\"PARAMETROS_COMPONENTE\""); return new Symbol(MySymUser.PARAMETROS_COMPONENTE ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 124: break;
+          case 62:
+            { print("fin_solicitud_realizada"); return new Symbol(MySymUser.FINAL_REQUEST ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 125: break;
+          case 63:
+            { print("fin_solicitudes_realizada"); return new Symbol(MySymUser.FINAL_REQUESTS ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 126: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
