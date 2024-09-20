@@ -5,7 +5,6 @@ import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 import reactions.DataBaseListUser;
 import reactions.RequestSyntaxValidatorManagerUser;
-import reports.ReportErrorInterpreter;
 
 import org.junit.jupiter.api.Assertions;
 

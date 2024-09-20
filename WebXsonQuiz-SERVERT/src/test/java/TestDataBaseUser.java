@@ -22,10 +22,6 @@ import org.junit.jupiter.api.Assertions;
  */
 public class TestDataBaseUser {
 
-    private String textosdepureva = "<!realizar_solicitud: \"USUARIO_NUEVO\" > \n" + //
-            "{ \"DATOS_USUARIO\":[{ \"USUARIO\": \"juanito619\", \"PASSWORD\": \"12345678\", \"NOMBRE\": \"JUAN PEREZ\",“INSTITUCION” :\"CUNOC\" }] }\n"
-            + //
-            "<fin_solicitud_realizada!>\n";
     private         ConverterToObject converter = new ConverterToObject();
 
     @Test
@@ -44,7 +40,6 @@ public class TestDataBaseUser {
 
         AnalyzerDataBase analyzer = new AnalyzerDataBase(json);
         analyzer.Anilisar();
-        boolean satisfactoryTest  = false;
         User newUser = (new ConverterToObject()).getRequestAnalyzerToUser(analyzer.getListRquest().get(0));
         Assertions.assertTrue(newUser != null);
        // Assertions.assertTrue(newUser.toString().equals("ID:admin password:admin name:Benjamin de Jesus Perez Aguilar institution:CUNOC date:"+converter.getDate()));

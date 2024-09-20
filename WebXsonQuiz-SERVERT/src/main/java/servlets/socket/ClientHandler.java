@@ -21,7 +21,6 @@ import reactions.SystemAcess;
 public class ClientHandler implements Runnable {
 
     private Socket clientSocket;
-    private final String NADA = "error";
     private User userclient = null;
 
     public ClientHandler(Socket clientSocket) {

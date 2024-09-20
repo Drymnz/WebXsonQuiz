@@ -40,7 +40,6 @@ public class SVUsers extends HttpServlet {
             RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser());
             requetSystaxValidator.checkRequests();
             requetSystaxValidator.upDataBase(); 
-            HttpSession session = request.getSession();
             request.setAttribute("resultsText", (new UserRequestReport(requetSystaxValidator).reportString()));
             request.getRequestDispatcher("user_manager.jsp").forward(request, response);
         }

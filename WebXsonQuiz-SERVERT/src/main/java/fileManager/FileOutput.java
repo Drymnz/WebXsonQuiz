@@ -14,7 +14,6 @@ import java.util.logging.Logger;
  */
 public class FileOutput implements Runnable {
 
-    private FileOutputStream salida;
     private File archivoHilo;
     private String contenidoHilo;
 

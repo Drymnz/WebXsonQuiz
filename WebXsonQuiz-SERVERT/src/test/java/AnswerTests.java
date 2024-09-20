@@ -2,15 +2,8 @@ import org.junit.jupiter.api.Test;
 
 import reactions.DataBaseListUser;
 import reactions.RequestSyntaxValidatorManagerUser;
-import reactions.SystemAcess;
 import reports.UserRequestReport;
-import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerLogin;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
-import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
-import com.cunoc.webxsonquiz.data.servert.User;
-
-
-
 import org.junit.jupiter.api.Assertions;
 
 /**
