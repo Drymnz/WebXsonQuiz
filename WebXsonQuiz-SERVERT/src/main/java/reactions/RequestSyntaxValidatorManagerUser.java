@@ -14,11 +14,17 @@ public class RequestSyntaxValidatorManagerUser {
     private ArrayList<RequestAnalyzer> listErrorRequest = new ArrayList<>();
     private ArrayList<RequestAnalyzer> listAccept = new ArrayList<>();
     private DataBaseListUser dataBaseUser;
+    private User user = null;
 
 
     public RequestSyntaxValidatorManagerUser(AnalyzerManagerUser analizer,DataBaseListUser dataBaseUser) {
         this.dataBaseUser = dataBaseUser;
         this.analizer = analizer;
+    }
+
+    public RequestSyntaxValidatorManagerUser(AnalyzerManagerUser analizer,DataBaseListUser dataBaseUser,User user) {
+        this(analizer, dataBaseUser);
+        this.user = user;
     }
 
     public boolean isErrorRequest() {
@@ -48,6 +54,24 @@ public class RequestSyntaxValidatorManagerUser {
                         break;
                     case NEW_USER:
                         this.addListCheck(elemetRequest,checkUserNew(elemetRequest));
+                        break;
+                    case AGREGAR_COMPONENTE:
+                        //
+                        break;
+                    case ELIMINAR_COMPONENTE:
+                        //
+                        break;
+                    case ELIMINAR_TRIVIA:
+                        //
+                        break;
+                    case MODIFICAR_COMPONENTE:
+                        //
+                        break;
+                    case MODIFICAR_TRIVIA:
+                        //
+                        break;
+                    case NEW_TRIVIA:
+                        //* */
                         break;
                     default:
                         break;

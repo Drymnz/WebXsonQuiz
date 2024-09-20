@@ -11,14 +11,16 @@ public class Trivia  implements Serializable{
     private double time;
     private String theme;
     private String idUser;
+    private String date;
 
     
-    public Trivia(String id, String name, double time, String theme, String idUser) {
+    public Trivia(String id, String name, double time, String theme, String idUser,String date) {
         this.id = id;
         this.name = name;
         this.time = time;
         this.theme = theme;
         this.idUser = idUser;
+        this.date = date;
     }
 
 
@@ -44,6 +46,10 @@ public class Trivia  implements Serializable{
 
     public String getIdUser() {
         return idUser;
+    }
+
+    public String getDate() {
+        return date;
     }
 
 }
