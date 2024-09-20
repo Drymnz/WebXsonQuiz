@@ -77,14 +77,25 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "fin_solicitud_realizada"   {print("fin_solicitud_realizada"); return new Symbol(MySymUser.FINAL_REQUEST ,yyline,yycolumn,yytext());}
 /*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*//*TRIVIAS*/
 /*TRIVIAS*/
-//TIPOS DE SOLICITUD TRIVIAS
-"\"NUEVA_TRIVIA\""          {print("\"NUEVA_TRIVIA\""); return new Symbol(MySymUser.NEW_TRIVIA ,yyline,yycolumn,yytext());}
+//TIPOS DE SOLICITUD 
 "\"PARAMETROS_TRIVIA\""     {print("\"PARAMETROS_TRIVIA\""); return new Symbol(MySymUser.PARAMETROS_TRIVIA ,yyline,yycolumn,yytext());}
-//DATOS DE TRIVIAS 
+"\"PARAMETROS_COMPONENTE\"" {print("\"PARAMETROS_COMPONENTE\""); return new Symbol(MySymUser.PARAMETROS_COMPONENTE ,yyline,yycolumn,yytext());}
+"\"NUEVA_TRIVIA\""          {print("\"NUEVA_TRIVIA\""); return new Symbol(MySymUser.NEW_TRIVIA ,yyline,yycolumn,yytext());}
+"\"AGREGAR_COMPONENTE\""    {print("\"AGREGAR_COMPONENTE\""); return new Symbol(MySymUser.AGREGAR_COMPONENTE ,yyline,yycolumn,yytext());}
+//DATOS DE TRIVIAS  
+"\"ID\""                    {print("\"ID\""); return new Symbol(MySymUser.ID ,yyline,yycolumn,yytext());}
+"\"INDICE\""                {print("\"INDICE\""); return new Symbol(MySymUser.INDICE ,yyline,yycolumn,yytext());}
 "\"ID_TRIVIA\""             {print("\"ID_TRIVIA\""); return new Symbol(MySymUser.ID_TRIVIA ,yyline,yycolumn,yytext());}
-"\"TIEMPO_PREGUNTA\""       {print("\"TIEMPO_PREGUNTA\""); return new Symbol(MySymUser.TIEMPO_PREGUNTA ,yyline,yycolumn,yytext());}
+"\"TRIVIA\""                {print("\"TRIVIA\""); return new Symbol(MySymUser.TRIVIA ,yyline,yycolumn,yytext());}
+"\"CLASE\""                 {print("\"CLASE\""); return new Symbol(MySymUser.CLASE ,yyline,yycolumn,yytext());}
+"\"TEXTO_VISIBLE\""         {print("\"TEXTO_VISIBLE\""); return new Symbol(MySymUser.TEXTO_VISIBLE ,yyline,yycolumn,yytext());}
+"\"OPCIONES\""              {print("\"OPCIONES\""); return new Symbol(MySymUser.OPCIONES ,yyline,yycolumn,yytext());}
+"\"FILAS\""                 {print("\"FILAS\""); return new Symbol(MySymUser.FILAS ,yyline,yycolumn,yytext());}
+"\"COLUMNAS\""              {print("\"COLUMNAS\""); return new Symbol(MySymUser.COLUMNAS ,yyline,yycolumn,yytext());}
+"\"RESPUESTA\""             {print("\"RESPUESTA\""); return new Symbol(MySymUser.RESPUESTA ,yyline,yycolumn,yytext());}
 "\"TEMA\""                  {print("\"TEMA\""); return new Symbol(MySymUser.TEMA ,yyline,yycolumn,yytext());}
 "\"USUARIO_CREACION\""      {print("\"USUARIO_CREACION\""); return new Symbol(MySymUser.USUARIO_CREACION ,yyline,yycolumn,yytext());}
+"\"TIEMPO_PREGUNTA\""       {print("\"TIEMPO_PREGUNTA\""); return new Symbol(MySymUser.TIEMPO_PREGUNTA ,yyline,yycolumn,yytext());}
 //TIPOS DE SOLICITUD USUARIOAS//TIPOS DE SOLICITUD USUARIOAS//TIPOS DE SOLICITUD USUARIOAS//TIPOS DE SOLICITUD USUARIOAS//TIPOS DE SOLICITUD USUARIOAS
 //TIPOS DE SOLICITUD USUARIOAS
 "\"USUARIO_NUEVO\""         {print("\"USUARIO_NUEVO\""); return new Symbol(MySymUser.NEW_USER ,yyline,yycolumn,yytext());}
