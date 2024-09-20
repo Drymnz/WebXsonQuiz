@@ -62,13 +62,13 @@ public class RequestSyntaxValidatorManagerUser {
                         //
                         break;
                     case ELIMINAR_TRIVIA:
-                        //
+                        //* */
                         break;
                     case MODIFICAR_COMPONENTE:
                         //
                         break;
                     case MODIFICAR_TRIVIA:
-                        //
+                        //* */
                         break;
                     case NEW_TRIVIA:
                         //* */

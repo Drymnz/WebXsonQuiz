@@ -654,7 +654,7 @@ class CUP$MyParseUser$actions {
             {
               Object RESULT =null;
 		
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.ELIMINAR_TRIVIA));
+    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.MODIFICAR_COMPONENTE));
     dataStack = new ArrayList();
   
               CUP$MyParseUser$result = parser.getSymbolFactory().newSymbol("solicitud",6, ((java_cup.runtime.Symbol)CUP$MyParseUser$stack.elementAt(CUP$MyParseUser$top-2)), ((java_cup.runtime.Symbol)CUP$MyParseUser$stack.peek()), RESULT);
@@ -824,7 +824,7 @@ class CUP$MyParseUser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParseUser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParseUser$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParseUser$stack.peek()).value;
-		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID_TRIVIA,a.toString()));
+		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID,a.toString()));
               CUP$MyParseUser$result = parser.getSymbolFactory().newSymbol("data_add_component",32, ((java_cup.runtime.Symbol)CUP$MyParseUser$stack.elementAt(CUP$MyParseUser$top-1)), ((java_cup.runtime.Symbol)CUP$MyParseUser$stack.peek()), RESULT);
             }
           return CUP$MyParseUser$result;

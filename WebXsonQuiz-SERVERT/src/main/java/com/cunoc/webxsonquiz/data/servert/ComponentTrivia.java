@@ -14,9 +14,10 @@ public class ComponentTrivia implements Serializable {
     private int row;
     private int column;
     private String result;
+    private String idTrivia;
     
     public ComponentTrivia(String idComponent, ClassComponent type, int index, String text, String options, int row,
-            int column, String result) {
+            int column, String result,String idTrivia) {
         this.idComponent = idComponent;
         this.type = type;
         this.index = index;
@@ -25,6 +26,7 @@ public class ComponentTrivia implements Serializable {
         this.row = row;
         this.column = column;
         this.result = result;
+        this.idTrivia = idTrivia;
     }
 
     public String getIdComponent() {
@@ -57,6 +59,10 @@ public class ComponentTrivia implements Serializable {
 
     public String getResult() {
         return result;
+    }
+
+    public String getIdTrivia() {
+        return idTrivia;
     }
     
 }

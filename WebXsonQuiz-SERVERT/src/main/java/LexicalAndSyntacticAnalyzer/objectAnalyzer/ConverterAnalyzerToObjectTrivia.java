@@ -11,10 +11,7 @@ import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 
 public class ConverterAnalyzerToObjectTrivia {
     private User user = null;
-
-    public ConverterAnalyzerToObjectTrivia() {
-    }
-
+    
     public ConverterAnalyzerToObjectTrivia(User user) {
         this.user = user;
     }
