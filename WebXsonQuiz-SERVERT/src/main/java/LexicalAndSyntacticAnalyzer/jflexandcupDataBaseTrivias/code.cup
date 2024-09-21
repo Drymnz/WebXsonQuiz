@@ -87,6 +87,7 @@ non terminal json;
 non terminal obj_json,data,data_trivia,datas_trivia;
 non terminal secuenci_json;
 non terminal dato_component,datos_component,componet,componets;
+non terminal tercer_strucutre,segunda_strucur,derivaciones_structure,structure;
 //operaicones
 non terminal inico_opereacion,operacion,parente;
 /*************************************PRECEDENCIA******************************************************/
@@ -148,7 +149,26 @@ data_trivia::=
   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO_CREACION,a.toString()));:}
   |DATE data:a
   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.DATE,a.toString()));:}
-  | STRUCTURE COLNO BRACKETS_O componets  BRACKETS_C
+  | structure
+  ;
+
+structure
+  ::=
+  STRUCTURE derivaciones_structure
+  ;
+derivaciones_structure
+  ::=
+  COLNO segunda_strucur
+  |
+  ;
+segunda_strucur
+  ::= BRACKETS_O tercer_strucutre
+  |
+  ;
+
+tercer_strucutre
+  ::= componets  BRACKETS_C
+  |BRACKETS_C
   ;
 
 componets
