@@ -1,6 +1,7 @@
 package com.cunoc.webxsonquiz.data.servert;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Trivia  implements Serializable{
 
@@ -12,6 +13,7 @@ public class Trivia  implements Serializable{
     private String theme;
     private String idUser;
     private String date;
+    private ArrayList<ComponentTrivia> structure = new ArrayList<>();
 
     
     public Trivia(String id, String name, double time, String theme, String idUser,String date) {
@@ -23,11 +25,13 @@ public class Trivia  implements Serializable{
         this.date = date;
     }
 
+    public void addComponent(ComponentTrivia component){
+        this.structure.add(component);
+    }
 
     public String getId() {
         return id;
     }
-
 
     public String getName() {
         return name;
