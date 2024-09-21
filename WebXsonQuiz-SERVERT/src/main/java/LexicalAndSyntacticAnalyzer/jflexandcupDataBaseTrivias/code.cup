@@ -1,4 +1,4 @@
-package LexicalAndSyntacticAnalyzer.jflexandcup;
+package LexicalAndSyntacticAnalyzer.jflexandcupDataBaseTrivias;
 
 import java_cup.runtime.*;
 import java.util.ArrayList;
@@ -8,6 +8,11 @@ import reports.*;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.*;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 import LexicalAndSyntacticAnalyzer.ListRequests;
+import com.cunoc.webxsonquiz.data.servert.ComponentTrivia;
+import com.cunoc.webxsonquiz.data.servert.Trivia;
+import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjectTrivia;
+import com.cunoc.webxsonquiz.data.servert.User;
+import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjectComponentTrivia;
 
 /**
      * ***STAR CODE*******
@@ -16,10 +21,13 @@ import LexicalAndSyntacticAnalyzer.ListRequests;
 
 private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
 private ArrayList<DataAnalyzer> dataStack = new ArrayList();
+private ArrayList<DataAnalyzer> dataStackComponet = new ArrayList();
 private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
+private ArrayList<Trivia> listTrivia = new ArrayList<>();
+private ArrayList<ComponentTrivia> listComponentTrivia = new ArrayList<>();
 
 
-	  public MyParserLoginUser(LexemaUser lexer) {
+	  public MyParserDataBaseTrivias(LexemaDataBaseTrivias lexer) {
         super(lexer);
     }
 
@@ -32,7 +40,7 @@ private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
         int line = cur_token.left+1;
         int columna = cur_token.right +1;
         String lexema = this.cur_token.value.toString();
-        Token token =  new Token(line, columna, lexema);
+        Token token = new Token(line, columna, lexema);
         System.out.println(token.toString());
         this.listError.add(new ReportErrorInterpreter(type, token, ReportingConstants.ERROR_SICTATICO));
     }
@@ -47,6 +55,11 @@ private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
       return this.listRquest;
     }
 
+    //Returnar el listado de Trivias
+    public ArrayList<Trivia> getListTrivias(){
+      return this.listTrivia;
+    }
+
     /**
      * ***END CODE*******
      */
@@ -54,36 +67,24 @@ private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
 
 /* Terminales */
 /*sxon*/
-terminal EQUAL,OPEN_VERSION,CLOSE_VERSION,XSON,VERSION;
-terminal COLNO,CLOSE,OPEN;
 terminal String STRING;
 /*SIMBOLOS DE OPERACION*/
-terminal SUMAR,RESTAR,DIVIDIR,MULTIPLICAR;
-terminal String REAL_NUMEBERS,STRING_DATE;
 /*AGRUPACION*/
-terminal PARENTESIS_A,PARENTESIS_C;
 terminal BRACKETS_O,BRACKETS_C;
 terminal KEYS_O,KEYS_C;
-/*SOLICITUD*/
-terminal  OPEN_REQUEST,FINAL_REQUEST,CLOSE_REQUEST,MAKE_REQUEST,COMA;
 //tipos de solicitud
-terminal NEW_USER,LOGIN_USER;
-terminal USER_DATA,NAME_USER,PASS_USER,NAME_PERSONAL_USER,INSTITUCION,DATE;
+terminal COLNO,COMA,STRING_DATE;
+terminal NAME_USER,PASS_USER,NAME_PERSONAL_USER,INSTITUCION;
+terminal ID,NAME,TIME,THEME,ID_USER,DATE,STRUCTURE,ID_COMPONENT,TYPE,INDEX,TEXT,OPTIONS,ROW,COLUMN,RESULT,ID_TRIVIA;
 /* No terminales */
-//operaicones
-non terminal inico_opereacion,operacion,parente;
 //inicio
-non terminal inicio_xson,bucle_inicio;
+non terminal bucle_inicio;
 non terminal inicio;
 //solicitud
-non terminal solicitud,json,cerrar_solicitud,solicitud_usuario;
+non terminal json;
 non terminal obj_json,data,data_user,datas_user;
-
-/*************************************PRECEDENCIA******************************************************/
-precedence left SUMAR, RESTAR;
-precedence left MULTIPLICAR, DIVIDIR;
-precedence left PARENTESIS_A, PARENTESIS_C;
-
+non terminal secuenci_json;
+non terminal dato_component,datos_component,componet,componets;
 /* Gramática */
 start with inicio;
 /******operaciones matematicas*****/
@@ -92,45 +93,29 @@ inicio ::= bucle_inicio
     ;
 
 bucle_inicio 
-  ::= bucle_inicio inicio_xson
-  |inicio_xson
-  ;
-
-inicio_xson ::= 
-    OPEN_VERSION XSON VERSION EQUAL STRING CLOSE_VERSION
-    |OPEN_REQUEST MAKE_REQUEST COLNO solicitud cerrar_solicitud
-    ; 
-
-solicitud ::=
-  NEW_USER CLOSE json 
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.NEW_USER));
-    dataStack = new ArrayList();
-  :}
-  |LOGIN_USER CLOSE json 
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.LOGIN_USER));
-    dataStack = new ArrayList();
-  :}
-  ;
-  
-cerrar_solicitud 
-  ::= OPEN FINAL_REQUEST CLOSE_REQUEST
+  ::= bucle_inicio json
+  |json
   ;
 
 json::=
-  KEYS_O obj_json KEYS_C
-  | error
-  | 
+  BRACKETS_O secuenci_json BRACKETS_C
+  |secuenci_json
   ;
 
-obj_json 
-  ::= USER_DATA solicitud_usuario
-  | error
-  | 
-  ;
+secuenci_json 
+  ::=obj_json COMA secuenci_json
+  |obj_json
+  ;  
 
-solicitud_usuario ::=COLNO BRACKETS_O  KEYS_O datas_user KEYS_C  BRACKETS_C ;
+obj_json ::=
+  KEYS_O datas_user KEYS_C   
+  {:
+    Trivia newTrivia = (new ConverterAnalyzerToObjectTrivia(new User("", "", "", "", ""))).newTrivia(new RequestAnalyzer(dataStack, ListRequests.NEW_TRIVIA));
+    newTrivia.getListComponet().addAll(listComponentTrivia);
+    listTrivia.add(newTrivia);
+    listComponentTrivia = new ArrayList<>();
+  :}
+  ;
 
 datas_user 
   ::= datas_user COMA  data_user
@@ -138,178 +123,62 @@ datas_user
   ;
 
 data_user::=
-  NAME_USER data:a 
-   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO,a.toString()));:}
-  |PASS_USER data:a 
-   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.PASSWORD,a.toString()));:}
-  |NAME_PERSONAL_USER data:a
+  ID data:a 
+  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID_TRIVIA,a.toString()));:}
+  |TIME data:a 
+  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TIEMPO_PREGUNTA,a.toString()));:}
+  |NAME data:a
    {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.NAME,a.toString()));:}
-  |INSTITUCION data:a
-   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.INSTITUTION,a.toString()));:}
+  |THEME data:a
+  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TEMA,a.toString()));:}
+  |ID_USER data:a
+  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO_CREACION,a.toString()));:}
   |DATE data:a
   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.DATE,a.toString()));:}
-  | error
-  | 
+  | STRUCTURE COLNO BRACKETS_O componets  BRACKETS_C
+  ;
+
+componets
+  ::= componets COMA componet
+  | componet
+  ;
+
+componet
+  ::= KEYS_O datos_component KEYS_C
+  {:
+  listComponentTrivia.add((new ConverterAnalyzerToObjectComponentTrivia()).newComponent(new RequestAnalyzer(dataStackComponet, ListRequests.AGREGAR_COMPONENTE)));
+  dataStackComponet = new ArrayList();
+  :}
+  ;
+
+datos_component
+  ::= datos_component COMA dato_component
+  |dato_component
+  ;
+
+dato_component
+  ::=ID_COMPONENT data:a 
+  {:if(a!=null)dataStackComponet.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID,a.toString()));:}
+  |ID_TRIVIA data:a 
+  {:if(a!=null)dataStackComponet.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TRIVIA,a.toString()));:}
+  |TYPE  data:a 
+  {:if(a!=null)dataStackComponet.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.CLASE,a.toString()));:}
+  |TEXT  data:a 
+  {:if(a!=null)dataStackComponet.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TEXTO_VISIBLE,a.toString()));:}
+  |RESULT data:a 
+  {:if(a!=null)dataStackComponet.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.RESPUESTA,a.toString()));:}
+  |INDEX data:a 
+  {:if(a!=null)dataStackComponet.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.INDICE,a.toString()));:}
+  |OPTIONS data:a 
+  {:if(a!=null)dataStackComponet.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.OPCIONES,a.toString()));:}
+  |ROW  data:a 
+  {:if(a!=null)dataStackComponet.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.FILAS,a.toString()));:}
+  |COLUMN data:a 
+  {:if(a!=null)dataStackComponet.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.COLUMNAS,a.toString()));:}
   ;
 
 data ::=COLNO STRING:a {:RESULT = a;:}
-  | COLNO inico_opereacion:a {:RESULT = a;:}
   | COLNO STRING_DATE:a {:RESULT = a;:}
   | error
   | 
-  ;
-
-/******operaciones matematicas*****/
-/*A QUI ESTA EL TOTAL DE LA OPERACION*/
-inico_opereacion ::= operacion:a 
-    {:
-    //////////////////////////////////////////
-		Double aDouble = 0.0;
-    if (a!=null) {
-        aDouble =   Double.valueOf(a.toString());
-        RESULT = aDouble;
-    }else{
-      RESULT = aDouble;
-    }
-    //////////////////////////////////////////
-    :} 
-    ;
-/******operaciones matematicas*****/
-operacion 
-/**SUMA**/
-::= operacion:a SUMAR operacion:b 
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      Double resultDouble = aDouble + bDouble;
-      RESULT = resultDouble;
-    }else{
-      RESULT = aDouble;
-    }
-    /////////////////////////////////////////////
-    :}
-
-/**RESTA**/
-|  operacion:a RESTAR operacion:b 
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      Double resultDouble = aDouble - bDouble;
-      RESULT = resultDouble;
-    }else{
-      RESULT = aDouble;
-    }
-    /////////////////////////////////////////////
-
-    :}
-/**DIVISION**/
-|  operacion:a DIVIDIR operacion:b 
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      if (bDouble>0) {
-        Double result = ( bDouble/ bDouble);
-        RESULT = result;
-      }else{
-        /// manejar un error de sintasis
-        RESULT = aDouble;// si es 15/0
-      }
-    }else{
-      RESULT = aDouble;
-    }
-    /////////////////////////////////////////////
-
-    :}
-
-/**MULTIPLICACION**/
-|  operacion:a MULTIPLICAR operacion:b 
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      Double result = aDouble * bDouble;
-      RESULT = result;
-    }else{
-      RESULT = aDouble;
-    }
-    /////////////////////////////////////////////
-
-    :}
-/****solo retornar*****/
-| PARENTESIS_A operacion:a  parente:b
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      Double result = aDouble * bDouble;
-      RESULT = result;
-    }else{
-      RESULT = a;
-    }
-    /////////////////////////////////////////////
-    :}
-| REAL_NUMEBERS:a {:RESULT = a;:}
-| REAL_NUMEBERS:a PARENTESIS_A  operacion:b  PARENTESIS_C
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      Double result = aDouble * bDouble;
-      RESULT = result;
-    }else{
-      RESULT = a;
-    }
-    /////////////////////////////////////////////
-    :}
-/***manejar el error***/
-;
-
-parente
-  ::= PARENTESIS_C
-  | PARENTESIS_C operacion:a {:RESULT = a;:}
   ;

@@ -1,5 +1,5 @@
 /*primer seccion: codigo de usuario*/
-package LexicalAndSyntacticAnalyzer.jflexandcup;
+package LexicalAndSyntacticAnalyzer.jflexandcupDataBaseTrivias;
 
 import java_cup.runtime.Symbol;
 
@@ -17,11 +17,11 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
 %line
 %column
 %public
-%class LexemaUser
+%class LexemaDataBaseTrivias
 %unicode
 %cup
 %eofval{
-  return new java_cup.runtime.Symbol(MySymLoginUser.EOF);
+  return new java_cup.runtime.Symbol(MySymLoginDataBaseTrivias.EOF);
 %eofval}
 
 %{
@@ -46,10 +46,6 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
 %}
 
 DIGIT = [0-9]
-WHOLE = {DIGIT}+
-DECIMAL = {WHOLE}[.]{WHOLE}
-REAL_NUMEBERS = {DECIMAL}|{WHOLE}
-
 DATE = "\""{DIGIT}{DIGIT}{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"\""
 
 STRING = \"([^\"\\]|\\.)*\"
@@ -61,47 +57,34 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 /*tercer seccion: reglase lexicas*/
 /*INGNORAR*/
 {espacio}               {/* print(); */}
-"<?"                    {print("<?" ); return new Symbol(MySymLoginUser.OPEN_VERSION ,yyline,yycolumn,yytext());}
-"?>"                    {print("?>" ); return new Symbol(MySymLoginUser.CLOSE_VERSION ,yyline,yycolumn,yytext());}
-">"                     {print(">" ); return new Symbol(MySymLoginUser.CLOSE ,yyline,yycolumn,yytext());}
-"<"                     {print("<" ); return new Symbol(MySymLoginUser.OPEN ,yyline,yycolumn,yytext());}
-"xson"                  {print("xson"); return new Symbol(MySymLoginUser.XSON ,yyline,yycolumn,yytext());}
-"version"               {print("version"); return new Symbol(MySymLoginUser.VERSION ,yyline,yycolumn,yytext());}
-/*SOLICITUD*/
-"<!"                        {print("<!" ); return new Symbol(MySymLoginUser.OPEN_REQUEST ,yyline,yycolumn,yytext());}
-"!>"                        {print("!>" ); return new Symbol(MySymLoginUser.CLOSE_REQUEST ,yyline,yycolumn,yytext());}
-"realizar_solicitud"        {print("realizar_solicitud"); return new Symbol(MySymLoginUser.MAKE_REQUEST ,yyline,yycolumn,yytext());}
-"fin_solicitud_realizada"   {print("fin_solicitud_realizada"); return new Symbol(MySymLoginUser.FINAL_REQUEST ,yyline,yycolumn,yytext());}
-//TIPOS DE SOLICITUD
-"\"USUARIO_NUEVO\""     {print("\"USUARIO_NUEVO\""); return new Symbol(MySymLoginUser.NEW_USER ,yyline,yycolumn,yytext());}
-"\"LOGIN_USUARIO\""     {print("\"LOGIN_USUARIO\""); return new Symbol(MySymLoginUser.LOGIN_USER ,yyline,yycolumn,yytext());}
 /*JSON*/
-"{"                     {print("{"); return new Symbol(MySymLoginUser.KEYS_O ,yyline,yycolumn,yytext());}
-"}"                     {print("}"); return new Symbol(MySymLoginUser.KEYS_C ,yyline,yycolumn,yytext());}
-"["                     {print("["); return new Symbol(MySymLoginUser.BRACKETS_O ,yyline,yycolumn,yytext());}
-"]"                     {print("]"); return new Symbol(MySymLoginUser.BRACKETS_C ,yyline,yycolumn,yytext());}
+"{"                     {print("{"); return new Symbol(MySymLoginDataBaseTrivias.KEYS_O ,yyline,yycolumn,yytext());}
+"}"                     {print("}"); return new Symbol(MySymLoginDataBaseTrivias.KEYS_C ,yyline,yycolumn,yytext());}
+"["                     {print("["); return new Symbol(MySymLoginDataBaseTrivias.BRACKETS_O ,yyline,yycolumn,yytext());}
+"]"                     {print("]"); return new Symbol(MySymLoginDataBaseTrivias.BRACKETS_C ,yyline,yycolumn,yytext());}
 //OBJ JSON
-"\"DATOS_USUARIO\""     {print("\"DATOS_USUARIO\""); return new Symbol(MySymLoginUser.USER_DATA ,yyline,yycolumn,yytext());}
-//DATA USSER
-"\"USUARIO\""       {print("\"USUARIO\""); return new Symbol(MySymLoginUser.NAME_USER ,yyline,yycolumn,yytext());}
-"\"PASSWORD\""      {print("\"PASSWORD\""); return new Symbol(MySymLoginUser.PASS_USER ,yyline,yycolumn,yytext());}
-"\"NOMBRE\""        {print("\"NOMBRE\""); return new Symbol(MySymLoginUser.NAME_PERSONAL_USER ,yyline,yycolumn,yytext());}
-"\“INSTITUCION\”"   {print("INSTITUCION"); return new Symbol(MySymLoginUser.INSTITUCION ,yyline,yycolumn,yytext());}
-"\FECHA_CREACION\”" {print("INSTITUCION"); return new Symbol(MySymLoginUser.DATE ,yyline,yycolumn,yytext());}
+"\"id\""                {print("\"id\"");          return new Symbol(MySymLoginDataBaseTrivias.ID ,yyline,yycolumn,yytext());}
+"\"name\""              {print("\"name\"");        return new Symbol(MySymLoginDataBaseTrivias.NAME ,yyline,yycolumn,yytext());}
+"\"time\""              {print("\"time\"");        return new Symbol(MySymLoginDataBaseTrivias.TIME ,yyline,yycolumn,yytext());}
+"\"theme\""             {print("\"theme\"");       return new Symbol(MySymLoginDataBaseTrivias.THEME ,yyline,yycolumn,yytext());}
+"\"idUser\""            {print("\"idUser\"");      return new Symbol(MySymLoginDataBaseTrivias.ID_USER ,yyline,yycolumn,yytext());}
+"\"date\""              {print("\"date\"");        return new Symbol(MySymLoginDataBaseTrivias.DATE ,yyline,yycolumn,yytext());}
+"\"structure\""         {print("\"structure\"");   return new Symbol(MySymLoginDataBaseTrivias.STRUCTURE ,yyline,yycolumn,yytext());}
+"\"idComponent\""       {print("\"idComponent\""); return new Symbol(MySymLoginDataBaseTrivias.ID_COMPONENT ,yyline,yycolumn,yytext());}
+"\"type\""              {print("\"type\"");        return new Symbol(MySymLoginDataBaseTrivias.TYPE ,yyline,yycolumn,yytext());}
+"\"index\""             {print("\"index\"");       return new Symbol(MySymLoginDataBaseTrivias.INDEX ,yyline,yycolumn,yytext());}
+"\"text\""              {print("\"text\"");        return new Symbol(MySymLoginDataBaseTrivias.TEXT ,yyline,yycolumn,yytext());}
+"\"options\""           {print("\"options\"");     return new Symbol(MySymLoginDataBaseTrivias.OPTIONS ,yyline,yycolumn,yytext());}
+"\"row\""               {print("\"row\"");         return new Symbol(MySymLoginDataBaseTrivias.ROW ,yyline,yycolumn,yytext());}
+"\"column\""            {print("\"column\"");      return new Symbol(MySymLoginDataBaseTrivias.COLUMN ,yyline,yycolumn,yytext());}
+"\"result\""            {print("\"result\"");      return new Symbol(MySymLoginDataBaseTrivias.RESULT ,yyline,yycolumn,yytext());}
+"\"idTrivia\""          {print("\"idTrivia\"");    return new Symbol(MySymLoginDataBaseTrivias.ID_TRIVIA ,yyline,yycolumn,yytext());}
 /*SIMBOLOS ARIMETICOS*/
-"+"                     {print("+"); return new Symbol(MySymLoginUser.SUMAR,yyline,yycolumn, (yytext()));}
-"-"                     {print("-"); return new Symbol(MySymLoginUser.RESTAR,yyline,yycolumn, (yytext()));}
-"/"                     {print("/"); return new Symbol(MySymLoginUser.DIVIDIR,yyline,yycolumn, (yytext()));}
-"*"                     {print("*"); return new Symbol(MySymLoginUser.MULTIPLICAR,yyline,yycolumn, (yytext()));}
-"="                     {print("="); return new Symbol(MySymLoginUser.EQUAL,yyline,yycolumn, (yytext()));}
-":"                     {print(":"); return new Symbol(MySymLoginUser.COLNO,yyline,yycolumn, (yytext()));}
-","                     {print(","); return new Symbol(MySymLoginUser.COMA,yyline,yycolumn, (yytext()));}
+":"                     {print(":"); return new Symbol(MySymLoginDataBaseTrivias.COLNO,yyline,yycolumn, (yytext()));}
+","                     {print(","); return new Symbol(MySymLoginDataBaseTrivias.COMA,yyline,yycolumn, (yytext()));}
 /*SIMBOLOS DE AGRUPACION*/
-"("                     {print("("); return new Symbol(MySymLoginUser.PARENTESIS_A,yyline,yycolumn,yytext());}
-")"                     {print(")"); return new Symbol(MySymLoginUser.PARENTESIS_C,yyline,yycolumn,yytext());}
-{DATE}                  {print("DATE"); return new Symbol(MySymLoginUser.STRING_DATE,yyline,yycolumn,yytext());}
-{REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymLoginUser.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
-{STRING}                {print("STRING"); return new Symbol(MySymLoginUser.STRING ,yyline,yycolumn,yytext());}
+{DATE}                  {print("DATE"); return new Symbol(MySymLoginDataBaseTrivias.STRING_DATE,yyline,yycolumn,yytext());}
+{STRING}                {print("STRING"); return new Symbol(MySymLoginDataBaseTrivias.STRING ,yyline,yycolumn,yytext());}
 /*ERROR LEXICO*/
 .                       {
                         //MANEJAR EL ERROR LEXICO

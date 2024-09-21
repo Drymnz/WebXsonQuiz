@@ -29,6 +29,10 @@ public class Trivia  implements Serializable{
         this.structure.add(component);
     }
 
+    public ArrayList<ComponentTrivia> getListComponet() {
+        return structure;
+    }
+
     public String getId() {
         return id;
     }
