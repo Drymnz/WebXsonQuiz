@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
 import javax.servlet.http.HttpSession;
+
+import com.cunoc.webxsonquiz.data.servert.User;
+
+import reactions.DataBaseListTrivia;
 import reactions.DataBaseListUser;
 import reactions.RequestSyntaxValidatorManagerUser;
 import reports.UserRequestReport;
@@ -37,7 +41,8 @@ public class SVUsers extends HttpServlet {
         } else {
             AnalyzerManagerUser analizer = new AnalyzerManagerUser(textArea);
             analizer.Anilisar();
-            RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser());
+            //////new User("Bj", "", "", "", "")new User("Bj", "", "", "", "")new User("Bj", "", "", "", "")new User("Bj", "", "", "", "")
+            RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(),new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
             requetSystaxValidator.checkRequests();
             requetSystaxValidator.upDataBase(); 
             request.setAttribute("resultsText", (new UserRequestReport(requetSystaxValidator).reportString()));

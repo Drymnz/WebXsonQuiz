@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.Test;
 
+import com.cunoc.webxsonquiz.data.servert.User;
+
+import reactions.DataBaseListTrivia;
 import reactions.DataBaseListUser;
 import reactions.RequestSyntaxValidatorManagerUser;
 import reports.UserRequestReport;
@@ -68,7 +71,7 @@ public class AnswerTests {
     public void testSystemAccesUser() {
        AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepurevatestListRequery);
         analizer.Anilisar();
-        RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser());
+        RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(),new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
         requetSystaxValidator.checkRequests();
         Assertions.assertTrue(!(new UserRequestReport(requetSystaxValidator).reportString().isEmpty()));
         //Assertions.assertTrue(true);

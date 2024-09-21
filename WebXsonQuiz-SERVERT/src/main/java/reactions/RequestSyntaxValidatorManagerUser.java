@@ -2,11 +2,13 @@ package reactions;
 
 import java.util.ArrayList;
 
+import com.cunoc.webxsonquiz.data.servert.Trivia;
 import com.cunoc.webxsonquiz.data.servert.User;
 
 import Lengua.LanguageConstants;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
+import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjectTrivia;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
 
 public class RequestSyntaxValidatorManagerUser {
@@ -14,16 +16,14 @@ public class RequestSyntaxValidatorManagerUser {
     private ArrayList<RequestAnalyzer> listErrorRequest = new ArrayList<>();
     private ArrayList<RequestAnalyzer> listAccept = new ArrayList<>();
     private DataBaseListUser dataBaseUser;
+    private DataBaseListTrivia dataBaseTrivia;
     private User user = null;
 
 
-    public RequestSyntaxValidatorManagerUser(AnalyzerManagerUser analizer,DataBaseListUser dataBaseUser) {
+    public RequestSyntaxValidatorManagerUser(AnalyzerManagerUser analizer,DataBaseListUser dataBaseUser,DataBaseListTrivia dataBaseTrivia,User user) {
         this.dataBaseUser = dataBaseUser;
+        this.dataBaseTrivia = dataBaseTrivia;
         this.analizer = analizer;
-    }
-
-    public RequestSyntaxValidatorManagerUser(AnalyzerManagerUser analizer,DataBaseListUser dataBaseUser,User user) {
-        this(analizer, dataBaseUser);
         this.user = user;
     }
 
@@ -39,6 +39,7 @@ public class RequestSyntaxValidatorManagerUser {
         return this.listErrorRequest;
     }
 
+    //Check Solicitud
     public void checkRequests() {
         if (this.analizer != null) {
             for (RequestAnalyzer elemetRequest : this.analizer.getListRquest()) {
@@ -71,13 +72,22 @@ public class RequestSyntaxValidatorManagerUser {
                         //* */
                         break;
                     case NEW_TRIVIA:
-                        //* */
+                        this.addListCheck(elemetRequest,checkNewTrivia(elemetRequest));
                         break;
                     default:
                         break;
                 }
             }
         }
+    }
+
+    private boolean checkNewTrivia(RequestAnalyzer data) {
+        Trivia checkOne = (new ConverterAnalyzerToObjectTrivia(this.user).minimumConditions(data));
+        if ((checkOne == null)) return false;
+        Trivia checkDataBase = this.getTriviaDataBaseId(checkOne.getId());
+        if ((checkDataBase != null)) return false;
+        this.dataBaseTrivia.getListTrivias().add(checkDataBase);
+        return true;
     }
 
     private boolean checkUserNew(RequestAnalyzer data) {
@@ -119,6 +129,13 @@ public class RequestSyntaxValidatorManagerUser {
 
     private User getUserDataBaseId(String id){
         for (User check : this.dataBaseUser.getListUsers()) {
+            if(check.getId().equals(id)) return check;
+        }
+        return null;
+    }
+
+    private Trivia getTriviaDataBaseId(String id){
+        for (Trivia check : this.dataBaseTrivia.getListTrivias()) {
             if(check.getId().equals(id)) return check;
         }
         return null;
