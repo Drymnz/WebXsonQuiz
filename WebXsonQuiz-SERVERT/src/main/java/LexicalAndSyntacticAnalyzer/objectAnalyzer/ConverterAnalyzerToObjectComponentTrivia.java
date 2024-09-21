@@ -2,7 +2,6 @@ package LexicalAndSyntacticAnalyzer.objectAnalyzer;
 
 import com.cunoc.webxsonquiz.data.servert.ClassComponent;
 import com.cunoc.webxsonquiz.data.servert.ComponentTrivia;
-import com.cunoc.webxsonquiz.data.servert.Trivia;
 
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.DataAnalyzer;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
@@ -37,16 +36,16 @@ public class ConverterAnalyzerToObjectComponentTrivia {
                     result = iterable_element.getData().replace("\"", "");
                     break;
                 case INDICE:
-                    index = Integer.valueOf(iterable_element.getData().replace("\"", ""));
+                    index  = (int) Double.parseDouble(iterable_element.getData().replace("\"", ""));
                     break;
                 case OPCIONES:
                     options = iterable_element.getData().replace("\"", "");
                     break;
                 case FILAS:
-                    row = Integer.valueOf(iterable_element.getData().replace("\"", ""));
+                    row= (int) Double.parseDouble(iterable_element.getData().replace("\"", ""));
                     break;
                 case COLUMNAS:
-                    column = Integer.valueOf(iterable_element.getData().replace("\"", ""));
+                    column = (int) Double.parseDouble(iterable_element.getData().replace("\"", ""));
                     break;
                 default:
                     break;

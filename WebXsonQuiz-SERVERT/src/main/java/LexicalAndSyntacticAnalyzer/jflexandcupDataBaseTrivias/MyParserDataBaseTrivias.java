@@ -42,7 +42,7 @@ public class MyParserDataBaseTrivias extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\045\000\002\002\004\000\002\003\003\000\002\003" +
+    "\000\060\000\002\002\004\000\002\003\003\000\002\003" +
     "\004\000\002\002\004\000\002\002\003\000\002\004\005" +
     "\000\002\004\003\000\002\011\005\000\002\011\003\000" +
     "\002\005\005\000\002\010\005\000\002\010\003\000\002" +
@@ -53,7 +53,10 @@ public class MyParserDataBaseTrivias extends java_cup.runtime.lr_parser {
     "\012\004\000\002\012\004\000\002\012\004\000\002\012" +
     "\004\000\002\012\004\000\002\012\004\000\002\012\004" +
     "\000\002\012\004\000\002\006\004\000\002\006\004\000" +
-    "\002\006\003\000\002\006\002" });
+    "\002\006\004\000\002\006\003\000\002\006\002\000\002" +
+    "\016\003\000\002\017\005\000\002\017\005\000\002\017" +
+    "\005\000\002\017\005\000\002\017\005\000\002\017\003" +
+    "\000\002\017\006\000\002\020\003\000\002\020\004" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -61,58 +64,80 @@ public class MyParserDataBaseTrivias extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\105\000\010\003\006\005\012\007\010\001\002\000" +
-    "\010\002\ufffb\005\ufffb\007\ufffb\001\002\000\014\002\ufff9" +
-    "\005\ufff9\006\ufff9\007\ufff9\012\106\001\002\000\006\005" +
-    "\012\007\010\001\002\000\010\002\ufffd\005\ufffd\007\ufffd" +
-    "\001\002\000\020\020\027\021\030\022\022\023\020\024" +
-    "\025\025\021\026\026\001\002\000\010\002\000\005\012" +
-    "\007\010\001\002\000\004\007\010\001\002\000\004\002" +
-    "\014\001\002\000\004\002\001\001\002\000\004\006\016" +
-    "\001\002\000\010\002\ufffc\005\ufffc\007\ufffc\001\002\000" +
-    "\010\002\ufffe\005\ufffe\007\ufffe\001\002\000\012\003\032" +
-    "\010\uffdd\011\031\012\uffdd\001\002\000\012\003\032\010" +
-    "\uffdd\011\031\012\uffdd\001\002\000\012\003\032\010\uffdd" +
-    "\011\031\012\uffdd\001\002\000\006\010\100\012\077\001" +
-    "\002\000\006\010\ufff6\012\ufff6\001\002\000\012\003\032" +
-    "\010\uffdd\011\031\012\uffdd\001\002\000\004\011\037\001" +
-    "\002\000\012\003\032\010\uffdd\011\031\012\uffdd\001\002" +
-    "\000\012\003\032\010\uffdd\011\031\012\uffdd\001\002\000" +
-    "\006\004\035\013\034\001\002\000\006\010\uffde\012\uffde" +
-    "\001\002\000\006\010\ufff3\012\ufff3\001\002\000\006\010" +
-    "\uffdf\012\uffdf\001\002\000\006\010\uffe0\012\uffe0\001\002" +
-    "\000\006\010\ufff5\012\ufff5\001\002\000\004\005\040\001" +
-    "\002\000\004\007\042\001\002\000\006\006\074\012\073" +
-    "\001\002\000\024\027\055\030\051\031\045\032\052\033" +
-    "\047\034\050\035\056\036\054\037\044\001\002\000\006" +
-    "\006\uffed\012\uffed\001\002\000\012\003\032\010\uffdd\011" +
-    "\031\012\uffdd\001\002\000\012\003\032\010\uffdd\011\031" +
-    "\012\uffdd\001\002\000\006\010\uffea\012\uffea\001\002\000" +
-    "\012\003\032\010\uffdd\011\031\012\uffdd\001\002\000\012" +
-    "\003\032\010\uffdd\011\031\012\uffdd\001\002\000\012\003" +
-    "\032\010\uffdd\011\031\012\uffdd\001\002\000\012\003\032" +
-    "\010\uffdd\011\031\012\uffdd\001\002\000\006\010\063\012" +
-    "\062\001\002\000\012\003\032\010\uffdd\011\031\012\uffdd" +
-    "\001\002\000\012\003\032\010\uffdd\011\031\012\uffdd\001" +
-    "\002\000\012\003\032\010\uffdd\011\031\012\uffdd\001\002" +
-    "\000\006\010\uffe1\012\uffe1\001\002\000\006\010\uffe9\012" +
-    "\uffe9\001\002\000\006\010\uffe5\012\uffe5\001\002\000\024" +
-    "\027\055\030\051\031\045\032\052\033\047\034\050\035" +
-    "\056\036\054\037\044\001\002\000\006\006\uffec\012\uffec" +
-    "\001\002\000\006\010\uffeb\012\uffeb\001\002\000\006\010" +
-    "\uffe6\012\uffe6\001\002\000\006\010\uffe7\012\uffe7\001\002" +
-    "\000\006\010\uffe2\012\uffe2\001\002\000\006\010\uffe3\012" +
-    "\uffe3\001\002\000\006\010\uffe4\012\uffe4\001\002\000\006" +
-    "\010\uffe8\012\uffe8\001\002\000\004\007\042\001\002\000" +
-    "\006\010\uffef\012\uffef\001\002\000\006\006\uffee\012\uffee" +
-    "\001\002\000\006\010\ufff1\012\ufff1\001\002\000\020\020" +
-    "\027\021\030\022\022\023\020\024\025\025\021\026\026" +
-    "\001\002\000\014\002\ufff8\005\ufff8\006\ufff8\007\ufff8\012" +
-    "\ufff8\001\002\000\006\010\ufff7\012\ufff7\001\002\000\006" +
-    "\010\ufff4\012\ufff4\001\002\000\006\010\ufff0\012\ufff0\001" +
-    "\002\000\006\010\ufff2\012\ufff2\001\002\000\010\002\uffff" +
-    "\005\012\007\010\001\002\000\004\007\010\001\002\000" +
-    "\012\002\ufffa\005\ufffa\006\ufffa\007\ufffa\001\002" });
+    "\000\130\000\010\003\006\015\012\017\010\001\002\000" +
+    "\012\002\ufffb\015\ufffb\017\ufffb\022\016\001\002\000\014" +
+    "\002\ufff9\015\ufff9\016\ufff9\017\ufff9\022\ufff9\001\002\000" +
+    "\006\015\012\017\010\001\002\000\010\002\ufffd\015\ufffd" +
+    "\017\ufffd\001\002\000\020\023\030\024\032\025\024\026" +
+    "\022\027\026\030\023\031\027\001\002\000\010\002\000" +
+    "\015\012\017\010\001\002\000\004\017\010\001\002\000" +
+    "\004\002\014\001\002\000\004\002\001\001\002\000\006" +
+    "\016\017\022\016\001\002\000\004\017\010\001\002\000" +
+    "\010\002\ufffc\015\ufffc\017\ufffc\001\002\000\014\002\ufffa" +
+    "\015\ufffa\016\ufffa\017\ufffa\022\ufffa\001\002\000\010\002" +
+    "\ufffe\015\ufffe\017\ufffe\001\002\000\012\003\033\020\uffdc" +
+    "\021\034\022\uffdc\001\002\000\012\003\033\020\uffdc\021" +
+    "\034\022\uffdc\001\002\000\012\003\033\020\uffdc\021\034" +
+    "\022\uffdc\001\002\000\006\020\ufff6\022\ufff6\001\002\000" +
+    "\012\003\033\020\uffdc\021\034\022\uffdc\001\002\000\004" +
+    "\021\067\001\002\000\012\003\033\020\uffdc\021\034\022" +
+    "\uffdc\001\002\000\006\020\064\022\063\001\002\000\012" +
+    "\003\033\020\uffdc\021\034\022\uffdc\001\002\000\006\020" +
+    "\uffdd\022\uffdd\001\002\000\012\004\037\011\042\013\041" +
+    "\014\036\001\002\000\006\020\ufff3\022\ufff3\001\002\000" +
+    "\006\020\uffde\022\uffde\001\002\000\006\020\uffe0\022\uffe0" +
+    "\001\002\000\006\020\uffdf\022\uffdf\001\002\000\022\005" +
+    "\uffd5\006\uffd5\007\uffd5\010\uffd5\011\060\012\uffd5\020\uffd5" +
+    "\022\uffd5\001\002\000\006\011\042\013\041\001\002\000" +
+    "\016\005\046\006\047\007\044\010\045\020\uffdb\022\uffdb" +
+    "\001\002\000\006\011\042\013\041\001\002\000\006\011" +
+    "\042\013\041\001\002\000\006\011\042\013\041\001\002" +
+    "\000\006\011\042\013\041\001\002\000\020\005\uffd9\006" +
+    "\uffd9\007\044\010\045\012\uffd9\020\uffd9\022\uffd9\001\002" +
+    "\000\020\005\uffda\006\uffda\007\044\010\045\012\uffda\020" +
+    "\uffda\022\uffda\001\002\000\020\005\uffd7\006\uffd7\007\uffd7" +
+    "\010\uffd7\012\uffd7\020\uffd7\022\uffd7\001\002\000\020\005" +
+    "\uffd8\006\uffd8\007\uffd8\010\uffd8\012\uffd8\020\uffd8\022\uffd8" +
+    "\001\002\000\014\005\046\006\047\007\044\010\045\012" +
+    "\055\001\002\000\024\005\uffd3\006\uffd3\007\uffd3\010\uffd3" +
+    "\011\042\012\uffd3\013\041\020\uffd3\022\uffd3\001\002\000" +
+    "\020\005\uffd6\006\uffd6\007\uffd6\010\uffd6\012\uffd6\020\uffd6" +
+    "\022\uffd6\001\002\000\020\005\uffd2\006\uffd2\007\uffd2\010" +
+    "\uffd2\012\uffd2\020\uffd2\022\uffd2\001\002\000\006\011\042" +
+    "\013\041\001\002\000\014\005\046\006\047\007\044\010" +
+    "\045\012\062\001\002\000\020\005\uffd4\006\uffd4\007\uffd4" +
+    "\010\uffd4\012\uffd4\020\uffd4\022\uffd4\001\002\000\020\023" +
+    "\030\024\032\025\024\026\022\027\026\030\023\031\027" +
+    "\001\002\000\014\002\ufff8\015\ufff8\016\ufff8\017\ufff8\022" +
+    "\ufff8\001\002\000\006\020\ufff7\022\ufff7\001\002\000\006" +
+    "\020\ufff5\022\ufff5\001\002\000\004\015\070\001\002\000" +
+    "\004\017\072\001\002\000\006\016\124\022\123\001\002" +
+    "\000\024\032\105\033\101\034\075\035\102\036\077\037" +
+    "\100\040\106\041\104\042\074\001\002\000\006\016\uffed" +
+    "\022\uffed\001\002\000\012\003\033\020\uffdc\021\034\022" +
+    "\uffdc\001\002\000\012\003\033\020\uffdc\021\034\022\uffdc" +
+    "\001\002\000\006\020\uffea\022\uffea\001\002\000\012\003" +
+    "\033\020\uffdc\021\034\022\uffdc\001\002\000\012\003\033" +
+    "\020\uffdc\021\034\022\uffdc\001\002\000\012\003\033\020" +
+    "\uffdc\021\034\022\uffdc\001\002\000\012\003\033\020\uffdc" +
+    "\021\034\022\uffdc\001\002\000\006\020\113\022\112\001" +
+    "\002\000\012\003\033\020\uffdc\021\034\022\uffdc\001\002" +
+    "\000\012\003\033\020\uffdc\021\034\022\uffdc\001\002\000" +
+    "\012\003\033\020\uffdc\021\034\022\uffdc\001\002\000\006" +
+    "\020\uffe1\022\uffe1\001\002\000\006\020\uffe9\022\uffe9\001" +
+    "\002\000\006\020\uffe5\022\uffe5\001\002\000\024\032\105" +
+    "\033\101\034\075\035\102\036\077\037\100\040\106\041" +
+    "\104\042\074\001\002\000\006\016\uffec\022\uffec\001\002" +
+    "\000\006\020\uffeb\022\uffeb\001\002\000\006\020\uffe6\022" +
+    "\uffe6\001\002\000\006\020\uffe7\022\uffe7\001\002\000\006" +
+    "\020\uffe2\022\uffe2\001\002\000\006\020\uffe3\022\uffe3\001" +
+    "\002\000\006\020\uffe4\022\uffe4\001\002\000\006\020\uffe8" +
+    "\022\uffe8\001\002\000\004\017\072\001\002\000\006\020" +
+    "\uffef\022\uffef\001\002\000\006\016\uffee\022\uffee\001\002" +
+    "\000\006\020\ufff1\022\ufff1\001\002\000\006\020\ufff4\022" +
+    "\ufff4\001\002\000\006\020\ufff0\022\ufff0\001\002\000\006" +
+    "\020\ufff2\022\ufff2\001\002\000\010\002\uffff\015\012\017" +
+    "\010\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -120,35 +145,42 @@ public class MyParserDataBaseTrivias extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\105\000\014\002\010\003\012\004\006\005\004\011" +
+    "\000\130\000\014\002\010\003\012\004\006\005\004\011" +
     "\003\001\001\000\002\001\001\000\002\001\001\000\012" +
-    "\002\104\004\006\005\004\011\003\001\001\000\002\001" +
-    "\001\000\006\007\023\010\022\001\001\000\010\004\016" +
+    "\002\131\004\006\005\004\011\003\001\001\000\002\001" +
+    "\001\000\006\007\024\010\030\001\001\000\010\004\020" +
     "\005\004\011\003\001\001\000\006\005\004\011\014\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\004\006\103\001" +
-    "\001\000\004\006\102\001\001\000\004\006\101\001\001" +
-    "\000\002\001\001\000\002\001\001\000\004\006\075\001" +
-    "\001\000\002\001\001\000\004\006\035\001\001\000\004" +
-    "\006\032\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\006\014\042\015\040\001" +
-    "\001\000\002\001\001\000\006\012\045\013\052\001\001" +
-    "\000\002\001\001\000\004\006\071\001\001\000\004\006" +
-    "\070\001\001\000\002\001\001\000\004\006\067\001\001" +
-    "\000\004\006\066\001\001\000\004\006\065\001\001\000" +
-    "\004\006\064\001\001\000\002\001\001\000\004\006\060" +
-    "\001\001\000\004\006\057\001\001\000\004\006\056\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\004\012\063\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\004\005\017\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\004\006\130\001\001\000\004" +
+    "\006\127\001\001\000\004\006\126\001\001\000\002\001" +
+    "\001\000\004\006\125\001\001\000\002\001\001\000\004" +
+    "\006\065\001\001\000\002\001\001\000\004\006\034\001" +
+    "\001\000\002\001\001\000\006\016\037\017\042\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\004\014\074\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\004\007\100\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\010\004\016\005\004\011\003\001" +
-    "\001\000\006\005\004\011\106\001\001\000\002\001\001" +
-    "" });
+    "\002\001\001\000\002\001\001\000\004\017\053\001\001" +
+    "\000\002\001\001\000\004\017\052\001\001\000\004\017" +
+    "\051\001\001\000\004\017\050\001\001\000\004\017\047" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\004\020\055\001\001\000\004" +
+    "\017\056\001\001\000\002\001\001\000\002\001\001\000" +
+    "\004\017\060\001\001\000\002\001\001\000\002\001\001" +
+    "\000\004\007\064\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\006\014\072" +
+    "\015\070\001\001\000\002\001\001\000\006\012\075\013" +
+    "\102\001\001\000\002\001\001\000\004\006\121\001\001" +
+    "\000\004\006\120\001\001\000\002\001\001\000\004\006" +
+    "\117\001\001\000\004\006\116\001\001\000\004\006\115" +
+    "\001\001\000\004\006\114\001\001\000\002\001\001\000" +
+    "\004\006\110\001\001\000\004\006\107\001\001\000\004" +
+    "\006\106\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\004\012\113\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\014\124\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\010\004\020\005\004\011" +
+    "\003\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -327,7 +359,7 @@ class CUP$MyParserDataBaseTrivias$actions {
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // secuenci_json ::= obj_json COMA secuenci_json 
+          case 7: // secuenci_json ::= secuenci_json COMA obj_json 
             {
               Object RESULT =null;
 
@@ -345,7 +377,7 @@ class CUP$MyParserDataBaseTrivias$actions {
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // obj_json ::= KEYS_O datas_user KEYS_C 
+          case 9: // obj_json ::= KEYS_O datas_trivia KEYS_C 
             {
               Object RESULT =null;
 		
@@ -353,107 +385,108 @@ class CUP$MyParserDataBaseTrivias$actions {
     newTrivia.getListComponet().addAll(listComponentTrivia);
     listTrivia.add(newTrivia);
     listComponentTrivia = new ArrayList<>();
+    dataStack = new ArrayList(); 
   
               CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("obj_json",3, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // datas_user ::= datas_user COMA data_user 
+          case 10: // datas_trivia ::= datas_trivia COMA data_trivia 
             {
               Object RESULT =null;
 
-              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("datas_user",6, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("datas_trivia",6, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // datas_user ::= data_user 
+          case 11: // datas_trivia ::= data_trivia 
             {
               Object RESULT =null;
 
-              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("datas_user",6, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("datas_trivia",6, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // data_user ::= ID data 
+          case 12: // data_trivia ::= ID data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
 		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID_TRIVIA,a.toString()));
-              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_user",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_trivia",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // data_user ::= TIME data 
+          case 13: // data_trivia ::= TIME data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
 		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TIEMPO_PREGUNTA,a.toString()));
-              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_user",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_trivia",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // data_user ::= NAME data 
+          case 14: // data_trivia ::= NAME data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
 		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.NAME,a.toString()));
-              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_user",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_trivia",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // data_user ::= THEME data 
+          case 15: // data_trivia ::= THEME data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
 		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TEMA,a.toString()));
-              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_user",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_trivia",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // data_user ::= ID_USER data 
+          case 16: // data_trivia ::= ID_USER data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
 		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO_CREACION,a.toString()));
-              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_user",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_trivia",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // data_user ::= DATE data 
+          case 17: // data_trivia ::= DATE data 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
 		if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.DATE,a.toString()));
-              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_user",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_trivia",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // data_user ::= STRUCTURE COLNO BRACKETS_O componets BRACKETS_C 
+          case 18: // data_trivia ::= STRUCTURE COLNO BRACKETS_O componets BRACKETS_C 
             {
               Object RESULT =null;
 
-              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_user",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-4)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data_trivia",5, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-4)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 
@@ -626,7 +659,7 @@ class CUP$MyParserDataBaseTrivias$actions {
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 34: // data ::= COLNO STRING_DATE 
+          case 34: // data ::= COLNO inico_opereacion 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
@@ -638,7 +671,19 @@ class CUP$MyParserDataBaseTrivias$actions {
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 35: // data ::= error 
+          case 35: // data ::= COLNO STRING_DATE 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
+		RESULT = a;
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data",4, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 36: // data ::= error 
             {
               Object RESULT =null;
 
@@ -647,11 +692,266 @@ class CUP$MyParserDataBaseTrivias$actions {
           return CUP$MyParserDataBaseTrivias$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 36: // data ::= 
+          case 37: // data ::= 
             {
               Object RESULT =null;
 
               CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("data",4, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 38: // inico_opereacion ::= operacion 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
+		
+    //////////////////////////////////////////
+		Double aDouble = 0.0;
+    if (a!=null) {
+        aDouble =   Double.valueOf(a.toString());
+        RESULT = aDouble;
+    }else{
+      RESULT = aDouble;
+    }
+    //////////////////////////////////////////
+    
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("inico_opereacion",12, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 39: // operacion ::= operacion SUMAR operacion 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
+		Object b = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
+		
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      Double resultDouble = aDouble + bDouble;
+      RESULT = resultDouble;
+    }else{
+      RESULT = aDouble;
+    }
+    /////////////////////////////////////////////
+    
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("operacion",13, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 40: // operacion ::= operacion RESTAR operacion 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
+		Object b = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
+		
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      Double resultDouble = aDouble - bDouble;
+      RESULT = resultDouble;
+    }else{
+      RESULT = aDouble;
+    }
+    /////////////////////////////////////////////
+
+    
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("operacion",13, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 41: // operacion ::= operacion DIVIDIR operacion 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
+		Object b = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
+		
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      if (bDouble>0) {
+        Double result = ( bDouble/ bDouble);
+        RESULT = result;
+      }else{
+        /// manejar un error de sintasis
+        RESULT = aDouble;// si es 15/0
+      }
+    }else{
+      RESULT = aDouble;
+    }
+    /////////////////////////////////////////////
+
+    
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("operacion",13, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 42: // operacion ::= operacion MULTIPLICAR operacion 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
+		Object b = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
+		
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      Double result = aDouble * bDouble;
+      RESULT = result;
+    }else{
+      RESULT = aDouble;
+    }
+    /////////////////////////////////////////////
+
+    
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("operacion",13, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 43: // operacion ::= PARENTESIS_A operacion parente 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
+		Object b = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
+		
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      Double result = aDouble * bDouble;
+      RESULT = result;
+    }else{
+      RESULT = a;
+    }
+    /////////////////////////////////////////////
+    
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("operacion",13, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-2)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 44: // operacion ::= REAL_NUMEBERS 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
+		RESULT = a;
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("operacion",13, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 45: // operacion ::= REAL_NUMEBERS PARENTESIS_A operacion PARENTESIS_C 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-3)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-3)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-3)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)).right;
+		Object b = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)).value;
+		
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      Double result = aDouble * bDouble;
+      RESULT = result;
+    }else{
+      RESULT = a;
+    }
+    /////////////////////////////////////////////
+    
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("operacion",13, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-3)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 46: // parente ::= PARENTESIS_C 
+            {
+              Object RESULT =null;
+
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("parente",14, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
+            }
+          return CUP$MyParserDataBaseTrivias$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 47: // parente ::= PARENTESIS_C operacion 
+            {
+              Object RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()).right;
+		Object a = (Object)((java_cup.runtime.Symbol) CUP$MyParserDataBaseTrivias$stack.peek()).value;
+		RESULT = a;
+              CUP$MyParserDataBaseTrivias$result = parser.getSymbolFactory().newSymbol("parente",14, ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.elementAt(CUP$MyParserDataBaseTrivias$top-1)), ((java_cup.runtime.Symbol)CUP$MyParserDataBaseTrivias$stack.peek()), RESULT);
             }
           return CUP$MyParserDataBaseTrivias$result;
 

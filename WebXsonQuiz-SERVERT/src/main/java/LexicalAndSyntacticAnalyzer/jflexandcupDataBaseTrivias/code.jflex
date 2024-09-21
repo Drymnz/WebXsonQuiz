@@ -48,6 +48,10 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
 DIGIT = [0-9]
 DATE = "\""{DIGIT}{DIGIT}{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"\""
 
+WHOLE = {DIGIT}+
+DECIMAL = {WHOLE}[.]{WHOLE}
+REAL_NUMEBERS = {DECIMAL}|{WHOLE}
+
 STRING = \"([^\"\\]|\\.)*\"
 
 espacio =[\n|\r|\t|\f|\b|\s| ]+
@@ -62,6 +66,8 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "}"                     {print("}"); return new Symbol(MySymLoginDataBaseTrivias.KEYS_C ,yyline,yycolumn,yytext());}
 "["                     {print("["); return new Symbol(MySymLoginDataBaseTrivias.BRACKETS_O ,yyline,yycolumn,yytext());}
 "]"                     {print("]"); return new Symbol(MySymLoginDataBaseTrivias.BRACKETS_C ,yyline,yycolumn,yytext());}
+"("                     {print("("); return new Symbol(MySymLoginDataBaseTrivias.PARENTESIS_A,yyline,yycolumn,yytext());}
+")"                     {print(")"); return new Symbol(MySymLoginDataBaseTrivias.PARENTESIS_C,yyline,yycolumn,yytext());}
 //OBJ JSON
 "\"id\""                {print("\"id\"");          return new Symbol(MySymLoginDataBaseTrivias.ID ,yyline,yycolumn,yytext());}
 "\"name\""              {print("\"name\"");        return new Symbol(MySymLoginDataBaseTrivias.NAME ,yyline,yycolumn,yytext());}
@@ -85,6 +91,7 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 /*SIMBOLOS DE AGRUPACION*/
 {DATE}                  {print("DATE"); return new Symbol(MySymLoginDataBaseTrivias.STRING_DATE,yyline,yycolumn,yytext());}
 {STRING}                {print("STRING"); return new Symbol(MySymLoginDataBaseTrivias.STRING ,yyline,yycolumn,yytext());}
+{REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymLoginDataBaseTrivias.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
 /*ERROR LEXICO*/
 .                       {
                         //MANEJAR EL ERROR LEXICO

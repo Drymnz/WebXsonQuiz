@@ -5,12 +5,16 @@ import com.cunoc.webxsonquiz.data.servert.Trivia;
 import com.cunoc.webxsonquiz.data.servert.User;
 import com.google.gson.Gson;
 
+import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerDataBaseTrivia;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjectComponentTrivia;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjectTrivia;
+import fileManager.FileInput;
 import fileManager.FileOutput;
 import reactions.ConstantSystem;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -103,7 +107,7 @@ public class RequestServertTrivia {
         ArrayList<Trivia> listTrivia = new ArrayList<>();
         ArrayList<ComponentTrivia> listComponentTrivia = new ArrayList<>();
         ConverterAnalyzerToObjectComponentTrivia converterComponentTrivia = new ConverterAnalyzerToObjectComponentTrivia();
-        ConverterAnalyzerToObjectTrivia converterTrivia = new ConverterAnalyzerToObjectTrivia(new User("", "", "", "", ""));
+        ConverterAnalyzerToObjectTrivia converterTrivia = new ConverterAnalyzerToObjectTrivia(new User("Bj", "", "", "", ""));
         for (RequestAnalyzer iterable_element : trivias.getListRquest()) {
             switch (iterable_element.getType()) {
                 case AGREGAR_COMPONENTE:
@@ -122,6 +126,17 @@ public class RequestServertTrivia {
             listTrivia.get(1).addComponent(elementComponent);
         }
         return listTrivia;
+    }
+
+    @Test
+    public void testToLoadFileToTrivia() {
+        String directorioActual = System.getProperty("user.dir");
+        File archivoTxt = new File(directorioActual, ConstantSystem.NAME_FILE_DATA_BASE_TRIVIA);
+        String stringFile = (new FileInput().cargarArchivoTexto(archivoTxt));
+
+        AnalyzerDataBaseTrivia analyzer = new AnalyzerDataBaseTrivia(stringFile);
+        analyzer.Anilisar();
+        Assertions.assertTrue(analyzer.getListTrivia().size() == 2);
     }
     
 }

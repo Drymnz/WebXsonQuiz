@@ -73,15 +73,15 @@ public class LexemaDataBaseTrivias implements java_cup.runtime.Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\10\0\2\1\4\2\22\0\1\1\1\0\1\3\11\0"+
-    "\1\4\1\5\2\0\12\6\1\7\10\0\1\10\20\0"+
-    "\1\11\1\12\5\0\1\13\1\14\1\15\3\0\1\16"+
-    "\1\0\1\17\1\20\1\21\2\0\1\22\1\23\2\0"+
-    "\1\24\1\25\1\26\1\27\1\30\1\0\1\31\1\32"+
-    "\1\33\1\34\1\35\1\36\1\37\1\40\1\0\1\41"+
-    "\1\1\1\42\7\0\1\2\32\0\1\1\u01df\0\1\1"+
-    "\177\0\13\1\35\0\2\2\5\0\1\1\57\0\1\1"+
-    "\240\0\1\1\377\0\u0100\43";
+    "\10\0\2\1\4\2\22\0\1\1\1\0\1\3\5\0"+
+    "\1\4\1\5\2\0\1\6\1\7\1\10\1\0\12\11"+
+    "\1\12\10\0\1\13\20\0\1\14\1\15\5\0\1\16"+
+    "\1\17\1\20\3\0\1\21\1\0\1\22\1\23\1\24"+
+    "\2\0\1\25\1\26\2\0\1\27\1\30\1\31\1\32"+
+    "\1\33\1\0\1\34\1\35\1\36\1\37\1\40\1\41"+
+    "\1\42\1\43\1\0\1\44\1\1\1\45\7\0\1\2"+
+    "\32\0\1\1\u01df\0\1\1\177\0\13\1\35\0\2\2"+
+    "\5\0\1\1\57\0\1\1\240\0\1\1\377\0\u0100\46";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1536];
@@ -109,14 +109,15 @@ public class LexemaDataBaseTrivias implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\1\1\3\1\4\1\5\1\6"+
-    "\1\7\1\10\1\0\1\11\33\0\1\12\27\0\1\13"+
-    "\7\0\1\14\4\0\1\15\3\0\1\16\1\0\1\17"+
-    "\1\20\5\0\1\21\3\0\1\22\1\0\1\23\2\0"+
-    "\1\24\1\0\1\25\4\0\1\26\3\0\1\27\3\0"+
-    "\1\30\1\31\1\0\1\32";
+    "\1\7\1\10\1\11\1\12\1\13\1\0\1\14\31\0"+
+    "\1\6\3\0\1\15\27\0\1\16\7\0\1\17\4\0"+
+    "\1\20\3\0\1\21\1\0\1\22\1\23\5\0\1\24"+
+    "\3\0\1\25\1\0\1\26\2\0\1\27\1\0\1\30"+
+    "\4\0\1\31\3\0\1\32\3\0\1\33\1\34\1\0"+
+    "\1\35";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[117];
+    int [] result = new int[122];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -141,24 +142,25 @@ public class LexemaDataBaseTrivias implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\44\0\110\0\154\0\44\0\44\0\44\0\44"+
-    "\0\44\0\44\0\220\0\44\0\264\0\330\0\374\0\u0120"+
-    "\0\u0144\0\u0168\0\u018c\0\u01b0\0\u01d4\0\u01f8\0\u021c\0\u0240"+
-    "\0\u0264\0\u0288\0\u02ac\0\u02d0\0\u02f4\0\u0318\0\u033c\0\u0360"+
-    "\0\u0384\0\u03a8\0\u03cc\0\u03f0\0\u0414\0\u0438\0\u045c\0\44"+
-    "\0\u0480\0\u04a4\0\u04c8\0\u04ec\0\u0510\0\u0534\0\u0558\0\u057c"+
-    "\0\u05a0\0\u05c4\0\u05e8\0\u060c\0\u0630\0\u0654\0\u0678\0\u069c"+
-    "\0\u06c0\0\u06e4\0\u0708\0\u072c\0\u0750\0\u0774\0\u0798\0\44"+
-    "\0\u07bc\0\u07e0\0\u0804\0\u0828\0\u084c\0\u0870\0\u0894\0\44"+
-    "\0\u08b8\0\u08dc\0\u0900\0\u0924\0\44\0\u0948\0\u096c\0\u0990"+
-    "\0\44\0\u09b4\0\44\0\44\0\u09d8\0\u09fc\0\u0a20\0\u0a44"+
-    "\0\u0a68\0\44\0\u0a8c\0\u0ab0\0\u0ad4\0\44\0\u0af8\0\44"+
-    "\0\u0b1c\0\u0b40\0\44\0\u0b64\0\44\0\u0b88\0\u0bac\0\u0bd0"+
-    "\0\u0bf4\0\44\0\u0c18\0\u0c3c\0\u0c60\0\44\0\u0c84\0\u0ca8"+
-    "\0\u0ccc\0\44\0\44\0\u0cf0\0\44";
+    "\0\0\0\47\0\116\0\165\0\47\0\47\0\47\0\234"+
+    "\0\47\0\47\0\47\0\47\0\47\0\303\0\47\0\352"+
+    "\0\u0111\0\u0138\0\u015f\0\u0186\0\u01ad\0\u01d4\0\u01fb\0\u0222"+
+    "\0\u0249\0\u0270\0\u0297\0\u02be\0\u02e5\0\u030c\0\u0333\0\u035a"+
+    "\0\u0381\0\u03a8\0\u03cf\0\u03f6\0\u041d\0\u0444\0\u046b\0\u0492"+
+    "\0\u0270\0\u04b9\0\u04e0\0\u0507\0\47\0\u052e\0\u0555\0\u057c"+
+    "\0\u05a3\0\u05ca\0\u05f1\0\u0618\0\u063f\0\u0666\0\u068d\0\u06b4"+
+    "\0\u06db\0\u0702\0\u0729\0\u0750\0\u0777\0\u079e\0\u07c5\0\u07ec"+
+    "\0\u0813\0\u083a\0\u0861\0\u0888\0\47\0\u08af\0\u08d6\0\u08fd"+
+    "\0\u0924\0\u094b\0\u0972\0\u0999\0\47\0\u09c0\0\u09e7\0\u0a0e"+
+    "\0\u0a35\0\47\0\u0a5c\0\u0a83\0\u0aaa\0\47\0\u0ad1\0\47"+
+    "\0\47\0\u0af8\0\u0b1f\0\u0b46\0\u0b6d\0\u0b94\0\47\0\u0bbb"+
+    "\0\u0be2\0\u0c09\0\47\0\u0c30\0\47\0\u0c57\0\u0c7e\0\47"+
+    "\0\u0ca5\0\47\0\u0ccc\0\u0cf3\0\u0d1a\0\u0d41\0\47\0\u0d68"+
+    "\0\u0d8f\0\u0db6\0\47\0\u0ddd\0\u0e04\0\u0e2b\0\47\0\47"+
+    "\0\u0e52\0\47";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[117];
+    int [] result = new int[122];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -181,77 +183,79 @@ public class LexemaDataBaseTrivias implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\2\3\1\4\1\5\2\2\1\6\3\2\1\7"+
-    "\1\2\1\10\23\2\1\11\1\12\46\0\2\3\41\0"+
-    "\3\13\1\14\2\13\1\15\5\13\1\16\2\13\1\17"+
-    "\1\20\2\13\1\21\2\13\1\22\1\23\1\13\1\24"+
-    "\1\25\1\26\13\13\1\14\10\13\1\16\32\13\1\14"+
-    "\2\13\1\27\5\13\1\16\31\13\1\0\40\13\1\0"+
-    "\3\13\1\14\10\13\1\16\12\13\1\30\17\13\1\14"+
-    "\10\13\1\16\1\13\1\31\30\13\1\14\10\13\1\16"+
-    "\3\13\1\32\5\13\1\33\20\13\1\14\10\13\1\16"+
-    "\1\13\1\34\30\13\1\14\10\13\1\16\13\13\1\35"+
-    "\16\13\1\14\10\13\1\16\4\13\1\36\5\13\1\37"+
-    "\17\13\1\14\10\13\1\16\16\13\1\40\13\13\1\14"+
-    "\10\13\1\16\4\13\1\41\1\42\1\43\14\13\1\44"+
-    "\6\13\1\14\2\13\1\45\5\13\1\16\32\13\1\14"+
-    "\10\13\1\16\7\13\1\46\22\13\1\14\10\13\1\16"+
-    "\16\13\1\47\13\13\1\50\4\13\1\51\1\52\1\53"+
-    "\1\13\1\16\32\13\1\14\10\13\1\16\3\13\1\54"+
-    "\26\13\1\14\10\13\1\16\10\13\1\55\21\13\1\14"+
-    "\10\13\1\16\16\13\1\56\13\13\1\14\10\13\1\16"+
-    "\15\13\1\57\14\13\1\14\10\13\1\16\21\13\1\60"+
-    "\10\13\1\14\10\13\1\16\14\13\1\61\15\13\1\14"+
-    "\10\13\1\16\22\13\1\62\7\13\1\14\10\13\1\16"+
-    "\4\13\1\63\25\13\1\14\10\13\1\16\10\13\1\64"+
-    "\21\13\1\14\10\13\1\16\13\13\1\65\16\13\1\14"+
-    "\2\13\1\66\5\13\1\16\32\13\1\14\10\13\1\16"+
-    "\17\13\1\67\12\13\1\14\10\13\1\16\4\13\1\70"+
-    "\25\13\1\14\10\13\1\16\12\13\1\71\17\13\1\14"+
-    "\10\13\1\16\14\13\1\72\15\13\1\14\10\13\1\16"+
-    "\15\13\1\73\14\13\1\14\10\13\1\16\4\13\1\74"+
-    "\25\13\1\14\10\13\1\16\4\13\1\75\25\13\1\14"+
-    "\10\13\1\16\6\13\1\76\23\13\1\14\10\13\1\16"+
-    "\17\13\1\77\12\13\1\100\10\13\1\16\32\13\1\14"+
-    "\10\13\1\16\17\13\1\101\12\13\1\14\10\13\1\16"+
-    "\16\13\1\102\13\13\1\14\10\13\1\16\10\13\1\103"+
-    "\21\13\1\14\10\13\1\16\4\13\1\104\25\13\1\14"+
-    "\10\13\1\16\4\13\1\105\25\13\1\14\1\13\1\106"+
-    "\6\13\1\16\32\13\1\14\10\13\1\16\10\13\1\107"+
-    "\21\13\1\110\10\13\1\16\32\13\1\14\10\13\1\16"+
-    "\10\13\1\111\21\13\1\14\10\13\1\16\6\13\1\112"+
-    "\23\13\1\14\10\13\1\16\4\13\1\113\25\13\1\14"+
-    "\10\13\1\16\22\13\1\114\7\13\1\115\10\13\1\16"+
-    "\32\13\1\14\10\13\1\16\12\13\1\116\17\13\1\14"+
-    "\10\13\1\16\7\13\1\117\22\13\1\14\10\13\1\16"+
-    "\2\13\1\120\27\13\1\121\10\13\1\16\32\13\1\14"+
-    "\10\13\1\16\4\13\1\122\25\13\1\123\10\13\1\16"+
-    "\32\13\1\124\10\13\1\16\32\13\1\14\2\13\1\125"+
-    "\5\13\1\16\32\13\1\14\10\13\1\16\11\13\1\126"+
-    "\20\13\1\14\10\13\1\16\13\13\1\127\16\13\1\14"+
-    "\10\13\1\16\20\13\1\130\11\13\1\14\10\13\1\16"+
-    "\14\13\1\131\15\13\1\132\10\13\1\16\32\13\1\14"+
-    "\10\13\1\16\11\13\1\133\20\13\1\14\10\13\1\16"+
-    "\16\13\1\134\13\13\1\14\10\13\1\16\16\13\1\135"+
-    "\13\13\1\136\10\13\1\16\32\13\1\14\2\13\1\137"+
-    "\5\13\1\16\32\13\1\140\10\13\1\16\32\13\1\14"+
-    "\10\13\1\16\12\13\1\141\17\13\1\14\10\13\1\16"+
-    "\6\13\1\142\23\13\1\143\10\13\1\16\32\13\1\14"+
-    "\10\13\1\16\15\13\1\144\14\13\1\145\10\13\1\16"+
-    "\32\13\1\14\10\13\1\16\17\13\1\146\12\13\1\14"+
-    "\1\13\1\147\6\13\1\16\32\13\1\14\10\13\1\16"+
-    "\11\13\1\150\20\13\1\14\10\13\1\16\1\13\1\151"+
-    "\30\13\1\152\10\13\1\16\32\13\1\14\10\13\1\16"+
-    "\14\13\1\153\15\13\1\14\2\13\1\154\5\13\1\16"+
-    "\32\13\1\14\10\13\1\16\4\13\1\155\25\13\1\156"+
-    "\10\13\1\16\32\13\1\14\10\13\1\16\4\13\1\157"+
-    "\25\13\1\14\2\13\1\160\5\13\1\16\32\13\1\14"+
-    "\10\13\1\16\11\13\1\161\20\13\1\162\10\13\1\16"+
-    "\32\13\1\163\10\13\1\16\32\13\1\14\10\13\1\16"+
-    "\16\13\1\164\13\13\1\165\10\13\1\16\27\13";
+    "\1\2\2\3\1\4\1\5\1\6\1\7\2\2\1\10"+
+    "\1\11\3\2\1\12\1\2\1\13\23\2\1\14\1\15"+
+    "\51\0\2\3\44\0\3\16\1\17\5\16\1\20\5\16"+
+    "\1\21\2\16\1\22\1\23\2\16\1\24\2\16\1\25"+
+    "\1\26\1\16\1\27\1\30\1\31\10\16\10\0\1\32"+
+    "\1\10\35\0\3\16\1\17\13\16\1\21\32\16\1\17"+
+    "\5\16\1\33\5\16\1\21\31\16\1\0\43\16\1\0"+
+    "\3\16\1\17\13\16\1\21\12\16\1\34\17\16\1\17"+
+    "\13\16\1\21\1\16\1\35\30\16\1\17\13\16\1\21"+
+    "\3\16\1\36\5\16\1\37\20\16\1\17\13\16\1\21"+
+    "\1\16\1\40\30\16\1\17\13\16\1\21\13\16\1\41"+
+    "\16\16\1\17\13\16\1\21\4\16\1\42\5\16\1\43"+
+    "\17\16\1\17\13\16\1\21\16\16\1\44\13\16\1\17"+
+    "\13\16\1\21\4\16\1\45\1\46\1\47\14\16\1\50"+
+    "\3\16\11\0\1\51\35\0\3\16\1\17\5\16\1\52"+
+    "\5\16\1\21\32\16\1\17\13\16\1\21\7\16\1\53"+
+    "\22\16\1\17\13\16\1\21\16\16\1\54\13\16\1\55"+
+    "\7\16\1\56\1\57\1\60\1\16\1\21\32\16\1\17"+
+    "\13\16\1\21\3\16\1\61\26\16\1\17\13\16\1\21"+
+    "\10\16\1\62\21\16\1\17\13\16\1\21\16\16\1\63"+
+    "\13\16\1\17\13\16\1\21\15\16\1\64\14\16\1\17"+
+    "\13\16\1\21\21\16\1\65\10\16\1\17\13\16\1\21"+
+    "\14\16\1\66\15\16\1\17\13\16\1\21\22\16\1\67"+
+    "\7\16\1\17\13\16\1\21\4\16\1\70\25\16\1\17"+
+    "\13\16\1\21\10\16\1\71\21\16\1\17\13\16\1\21"+
+    "\13\16\1\72\16\16\1\17\5\16\1\73\5\16\1\21"+
+    "\32\16\1\17\13\16\1\21\17\16\1\74\12\16\1\17"+
+    "\13\16\1\21\4\16\1\75\25\16\1\17\13\16\1\21"+
+    "\12\16\1\76\17\16\1\17\13\16\1\21\14\16\1\77"+
+    "\15\16\1\17\13\16\1\21\15\16\1\100\14\16\1\17"+
+    "\13\16\1\21\4\16\1\101\25\16\1\17\13\16\1\21"+
+    "\4\16\1\102\25\16\1\17\13\16\1\21\6\16\1\103"+
+    "\23\16\1\17\13\16\1\21\17\16\1\104\12\16\1\105"+
+    "\13\16\1\21\32\16\1\17\13\16\1\21\17\16\1\106"+
+    "\12\16\1\17\13\16\1\21\16\16\1\107\13\16\1\17"+
+    "\13\16\1\21\10\16\1\110\21\16\1\17\13\16\1\21"+
+    "\4\16\1\111\25\16\1\17\13\16\1\21\4\16\1\112"+
+    "\25\16\1\17\3\16\1\113\7\16\1\21\32\16\1\17"+
+    "\13\16\1\21\10\16\1\114\21\16\1\115\13\16\1\21"+
+    "\32\16\1\17\13\16\1\21\10\16\1\116\21\16\1\17"+
+    "\13\16\1\21\6\16\1\117\23\16\1\17\13\16\1\21"+
+    "\4\16\1\120\25\16\1\17\13\16\1\21\22\16\1\121"+
+    "\7\16\1\122\13\16\1\21\32\16\1\17\13\16\1\21"+
+    "\12\16\1\123\17\16\1\17\13\16\1\21\7\16\1\124"+
+    "\22\16\1\17\13\16\1\21\2\16\1\125\27\16\1\126"+
+    "\13\16\1\21\32\16\1\17\13\16\1\21\4\16\1\127"+
+    "\25\16\1\130\13\16\1\21\32\16\1\131\13\16\1\21"+
+    "\32\16\1\17\5\16\1\132\5\16\1\21\32\16\1\17"+
+    "\13\16\1\21\11\16\1\133\20\16\1\17\13\16\1\21"+
+    "\13\16\1\134\16\16\1\17\13\16\1\21\20\16\1\135"+
+    "\11\16\1\17\13\16\1\21\14\16\1\136\15\16\1\137"+
+    "\13\16\1\21\32\16\1\17\13\16\1\21\11\16\1\140"+
+    "\20\16\1\17\13\16\1\21\16\16\1\141\13\16\1\17"+
+    "\13\16\1\21\16\16\1\142\13\16\1\143\13\16\1\21"+
+    "\32\16\1\17\5\16\1\144\5\16\1\21\32\16\1\145"+
+    "\13\16\1\21\32\16\1\17\13\16\1\21\12\16\1\146"+
+    "\17\16\1\17\13\16\1\21\6\16\1\147\23\16\1\150"+
+    "\13\16\1\21\32\16\1\17\13\16\1\21\15\16\1\151"+
+    "\14\16\1\152\13\16\1\21\32\16\1\17\13\16\1\21"+
+    "\17\16\1\153\12\16\1\17\3\16\1\154\7\16\1\21"+
+    "\32\16\1\17\13\16\1\21\11\16\1\155\20\16\1\17"+
+    "\13\16\1\21\1\16\1\156\30\16\1\157\13\16\1\21"+
+    "\32\16\1\17\13\16\1\21\14\16\1\160\15\16\1\17"+
+    "\5\16\1\161\5\16\1\21\32\16\1\17\13\16\1\21"+
+    "\4\16\1\162\25\16\1\163\13\16\1\21\32\16\1\17"+
+    "\13\16\1\21\4\16\1\164\25\16\1\17\5\16\1\165"+
+    "\5\16\1\21\32\16\1\17\13\16\1\21\11\16\1\166"+
+    "\20\16\1\167\13\16\1\21\32\16\1\170\13\16\1\21"+
+    "\32\16\1\17\13\16\1\21\16\16\1\171\13\16\1\172"+
+    "\13\16\1\21\27\16";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[3348];
+    int [] result = new int[3705];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -294,14 +298,14 @@ public class LexemaDataBaseTrivias implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\2\1\6\11\1\0\1\11\33\0\1\11"+
-    "\27\0\1\11\7\0\1\11\4\0\1\11\3\0\1\11"+
-    "\1\0\2\11\5\0\1\11\3\0\1\11\1\0\1\11"+
-    "\2\0\1\11\1\0\1\11\4\0\1\11\3\0\1\11"+
-    "\3\0\2\11\1\0\1\11";
+    "\1\0\1\11\2\1\3\11\1\1\5\11\1\0\1\11"+
+    "\31\0\1\1\3\0\1\11\27\0\1\11\7\0\1\11"+
+    "\4\0\1\11\3\0\1\11\1\0\2\11\5\0\1\11"+
+    "\3\0\1\11\1\0\1\11\2\0\1\11\1\0\1\11"+
+    "\4\0\1\11\3\0\1\11\3\0\2\11\1\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[117];
+    int [] result = new int[122];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -828,132 +832,147 @@ public class LexemaDataBaseTrivias implements java_cup.runtime.Scanner {
                         addError();
             }
           // fall through
-          case 27: break;
+          case 30: break;
           case 2:
             { /* print(); */
             }
           // fall through
-          case 28: break;
-          case 3:
-            { print(","); return new Symbol(MySymLoginDataBaseTrivias.COMA,yyline,yycolumn, (yytext()));
-            }
-          // fall through
-          case 29: break;
-          case 4:
-            { print(":"); return new Symbol(MySymLoginDataBaseTrivias.COLNO,yyline,yycolumn, (yytext()));
-            }
-          // fall through
-          case 30: break;
-          case 5:
-            { print("["); return new Symbol(MySymLoginDataBaseTrivias.BRACKETS_O ,yyline,yycolumn,yytext());
-            }
-          // fall through
           case 31: break;
-          case 6:
-            { print("]"); return new Symbol(MySymLoginDataBaseTrivias.BRACKETS_C ,yyline,yycolumn,yytext());
+          case 3:
+            { print("("); return new Symbol(MySymLoginDataBaseTrivias.PARENTESIS_A,yyline,yycolumn,yytext());
             }
           // fall through
           case 32: break;
-          case 7:
-            { print("{"); return new Symbol(MySymLoginDataBaseTrivias.KEYS_O ,yyline,yycolumn,yytext());
+          case 4:
+            { print(")"); return new Symbol(MySymLoginDataBaseTrivias.PARENTESIS_C,yyline,yycolumn,yytext());
             }
           // fall through
           case 33: break;
-          case 8:
-            { print("}"); return new Symbol(MySymLoginDataBaseTrivias.KEYS_C ,yyline,yycolumn,yytext());
+          case 5:
+            { print(","); return new Symbol(MySymLoginDataBaseTrivias.COMA,yyline,yycolumn, (yytext()));
             }
           // fall through
           case 34: break;
-          case 9:
-            { print("STRING"); return new Symbol(MySymLoginDataBaseTrivias.STRING ,yyline,yycolumn,yytext());
+          case 6:
+            { print("REAL_NUMEBERS"); return new Symbol(MySymLoginDataBaseTrivias.REAL_NUMEBERS ,yyline,yycolumn,yytext());
             }
           // fall through
           case 35: break;
-          case 10:
-            { print("\"id\"");          return new Symbol(MySymLoginDataBaseTrivias.ID ,yyline,yycolumn,yytext());
+          case 7:
+            { print(":"); return new Symbol(MySymLoginDataBaseTrivias.COLNO,yyline,yycolumn, (yytext()));
             }
           // fall through
           case 36: break;
-          case 11:
-            { print("\"row\"");         return new Symbol(MySymLoginDataBaseTrivias.ROW ,yyline,yycolumn,yytext());
+          case 8:
+            { print("["); return new Symbol(MySymLoginDataBaseTrivias.BRACKETS_O ,yyline,yycolumn,yytext());
             }
           // fall through
           case 37: break;
-          case 12:
-            { print("\"date\"");        return new Symbol(MySymLoginDataBaseTrivias.DATE ,yyline,yycolumn,yytext());
+          case 9:
+            { print("]"); return new Symbol(MySymLoginDataBaseTrivias.BRACKETS_C ,yyline,yycolumn,yytext());
             }
           // fall through
           case 38: break;
-          case 13:
-            { print("\"name\"");        return new Symbol(MySymLoginDataBaseTrivias.NAME ,yyline,yycolumn,yytext());
+          case 10:
+            { print("{"); return new Symbol(MySymLoginDataBaseTrivias.KEYS_O ,yyline,yycolumn,yytext());
             }
           // fall through
           case 39: break;
-          case 14:
-            { print("\"text\"");        return new Symbol(MySymLoginDataBaseTrivias.TEXT ,yyline,yycolumn,yytext());
+          case 11:
+            { print("}"); return new Symbol(MySymLoginDataBaseTrivias.KEYS_C ,yyline,yycolumn,yytext());
             }
           // fall through
           case 40: break;
-          case 15:
-            { print("\"time\"");        return new Symbol(MySymLoginDataBaseTrivias.TIME ,yyline,yycolumn,yytext());
+          case 12:
+            { print("STRING"); return new Symbol(MySymLoginDataBaseTrivias.STRING ,yyline,yycolumn,yytext());
             }
           // fall through
           case 41: break;
-          case 16:
-            { print("\"type\"");        return new Symbol(MySymLoginDataBaseTrivias.TYPE ,yyline,yycolumn,yytext());
+          case 13:
+            { print("\"id\"");          return new Symbol(MySymLoginDataBaseTrivias.ID ,yyline,yycolumn,yytext());
             }
           // fall through
           case 42: break;
-          case 17:
-            { print("\"index\"");       return new Symbol(MySymLoginDataBaseTrivias.INDEX ,yyline,yycolumn,yytext());
+          case 14:
+            { print("\"row\"");         return new Symbol(MySymLoginDataBaseTrivias.ROW ,yyline,yycolumn,yytext());
             }
           // fall through
           case 43: break;
-          case 18:
-            { print("\"theme\"");       return new Symbol(MySymLoginDataBaseTrivias.THEME ,yyline,yycolumn,yytext());
+          case 15:
+            { print("\"date\"");        return new Symbol(MySymLoginDataBaseTrivias.DATE ,yyline,yycolumn,yytext());
             }
           // fall through
           case 44: break;
-          case 19:
-            { print("\"column\"");      return new Symbol(MySymLoginDataBaseTrivias.COLUMN ,yyline,yycolumn,yytext());
+          case 16:
+            { print("\"name\"");        return new Symbol(MySymLoginDataBaseTrivias.NAME ,yyline,yycolumn,yytext());
             }
           // fall through
           case 45: break;
-          case 20:
-            { print("\"idUser\"");      return new Symbol(MySymLoginDataBaseTrivias.ID_USER ,yyline,yycolumn,yytext());
+          case 17:
+            { print("\"text\"");        return new Symbol(MySymLoginDataBaseTrivias.TEXT ,yyline,yycolumn,yytext());
             }
           // fall through
           case 46: break;
-          case 21:
-            { print("\"result\"");      return new Symbol(MySymLoginDataBaseTrivias.RESULT ,yyline,yycolumn,yytext());
+          case 18:
+            { print("\"time\"");        return new Symbol(MySymLoginDataBaseTrivias.TIME ,yyline,yycolumn,yytext());
             }
           // fall through
           case 47: break;
-          case 22:
-            { print("\"options\"");     return new Symbol(MySymLoginDataBaseTrivias.OPTIONS ,yyline,yycolumn,yytext());
+          case 19:
+            { print("\"type\"");        return new Symbol(MySymLoginDataBaseTrivias.TYPE ,yyline,yycolumn,yytext());
             }
           // fall through
           case 48: break;
-          case 23:
-            { print("\"idTrivia\"");    return new Symbol(MySymLoginDataBaseTrivias.ID_TRIVIA ,yyline,yycolumn,yytext());
+          case 20:
+            { print("\"index\"");       return new Symbol(MySymLoginDataBaseTrivias.INDEX ,yyline,yycolumn,yytext());
             }
           // fall through
           case 49: break;
-          case 24:
-            { print("\"structure\"");   return new Symbol(MySymLoginDataBaseTrivias.STRUCTURE ,yyline,yycolumn,yytext());
+          case 21:
+            { print("\"theme\"");       return new Symbol(MySymLoginDataBaseTrivias.THEME ,yyline,yycolumn,yytext());
             }
           // fall through
           case 50: break;
-          case 25:
-            { print("DATE"); return new Symbol(MySymLoginDataBaseTrivias.STRING_DATE,yyline,yycolumn,yytext());
+          case 22:
+            { print("\"column\"");      return new Symbol(MySymLoginDataBaseTrivias.COLUMN ,yyline,yycolumn,yytext());
             }
           // fall through
           case 51: break;
-          case 26:
-            { print("\"idComponent\""); return new Symbol(MySymLoginDataBaseTrivias.ID_COMPONENT ,yyline,yycolumn,yytext());
+          case 23:
+            { print("\"idUser\"");      return new Symbol(MySymLoginDataBaseTrivias.ID_USER ,yyline,yycolumn,yytext());
             }
           // fall through
           case 52: break;
+          case 24:
+            { print("\"result\"");      return new Symbol(MySymLoginDataBaseTrivias.RESULT ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 53: break;
+          case 25:
+            { print("\"options\"");     return new Symbol(MySymLoginDataBaseTrivias.OPTIONS ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 54: break;
+          case 26:
+            { print("\"idTrivia\"");    return new Symbol(MySymLoginDataBaseTrivias.ID_TRIVIA ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 55: break;
+          case 27:
+            { print("\"structure\"");   return new Symbol(MySymLoginDataBaseTrivias.STRUCTURE ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 56: break;
+          case 28:
+            { print("DATE"); return new Symbol(MySymLoginDataBaseTrivias.STRING_DATE,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 57: break;
+          case 29:
+            { print("\"idComponent\""); return new Symbol(MySymLoginDataBaseTrivias.ID_COMPONENT ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 58: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

@@ -151,7 +151,7 @@ public class TriviaTestsToObject {
         ArrayList<Trivia> listTrivia = new ArrayList<>();
         ArrayList<ComponentTrivia> listComponentTrivia = new ArrayList<>();
         ConverterAnalyzerToObjectComponentTrivia converterComponentTrivia = new ConverterAnalyzerToObjectComponentTrivia();
-        ConverterAnalyzerToObjectTrivia converterTrivia = new ConverterAnalyzerToObjectTrivia(new User("", "", "", "", ""));
+        ConverterAnalyzerToObjectTrivia converterTrivia = new ConverterAnalyzerToObjectTrivia(new User("Bj", "", "", "", ""));
         for (RequestAnalyzer iterable_element : trivias.getListRquest()) {
             switch (iterable_element.getType()) {
                 case AGREGAR_COMPONENTE:
