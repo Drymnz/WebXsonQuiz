@@ -2,12 +2,14 @@ package reactions;
 
 import java.util.ArrayList;
 
+import com.cunoc.webxsonquiz.data.servert.ComponentTrivia;
 import com.cunoc.webxsonquiz.data.servert.Trivia;
 import com.cunoc.webxsonquiz.data.servert.User;
 
 import Lengua.LanguageConstants;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
+import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjectComponentTrivia;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjectTrivia;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
 
@@ -44,6 +46,7 @@ public class RequestSyntaxValidatorManagerUser {
         if (this.analizer != null) {
             for (RequestAnalyzer elemetRequest : this.analizer.getListRquest()) {
                 switch (elemetRequest.getType()) {
+                        //user
                     case ELIMINAR_USUARIO:
                         this.addListCheck(elemetRequest,checkUserDel(elemetRequest));
                         break;
@@ -56,20 +59,22 @@ public class RequestSyntaxValidatorManagerUser {
                     case NEW_USER:
                         this.addListCheck(elemetRequest,checkUserNew(elemetRequest));
                         break;
+                        //componenet
                     case AGREGAR_COMPONENTE:
-                        //
+                        this.addListCheck(elemetRequest,addComponent(elemetRequest));
                         break;
                     case ELIMINAR_COMPONENTE:
-                        //
-                        break;
-                    case ELIMINAR_TRIVIA:
-                        //* */
+                        this.addListCheck(elemetRequest,checkDelComponentTrivia(elemetRequest));
                         break;
                     case MODIFICAR_COMPONENTE:
-                        //
+                        this.addListCheck(elemetRequest,checkComponentTriviaModify(elemetRequest));
+                        break;
+                        //trivia
+                    case ELIMINAR_TRIVIA:
+                        this.addListCheck(elemetRequest,checkDelTrivia(elemetRequest));
                         break;
                     case MODIFICAR_TRIVIA:
-                        //* */
+                        this.addListCheck(elemetRequest,checkTriviaModify(elemetRequest));
                         break;
                     case NEW_TRIVIA:
                         this.addListCheck(elemetRequest,checkNewTrivia(elemetRequest));
@@ -79,6 +84,68 @@ public class RequestSyntaxValidatorManagerUser {
                 }
             }
         }
+    }
+
+    private boolean checkComponentTriviaModify(RequestAnalyzer data) {
+        ComponentTrivia checkOne = (new ConverterAnalyzerToObjectComponentTrivia().newComponent(data));
+        if ((checkOne == null)) return false;
+        Trivia checkTrivia = this.getTriviaDataBaseId(checkOne.getIdTrivia());
+        if ((checkTrivia == null)) return false;
+        ComponentTrivia checkDataBase = null;
+        for (ComponentTrivia element : checkTrivia.getListComponet()) {
+            if (element.getIdComponent().equals(checkOne.getIdComponent())) {
+                checkDataBase = element;
+                break;
+            }
+        }
+        if ((checkDataBase == null)) return false;
+        return this.dataBaseTrivia.modifityComponentTrivia(checkOne, checkDataBase);
+    }
+
+    private boolean checkTriviaModify(RequestAnalyzer data) {
+        Trivia checkOne = (new ConverterAnalyzerToObjectTrivia(this.user).newTrivia(data));
+        if ((checkOne == null)) return false;
+        Trivia checkDataBase = this.getTriviaDataBaseId(checkOne.getId());
+        return this.dataBaseTrivia.modifityTrivia(checkOne, checkDataBase);
+    }
+
+    private boolean checkDelComponentTrivia(RequestAnalyzer data) {
+        ComponentTrivia checkOne = (new ConverterAnalyzerToObjectComponentTrivia().newComponent(data));
+        if ((checkOne == null)) return false;
+        Trivia checkDataBase = this.getTriviaDataBaseId(checkOne.getIdTrivia());
+        if ((checkDataBase == null)) return false;
+        for (int index = 0; index < checkDataBase.getListComponet().size(); index++) {
+            if (checkDataBase.getListComponet().get(index).getIdComponent().equals(checkOne.getIdComponent())) {
+                checkDataBase.getListComponet().remove(index);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkDelTrivia(RequestAnalyzer data) {
+        Trivia checkOne = (new ConverterAnalyzerToObjectTrivia(this.user).newTrivia(data));
+        if ((checkOne == null)) return false;
+        Trivia checkDataBase = this.getTriviaDataBaseId(checkOne.getId());
+        if (checkDataBase == null) return false;
+        return  this.dataBaseTrivia.delTrivia(checkDataBase);
+    }
+
+    private boolean addComponent(RequestAnalyzer data) {
+        ComponentTrivia checkOne = (new ConverterAnalyzerToObjectComponentTrivia().newComponent(data));
+        if ((checkOne == null)) return false;
+        Trivia checkDataBase = this.getTriviaDataBaseId(checkOne.getIdTrivia());
+        if ((checkDataBase == null)) return false;
+        int counter = 0;
+        for (ComponentTrivia element : checkDataBase.getListComponet()) {
+            if (element.getIdComponent().equals(checkOne.getIdComponent())) {
+                return false;
+            }
+            counter++;
+        }
+        checkOne.setIndex(counter);
+        checkDataBase.addComponent(checkOne);
+        return true;
     }
 
     private boolean checkNewTrivia(RequestAnalyzer data) {
@@ -146,6 +213,11 @@ public class RequestSyntaxValidatorManagerUser {
             System.out.println(LanguageConstants.DATABASE_UPDATA_USER);
         }else{
             System.out.println(LanguageConstants.NOT_DATABASE_UPDATA_USER);
+        }
+        if (this.dataBaseTrivia.upDataBase()) {
+            System.out.println(LanguageConstants.DATABASE_UPDATA_TRIVIA);
+        } else {
+            System.out.println(LanguageConstants.DATABASE_UPDATA_TRIVIA);
         }
     }
 }

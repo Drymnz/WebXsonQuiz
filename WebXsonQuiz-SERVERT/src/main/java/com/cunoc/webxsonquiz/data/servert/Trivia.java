@@ -60,4 +60,40 @@ public class Trivia  implements Serializable{
         return date;
     }
 
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTime(double time) {
+        this.time = time;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public ArrayList<ComponentTrivia> getStructure() {
+        return structure;
+    }
+
+    public void setStructure(ArrayList<ComponentTrivia> structure) {
+        this.structure = structure;
+    }
+
 }

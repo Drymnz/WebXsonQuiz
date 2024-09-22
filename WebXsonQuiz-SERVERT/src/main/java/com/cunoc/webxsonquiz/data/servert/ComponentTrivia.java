@@ -64,5 +64,42 @@ public class ComponentTrivia implements Serializable {
     public String getIdTrivia() {
         return idTrivia;
     }
+
+    public void setIdComponent(String idComponent) {
+        this.idComponent = idComponent;
+    }
+
+    public void setType(ClassComponent type) {
+        this.type = type;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setOptions(String options) {
+        this.options = options;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public void setIdTrivia(String idTrivia) {
+        this.idTrivia = idTrivia;
+    }
+    
     
 }

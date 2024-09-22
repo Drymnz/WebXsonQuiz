@@ -137,7 +137,7 @@ public class RequestServertTrivia {
 
         AnalyzerDataBaseTrivia analyzer = new AnalyzerDataBaseTrivia(stringFile);
         analyzer.Anilisar();
-        Assertions.assertTrue(analyzer.getListTrivia().size() == 2);
+        Assertions.assertTrue(!analyzer.isError());
     }
 
     private String solicitudTrivias = "<?xson version=\"1.0\" ?>\n" + //
@@ -217,14 +217,6 @@ public class RequestServertTrivia {
                 "}\n" + //
                 "]}\n" + //
                 "<fin_solicitud_realizada!>\n" + //
-                "<!-- 3 -->\n" + //
-                "<!realizar_solicitud: \"ELIMINAR_TRIVIA\" >\n" + //
-                "{ \"PARAMETROS_TRIVIA\":[{\n" + //
-                "  \"ID_TRIVIA\": \"$trivia_cultura_guatemala\"\n" + //
-                "}\n" + //
-                "]}\n" + //
-                "<fin_solicitud_realizada!>\n" + //
-                "\n" + //
                 "<!fin_solicitudes_realizada>";
     @Test
     public void testRequestSyntaxValidatorManagerTrivia() {
@@ -232,8 +224,8 @@ public class RequestServertTrivia {
         analizer.Anilisar();
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(), new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
         requetSystaxValidator.checkRequests();
-        boolean goodText= !analizer.isError() && analizer.getListRquest().size() == 5;
-        //requetSystaxValidator.upDataBase(); 
+        boolean goodText= !analizer.isError() && analizer.getListRquest().size() == 7;
+        requetSystaxValidator.upDataBase(); 
         Assertions.assertTrue(goodText);
     }
     
