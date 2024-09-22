@@ -21,25 +21,4 @@ class ServertRepositoy(ip: String, port: Int) {
         }
         conectionServert.getSocket()!!.close()
     }
-
-    /*
-            val outputStream = ObjectOutputStream(socket.getOutputStream())
-            val inputStream = ObjectInputStream(socket.getInputStream())
-        // sending message
-        outputStream.writeObject(login)
-        var bombitas:String  = inputStream.readObject() as String
-        var login:Boolean = bombitas as Boolean
-        emit(bombitas)
-        while (login)
-        {
-            emit(bombitas)
-            outputStream.writeObject(bombitas)
-            // receiving message
-            val report = inputStream.readObject() as String
-            bombitas = report as String
-            emit(bombitas)
-            login  = !(bombitas.equals("false"))
-        }
-
-    } */
 }

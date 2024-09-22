@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.cunoc.webxsonquiz.data.ConectionServert
+import com.cunoc.webxsonquiz.data.servert.Trivia
 import com.cunoc.webxsonquiz.data.servert.User
 import com.example.webxsonquiz.R
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +24,8 @@ class Trivias : AppCompatActivity() {
     private var conectionServer: ConectionServert? = null
     private var INICIO: String = "INICIO"
     private val stateFlow = MutableStateFlow(INICIO)
+    private var layout: LinearLayout? = null
+    private var listTrivias:ArrayList<Trivia> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +56,7 @@ class Trivias : AppCompatActivity() {
         }
     }
     private fun info(user:User){
-        val layout: LinearLayout = findViewById(R.id.layout)
+        this.layout = findViewById(R.id.layout)
         this.user = user
         val textView = TextView(this).apply {
             text = user.toString()
@@ -64,6 +67,6 @@ class Trivias : AppCompatActivity() {
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
         }
-        layout.addView(textView)
+        this.layout!!.addView(textView)
     }
 }

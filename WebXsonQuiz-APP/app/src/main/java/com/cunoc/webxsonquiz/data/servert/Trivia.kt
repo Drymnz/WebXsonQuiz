@@ -2,14 +2,26 @@ package com.cunoc.webxsonquiz.data.servert
 
 import java.io.Serializable
 
-data class Trivia(
-    val id: String,
-    val name: String,
-    val time: Double,
-    val theme: String,
-    val idUser: String
+class Trivia(
+    var id: String,
+    var name: String,
+    var time: Double,
+    var theme: String,
+    var idUser: String,
+    var date: String
 ) : Serializable {
+
     companion object {
         private const val serialVersionUID = 3L
+    }
+
+    var structure: ArrayList<ComponentTrivia> = ArrayList()
+
+    fun addComponent(component: ComponentTrivia) {
+        structure.add(component)
+    }
+
+    fun getListComponent(): ArrayList<ComponentTrivia> {
+        return structure
     }
 }

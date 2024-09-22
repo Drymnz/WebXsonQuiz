@@ -2,17 +2,19 @@ package com.cunoc.webxsonquiz.data.servert
 
 import java.io.Serializable
 
-data class ComponentTrivia(
-    val idComponent: String,
-    val type: ClassComponent,
-    val index: Int,
-    val text: String,
-    val options: String,
-    val row: Int,
-    val column: Int,
-    val result: String
+class ComponentTrivia(
+    var idComponent: String,
+    var type: ClassComponent,
+    var index: Int,
+    var text: String,
+    var options: String,
+    var row: Int,
+    var column: Int,
+    var result: String,
+    var idTrivia: String
 ) : Serializable {
+
     companion object {
-        private const val serialVersionUID = 2L
+        const val serialVersionUID = 2L
     }
 }
