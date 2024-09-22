@@ -67,6 +67,7 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 ">"                     {print(">" ); return new Symbol(MySymUser.CLOSE ,yyline,yycolumn,yytext());}
 "<"                     {print("<" ); return new Symbol(MySymUser.OPEN ,yyline,yycolumn,yytext());}
 "xson"                  {print("xson"); return new Symbol(MySymUser.XSON ,yyline,yycolumn,yytext());}
+"xml"                   {print("xml"); return new Symbol(MySymUser.XML ,yyline,yycolumn,yytext());}
 "version"               {print("version"); return new Symbol(MySymUser.VERSION ,yyline,yycolumn,yytext());}
 /*SOLICITUD*/
 "<!"                        {print("<!" ); return new Symbol(MySymUser.OPEN_REQUEST ,yyline,yycolumn,yytext());}

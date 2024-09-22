@@ -74,7 +74,7 @@ terminal USER_DATA,NAME_USER,PASS_USER,NAME_PERSONAL_USER,INSTITUCION,DATE;
 /*TRIVIAS*/
 terminal NEW_TRIVIA,PARAMETROS_TRIVIA;
 terminal ID_TRIVIA,TIEMPO_PREGUNTA,TEMA,USUARIO_CREACION;
-terminal AGREGAR_COMPONENTE,PARAMETROS_COMPONENTE;
+terminal AGREGAR_COMPONENTE,PARAMETROS_COMPONENTE,XML;
 terminal ID,TRIVIA,CLASE,TEXTO_VISIBLE,RESPUESTA,INDICE,OPCIONES,COLUMNAS,FILAS;
 terminal MODIFICAR_TRIVIA,ELIMINAR_COMPONENTE,ELIMINAR_TRIVIA,MODIFICAR_COMPONENTE;
 /* No terminales */
@@ -83,6 +83,7 @@ non terminal inico_opereacion,operacion,parente;
 //inicio
 non terminal inicio_xson,bucle_inicio;
 non terminal inicio;
+non terminal xson_xml;
 //solicitud
 non terminal solicitud,cerrar_solicitud;
 //non terminal json, obj_json,solicitud_usuario,datas,data;
@@ -114,11 +115,16 @@ bucle_inicio
   ;
 
 inicio_xson ::= 
-    OPEN_VERSION XSON VERSION EQUAL STRING CLOSE_VERSION
+    OPEN_VERSION xson_xml VERSION EQUAL STRING CLOSE_VERSION
     |solicitud_unit
     |solicitudes
     ;
 
+xson_xml
+  ::=XSON
+  |XML
+  ;
+  
 solicitudes
   ::= OPEN_REQUEST MAKE_REQUESTS CLOSE varios_solicitud OPEN_REQUEST FINAL_REQUESTS CLOSE
   ;

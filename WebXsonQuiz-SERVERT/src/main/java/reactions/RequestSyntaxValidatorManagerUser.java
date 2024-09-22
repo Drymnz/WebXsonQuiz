@@ -153,7 +153,7 @@ public class RequestSyntaxValidatorManagerUser {
         if ((checkOne == null)) return false;
         Trivia checkDataBase = this.getTriviaDataBaseId(checkOne.getId());
         if ((checkDataBase != null)) return false;
-        this.dataBaseTrivia.getListTrivias().add(checkDataBase);
+        this.dataBaseTrivia.getListTrivias().add(checkOne);
         return true;
     }
 

@@ -58,7 +58,7 @@ public class ConverterAnalyzerToObjectTrivia {
         Trivia returTrivia = this.newTrivia(element);
         if(returTrivia.getId().isEmpty()) return null;
         if(returTrivia.getName().isEmpty()) return null;
-        if(returTrivia.getTime()<=0) return null;
+        if(returTrivia.getTime()<0) return null;
         if(returTrivia.getTheme().isEmpty()) return null;
         if(returTrivia.getIdUser().isEmpty()) return null;
         if(returTrivia.getDate().isEmpty()) return null;

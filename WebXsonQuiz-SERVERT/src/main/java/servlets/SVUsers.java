@@ -7,12 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
-import javax.servlet.http.HttpSession;
-
 import com.cunoc.webxsonquiz.data.servert.User;
-
 import reactions.DataBaseListTrivia;
 import reactions.DataBaseListUser;
 import reactions.RequestSyntaxValidatorManagerUser;
@@ -34,15 +30,16 @@ public class SVUsers extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String textArea = request.getParameter("textArea");
+        String userId = request.getParameter("userId");
+
         String errorMessage = null;
         
-        if (textArea == null || textArea.trim().isEmpty()) {
+        if (textArea == null || textArea.trim().isEmpty() || userId == null || userId.trim().isEmpty() ) {
             errorMessage = LanguageConstants.EMPTY_TEXT;
         } else {
             AnalyzerManagerUser analizer = new AnalyzerManagerUser(textArea);
             analizer.Anilisar();
-            //////new User("Bj", "", "", "", "")new User("Bj", "", "", "", "")new User("Bj", "", "", "", "")new User("Bj", "", "", "", "")
-            RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(),new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
+            RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(),new DataBaseListTrivia(),new User(userId, "", "", "", ""));
             requetSystaxValidator.checkRequests();
             requetSystaxValidator.upDataBase(); 
             request.setAttribute("resultsText", (new UserRequestReport(requetSystaxValidator).reportString()));

@@ -39,6 +39,7 @@
                 <div class="editor">
                     <h2>Editor XSON</h2>
                     <form action="${pageContext.request.contextPath}/SvUsers" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
+                        <input type="hidden" name="userId" value="<%= usuario != null ? usuario.getId() : "" %>">
                         <%  if ((textArea != null) && !textArea.isEmpty()) {%>
                         <textarea name="textArea" class="code-input" placeholder="Ingrese el usuario">
                             <%=textArea%>

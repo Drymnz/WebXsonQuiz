@@ -19,24 +19,24 @@ public class MySymUser {
   public static final int NEW_USER = 30;
   public static final int PASS_USER = 37;
   public static final int MAKE_REQUESTS = 28;
-  public static final int ELIMINAR_TRIVIA = 60;
-  public static final int RESPUESTA = 53;
+  public static final int ELIMINAR_TRIVIA = 61;
+  public static final int RESPUESTA = 54;
   public static final int SUMAR = 11;
-  public static final int INDICE = 54;
+  public static final int INDICE = 55;
   public static final int NAME_PERSONAL_USER = 38;
   public static final int DATE = 40;
   public static final int MODIFICAR_USUARIO = 31;
-  public static final int MODIFICAR_TRIVIA = 58;
+  public static final int MODIFICAR_TRIVIA = 59;
   public static final int FINAL_REQUEST = 24;
   public static final int VERSION = 6;
-  public static final int TRIVIA = 50;
+  public static final int TRIVIA = 51;
   public static final int STRING_DATE = 16;
-  public static final int ID = 49;
+  public static final int ID = 50;
   public static final int FINAL_REQUESTS = 29;
   public static final int USER_DATA = 35;
   public static final int EOF = 0;
   public static final int EQUAL = 2;
-  public static final int CLASE = 51;
+  public static final int CLASE = 52;
   public static final int error = 1;
   public static final int COMA = 27;
   public static final int ELIMINAR_USUARIO = 32;
@@ -48,28 +48,29 @@ public class MySymUser {
   public static final int DIVIDIR = 13;
   public static final int PARAMETROS_COMPONENTE = 48;
   public static final int INSTITUCION = 39;
-  public static final int MODIFICAR_COMPONENTE = 61;
+  public static final int MODIFICAR_COMPONENTE = 62;
   public static final int PARAMETROS_TRIVIA = 42;
   public static final int PARENTESIS_C = 18;
   public static final int BRACKETS_O = 19;
-  public static final int ELIMINAR_COMPONENTE = 59;
+  public static final int ELIMINAR_COMPONENTE = 60;
   public static final int PARENTESIS_A = 17;
   public static final int USUARIO_ANTIGUO = 33;
   public static final int AGREGAR_COMPONENTE = 47;
   public static final int OPEN = 9;
   public static final int MAKE_REQUEST = 26;
   public static final int STRING = 10;
+  public static final int XML = 49;
   public static final int BRACKETS_C = 20;
   public static final int CLOSE_VERSION = 4;
   public static final int OPEN_VERSION = 3;
-  public static final int COLUMNAS = 56;
+  public static final int COLUMNAS = 57;
   public static final int CLOSE = 8;
   public static final int XSON = 5;
-  public static final int FILAS = 57;
+  public static final int FILAS = 58;
   public static final int KEYS_O = 21;
   public static final int REAL_NUMEBERS = 15;
-  public static final int TEXTO_VISIBLE = 52;
-  public static final int OPCIONES = 55;
+  public static final int TEXTO_VISIBLE = 53;
+  public static final int OPCIONES = 56;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -120,6 +121,7 @@ public class MySymUser {
   "USUARIO_CREACION",
   "AGREGAR_COMPONENTE",
   "PARAMETROS_COMPONENTE",
+  "XML",
   "ID",
   "TRIVIA",
   "CLASE",
