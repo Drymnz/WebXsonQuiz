@@ -16,6 +16,7 @@ import reactions.ConstantSystem;
 import reactions.DataBaseListTrivia;
 import reactions.DataBaseListUser;
 import reactions.RequestSyntaxValidatorManagerUser;
+import reports.UserRequestReport;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -326,6 +327,19 @@ public class RequestServertTrivia {
         boolean goodText= !analizer.isError();
         requetSystaxValidator.upDataBase(); 
         Assertions.assertTrue(goodText);
+    }
+
+
+    @Test
+    public void testReportSystemAccesTrivia() {
+        AnalyzerManagerUser analizer = new AnalyzerManagerUser(solicitudTrivias);
+        analizer.Anilisar();
+        RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(), new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
+        requetSystaxValidator.checkRequests();
+        boolean goodText= !analizer.isError();
+        requetSystaxValidator.upDataBase(); 
+        String stringReport = (new UserRequestReport(requetSystaxValidator).reportString());
+        Assertions.assertTrue(!stringReport.isEmpty() && goodText);
     }
     
 }

@@ -19,11 +19,11 @@ public class UserRequestReport {
         String returnString = "<?xson version=”1.0” ?>";
         returnString += this.moreThanOneReports() ? "\n<!realizar_solicitudes>" : "";
         for (RequestAnalyzer element : this.guide.getListRequest()) {
-            returnString += "\n"+this.changeVariants(element, true);
+            returnString += "\n" + this.changeVariants(element, true);
             returnString += "<!fin_envio_respuestas>";
         }
         for (RequestAnalyzer element : this.guide.getListErrorRequest()) {
-            returnString += "\n"+this.changeVariants(element, false);
+            returnString += "\n" + this.changeVariants(element, false);
             returnString += "<!fin_envio_respuestas>";
         }
         returnString += this.moreThanOneReports() ? "\n<!envio_respuestas>" : "";
@@ -39,7 +39,7 @@ public class UserRequestReport {
         boolean firtData = false;
         for (DataAnalyzer data_element : element.getList()) {
             String firtDataString = firtData ? "," : "";
-            returnString += firtDataString + returnStringData(data_element);
+            returnString += "\n"+firtDataString + returnStringData(data_element);
             firtData = true;
         }
         returnString += "}]}\n";
@@ -49,21 +49,47 @@ public class UserRequestReport {
     private String returnStringData(DataAnalyzer data_element) {
         switch (data_element.getType()) {
             case DATE:
-                return "\"FECHA_CREACION\":"+data_element.getData();
+                return "\"FECHA_CREACION\":" + data_element.getData();
             case INSTITUTION:
-                return "\"INSTITUCION\":"+data_element.getData();
+                return "\"INSTITUCION\":" + data_element.getData();
             case NAME:
-                return "\"NOMBRE\":"+data_element.getData();
+                return "\"NOMBRE\":" + data_element.getData();
             case NUEVO_PASSWORD:
-                return "\"NUEVO_PASSWORD\":"+data_element.getData();
+                return "\"NUEVO_PASSWORD\":" + data_element.getData();
             case PASSWORD:
-                return "\"PASSWORD\":"+data_element.getData();
+                return "\"PASSWORD\":" + data_element.getData();
             case USUARIO:
-                return "\"USUARIO\":"+data_element.getData();
+                return "\"USUARIO\":" + data_element.getData();
             case USUARIO_ANTIGUO:
-                return "\"USUARIO_NUEVO\":"+data_element.getData();
+                return "\"USUARIO_ANTIGUO\":" + data_element.getData();
+            case ID_TRIVIA:
+                return "\"ID_TRIVIA\":" + data_element.getData();
+            case TIEMPO_PREGUNTA:
+                return "\"TIEMPO_PREGUNTA\":" + data_element.getData();
+            case USUARIO_CREACION:
+                return "\"USUARIO_CREACION\":" + data_element.getData();
+            case TEMA:
+                return "\"TEMA\":" + data_element.getData();
+            case ID:
+                return "\"ID\":" + data_element.getData();
+            case TRIVIA:
+                return "\"TRIVIA\":" + data_element.getData();
+            case CLASE:
+                return "\"CLASE\":" + data_element.getData();
+            case TEXTO_VISIBLE:
+                return "\"TEXTO_VISIBLE\":" + data_element.getData();
+            case RESPUESTA:
+                return "\"RESPUESTA\":" + data_element.getData();
+            case INDICE:
+                return "\"INDICE\":" + data_element.getData();
+            case OPCIONES:
+                return "\"OPCIONES\":" + data_element.getData();
+            case COLUMNAS:
+                return "\"COLUMNAS\":" + data_element.getData();
+            case FILAS:
+                return "\"FILAS\":" + data_element.getData();
             default:
-                return "";
+                return "\"UNKNOWN\":" + data_element.getData();
         }
     }
 
@@ -79,8 +105,20 @@ public class UserRequestReport {
                 return "<!realizar_solicitud: \"MODIFICAR_USUARIO\"" + stringAcceptanceOrRrror + "\"\">";
             case NEW_USER:
                 return "<!realizar_solicitud: \"USUARIO_NUEVO\"" + stringAcceptanceOrRrror + "\"\">";
+            case NEW_TRIVIA:
+                return "<!realizar_solicitud: \"NUEVA_TRIVIA\"" + stringAcceptanceOrRrror + "\"\">";
+            case MODIFICAR_TRIVIA:
+                return "<!realizar_solicitud: \"MODIFICAR_TRIVIA\"" + stringAcceptanceOrRrror + "\"\">";
+            case ELIMINAR_TRIVIA:
+                return "<!realizar_solicitud: \"ELIMINAR_TRIVIA\"" + stringAcceptanceOrRrror + "\"\">";
+            case AGREGAR_COMPONENTE:
+                return "<!realizar_solicitud: \"AGREGAR_COMPONENTE\"" + stringAcceptanceOrRrror + "\"\">";
+            case MODIFICAR_COMPONENTE:
+                return "<!realizar_solicitud: \"MODIFICAR_COMPONENTE\"" + stringAcceptanceOrRrror + "\"\">";
+            case ELIMINAR_COMPONENTE:
+                return "<!realizar_solicitud: \"ELIMINAR_COMPONENTE\"" + stringAcceptanceOrRrror + "\"\">";
             default:
-                return "";
+                return "<!realizar_solicitud: \"UNKNOWN\"" + stringAcceptanceOrRrror + "\"\">";
         }
     }
 

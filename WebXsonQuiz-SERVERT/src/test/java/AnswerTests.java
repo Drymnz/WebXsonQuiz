@@ -68,7 +68,7 @@ public class AnswerTests {
                 "<fin_solicitud_realizada!>\n" + //
                 "<!fin_solicitudes_realizada>";
     @Test
-    public void testSystemAccesUser() {
+    public void testReportSystemAccesUser() {
        AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepurevatestListRequery);
         analizer.Anilisar();
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(),new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
