@@ -104,23 +104,25 @@ class Trivias : AppCompatActivity() {
     }
     private suspend fun rederListTrivia(list: ArrayList<Trivia>) {
         withContext(Dispatchers.Main) {
-            // Inflar el layout
             val listViewTrivia: ListView = findViewById(R.id.listViewTrivia)
             val customAdapterListTrivia = CustomAdapterListTrivia(this@Trivias, list)
             listViewTrivia.adapter = customAdapterListTrivia
             listViewTrivia.setOnItemClickListener { parent, view, position, id ->
                 val selectedItem: Trivia = list[position]
                 Toast.makeText(this@Trivias, "Clicked: ${selectedItem.name}", Toast.LENGTH_SHORT).show()
-//                // Puedes lanzar una nueva actividad, mostrar un diálogo, etc.
-//                val intent = Intent(this, TriviaDetailActivity::class.java)
-//                intent.putExtra("triviaId", selectedItem.id) // Pasar el ID de la trivia seleccionada
-//                startActivity(intent)
+                this@Trivias.goTrivia(selectedItem)
             }
         }
     }
 
     fun clickUpDataTrivia(view: View){
         stateFlow.value = if (stateFlow.value == this.INICIO) this.UPDATA else this.INICIO
+    }
+
+    private fun goTrivia(trivia:Trivia){
+        val intent = Intent(this, ActivityTrivia::class.java)
+        intent.putExtra("trivia", trivia)
+        startActivity(intent)
     }
 
 }
