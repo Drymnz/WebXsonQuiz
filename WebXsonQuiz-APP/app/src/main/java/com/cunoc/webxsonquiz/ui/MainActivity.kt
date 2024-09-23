@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun clickCompi(view: View) {
-        Log.i("clickCompi,MainActivity",findViewById<EditText>(R.id.textArea).getText().toString())
+        Log.i("clickCompi,MainActivity", findViewById<EditText>(R.id.textArea).getText().toString())
         if (stateFlow.value.equals(this.INICIO)) {
             stateFlow.value = findViewById<EditText>(R.id.textArea).getText().toString()
             lifecycleScope.launch(Dispatchers.IO) {
@@ -112,12 +112,14 @@ class MainActivity : AppCompatActivity() {
                     stateFlow.collect { newValue ->
                         // receiving message`
                         val report = this@MainActivity.conectionServert?.sendMessage(newValue)
-                        if (report is Boolean) {
-                            this@MainActivity.irTrivias(report,this@MainActivity ,null)
-                        }
-                        println(report.toString())
-                        if (report is User) {
-                            this@MainActivity.irTrivias(true,this@MainActivity ,report)
+                        if (report != null) {
+                            println(report.toString())
+                            if (report is Boolean) {
+                                this@MainActivity.irTrivias(report, this@MainActivity, null)
+                            }
+                            if (report is User) {
+                                this@MainActivity.irTrivias(true, this@MainActivity, report)
+                            }
                         }
                     }
                 }
@@ -143,7 +145,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    suspend fun irTrivias(requestServert: Boolean,context: Context,user: User?) {
+    suspend fun irTrivias(requestServert: Boolean, context: Context, user: User?) {
         val messText: String =
             if (requestServert) getString(R.string.login_true) else getString(R.string.connected_false)
         this@MainActivity.messeg(context, messText)
@@ -152,13 +154,16 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 val intent = Intent(context, Trivias::class.java)
                 intent.putExtra("user", user) // Enviar el usuario
-                intent.putExtra("ConectionServert", this@MainActivity.getConectionServer()) // Enviar la conexión
+                intent.putExtra(
+                    "ConectionServert",
+                    this@MainActivity.getConectionServer()
+                ) // Enviar la conexión
                 startActivity(intent)
             }
         }
     }
 
-    suspend fun messeg(context: Context,messText:String){
+    suspend fun messeg(context: Context, messText: String) {
         withContext(Dispatchers.Main) {//Siempre Activites de vista en el primer hilo
             Toast.makeText(context, messText, Toast.LENGTH_SHORT).show()
         }

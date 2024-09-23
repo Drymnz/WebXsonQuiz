@@ -4,8 +4,13 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.AdapterView
 import android.widget.LinearLayout
+import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,11 +23,14 @@ import com.example.webxsonquiz.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Trivias : AppCompatActivity() {
     private var user: User? = null
     private var conectionServer: ConectionServert? = null
-    private var INICIO: String = "INICIO"
+    private val INICIO: String = "INICIO"
+    private val UPDATA: String = "INICIO"
+
     private val stateFlow = MutableStateFlow(INICIO)
     private var layout: LinearLayout? = null
     private var listTrivias:ArrayList<Trivia> = ArrayList()
@@ -37,8 +45,31 @@ class Trivias : AppCompatActivity() {
             // sending message
             val job = launch {
                 stateFlow.collect { newValue ->
-                    if (!newValue.equals(this@Trivias.INICIO)){
-                        val report = this@Trivias.conectionServer?.sendMessage(newValue)
+                    if (newValue.equals(this@Trivias.UPDATA)|| newValue.equals(this@Trivias.INICIO)){
+                        var newTrivia = this@Trivias.conectionServer?.sendMessage(this@Trivias.listTrivias)
+                        if ( newTrivia!=null){
+                            if (newTrivia is Trivia){
+                                this@Trivias.listTrivias.add(newTrivia)
+                                var outBoolean:Boolean = true
+                                var intentoss:Int = 0
+                                do {
+                                    val newTriviaTwo = this@Trivias.conectionServer?.sendMessage(newTrivia)
+                                    if (newTriviaTwo is Trivia){
+                                        this@Trivias.listTrivias.add(newTriviaTwo)
+                                    }
+                                    if (newTrivia is Boolean){
+                                        outBoolean = newTrivia
+                                    }
+                                    if (newTrivia==null && intentoss > 10){
+                                        outBoolean = false
+                                    }
+                                    if (newTrivia==null) {
+                                        intentoss++
+                                    }
+                                }while (outBoolean)
+                                rederListTrivia(this@Trivias.listTrivias)
+                            }
+                        }
                     }
                 }
             }
@@ -58,15 +89,36 @@ class Trivias : AppCompatActivity() {
     private fun info(user:User){
         this.layout = findViewById(R.id.layout)
         this.user = user
-        val textView = TextView(this).apply {
-            text = user.toString()
-            setTextColor(Color.RED) // Cambiar el color del texto
-            textSize = 20f // Establecer el tamaño del texto
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-        }
-        this.layout!!.addView(textView)
+
+        // Inflar el layout
+        val inflater = LayoutInflater.from(this)
+        val resultView = inflater.inflate(R.layout.layout_user, null)
+
+        val textViewIdUser: TextView = resultView.findViewById(R.id.textViewIdUser)
+        val textViewUserInstition: TextView = resultView.findViewById(R.id.textViewUserInstitution)
+
+        textViewIdUser.text = user.id.toString()
+        textViewUserInstition.text = user.institution.toString()
+
+        this.layout!!.addView(resultView)
     }
+    private suspend fun rederListTrivia(list:ArrayList<Trivia>){
+        // Inflar el layout
+        val listViewTrivia:ListView = findViewById(R.id.listViewTrivia)
+        val customAdapterListTrivia:CustomAdapterListTrivia = CustomAdapterListTrivia(this,listTrivias)
+        listViewTrivia.adapter = customAdapterListTrivia
+        listViewTrivia.setOnItemClickListener { parent, view, position, id ->
+            val selectedItem:Trivia = list[position]
+            Toast.makeText(this, "Clicked: ${selectedItem.id}", Toast.LENGTH_SHORT).show()
+        }
+        withContext(Dispatchers.Main) {
+            this@Trivias.layout!!.addView(listViewTrivia)
+        }
+        Toast.makeText(this, "Clicked:", Toast.LENGTH_LONG).show()
+    }
+
+    fun clickUpDataTrivia(view: View){
+        stateFlow.value = if (stateFlow.value == this.INICIO) this.UPDATA else this.INICIO
+    }
+
 }

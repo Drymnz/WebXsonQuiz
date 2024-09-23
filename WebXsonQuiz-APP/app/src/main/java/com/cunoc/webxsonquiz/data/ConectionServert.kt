@@ -30,9 +30,9 @@ class ConectionServert(private val ip: String, private val port: Int) : Parcelab
 
     fun sendMessage(message: Any?): Any? {
         outputStream?.writeObject(message)
-        var dataRequest: Any? = null
         try {
-            dataRequest = inputStream?.readObject()
+            val dataRequest = inputStream?.readObject()
+            return dataRequest
         } catch (e: ClassNotFoundException) {
             println("Error: La clase del objeto no pudo ser encontrada. Detalles: ${e.message}")
         } catch (e: IOException) {
@@ -42,7 +42,7 @@ class ConectionServert(private val ip: String, private val port: Int) : Parcelab
         } finally {
             println("Finalizando la operación de lectura del objeto.")
         }
-        return dataRequest
+        return null
     }
 
     fun getSocket(): Socket? = socket

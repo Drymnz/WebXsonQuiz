@@ -4,13 +4,17 @@
  */
 package servlets.socket;
 
+import com.cunoc.webxsonquiz.data.servert.Trivia;
 import com.cunoc.webxsonquiz.data.servert.User;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import reactions.DataBaseListTrivia;
 
 import reactions.SystemAcess;
 
@@ -22,6 +26,8 @@ public class ClientHandler implements Runnable {
 
     private Socket clientSocket;
     private User userclient = null;
+    private int index = 0;
+    private List<Trivia> listTriviaDataBase = null;
 
     public ClientHandler(Socket clientSocket) {
         this.clientSocket = clientSocket;
@@ -48,32 +54,62 @@ public class ClientHandler implements Runnable {
             in = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
             boolean outCliente = false;
-            System.out.println("Se conecto ->"+clientSocket.getLocalAddress().getHostAddress());
+            System.out.println("Se conecto ->" + clientSocket.getLocalAddress().getHostAddress());
             /* El mensaje que manda el cliente */
             while (!outCliente) {
                 System.out.println("----------------- ESPERANDO MENSAJE-----------------");
                 /* El mensaje que manda el cliente */
                 Object getCliente = in.readObject();
+
                 if (getCliente instanceof String) {
                     String text = (String) getCliente;
-                    System.out.println(clientSocket.getLocalAddress().getHostAddress()+"Peticion > " + text);
+                    System.out.println(clientSocket.getLocalAddress().getHostAddress() + "Peticion > " + text);
                     if (text.equals("false")) {
                         outCliente = !outCliente;
-                        System.out.println("CERRAR a "+ clientSocket.getLocalAddress().getHostAddress());
+                        System.out.println("CERRAR a " + clientSocket.getLocalAddress().getHostAddress());
                         out.writeObject(false);
                         out.flush();
                     } else {
                         boolean login = this.loginClient(text);
-                        String nameCliente = this.clientSocket!=null ? this.userclient.getId() : clientSocket.getLocalAddress().getHostAddress();
-                        System.out.println(nameCliente+" envio > " + login);
+                        String nameCliente = this.clientSocket != null ? this.userclient.getId() : clientSocket.getLocalAddress().getHostAddress();
                         if (login) {
+                            System.out.println("Entro: "+nameCliente);
                             out.writeObject(this.userclient);
                             out.flush();
                         } else {
+                            System.out.println("Intento de cliente: "+nameCliente);
                             out.writeObject(login);
                             out.flush();
                         }
                     }
+                }else
+                if (getCliente instanceof ArrayList) {
+                    this.index = 0;
+                    this.listTriviaDataBase = (new DataBaseListTrivia().getListTrivias());
+                    if (this.listTriviaDataBase.size() > this.index) {
+                        Trivia newTrivia = listTriviaDataBase.get(this.index);
+                        System.out.println("Le manda las trivias " + (this.index + 1) + "/" + this.listTriviaDataBase.size() + " => " + clientSocket.getLocalAddress().getHostAddress());
+                        out.writeObject(newTrivia);
+                        out.flush();
+                    } else {
+                        out.writeObject(false);
+                        out.flush();
+                    }
+                }else
+                if (getCliente instanceof Trivia) {
+                    index++;
+                    if (this.listTriviaDataBase.size() > this.index) {
+                        Trivia newTrivia = listTriviaDataBase.get(this.index);
+                        System.out.println("Le manda las trivias " + (this.index + 1) + "/" + this.listTriviaDataBase.size() + " => " + clientSocket.getLocalAddress().getHostAddress());
+                        out.writeObject(newTrivia);
+                        out.flush();
+                    } else {
+                        out.writeObject(false);
+                        out.flush();
+                    }
+                }
+                if (getCliente == null) {
+                    outCliente = true;
                 }
                 System.out.println("----------------- REPUESTA-----------------");
             }
