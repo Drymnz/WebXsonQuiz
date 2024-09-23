@@ -17,12 +17,12 @@ class CustomAdapterListTrivia(
         return listTrivias.size
     }
 
-    override fun getItem(p0: Int): Any {
-        return  p0
+    override fun getItem(position: Int): Any {
+        return listTrivias[position]
     }
 
-    override fun getItemId(p0: Int): Long {
-        TODO("Not yet implemented")
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
     }
 
     override fun getView(index: Int, convertView: View?, p2: ViewGroup?): View {
