@@ -108,9 +108,9 @@ public class ClientHandler implements Runnable {
                         out.flush();
                     }
                 }
-                if (getCliente == null) {
-                    outCliente = true;
-                }
+                /*                if (getCliente == null) {
+                outCliente = true;
+                }*/
                 System.out.println("----------------- REPUESTA-----------------");
             }
             System.out.println("----------------- SE DESCONECTO ALGUIEN -----------------");

@@ -6,32 +6,35 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="390dp"
-        android:layout_height="719dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
-
+        >
         <TextView
             android:id="@+id/textViewTriviaName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:padding="8dp"
+            />
 
         <TextView
             android:id="@+id/textViewTriviaTheme"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/textViewTriviaTime"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="20dp"
+            android:gravity="center|right"
+            android:text="TextView"
+            android:textColor="#DF0025"
+            />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

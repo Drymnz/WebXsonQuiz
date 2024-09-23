@@ -18,9 +18,19 @@ class ConectionServert(private val ip: String, private val port: Int) : Parcelab
     }
 
     private fun initializeConnection() {
-        socket = Socket(ip, port)
-        outputStream = ObjectOutputStream(socket?.getOutputStream())
-        inputStream = ObjectInputStream(socket?.getInputStream())
+        try {
+            socket = Socket(ip, port)
+            outputStream = ObjectOutputStream(socket?.getOutputStream())
+            inputStream = ObjectInputStream(socket?.getInputStream())
+        } catch (e: ClassNotFoundException) {
+            println("Error: La clase del objeto no pudo ser encontrada. Detalles: ${e.message}")
+        } catch (e: IOException) {
+            println("Error: Fallo en la lectura del objeto. Detalles: ${e.message}")
+        } catch (e: Exception) {
+            println("Error inesperado: ${e.message}")
+        } finally {
+            println("Finalizando la operación de lectura del objeto.")
+        }
     }
 
     constructor(parcel: Parcel) : this(

@@ -40,7 +40,7 @@ class Trivias : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_trivias)
         val user: User = getIntent().getSerializableExtra("user") as User
-        lifecycleScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.Default) {
             this@Trivias.conectionServer = getIntent().getParcelableExtra("ConectionServert")
             // sending message
             val job = launch {
@@ -57,17 +57,17 @@ class Trivias : AppCompatActivity() {
                                     if (newTriviaTwo is Trivia){
                                         this@Trivias.listTrivias.add(newTriviaTwo)
                                     }
-                                    if (newTrivia is Boolean){
-                                        outBoolean = newTrivia
+                                    if (newTriviaTwo is Boolean){
+                                        outBoolean = newTriviaTwo
                                     }
-                                    if (newTrivia==null && intentoss > 10){
+                                    if (newTriviaTwo==null && intentoss > 10){
                                         outBoolean = false
                                     }
-                                    if (newTrivia==null) {
+                                    if (newTriviaTwo==null) {
                                         intentoss++
                                     }
                                 }while (outBoolean)
-                                rederListTrivia(this@Trivias.listTrivias)
+                                this@Trivias.rederListTrivia(this@Trivias.listTrivias)
                             }
                         }
                     }
@@ -102,19 +102,13 @@ class Trivias : AppCompatActivity() {
 
         this.layout!!.addView(resultView)
     }
-    private suspend fun rederListTrivia(list:ArrayList<Trivia>){
-        // Inflar el layout
-        val listViewTrivia:ListView = findViewById(R.id.listViewTrivia)
-        val customAdapterListTrivia:CustomAdapterListTrivia = CustomAdapterListTrivia(this,listTrivias)
-        listViewTrivia.adapter = customAdapterListTrivia
-        listViewTrivia.setOnItemClickListener { parent, view, position, id ->
-            val selectedItem:Trivia = list[position]
-            Toast.makeText(this, "Clicked: ${selectedItem.id}", Toast.LENGTH_SHORT).show()
-        }
+    private suspend fun rederListTrivia(list: ArrayList<Trivia>) {
         withContext(Dispatchers.Main) {
-            this@Trivias.layout!!.addView(listViewTrivia)
+            // Inflar el layout
+            val listViewTrivia: ListView = findViewById(R.id.listViewTrivia)
+            val customAdapterListTrivia = CustomAdapterListTrivia(this@Trivias, list)
+            listViewTrivia.adapter = customAdapterListTrivia
         }
-        Toast.makeText(this, "Clicked:", Toast.LENGTH_LONG).show()
     }
 
     fun clickUpDataTrivia(view: View){
