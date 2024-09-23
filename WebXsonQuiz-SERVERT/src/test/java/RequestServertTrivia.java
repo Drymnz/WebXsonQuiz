@@ -209,7 +209,7 @@ public class RequestServertTrivia {
                 "}\n" + //
                 "]}\n" + //
                 "<fin_solicitud_realizada!>\n" + //
-                "<!-- 6 -->\n" + //
+                "<!-- 6 -->\n" + //¿Quién escribió 
                 "<!realizar_solicitud: \"AGREGAR_COMPONENTE\" >\n" + //
                 "{ \"PARAMETROS_COMPONENTE\":[{\n" + //
                 "  \"ID\": \"$_autor_quijote\",\n" + //

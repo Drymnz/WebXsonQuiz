@@ -70,6 +70,7 @@ non terminal inicio;
 non terminal json;
 non terminal obj_json,data,data_user,datas_user;
 non terminal secuenci_json;
+non terminal empty_list;
 /* Gramática */
 start with inicio;
 /******operaciones matematicas*****/
@@ -83,9 +84,15 @@ bucle_inicio
   ;
 
 json::=
-  BRACKETS_O secuenci_json BRACKETS_C
+  BRACKETS_O empty_list BRACKETS_C
   |secuenci_json
   ;
+
+empty_list
+  ::= secuenci_json
+  |
+  ;
+
 
 secuenci_json 
   ::=obj_json COMA secuenci_json

@@ -88,6 +88,7 @@ non terminal obj_json,data,data_trivia,datas_trivia;
 non terminal secuenci_json;
 non terminal dato_component,datos_component,componet,componets;
 non terminal tercer_strucutre,segunda_strucur,derivaciones_structure,structure;
+non terminal empty_list;
 //operaicones
 non terminal inico_opereacion,operacion,parente;
 /*************************************PRECEDENCIA******************************************************/
@@ -111,8 +112,13 @@ bucle_inicio
   ;
 
 json::=
-  BRACKETS_O secuenci_json BRACKETS_C
+  BRACKETS_O empty_list BRACKETS_C
   |secuenci_json
+  ;
+
+empty_list
+  ::= secuenci_json
+  |
   ;
 
 secuenci_json 

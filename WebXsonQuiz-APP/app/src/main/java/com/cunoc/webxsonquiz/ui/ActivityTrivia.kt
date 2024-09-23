@@ -1,6 +1,7 @@
 package com.cunoc.webxsonquiz.ui
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.LayoutInflater
@@ -30,6 +31,8 @@ class ActivityTrivia : AppCompatActivity() {
 
     private var textViewTimeTrivia: TextView? = null;
     private val list: ArrayList<ResultComponentTrivia> = ArrayList<ResultComponentTrivia>();
+    private val CREADOR:String = "Creador : "
+    private val TIME_TRIVIA:String = "Tiempo de la trivia : "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,7 +107,7 @@ class ActivityTrivia : AppCompatActivity() {
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         }
-        list.add(ResultComponentTrivia(component, editText.text))
+        list.add(ResultComponentTrivia(component,editText ))
         val layout: LinearLayout = findViewById(R.id.LayoutActivityTrivia)
         layout!!.addView(editText)
     }
@@ -129,11 +132,12 @@ class ActivityTrivia : AppCompatActivity() {
             // Establecer un límite de caracteres (por ejemplo, 100 caracteres)
             filters = arrayOf(InputFilter.LengthFilter(maxCharacters))
         }
-        list.add(ResultComponentTrivia(component, editTextMultiLine.text))
+
         editTextMultiLine.setVerticalScrollBarEnabled(true)
         editTextMultiLine.setHorizontalScrollBarEnabled(true)
         val layout: LinearLayout = findViewById(R.id.LayoutActivityTrivia)
         layout!!.addView(editTextMultiLine)
+        list.add(ResultComponentTrivia(component,editTextMultiLine ))
     }
 
     private fun loadCheckbox(component: ComponentTrivia) {
@@ -151,36 +155,7 @@ class ActivityTrivia : AppCompatActivity() {
             layout.addView(checkBox)
         }
 
-        // Crear un botón para mostrar las opciones seleccionadas
-        val button = Button(this).apply {
-            text = "Mostrar Seleccionados"
-            setOnClickListener {
-                val selectedOptions = StringBuilder("Seleccionados: ")
-
-                checkBoxes.forEach { checkBox ->
-                    if (checkBox.isChecked) {
-                        selectedOptions.append(checkBox.text).append(", ")
-                    }
-                }
-
-                // Mostrar las opciones seleccionadas en un Toast
-                if (selectedOptions.toString().endsWith(", ")) {
-                    selectedOptions.setLength(selectedOptions.length - 2) // Eliminar la última coma
-                }
-
-                // Verifica si hay opciones seleccionadas
-                if (selectedOptions.toString() == "Seleccionados: ") {
-                    selectedOptions.append("Ninguna")
-                }
-
-                Toast.makeText(this@ActivityTrivia, selectedOptions.toString(), Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-
-        // Agregar el botón al layout
-
-        layout.addView(button)
+       // list.add(ResultComponentTrivia(component, ))
     }
 
     private fun loadFile(component: ComponentTrivia) {
@@ -201,17 +176,7 @@ class ActivityTrivia : AppCompatActivity() {
 
         // Agregar el Spinner al layout
         layout.addView(spinner)
-
-        // Crear un botón para mostrar la opción seleccionada
-        val button = Button(this).apply {
-            text = "Mostrar Seleccionado"
-            setOnClickListener {
-                val selectedOption = spinner.selectedItem.toString() // Obtener la opción seleccionada
-                Toast.makeText(this@ActivityTrivia, "Seleccionado: $selectedOption", Toast.LENGTH_SHORT).show()
-            }
-        }
-        // Agregar el botón al layout
-        layout.addView(button)
+        list.add(ResultComponentTrivia(component,spinner ))
     }
 
     private fun loadRadio(component: ComponentTrivia) {
@@ -236,32 +201,7 @@ class ActivityTrivia : AppCompatActivity() {
 
         // Agregar el RadioGroup al layout
         layout.addView(radioGroup)
-
-        // Crear un botón para mostrar la opción seleccionada
-        val button = Button(this).apply {
-            text = "Mostrar Seleccionado"
-            setOnClickListener {
-                // Obtener el ID del RadioButton seleccionado
-                val selectedId = radioGroup.checkedRadioButtonId
-                if (selectedId != -1) {
-                    // Encontrar el RadioButton seleccionado
-                    val selectedRadioButton = findViewById<RadioButton>(selectedId)
-                    Toast.makeText(
-                        this@ActivityTrivia,
-                        "Seleccionado: ${selectedRadioButton.text}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        this@ActivityTrivia,
-                        "Ninguna opción seleccionada",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
-        // Agregar el botón al layout
-        layout.addView(button)
+        list.add(ResultComponentTrivia(component,radioGroup ))
     }
 
     private fun handleNullOrEmpty(component: ComponentTrivia) {}
@@ -289,31 +229,15 @@ class ActivityTrivia : AppCompatActivity() {
         this.textViewTimeTrivia = resultView.findViewById(R.id.textViewTimeTrivia)
         textViewNameTrivia.text = trivia.name
         textViewThemeTrivia.text = trivia.theme
-        textViewIdUserTrivia.text = trivia.idUser
-        this.textViewTimeTrivia!!.text = trivia.time.toString()
+        textViewIdUserTrivia.text = this.CREADOR + trivia.idUser
+        this.timeTrivia(trivia.time)
 
         val layout: LinearLayout = findViewById(R.id.LayoutActivityTrivia)
         layout!!.addView(resultView)
     }
 
-    private fun newTextView(): TextView {
-        val textView = TextView(this@ActivityTrivia)
-        textView.text = "TextView"
-
-        // Configurar parámetros de diseño
-        val params = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT, // Ancho (match_parent)
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-        )
-        textView.layoutParams = params
-        return textView
-    }
-
-    private fun newTextViewLayout(): TextView {
-        val textView: TextView = this.newTextView()
-        val layout: LinearLayout = findViewById<LinearLayout>(R.id.LayoutActivityTrivia)
-        layout.addView(textView)
-        return textView
+    private fun timeTrivia(time: Double){
+        this.textViewTimeTrivia!!.text =  this.TIME_TRIVIA + time.toString()
     }
 
     private fun loadButtonSend() {
@@ -324,6 +248,9 @@ class ActivityTrivia : AppCompatActivity() {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
+            setBackgroundColor(Color.parseColor("#02BFF5")) // Fondo azul personalizado
+            setTextColor(Color.WHITE) // Texto blanco para el botón
+            textSize = 18f // Tamaño del texto
         }
 
         // Definir la funcionalidad al hacer clic
