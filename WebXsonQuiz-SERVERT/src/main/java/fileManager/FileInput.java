@@ -1,6 +1,6 @@
 package fileManager;
 
-
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,48 +16,33 @@ import javax.swing.JOptionPane;
  * @author drymnz
  */
 public class FileInput {
-    
-     private FileInputStream entrada = null;;
 
     public String cargarArchivoTexto(File carchivo) {
+        if (!carchivo.exists() || !carchivo.canRead()) {
+            JOptionPane.showMessageDialog(null, "El archivo no existe o no se puede leer.");
+            return "";
+        }
         StringBuilder extraje = new StringBuilder();
-        InputStreamReader lector = null;
-        
-        try {
-            // Abrir el archivo con FileInputStream
-            entrada = new FileInputStream(carchivo);
-            // Crear InputStreamReader para leer con codificación UTF-8
-            lector = new InputStreamReader(entrada, StandardCharsets.UTF_8);
-            int valor;
-            // Leer el archivo carácter por carácter
-            while ((valor = lector.read()) != -1) {
-                extraje.append((char) valor);
+        try (FileInputStream entrada = new FileInputStream(carchivo);
+                InputStreamReader lector = new InputStreamReader(entrada, StandardCharsets.UTF_8);
+                BufferedReader bufferedReader = new BufferedReader(lector)) {
+
+            String linea;
+            // Leer el archivo línea por línea
+            while ((linea = bufferedReader.readLine()) != null) {
+                extraje.append(linea).append(System.lineSeparator());
             }
         } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Error en la lectura: Archivo no encontrado");
+            System.out.println("Error en la lectura: Archivo no encontrado");
             Logger.getLogger(FileInput.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Error en la lectura del archivo");
+            System.out.println("Error en la lectura del archivo");
             Logger.getLogger(FileInput.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            // Cerrar los streams de manera segura
-            if (lector != null) {
-                try {
-                    lector.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(FileInput.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (entrada != null) {
-                try {
-                    entrada.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(FileInput.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
         }
         // Retornar el texto extraído
-        return extraje.toString();
+        String readString = extraje.toString();
+        readString = readString.replace("\\u0027", "'");
+        return readString;
     }
 
     public File exiteDireccion(File verificar) {

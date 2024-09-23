@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Trivia  implements Serializable{
 
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 2L;
 
     private String id;
     private String name;

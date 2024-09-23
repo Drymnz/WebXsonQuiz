@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ComponentTrivia implements Serializable {
 
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
     private String idComponent;
     private ClassComponent type ;
@@ -100,6 +100,5 @@ public class ComponentTrivia implements Serializable {
     public void setIdTrivia(String idTrivia) {
         this.idTrivia = idTrivia;
     }
-    
     
 }

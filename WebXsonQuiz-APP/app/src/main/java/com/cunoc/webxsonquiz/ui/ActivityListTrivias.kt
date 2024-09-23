@@ -36,7 +36,7 @@ class ActivityListTrivias : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_trivias)
-        val user: User = getIntent().getSerializableExtra("user") as User
+        val user: User = getIntent()!!.getSerializableExtra("user") as User
         lifecycleScope.launch(Dispatchers.IO) {
             this@ActivityListTrivias.conectionServer = getIntent().getParcelableExtra("ConectionServert")
             // sending message

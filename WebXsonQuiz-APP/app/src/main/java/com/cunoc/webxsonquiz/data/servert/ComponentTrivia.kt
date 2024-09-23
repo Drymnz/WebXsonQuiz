@@ -2,7 +2,7 @@ package com.cunoc.webxsonquiz.data.servert
 
 import java.io.Serializable
 
-class ComponentTrivia(
+data class ComponentTrivia(
     var idComponent: String,
     var type: ClassComponent,
     var index: Int,
@@ -15,6 +15,6 @@ class ComponentTrivia(
 ) : Serializable {
 
     companion object {
-        const val serialVersionUID = 2L
+        private const val serialVersionUID: Long = 3L
     }
 }

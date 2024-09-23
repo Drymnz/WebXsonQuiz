@@ -23,4 +23,5 @@ public class LanguageConstants {
     public final static String DENIED_REQUEST = "_DENEGADO";
     public final static String DATABASE_UPDATA_TRIVIA = "Se modifico y se actualizo la base de datos de las trivias.";
     public final static String NOT_DATABASE_UPDATA_TRIVIA = "Error al actualizar la base de datos de las trivias.";
+    public final static String OUT_CLIENT_SERVERT = "Salio del servidor.";
 }
