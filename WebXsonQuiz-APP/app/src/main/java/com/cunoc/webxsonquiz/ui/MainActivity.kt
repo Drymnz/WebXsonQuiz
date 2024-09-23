@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity() {
 
         if (requestServert && user != null) {
             withContext(Dispatchers.Main) {
-                val intent = Intent(context, Trivias::class.java)
+                val intent = Intent(context, ActivityListTrivias::class.java)
                 intent.putExtra("user", user) // Enviar el usuario
                 intent.putExtra(
                     "ConectionServert",

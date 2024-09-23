@@ -28,6 +28,7 @@ public class ClientHandler implements Runnable {
     private User userclient = null;
     private int index = 0;
     private List<Trivia> listTriviaDataBase = null;
+    private  boolean outCliente = false;
 
     public ClientHandler(Socket clientSocket) {
         this.clientSocket = clientSocket;
@@ -53,10 +54,10 @@ public class ClientHandler implements Runnable {
             // Lógica para manejar la conexión del cliente
             in = new ObjectInputStream(clientSocket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-            boolean outCliente = false;
+            this.outCliente = false;
             System.out.println("Se conecto ->" + clientSocket.getLocalAddress().getHostAddress());
             /* El mensaje que manda el cliente */
-            while (!outCliente) {
+            while (!this.outCliente) {
                 System.out.println("----------------- ESPERANDO MENSAJE-----------------");
                 /* El mensaje que manda el cliente */
                 Object getCliente = in.readObject();
@@ -65,7 +66,7 @@ public class ClientHandler implements Runnable {
                     String text = (String) getCliente;
                     System.out.println(clientSocket.getLocalAddress().getHostAddress() + "Peticion > " + text);
                     if (text.equals("false")) {
-                        outCliente = !outCliente;
+                        this.outCliente = !this.outCliente;
                         System.out.println("CERRAR a " + clientSocket.getLocalAddress().getHostAddress());
                         out.writeObject(false);
                         out.flush();

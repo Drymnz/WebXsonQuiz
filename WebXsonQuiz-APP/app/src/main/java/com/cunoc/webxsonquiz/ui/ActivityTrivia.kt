@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -37,9 +38,41 @@ class ActivityTrivia : AppCompatActivity() {
         this.trivia = userTrivia
         val layout: LinearLayout = findViewById(R.id.LayoutActivityTrivia)
         // Crea un nuevo TextView
+        val textViewName:TextView = findViewById(R.id.textViewNameTrivia)
+        val textViewThemeTrivia:TextView = findViewById(R.id.textViewThemeTrivia)
+        val textViewIdUserTrivia:TextView = findViewById(R.id.textViewIdUserTrivia)
+        val textViewTimeTrivia:TextView = findViewById(R.id.textViewTimeTrivia)
+
+        textViewName.text = userTrivia.name
+        textViewThemeTrivia.text = userTrivia.theme
+        textViewIdUserTrivia.text = userTrivia.idUser
+        textViewTimeTrivia.text = userTrivia.time.toString()
+
+        // Crea los
+        for (element in userTrivia.getListComponent()) {
+            this.textView(layout,element.text)
+        }
+        // Crear un Button dinámico
+        val button = Button(this)
+        button.text = "Hacer algo"
+
+        val buttonParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        buttonParams.setMargins(16, 16, 16, 16)
+        button.layoutParams = buttonParams
+
+        button.setOnClickListener {
+            Toast.makeText(this, "¡Botón presionado!", Toast.LENGTH_SHORT).show()
+        }
+        layout.addView(button)
+    }
+
+    private fun textView(layout: LinearLayout,text:String){
         val textView = TextView(this@ActivityTrivia)
 
-        textView.text = userTrivia.name
+        textView.text = text
         textView.textSize = 16f
         textView.gravity = Gravity.CENTER
 
@@ -53,11 +86,6 @@ class ActivityTrivia : AppCompatActivity() {
 
         // Agregar TextView al LinearLayout
         layout.addView(textView)
-
-        // Logs para depuración
-        Log.d("LoadTrivia", "TextView agregado con texto: ${userTrivia.name}")
-        Toast.makeText(this, "Agregado: ${userTrivia.name}", Toast.LENGTH_SHORT).show()
     }
-
 
 }

@@ -4,10 +4,10 @@ import java.io.Serializable
 
 class Trivia(
     var id: String,
-    var name: String,
+    var name: String,//
     var time: Double,
-    var theme: String,
-    var idUser: String,
+    var theme: String,//
+    var idUser: String,//
     var date: String
 ) : Serializable {
 

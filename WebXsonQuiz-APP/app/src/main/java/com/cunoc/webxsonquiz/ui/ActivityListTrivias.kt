@@ -1,12 +1,9 @@
 package com.cunoc.webxsonquiz.ui
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
@@ -25,7 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class Trivias : AppCompatActivity() {
+class ActivityListTrivias : AppCompatActivity() {
     private var user: User? = null
     private var conectionServer: ConectionServert? = null
     private val INICIO: String = "INICIO"
@@ -40,22 +37,22 @@ class Trivias : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_trivias)
         val user: User = getIntent().getSerializableExtra("user") as User
-        lifecycleScope.launch(Dispatchers.Default) {
-            this@Trivias.conectionServer = getIntent().getParcelableExtra("ConectionServert")
+        lifecycleScope.launch(Dispatchers.IO) {
+            this@ActivityListTrivias.conectionServer = getIntent().getParcelableExtra("ConectionServert")
             // sending message
             val job = launch {
                 stateFlow.collect { newValue ->
-                    if (newValue.equals(this@Trivias.UPDATA)|| newValue.equals(this@Trivias.INICIO)){
-                        var newTrivia = this@Trivias.conectionServer?.sendMessage(this@Trivias.listTrivias)
+                    if (newValue.equals(this@ActivityListTrivias.UPDATA)|| newValue.equals(this@ActivityListTrivias.INICIO)){
+                        var newTrivia = this@ActivityListTrivias.conectionServer?.sendMessage(this@ActivityListTrivias.listTrivias)
                         if ( newTrivia!=null){
                             if (newTrivia is Trivia){
-                                this@Trivias.listTrivias.add(newTrivia)
+                                this@ActivityListTrivias.listTrivias.add(newTrivia)
                                 var outBoolean:Boolean = true
                                 var intentoss:Int = 0
                                 do {
-                                    val newTriviaTwo = this@Trivias.conectionServer?.sendMessage(newTrivia)
+                                    val newTriviaTwo = this@ActivityListTrivias.conectionServer?.sendMessage(newTrivia)
                                     if (newTriviaTwo is Trivia){
-                                        this@Trivias.listTrivias.add(newTriviaTwo)
+                                        this@ActivityListTrivias.listTrivias.add(newTriviaTwo)
                                     }
                                     if (newTriviaTwo is Boolean){
                                         outBoolean = newTriviaTwo
@@ -67,7 +64,7 @@ class Trivias : AppCompatActivity() {
                                         intentoss++
                                     }
                                 }while (outBoolean)
-                                this@Trivias.rederListTrivia(this@Trivias.listTrivias)
+                                this@ActivityListTrivias.rederListTrivia(this@ActivityListTrivias.listTrivias)
                             }
                         }
                     }
@@ -105,17 +102,18 @@ class Trivias : AppCompatActivity() {
     private suspend fun rederListTrivia(list: ArrayList<Trivia>) {
         withContext(Dispatchers.Main) {
             val listViewTrivia: ListView = findViewById(R.id.listViewTrivia)
-            val customAdapterListTrivia = CustomAdapterListTrivia(this@Trivias, list)
+            val customAdapterListTrivia = CustomAdapterListTrivia(this@ActivityListTrivias, list)
             listViewTrivia.adapter = customAdapterListTrivia
             listViewTrivia.setOnItemClickListener { parent, view, position, id ->
                 val selectedItem: Trivia = list[position]
-                Toast.makeText(this@Trivias, "Clicked: ${selectedItem.name}", Toast.LENGTH_SHORT).show()
-                this@Trivias.goTrivia(selectedItem)
+                Toast.makeText(this@ActivityListTrivias, "Clicked: ${selectedItem.name}", Toast.LENGTH_SHORT).show()
+                this@ActivityListTrivias.goTrivia(selectedItem)
             }
         }
     }
 
     fun clickUpDataTrivia(view: View){
+        Toast.makeText(this@ActivityListTrivias, "Clicked: ${stateFlow.value}", Toast.LENGTH_SHORT).show()
         stateFlow.value = if (stateFlow.value == this.INICIO) this.UPDATA else this.INICIO
     }
 

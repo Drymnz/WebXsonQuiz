@@ -30,7 +30,7 @@ class CustomAdapterListTrivia(
         val trivia: Trivia = listTrivias[index]
 
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.layout_trivia, p2, false)
+            view = LayoutInflater.from(context).inflate(R.layout.layout_element_list_trivia, p2, false)
         }
 
         // Inicialización de las vistas del layout

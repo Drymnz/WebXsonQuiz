@@ -19,7 +19,7 @@
             android:name="com.cunoc.webxsonquiz.ui.ActivityTrivia"
             android:exported="false" />
         <activity
-            android:name="com.cunoc.webxsonquiz.ui.Trivias"
+            android:name="com.cunoc.webxsonquiz.ui.ActivityListTrivias"
             android:exported="false" />
         <activity
             android:name="com.cunoc.webxsonquiz.ui.MainActivity"
