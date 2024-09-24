@@ -76,6 +76,7 @@ public class ModelClientHandler {
             }else if (getCliente instanceof QuizAttempt){
                 QuizAttempt obtener = (QuizAttempt) getCliente;
                 System.out.println(obtener.toString());
+                return true;
             }
             return null;
         } catch (Exception e) {

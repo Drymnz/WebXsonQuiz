@@ -31,6 +31,7 @@ class ActivityListTrivias : AppCompatActivity() {
     private val INICIO: String = "INICIO"
     private val UPDATA: String = "UPDATA"
     private val PUSH_RESULT: String = "PUSH_RESULT"
+    private val PUSH_RESULT_OTHER: String = "PUSH_RESULT_OTHER"
 
     private val stateFlow = MutableStateFlow(INICIO)
     private var layout: LinearLayout? = null
@@ -50,6 +51,9 @@ class ActivityListTrivias : AppCompatActivity() {
                     if (newValue.equals(this@ActivityListTrivias.UPDATA)|| newValue.equals(this@ActivityListTrivias.INICIO)){
                         var newTrivia = this@ActivityListTrivias.conectionServer?.sendMessage(this@ActivityListTrivias.listTrivias)
                         if ( newTrivia!=null){
+                            if(this@ActivityListTrivias.listTrivias.size > 0){
+                                this@ActivityListTrivias.listTrivias = ArrayList()
+                            }
                             if (newTrivia is Trivia){
                                 this@ActivityListTrivias.listTrivias.add(newTrivia)
                                 var outBoolean:Boolean = true
@@ -73,8 +77,11 @@ class ActivityListTrivias : AppCompatActivity() {
                             }
                         }
                     }
-                    else if (newValue.equals(this@ActivityListTrivias.PUSH_RESULT)){
-                        val newTriviaTwo = this@ActivityListTrivias.conectionServer?.sendMessage(this@ActivityListTrivias.quizAttempt)
+                    else if (newValue.equals(this@ActivityListTrivias.PUSH_RESULT)
+                        || newValue.equals(this@ActivityListTrivias.PUSH_RESULT_OTHER)
+                        ){
+                        val returnResultSend = this@ActivityListTrivias.conectionServer?.sendMessage(this@ActivityListTrivias.quizAttempt)
+                        println(returnResultSend)
                     }
                 }
             }
@@ -140,9 +147,7 @@ class ActivityListTrivias : AppCompatActivity() {
             val verificar:QuizAttempt = resultData as QuizAttempt
             verificar.user = this.user!!.id
             this.quizAttempt = verificar
-
-            stateFlow.value = this.PUSH_RESULT
-            Toast.makeText(this, "Resultado: ${verificar.toString()}", Toast.LENGTH_SHORT).show()
+            stateFlow.value = if (stateFlow.value == this.PUSH_RESULT) this.PUSH_RESULT_OTHER else this.PUSH_RESULT
             Log.i("Resultado de la trivia",verificar.toString())
         }
     }
