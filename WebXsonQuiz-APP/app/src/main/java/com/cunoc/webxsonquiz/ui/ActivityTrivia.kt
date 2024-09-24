@@ -31,8 +31,9 @@ class ActivityTrivia : AppCompatActivity() {
 
     private var textViewTimeTrivia: TextView? = null;
     private val list: ArrayList<ResultComponentTrivia> = ArrayList<ResultComponentTrivia>();
-    private val CREADOR:String = "Creador : "
-    private val TIME_TRIVIA:String = "Tiempo de la trivia : "
+    private val CREADOR: String = "Creador : "
+    private val TIME_TRIVIA: String = "Tiempo de la trivia : "
+    private var intPointTotal = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +52,7 @@ class ActivityTrivia : AppCompatActivity() {
     }
 
     private fun loadTrivia(userTrivia: Trivia) {
+        this.intPointTotal = userTrivia.getListComponent().size
         this.loadInfomTrivia(userTrivia)
         for (element in userTrivia.getListComponent()) {
             this.loadComponentTrivia(element)
@@ -91,13 +93,14 @@ class ActivityTrivia : AppCompatActivity() {
             ClassComponent.NULL_EMPTY -> {
                 this.handleNullOrEmpty(component)
             }
+
             else -> {
             }
         }
     }
 
     private fun loadTextField(component: ComponentTrivia) {
-        // Crear un EditText
+        // Crear un EditText NOTA : SOLO UNA LINEA
         val editText = EditText(this).apply {
             hint = "Ingresa tu texto aquí"
             layoutParams = LinearLayout.LayoutParams(
@@ -105,7 +108,7 @@ class ActivityTrivia : AppCompatActivity() {
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         }
-        this.list.add(ResultComponentTrivia(component,editText ))
+        this.list.add(ResultComponentTrivia(component, editText))
         val layout: LinearLayout = findViewById(R.id.LayoutActivityTrivia)
         layout!!.addView(editText)
     }
@@ -135,7 +138,7 @@ class ActivityTrivia : AppCompatActivity() {
         editTextMultiLine.setHorizontalScrollBarEnabled(true)
         val layout: LinearLayout = findViewById(R.id.LayoutActivityTrivia)
         layout!!.addView(editTextMultiLine)
-        this.list.add(ResultComponentTrivia(component,editTextMultiLine ))
+        this.list.add(ResultComponentTrivia(component, editTextMultiLine))
     }
 
     private fun loadCheckbox(component: ComponentTrivia) {
@@ -151,7 +154,7 @@ class ActivityTrivia : AppCompatActivity() {
         // Agregar los CheckBox al layout
         checkBoxes.forEach { checkBox ->
             layout.addView(checkBox)
-            this.list.add(ResultComponentTrivia(component,checkBox ))
+            this.list.add(ResultComponentTrivia(component, checkBox))
         }
     }
 
@@ -165,7 +168,11 @@ class ActivityTrivia : AppCompatActivity() {
         // Crear un Spinner
         val spinner = Spinner(this).apply {
             // Crear un adaptador para el Spinner
-            val adapter = ArrayAdapter(this@ActivityTrivia, android.R.layout.simple_spinner_item, arrayOfStrings).apply {
+            val adapter = ArrayAdapter(
+                this@ActivityTrivia,
+                android.R.layout.simple_spinner_item,
+                arrayOfStrings
+            ).apply {
                 setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // Establecer el diseño del dropdown
             }
             this.adapter = adapter // Establecer el adaptador en el Spinner
@@ -173,7 +180,7 @@ class ActivityTrivia : AppCompatActivity() {
 
         // Agregar el Spinner al layout
         layout.addView(spinner)
-        this.list.add(ResultComponentTrivia(component,spinner ))
+        this.list.add(ResultComponentTrivia(component, spinner))
     }
 
     private fun loadRadio(component: ComponentTrivia) {
@@ -198,7 +205,7 @@ class ActivityTrivia : AppCompatActivity() {
 
         // Agregar el RadioGroup al layout
         layout.addView(radioGroup)
-        this.list.add(ResultComponentTrivia(component,radioGroup ))
+        this.list.add(ResultComponentTrivia(component, radioGroup))
     }
 
     private fun handleNullOrEmpty(component: ComponentTrivia) {}
@@ -233,8 +240,8 @@ class ActivityTrivia : AppCompatActivity() {
         layout!!.addView(resultView)
     }
 
-    private fun timeTrivia(time: Double){
-        this.textViewTimeTrivia!!.text =  this.TIME_TRIVIA + time.toString()
+    private fun timeTrivia(time: Double) {
+        this.textViewTimeTrivia!!.text = this.TIME_TRIVIA + time.toString()
     }
 
     private fun loadButtonSend() {
@@ -258,16 +265,79 @@ class ActivityTrivia : AppCompatActivity() {
         layout.addView(button)
     }
 
-    private fun  recuperarInformacion(){
-        Toast.makeText(this, "IMFORMACION", Toast.LENGTH_SHORT).show()
-        for ( element in this.list){
-           val elementComvert:ResultComponentTrivia = element
-            println(elementComvert.result)
-            println(elementComvert.component)
+    private fun recuperarInformacion() {
+
+        var pointFinal: Int = 0
+        var arrayOfStrings: Array<String>? = null;
+        var conteoArrayOfStrings: Double = 0.0
+        for (element in this.list) {
+            val elementComvert: ResultComponentTrivia = element
             //RadioGroup
+            if (elementComvert.result is RadioGroup) {//error por no ser RadioGroup
+                // Obtener el ID del RadioButton seleccionado
+                val resultText: RadioGroup = elementComvert.result
+                val selectedId = resultText.checkedRadioButtonId
+                if (selectedId != -1) {
+                    // Recuperar el RadioButton usando el ID seleccionado
+                    val selectedRadioButton: RadioButton = findViewById(selectedId)
+
+                    // Obtener el texto del RadioButton seleccionado
+                    val selectedOption = selectedRadioButton.text.toString()
+
+                    if (selectedOption.equals(elementComvert.component!!.result)) {
+                        pointFinal++
+                    }
+                }
+            }else
             //Spinner
-            //CheckBox
+            if (elementComvert.result is Spinner) {
+                val resultText: Spinner = elementComvert.result
+                // Extraer el elemento seleccionado del Spinner
+                val selectedOption = resultText.selectedItem.toString()
+                if (selectedOption.equals(elementComvert.component!!.result)) {
+                    pointFinal++
+                }
+            }else
             //EditText
+            if (elementComvert.result is EditText) {
+                val resultText: EditText = elementComvert.result//
+                val textEdit:String = resultText.text.toString()
+                if (textEdit.equals(elementComvert.component!!.result)) {
+                    pointFinal++
+                }
+            }else
+            //CheckBox
+            if (elementComvert.result is CheckBox) {
+                if (arrayOfStrings == null) {
+                    arrayOfStrings = elementComvert.component!!.result.split("|").toTypedArray()
+                }
+                val resultText: CheckBox = elementComvert.result
+                if (resultText.isChecked){
+                    // Extraer el texto del CheckBox
+                    val selectedOption = resultText.text.toString()
+                    for (elementString in arrayOfStrings){
+                        if (selectedOption.equals(elementString)){
+                            conteoArrayOfStrings++
+                            break
+                        }
+                    }
+                }
+            } else  if (arrayOfStrings != null){
+                    val resultChckBox:Double = conteoArrayOfStrings / arrayOfStrings.size
+                    //restaun
+                    val resultChckBoxInt: Int = resultChckBox.toInt()
+                    pointFinal += resultChckBoxInt
+                    arrayOfStrings = null;
+                    conteoArrayOfStrings = 0.0
+            }
         }
+        if (arrayOfStrings != null && conteoArrayOfStrings>0){
+            val resultChckBox:Double = conteoArrayOfStrings / arrayOfStrings!!.size
+            //restaun
+            val resultChckBoxInt: Int = resultChckBox.toInt()
+            pointFinal += resultChckBoxInt
+        }
+        Toast.makeText(this, "Punteo > ${pointFinal} de ${this.intPointTotal}", Toast.LENGTH_SHORT).show()
+        //RETUNAR
     }
 }
