@@ -95,11 +95,11 @@ inicio ::= bucle_inicio
     ;
 
 sql_kv
-  ::= SELECCIONAR REPORTE id_trivia FILTRAR POR USUARIO EQUAL 
+  ::= SELECCIONAR REPORTE id_trivia FILTRAR POR USUARIO EQUAL id_user
   ;
 
 id_trivia
-  ::= ID_TRIVIA  STRING:a {:RESULT = a;:}
+  ::= ID_TRIVIA:a {:RESULT = a;:}
   ;
 
 id_user

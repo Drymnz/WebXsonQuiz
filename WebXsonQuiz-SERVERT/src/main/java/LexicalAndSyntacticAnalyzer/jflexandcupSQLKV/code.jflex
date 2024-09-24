@@ -45,6 +45,7 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
 %}
 
 INSTITUCION = "\"""I""N""S""T""I""T""U""C""I""O""N""\""
+OPEN_ID = "_"|"-"|"$"
 DIGIT = [0-9]
 WHOLE = {DIGIT}+
 DECIMAL = {WHOLE}[.]{WHOLE}
@@ -54,13 +55,16 @@ DATE = "\""{DIGIT}{DIGIT}{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"\""
 
 STRING = \"([^\"\\]|\\.)*\"
 
-espacio =[\n|\r|\t|\f|\b|\s| ]+
+espacio =[\n|\r|\t|\f|\b|\s|" "| ]+
+
+ID_TRIVIA = [_\-\$][_\-\$0-9a-zA-Z]*[\s]*
 
 %%
 
 /*tercer seccion: reglase lexicas*/
 /*INGNORAR*/
 "<!--" ~"-->"              {/*COMENTARIO*/}
+{ID_TRIVIA}             {print("\"ID_TRIVIA\""); return new Symbol(MySymSQLKV.ID_TRIVIA ,yyline,yycolumn,yytext());}
 {espacio}               {/* print(); */}
 ">"                     {print(">" ); return new Symbol(MySymSQLKV.CLOSE ,yyline,yycolumn,yytext());}
 "<"                     {print("<" ); return new Symbol(MySymSQLKV.OPEN ,yyline,yycolumn,yytext());}
@@ -73,7 +77,6 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 //DATOS DE TRIVIAS  
 "\"ID\""                    {print("\"ID\""); return new Symbol(MySymSQLKV.ID ,yyline,yycolumn,yytext());}
 "\"INDICE\""                {print("\"INDICE\""); return new Symbol(MySymSQLKV.INDICE ,yyline,yycolumn,yytext());}
-"\"ID_TRIVIA\""             {print("\"ID_TRIVIA\""); return new Symbol(MySymSQLKV.ID_TRIVIA ,yyline,yycolumn,yytext());}
 "\"TRIVIA\""                {print("\"TRIVIA\""); return new Symbol(MySymSQLKV.TRIVIA ,yyline,yycolumn,yytext());}
 "\"CLASE\""                 {print("\"CLASE\""); return new Symbol(MySymSQLKV.CLASE ,yyline,yycolumn,yytext());}
 "\"TEXTO_VISIBLE\""         {print("\"TEXTO_VISIBLE\""); return new Symbol(MySymSQLKV.TEXTO_VISIBLE ,yyline,yycolumn,yytext());}
