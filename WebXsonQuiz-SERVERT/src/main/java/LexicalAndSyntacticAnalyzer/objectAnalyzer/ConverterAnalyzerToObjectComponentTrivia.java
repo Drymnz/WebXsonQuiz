@@ -58,7 +58,13 @@ public class ConverterAnalyzerToObjectComponentTrivia {
         switch (clas) {
             case "AREA_TEXTO":
                 return ClassComponent.AREA_TEXT;
+            case "AREA_TEXT":
+                return ClassComponent.AREA_TEXT;
+            case "NULL_EMPTY":
+                return ClassComponent.AREA_TEXT;
             case "CAMPO_TEXTO":
+                return ClassComponent.CAMPO_TEXT;
+            case "CAMPO_TEXT":
                 return ClassComponent.CAMPO_TEXT;
             case "CHECKBOX":
                 return ClassComponent.CHECKBOX;
@@ -69,7 +75,7 @@ public class ConverterAnalyzerToObjectComponentTrivia {
             case "RADIO":
                 return ClassComponent.RADIO;
             default:
-                return null;
+                return ClassComponent.AREA_TEXT;
         }
     }
 

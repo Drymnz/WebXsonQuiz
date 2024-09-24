@@ -60,7 +60,7 @@ class ActivityTrivia : AppCompatActivity() {
 
     private fun loadComponentTrivia(component: ComponentTrivia) {
         this.loadQuestion(component.text)
-        when (component.type) {
+        when (component.type) {//null
             ClassComponent.CAMPO_TEXT -> {
                 //
                 this.loadTextField(component)
@@ -260,5 +260,6 @@ class ActivityTrivia : AppCompatActivity() {
         val layout: LinearLayout = findViewById<LinearLayout>(R.id.LayoutActivityTrivia)
         layout.addView(button)
     }
+
 
 }
