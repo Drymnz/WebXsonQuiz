@@ -1,8 +1,11 @@
 package com.cunoc.webxsonquiz.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.InputFilter
 import android.text.InputType
 import android.view.LayoutInflater
@@ -25,8 +28,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.cunoc.webxsonquiz.data.ResultComponentTrivia
 import com.cunoc.webxsonquiz.data.servert.ClassComponent
 import com.cunoc.webxsonquiz.data.servert.ComponentTrivia
+import com.cunoc.webxsonquiz.data.servert.QuizAttempt
 import com.cunoc.webxsonquiz.data.servert.Trivia
 import com.example.webxsonquiz.R
+import kotlin.time.times
 
 class ActivityTrivia : AppCompatActivity() {
 
@@ -34,7 +39,11 @@ class ActivityTrivia : AppCompatActivity() {
     private val list: ArrayList<ResultComponentTrivia> = ArrayList<ResultComponentTrivia>();
     private val CREADOR: String = "Creador : "
     private val TIME_TRIVIA: String = "Tiempo de la trivia : "
+    private var timeTrivia:Double = 0.0
     private var intPointTotal = 0;
+    private var countDownTimer: CountDownTimer? = null
+    private var idTrivia:String = ""
+    private var timeToDoIt:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +68,26 @@ class ActivityTrivia : AppCompatActivity() {
             this.loadComponentTrivia(element)
         }
         this.loadButtonSend()
+        //temporizador
+        this.countDownTimer()
+        this.countDownTimer!!.start()
+    }
+    private fun countDownTimer(){
+        val timeFinal:Double = this.timeTrivia * 1000
+        val setTime: Int = timeFinal.toInt()
+        this.countDownTimer = object : CountDownTimer (setTime.toLong(),1000)
+        {
+            override fun onTick(p0: Long) {
+                if (this@ActivityTrivia.textViewTimeTrivia!=null)
+                {
+                    this@ActivityTrivia.setTimeTrivia(this@ActivityTrivia.timeTrivia -1)
+                }
+            }
+
+            override fun onFinish() {
+                this@ActivityTrivia.recuperarInformacion()
+            }
+        }
     }
 
     private fun loadComponentTrivia(component: ComponentTrivia) {
@@ -234,16 +263,20 @@ class ActivityTrivia : AppCompatActivity() {
         val textViewThemeTrivia: TextView = resultView.findViewById(R.id.textViewThemeTrivia)
         val textViewIdUserTrivia: TextView = resultView.findViewById(R.id.textViewIdUserTrivia)
         this.textViewTimeTrivia = resultView.findViewById(R.id.textViewTimeTrivia)
+
         textViewNameTrivia.text = trivia.name
         textViewThemeTrivia.text = trivia.theme
         textViewIdUserTrivia.text = this.CREADOR + trivia.idUser
-        this.timeTrivia(trivia.time)
+        this.setTimeTrivia(trivia.time)
+        this.idTrivia = trivia.id
 
         val layout: LinearLayout = findViewById(R.id.LayoutActivityTrivia)
         layout!!.addView(resultView)
     }
 
-    private fun timeTrivia(time: Double) {
+    private fun setTimeTrivia(time: Double) {
+        this.timeTrivia = time
+        this.timeToDoIt ++
         this.textViewTimeTrivia!!.text = this.TIME_TRIVIA + time.toString()
     }
 
@@ -262,6 +295,8 @@ class ActivityTrivia : AppCompatActivity() {
 
         // Definir la funcionalidad al hacer clic
         button.setOnClickListener {
+            this.countDownTimer?.cancel() // Detenemos el temporizador
+            this.countDownTimer = null // Limpiamos la referencia
             this.recuperarInformacion()
         }
         val layout: LinearLayout = findViewById<LinearLayout>(R.id.LayoutActivityTrivia)
@@ -286,7 +321,7 @@ class ActivityTrivia : AppCompatActivity() {
                     // Obtener el texto del RadioButton seleccionado
                     val selectedOption = selectedRadioButton.text.toString()
 
-                    if (selectedOption.equals(elementComvert.component!!.result)) {
+                    if (selectedOption.equals(elementComvert.component!!.result, ignoreCase = true)) {
                         pointFinal++
                     }
                 }
@@ -296,7 +331,7 @@ class ActivityTrivia : AppCompatActivity() {
                 val resultText: Spinner = elementComvert.result
                 // Extraer el elemento seleccionado del Spinner
                 val selectedOption = resultText.selectedItem.toString()
-                if (selectedOption.equals(elementComvert.component!!.result)) {
+                if (selectedOption.equals(elementComvert.component!!.result, ignoreCase = true)) {
                     pointFinal++
                 }
             }else
@@ -304,7 +339,7 @@ class ActivityTrivia : AppCompatActivity() {
             if (elementComvert.result is EditText) {
                 val resultText: EditText = elementComvert.result//
                 val textEdit:String = resultText.text.toString()
-                if (textEdit.equals(elementComvert.component!!.result)) {
+                if (textEdit.equals(elementComvert.component!!.result, ignoreCase = true)) {
                     pointFinal++
                 }
             }else
@@ -318,7 +353,7 @@ class ActivityTrivia : AppCompatActivity() {
                     // Extraer el texto del CheckBox
                     val selectedOption = resultText.text.toString()
                     for (elementString in arrayOfStrings){
-                        if (selectedOption.equals(elementString)){
+                        if (selectedOption.equals(elementString, ignoreCase = true)){
                             conteoArrayOfStrings++
                             break
                         }
@@ -340,6 +375,12 @@ class ActivityTrivia : AppCompatActivity() {
             pointFinal += resultChckBoxInt
         }
         Toast.makeText(this, "Punteo > ${pointFinal} de ${this.intPointTotal}", Toast.LENGTH_SHORT).show()
-        //RETUNAR
+        // Retornar el resultado a la primera actividad
+        val pointRetur:Double = (pointFinal.toDouble()  / this.intPointTotal.toDouble() ) * 100
+        val returnIntent = Intent()
+        val returResult = QuizAttempt("",this.idTrivia,this.timeToDoIt,pointRetur.toInt())
+        returnIntent.putExtra("result_key", returResult)
+        setResult(Activity.RESULT_OK, returnIntent)
+        finish()
     }
 }

@@ -1,5 +1,6 @@
 package modelServert;
 
+import com.cunoc.webxsonquiz.data.servert.QuizAttempt;
 import com.cunoc.webxsonquiz.data.servert.Trivia;
 import java.util.ArrayList;
 import reactions.DataBaseListTrivia;
@@ -72,6 +73,9 @@ public class ModelClientHandler {
                 } else {
                     return false;
                 }
+            }else if (getCliente instanceof QuizAttempt){
+                QuizAttempt obtener = (QuizAttempt) getCliente;
+                System.out.println(obtener.toString());
             }
             return null;
         } catch (Exception e) {

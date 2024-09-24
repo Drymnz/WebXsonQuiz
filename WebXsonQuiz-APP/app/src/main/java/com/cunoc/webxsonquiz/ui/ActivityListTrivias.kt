@@ -1,7 +1,9 @@
 package com.cunoc.webxsonquiz.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
@@ -14,6 +16,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.cunoc.webxsonquiz.data.ConectionServert
+import com.cunoc.webxsonquiz.data.servert.QuizAttempt
 import com.cunoc.webxsonquiz.data.servert.Trivia
 import com.cunoc.webxsonquiz.data.servert.User
 import com.example.webxsonquiz.R
@@ -26,11 +29,13 @@ class ActivityListTrivias : AppCompatActivity() {
     private var user: User? = null
     private var conectionServer: ConectionServert? = null
     private val INICIO: String = "INICIO"
-    private val UPDATA: String = "INICIO"
+    private val UPDATA: String = "UPDATA"
+    private val PUSH_RESULT: String = "PUSH_RESULT"
 
     private val stateFlow = MutableStateFlow(INICIO)
     private var layout: LinearLayout? = null
     private var listTrivias:ArrayList<Trivia> = ArrayList()
+    private var quizAttempt:QuizAttempt? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +72,9 @@ class ActivityListTrivias : AppCompatActivity() {
                                 this@ActivityListTrivias.rederListTrivia(this@ActivityListTrivias.listTrivias)
                             }
                         }
+                    }
+                    else if (newValue.equals(this@ActivityListTrivias.PUSH_RESULT)){
+                        val newTriviaTwo = this@ActivityListTrivias.conectionServer?.sendMessage(this@ActivityListTrivias.quizAttempt)
                     }
                 }
             }
@@ -120,7 +128,23 @@ class ActivityListTrivias : AppCompatActivity() {
     private fun goTrivia(trivia:Trivia){
         val intent = Intent(this, ActivityTrivia::class.java)
         intent.putExtra("trivia", trivia)
-        startActivity(intent)
+        //startActivity(intent)
+        startActivityForResult(intent, 1)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            // Obtener el resultado de la segunda actividad
+            val resultData = data?.getSerializableExtra("result_key")
+            val verificar:QuizAttempt = resultData as QuizAttempt
+            verificar.user = this.user!!.id
+            this.quizAttempt = verificar
+
+            stateFlow.value = this.PUSH_RESULT
+            Toast.makeText(this, "Resultado: ${verificar.toString()}", Toast.LENGTH_SHORT).show()
+            Log.i("Resultado de la trivia",verificar.toString())
+        }
     }
 
 }
