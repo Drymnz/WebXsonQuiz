@@ -11,7 +11,7 @@ public class TriviaTests {
     private String NEW_TRIVIA = "<!realizar_solicitud: \"NUEVA_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_cultura_guatemala\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 45,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 450,\n" + //
                 "  \"NOMBRE\": \"Cultura de Guatemala\",\n" + //
                 "  \"TEMA\": \"cultura\"\n" + //
                 "}\n" + //
@@ -50,7 +50,7 @@ public class TriviaTests {
                 "<!realizar_solicitud: \"NUEVA_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_cultura_guatemala\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 45,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 455,\n" + //
                 "  \"NOMBRE\": \"Cultura de Guatemala\",\n" + //
                 "  \"TEMA\": \"cultura\"\n" + //
                 "}\n" + //

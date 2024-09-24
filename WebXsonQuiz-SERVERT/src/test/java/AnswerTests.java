@@ -74,7 +74,6 @@ public class AnswerTests {
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(),new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
         requetSystaxValidator.checkRequests();
         Assertions.assertTrue(!(new UserRequestReport(requetSystaxValidator).reportString().isEmpty()));
-        //Assertions.assertTrue(true);
     }
 
 }

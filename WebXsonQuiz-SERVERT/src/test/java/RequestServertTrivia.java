@@ -56,7 +56,7 @@ public class RequestServertTrivia {
                 "<!realizar_solicitud: \"NUEVA_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_cultura_guatemala\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 45,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 545,\n" + //
                 "  \"NOMBRE\": \"Cultura de Guatemala\",\n" + //
                 "  \"TEMA\": \"cultura\"\n" + //
                 "}\n" + //
@@ -148,7 +148,7 @@ public class RequestServertTrivia {
                 "<!realizar_solicitud: \"NUEVA_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_historia_mexico\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 30,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 300,\n" + //
                 "  \"NOMBRE\": \"Historia de México\",\n" + //
                 "  \"TEMA\": \"historia\"\n" + //
                 "}\n" + //
@@ -181,7 +181,7 @@ public class RequestServertTrivia {
                 "<!realizar_solicitud: \"MODIFICAR_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_historia_mexico\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 45,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 450,\n" + //
                 "  \"NOMBRE\": \"Historia y Revolución de México\"\n" + //
                 "}\n" + //
                 "]}\n" + //
@@ -203,7 +203,7 @@ public class RequestServertTrivia {
                 "<!realizar_solicitud: \"NUEVA_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_literatura_espanola\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 40,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 440,\n" + //
                 "  \"NOMBRE\": \"Literatura Española\",\n" + //
                 "  \"TEMA\": \"literatura\"\n" + //
                 "}\n" + //
@@ -236,7 +236,7 @@ public class RequestServertTrivia {
                 "<!realizar_solicitud: \"MODIFICAR_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_literatura_espanola\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 50,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 590,\n" + //
                 "  \"NOMBRE\": \"Literatura Española Clásica y Moderna\"\n" + //
                 "}\n" + //
                 "]}\n" + //
@@ -259,7 +259,7 @@ public class RequestServertTrivia {
                 "<!realizar_solicitud: \"NUEVA_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_ciencia_tecnologia\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 35,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 350,\n" + //
                 "  \"NOMBRE\": \"Ciencia y Tecnología\",\n" + //
                 "  \"TEMA\": \"ciencia\"\n" + //
                 "}\n" + //
@@ -292,7 +292,7 @@ public class RequestServertTrivia {
                 "<!realizar_solicitud: \"MODIFICAR_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_ciencia_tecnologia\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 45,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 459,\n" + //
                 "  \"NOMBRE\": \"Avances en Ciencia y Tecnología\"\n" + //
                 "}\n" + //
                 "]}\n" + //

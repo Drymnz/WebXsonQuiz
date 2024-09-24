@@ -21,7 +21,7 @@ public class TriviaTestsToObject {
     private String NEW_TRIVIA = "<!realizar_solicitud: \"NUEVA_TRIVIA\" >\n" + //
             "{ \"PARAMETROS_TRIVIA\":[{\n" + //
             "  \"ID_TRIVIA\": \"$trivia_cultura_guatemala\",\n" + //
-            "  \"TIEMPO_PREGUNTA\": 45,\n" + //
+            "  \"TIEMPO_PREGUNTA\": 950,\n" + //
             "  \"NOMBRE\": \"Cultura de Guatemala\",\n" + //
             "  \"TEMA\": \"cultura\"\n" + //
             "}\n" + //
@@ -63,7 +63,7 @@ public class TriviaTestsToObject {
                 "<!realizar_solicitud: \"NUEVA_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_cultura_guatemala\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 45,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 150,\n" + //
                 "  \"NOMBRE\": \"Cultura de Guatemala\",\n" + //
                 "  \"TEMA\": \"cultura\"\n" + //
                 "}\n" + //
@@ -108,7 +108,7 @@ public class TriviaTestsToObject {
                 "<!realizar_solicitud: \"MODIFICAR_TRIVIA\" >\n" + //
                 "{ \"PARAMETROS_TRIVIA\":[{\n" + //
                 "  \"ID_TRIVIA\": \"$trivia_cultura_guatemala\",\n" + //
-                "  \"TIEMPO_PREGUNTA\": 60,\n" + //
+                "  \"TIEMPO_PREGUNTA\": 360,\n" + //
                 "  \"NOMBRE\": \"Historia y Cultura de Guatemala\"\n" + //
                 "}\n" + //
                 "]}\n" + //

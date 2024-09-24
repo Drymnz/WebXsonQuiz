@@ -42,6 +42,5 @@ public class TestRequest {
         SystemAcess userSy = new SystemAcess(textLoginBJ);
         boolean getIn = (!textLoginBJ.isEmpty()) && (userSy.isAcceder());
         Assertions.assertTrue(getIn || !getIn);
-        //Assertions.assertTrue(true);
     }
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.text.InputFilter
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -100,9 +101,11 @@ class ActivityTrivia : AppCompatActivity() {
     }
 
     private fun loadTextField(component: ComponentTrivia) {
-        // Crear un EditText NOTA : SOLO UNA LINEA
+        // Crear un EditText
         val editText = EditText(this).apply {
             hint = "Ingresa tu texto aquí"
+            maxLines = 1 // Limitar a una línea
+            inputType = InputType.TYPE_CLASS_TEXT // Asegurar que solo sea texto
             layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
@@ -266,7 +269,6 @@ class ActivityTrivia : AppCompatActivity() {
     }
 
     private fun recuperarInformacion() {
-
         var pointFinal: Int = 0
         var arrayOfStrings: Array<String>? = null;
         var conteoArrayOfStrings: Double = 0.0

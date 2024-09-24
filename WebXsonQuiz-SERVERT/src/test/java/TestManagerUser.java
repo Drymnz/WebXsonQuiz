@@ -134,6 +134,5 @@ public class TestManagerUser {
         boolean goodText= !analizer.isError() && analizer.getListRquest().size() == 5;
         requetSystaxValidator.upDataBase(); 
         Assertions.assertTrue(goodText);
-        //Assertions.assertTrue(true);
     }
 }
