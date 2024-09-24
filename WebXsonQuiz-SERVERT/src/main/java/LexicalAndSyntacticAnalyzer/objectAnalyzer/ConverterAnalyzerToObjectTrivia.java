@@ -31,7 +31,7 @@ public class ConverterAnalyzerToObjectTrivia {
                     id = iterable_element.getData().replace("\"", "");
                     break;
                 case TIEMPO_PREGUNTA:
-                    time = Double.parseDouble(iterable_element.getData());
+                    time = Double.parseDouble(iterable_element.getData().replace("\"", ""));
                     break;
                 case NAME:
                     name = iterable_element.getData().replace("\"", "");

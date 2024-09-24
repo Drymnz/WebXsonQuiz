@@ -1,0 +1,304 @@
+package LexicalAndSyntacticAnalyzer.jflexandcupDataBaseQuizAttempt;
+
+import java_cup.runtime.*;
+import java.util.ArrayList;
+
+import LexicalAndSyntacticAnalyzer.analyzer.Token;
+import reports.*;
+import LexicalAndSyntacticAnalyzer.dataAnalyzer.*;
+import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
+import LexicalAndSyntacticAnalyzer.ListRequests;
+import com.cunoc.webxsonquiz.data.servert.QuizAttempt;
+import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjetQuizAttempt;
+
+
+/**
+     * ***STAR CODE*******
+     */
+    parser code {:
+
+private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
+private ArrayList<DataAnalyzer> dataStack = new ArrayList();
+private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
+private ArrayList<QuizAttempt> listQuizAttempt = new ArrayList();
+
+
+
+	  public MyParserDataQuizAttempt(LexemaQuizAttempt lexer) {
+        super(lexer);
+    }
+
+    //erorr
+    public void syntax_error(Symbol cur_token) {
+        String nameTerminal = symbl_name_from_id(this.cur_token.sym);
+        int numberTerminal = this.cur_token.sym;
+        ///codigo para el objeto
+        TypeIntreprete type = TypeIntreprete.SYNTACTIC;
+        int line = cur_token.left+1;
+        int columna = cur_token.right +1;
+        String lexema = this.cur_token.value.toString();
+        Token token = new Token(line, columna, lexema);
+        System.out.println(token.toString());
+        this.listError.add(new ReportErrorInterpreter(type, token, ReportingConstants.ERROR_SICTATICO));
+    }
+
+    //Returnar el listado de errores
+    public ArrayList<ReportErrorInterpreter> getListError() {
+        return this.listError;
+    }
+
+    //Returnar el listado de Rquest
+    public ArrayList<RequestAnalyzer> getListRquest(){
+      return this.listRquest;
+    }
+
+    //Returnar el listado de Rquest
+    public ArrayList<QuizAttempt> getListQuizAttempt(){
+      return this.listQuizAttempt;
+    }
+
+    /**
+     * ***END CODE*******
+     */
+:}
+
+/* Terminales */
+/*sxon*/
+terminal String STRING;
+/*SIMBOLOS DE OPERACION*/
+terminal SUMAR,RESTAR,DIVIDIR,MULTIPLICAR,EQUAL;
+terminal PARENTESIS_A,PARENTESIS_C;
+terminal String REAL_NUMEBERS,STRING_DATE;
+/*AGRUPACION*/
+terminal BRACKETS_O,BRACKETS_C;
+terminal KEYS_O,KEYS_C;
+//tipos de solicitud
+terminal COLNO,COMA;
+terminal ID_USER,ID_TRIVIA,RESPONSE_TIME,SCORE;
+/* No terminales */
+//inicio
+non terminal bucle_inicio;
+non terminal inicio;
+//solicitud
+non terminal json;
+non terminal obj_json,data,data_user,datas_user;
+non terminal secuenci_json;
+non terminal empty_list;
+//operaicones
+non terminal inico_opereacion,operacion,parente;
+/*************************************PRECEDENCIA******************************************************/
+precedence left SUMAR, RESTAR;
+precedence left MULTIPLICAR, DIVIDIR;
+precedence left PARENTESIS_A, PARENTESIS_C;
+
+/* Gramática */
+start with inicio;
+/******operaciones matematicas*****/
+inicio ::= bucle_inicio
+    | error bucle_inicio
+    ;
+
+bucle_inicio 
+  ::= bucle_inicio json
+  |json
+  ;
+
+json::=
+  BRACKETS_O empty_list BRACKETS_C
+  |secuenci_json
+  ;
+
+empty_list
+  ::= secuenci_json
+  |
+  ;
+
+secuenci_json 
+  ::=obj_json COMA secuenci_json
+  |obj_json
+  ;  
+
+obj_json ::=
+  KEYS_O datas_user KEYS_C   
+  {:
+              listQuizAttempt.add(new ConverterAnalyzerToObjetQuizAttempt().newQuizAttempt(new RequestAnalyzer(dataStack, ListRequests.QUIZATTEMPT)));
+  :}
+  ;
+
+datas_user 
+  ::= datas_user COMA  data_user
+  |data_user
+  ;
+
+data_user::=
+  ID_USER data:a 
+   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID_USER,a.toString()));:}
+  |RESPONSE_TIME data:a 
+   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.RESPONSE_TIME,a.toString()));:}
+  |ID_TRIVIA data:a 
+   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID_TRIVIA,a.toString()));:}
+  |SCORE data:a 
+   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.SCORE,a.toString()));:}
+  ;
+
+data ::=COLNO STRING:a {:RESULT = a;:}
+  | COLNO inico_opereacion:a {:RESULT = a;:}
+  | COLNO STRING_DATE:a {:RESULT = a;:}
+  | error
+  | 
+  ;
+
+/******operaciones matematicas*****/
+/*A QUI ESTA EL TOTAL DE LA OPERACION*/
+inico_opereacion ::= operacion:a 
+    {:
+    //////////////////////////////////////////
+		Double aDouble = 0.0;
+    if (a!=null) {
+        aDouble =   Double.valueOf(a.toString());
+        RESULT = aDouble;
+    }else{
+      RESULT = aDouble;
+    }
+    //////////////////////////////////////////
+    :} 
+    ;
+/******operaciones matematicas*****/
+operacion 
+/**SUMA**/
+::= operacion:a SUMAR operacion:b 
+    {:
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      Double resultDouble = aDouble + bDouble;
+      RESULT = resultDouble;
+    }else{
+      RESULT = aDouble;
+    }
+    /////////////////////////////////////////////
+    :}
+
+/**RESTA**/
+|  operacion:a RESTAR operacion:b 
+    {:
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      Double resultDouble = aDouble - bDouble;
+      RESULT = resultDouble;
+    }else{
+      RESULT = aDouble;
+    }
+    /////////////////////////////////////////////
+
+    :}
+/**DIVISION**/
+|  operacion:a DIVIDIR operacion:b 
+    {:
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      if (bDouble>0) {
+        Double result = ( bDouble/ bDouble);
+        RESULT = result;
+      }else{
+        /// manejar un error de sintasis
+        RESULT = aDouble;// si es 15/0
+      }
+    }else{
+      RESULT = aDouble;
+    }
+    /////////////////////////////////////////////
+
+    :}
+
+/**MULTIPLICACION**/
+|  operacion:a MULTIPLICAR operacion:b 
+    {:
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      Double result = aDouble * bDouble;
+      RESULT = result;
+    }else{
+      RESULT = aDouble;
+    }
+    /////////////////////////////////////////////
+
+    :}
+/****solo retornar*****/
+| PARENTESIS_A operacion:a  parente:b
+    {:
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      Double result = aDouble * bDouble;
+      RESULT = result;
+    }else{
+      RESULT = a;
+    }
+    /////////////////////////////////////////////
+    :}
+| REAL_NUMEBERS:a {:RESULT = a;:}
+| REAL_NUMEBERS:a PARENTESIS_A  operacion:b  PARENTESIS_C
+    {:
+    /////////////////////////////////////////////
+    Double aDouble = 0.0;		
+    Double bDouble = 0.0;
+    if(a != null){
+      aDouble =   Double.valueOf(a.toString());
+    }
+    if (b!=null) {
+      bDouble =   Double.valueOf(b.toString());
+    }
+    if (b!=null & a != null ) {
+      Double result = aDouble * bDouble;
+      RESULT = result;
+    }else{
+      RESULT = a;
+    }
+    /////////////////////////////////////////////
+    :}
+/***manejar el error***/
+;
+
+parente
+  ::= PARENTESIS_C
+  | PARENTESIS_C operacion:a {:RESULT = a;:}
+  ;
