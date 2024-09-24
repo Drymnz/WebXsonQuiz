@@ -3,6 +3,8 @@ package modelServert;
 import com.cunoc.webxsonquiz.data.servert.QuizAttempt;
 import com.cunoc.webxsonquiz.data.servert.Trivia;
 import java.util.ArrayList;
+
+import reactions.DataBaseListQuizAttempt;
 import reactions.DataBaseListTrivia;
 import reactions.SystemAcess;
 import servlets.socket.ClientHandler;
@@ -75,8 +77,10 @@ public class ModelClientHandler {
                 }
             }else if (getCliente instanceof QuizAttempt){
                 QuizAttempt obtener = (QuizAttempt) getCliente;
-                System.out.println(obtener.toString());
-                return true;
+                System.out.println(obtener.toString()); 
+                DataBaseListQuizAttempt dataBaseQA = new DataBaseListQuizAttempt();
+                dataBaseQA.addListQuizAttempt(obtener);
+                return (dataBaseQA.upDataBase());
             }
             return null;
         } catch (Exception e) {

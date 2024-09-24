@@ -13,6 +13,7 @@ import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerDataBaseQuizAttempt;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjetQuizAttempt;
 import fileManager.FileOutput;
 import reactions.ConstantSystem;
+import reactions.DataBaseListQuizAttempt;
 
 public class TriviaQuizAttemptTests {
 
@@ -41,10 +42,17 @@ public class TriviaQuizAttemptTests {
         QuizAttempt newQuizAttempt = null;
         AnalyzerDataBaseQuizAttempt analyzer = new AnalyzerDataBaseQuizAttempt(testStringTest);
         analyzer.Anilisar();
-        newQuizAttempt = (new ConverterAnalyzerToObjetQuizAttempt().newQuizAttempt(analyzer.getListRquest().get(0)));
+        newQuizAttempt = (analyzer.getListQuizAttempt().get(0));
         Assertions.assertTrue(newQuizAttempt!=null);
     }
 
-    
+    @Test
+    public void TestUpData() {
+        QuizAttempt newQuizAttempt = new QuizAttempt("BJ", "$trivia", 10, 100);
+        DataBaseListQuizAttempt dataBaseQA = new DataBaseListQuizAttempt();
+        dataBaseQA.addListQuizAttempt(newQuizAttempt);
+        Assertions.assertTrue(dataBaseQA.upDataBase());
+    }
+
 
 }

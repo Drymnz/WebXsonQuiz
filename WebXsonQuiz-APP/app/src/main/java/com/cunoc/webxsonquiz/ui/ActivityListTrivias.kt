@@ -52,7 +52,8 @@ class ActivityListTrivias : AppCompatActivity() {
                         var newTrivia = this@ActivityListTrivias.conectionServer?.sendMessage(this@ActivityListTrivias.listTrivias)
                         if ( newTrivia!=null){
                             if(this@ActivityListTrivias.listTrivias.size > 0){
-                                this@ActivityListTrivias.listTrivias = ArrayList()
+                                this@ActivityListTrivias.listTrivias.clear()
+                                //this@ActivityListTrivias.listTrivias = ArrayList()
                             }
                             if (newTrivia is Trivia){
                                 this@ActivityListTrivias.listTrivias.add(newTrivia)

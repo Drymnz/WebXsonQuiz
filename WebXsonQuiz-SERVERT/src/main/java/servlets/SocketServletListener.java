@@ -18,6 +18,8 @@ import com.cunoc.webxsonquiz.data.servert.User;
 import com.google.gson.Gson;
 import fileManager.FileInput;
 import fileManager.FileOutput;
+import modelServert.ModelDatabaseFileManager;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +39,7 @@ public class SocketServletListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        checkDataBaseIsCreated();
+        (new ModelDatabaseFileManager()).checkDataBaseIsCreated();
         System.out.println("----------------- INICIO DEL Thread -----------------");
         socketThread = new Thread(() -> {
             System.out.println("----------------- INICIO DEL Thread -----------------");
@@ -59,36 +61,6 @@ public class SocketServletListener implements ServletContextListener {
         });
         socketThread.start();
         System.out.println("----------------- FINAL DEL Thread -----------------");
-    }
-
-    private void checkDataBaseIsCreated() {
-        File archivoTxt = new File(ConstantSystem.SYSTEM_DIR, ConstantSystem.NAME_FILE_DATA_BASE_USER);
-        boolean create = false;
-        if (archivoTxt.exists()) {
-            String getDataBaseFile = (new FileInput().cargarArchivoTexto(archivoTxt));
-            if (getDataBaseFile.isEmpty()) {
-                create = !create;
-            }
-        } else {
-            create = !create;
-        }
-        if (create) {
-            List<User> listaUser = new ArrayList<>();
-
-            listaUser.add(new User("ADMIN", "admin", "Benjamin de Jesus Perez Aguilar", "CUNOC", "2001-04-2"));
-            listaUser.add(new User("BJ_97", "admin", "Benjamin de Jesus Perez Aguilar", "CUNOC", "1997-07-28"));
-
-            // Convertir la lista de objetos a JSON
-            Gson gson = new Gson();
-            String json = gson.toJson(listaUser);
-
-            if ((new FileOutput()).aguardarTexto(archivoTxt, json)) {
-                System.out.println("Exito");
-            } else {
-                System.out.println("fracaso");
-            }
-            System.out.println(archivoTxt.getAbsolutePath());
-        }
     }
 
     @Override

@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +18,7 @@ public class FileInput {
 
     public String cargarArchivoTexto(File carchivo) {
         if (!carchivo.exists() || !carchivo.canRead()) {
-            JOptionPane.showMessageDialog(null, "El archivo no existe o no se puede leer.");
+            System.out.println("El archivo no existe o no se puede leer.");
             return "";
         }
         StringBuilder extraje = new StringBuilder();
