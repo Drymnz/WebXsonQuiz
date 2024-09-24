@@ -4,9 +4,10 @@ import android.view.View
 import com.cunoc.webxsonquiz.data.servert.ComponentTrivia
 
 class ResultComponentTrivia(
-    component: ComponentTrivia,
-    result: View
+    val component: ComponentTrivia?,
+    val result: View
 )
 {
+
 
 }

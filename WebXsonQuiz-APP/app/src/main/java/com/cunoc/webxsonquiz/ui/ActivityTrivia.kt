@@ -91,9 +91,7 @@ class ActivityTrivia : AppCompatActivity() {
             ClassComponent.NULL_EMPTY -> {
                 this.handleNullOrEmpty(component)
             }
-
-            else -> { // Note the block
-                print("x no es 1 o 2")
+            else -> {
             }
         }
     }
@@ -107,7 +105,7 @@ class ActivityTrivia : AppCompatActivity() {
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         }
-        list.add(ResultComponentTrivia(component,editText ))
+        this.list.add(ResultComponentTrivia(component,editText ))
         val layout: LinearLayout = findViewById(R.id.LayoutActivityTrivia)
         layout!!.addView(editText)
     }
@@ -137,7 +135,7 @@ class ActivityTrivia : AppCompatActivity() {
         editTextMultiLine.setHorizontalScrollBarEnabled(true)
         val layout: LinearLayout = findViewById(R.id.LayoutActivityTrivia)
         layout!!.addView(editTextMultiLine)
-        list.add(ResultComponentTrivia(component,editTextMultiLine ))
+        this.list.add(ResultComponentTrivia(component,editTextMultiLine ))
     }
 
     private fun loadCheckbox(component: ComponentTrivia) {
@@ -153,9 +151,8 @@ class ActivityTrivia : AppCompatActivity() {
         // Agregar los CheckBox al layout
         checkBoxes.forEach { checkBox ->
             layout.addView(checkBox)
+            this.list.add(ResultComponentTrivia(component,checkBox ))
         }
-
-       // list.add(ResultComponentTrivia(component, ))
     }
 
     private fun loadFile(component: ComponentTrivia) {
@@ -176,7 +173,7 @@ class ActivityTrivia : AppCompatActivity() {
 
         // Agregar el Spinner al layout
         layout.addView(spinner)
-        list.add(ResultComponentTrivia(component,spinner ))
+        this.list.add(ResultComponentTrivia(component,spinner ))
     }
 
     private fun loadRadio(component: ComponentTrivia) {
@@ -201,7 +198,7 @@ class ActivityTrivia : AppCompatActivity() {
 
         // Agregar el RadioGroup al layout
         layout.addView(radioGroup)
-        list.add(ResultComponentTrivia(component,radioGroup ))
+        this.list.add(ResultComponentTrivia(component,radioGroup ))
     }
 
     private fun handleNullOrEmpty(component: ComponentTrivia) {}
@@ -255,11 +252,22 @@ class ActivityTrivia : AppCompatActivity() {
 
         // Definir la funcionalidad al hacer clic
         button.setOnClickListener {
-            Toast.makeText(this, "Hello, World!", Toast.LENGTH_SHORT).show()
+            this.recuperarInformacion()
         }
         val layout: LinearLayout = findViewById<LinearLayout>(R.id.LayoutActivityTrivia)
         layout.addView(button)
     }
 
-
+    private fun  recuperarInformacion(){
+        Toast.makeText(this, "IMFORMACION", Toast.LENGTH_SHORT).show()
+        for ( element in this.list){
+           val elementComvert:ResultComponentTrivia = element
+            println(elementComvert.result)
+            println(elementComvert.component)
+            //RadioGroup
+            //Spinner
+            //CheckBox
+            //EditText
+        }
+    }
 }
