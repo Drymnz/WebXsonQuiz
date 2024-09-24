@@ -21,7 +21,7 @@ public class TriviaTests {
     @Test
     public void testNewTrivia() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(NEW_TRIVIA);
-        trivias.Anilisar();
+        trivias.Analyze();
         Assertions.assertTrue(!trivias.isError());
     }
 
@@ -39,7 +39,7 @@ public class TriviaTests {
     @Test
     public void testAddComponet() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(ADD_COMPONET);
-        trivias.Anilisar();
+        trivias.Analyze();
         Assertions.assertTrue(!trivias.isError());
     }
 
@@ -97,7 +97,7 @@ public class TriviaTests {
     @Test
     public void testAllTrival() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(allTriviaComplent);
-        trivias.Anilisar();
+        trivias.Analyze();
         Assertions.assertTrue(!trivias.isError());
     }
 

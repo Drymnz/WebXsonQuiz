@@ -70,7 +70,7 @@ public class AnswerTests {
     @Test
     public void testReportSystemAccesUser() {
        AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepurevatestListRequery);
-        analizer.Anilisar();
+        analizer.Analyze();
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(),new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
         requetSystaxValidator.checkRequests();
         Assertions.assertTrue(!(new UserRequestReport(requetSystaxValidator).reportString().isEmpty()));

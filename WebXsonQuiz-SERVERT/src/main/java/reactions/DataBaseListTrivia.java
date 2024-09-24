@@ -25,7 +25,7 @@ public class DataBaseListTrivia {
             this.fileDataBase = new File(ConstantSystem.SYSTEM_DIR, ConstantSystem.NAME_FILE_DATA_BASE_TRIVIA);
             String json = (new FileInput().cargarArchivoTexto(this.fileDataBase));
             this.analyzer  = new AnalyzerDataBaseTrivia(json);
-            analyzer.Anilisar();
+            analyzer.Analyze();
             this.listTrivias = this.analyzer.getListTrivia();
         }
     }

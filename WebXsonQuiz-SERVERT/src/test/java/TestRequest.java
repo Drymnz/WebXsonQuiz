@@ -27,7 +27,7 @@ public class TestRequest {
     public void testSystemAcces() {
         User checkLogin = new User("juanito619", "12345678", "", "", "");
         AnalyzerLogin analyzer = new AnalyzerLogin(textosdepureva);
-        analyzer.Anilisar();
+        analyzer.Analyze();
         boolean satisfactoryTest = false;
         ConverterToObject converter = new ConverterToObject();
         User newUser = (converter).createUserListDataAnalyzerLogin(analyzer.getListRquest().get(0).getList());

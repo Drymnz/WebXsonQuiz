@@ -19,7 +19,7 @@ public class AnalyzerSQLKV {
         this.parse = new MyParseSQLKV(this.lexeman);
     }
 
-    public void Anilisar() {
+    public void Analyze() {
         try {
             this.parse.parse();
         } catch (Exception e) {

@@ -20,7 +20,7 @@ public class TriviaTestsExtras {
     @Test
     public void testModifyTrivia() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(MODIFY_TRIVIA);
-        trivias.Anilisar();
+        trivias.Analyze();
         Assertions.assertTrue(!trivias.isError());
     }
 
@@ -35,7 +35,7 @@ public class TriviaTestsExtras {
     @Test
     public void testDelComponet() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(DEL_COMPONET);
-        trivias.Anilisar();
+        trivias.Analyze();
         Assertions.assertTrue(!trivias.isError());
     }
 
@@ -49,7 +49,7 @@ public class TriviaTestsExtras {
     @Test
     public void testDelTrivia() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(DEL_TRIVIA);
-        trivias.Anilisar();
+        trivias.Analyze();
         Assertions.assertTrue(!trivias.isError());
     }
 
@@ -69,7 +69,7 @@ public class TriviaTestsExtras {
     @Test
     public void testModifyComponent() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(MODIFY_COMPONET);
-        trivias.Anilisar();
+        trivias.Analyze();
         Assertions.assertTrue(!trivias.isError());
     }
 
@@ -163,7 +163,7 @@ public class TriviaTestsExtras {
     @Test
     public void testAllTrivia() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(ALL_TRIVIA);
-        trivias.Anilisar();
+        trivias.Analyze();
         Assertions.assertTrue(!trivias.isError());
     }
 

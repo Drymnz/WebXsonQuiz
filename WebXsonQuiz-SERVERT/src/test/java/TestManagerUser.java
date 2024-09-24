@@ -26,7 +26,7 @@ public class TestManagerUser {
             "{ \"DATOS_USUARIO\":[{ \"USUARIO\": \"juanito619\", \"PASSWORD\": \"12345678\", \"NOMBRE\": \"JUAN PEREZ\",“INSTITUCION” :\"CUNOC\" }] }\n"
             +"<fin_solicitud_realizada!>\n";
         AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepureva);
-        analizer.Anilisar();
+        analizer.Analyze();
         boolean goodText= false;
         for (RequestAnalyzer element : analizer.getListRquest()) {
             goodText = element.getType() == ListRequests.NEW_USER;
@@ -42,7 +42,7 @@ public class TestManagerUser {
                                 "\"NUEVO_PASSWORD\": \"12345678910\" }] }\n"
             +"<fin_solicitud_realizada!>\n";
         AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepureva);
-        analizer.Anilisar();
+        analizer.Analyze();
         boolean goodText= false;
         for (RequestAnalyzer element : analizer.getListRquest()) {
             goodText = element.getType() == ListRequests.MODIFICAR_USUARIO;
@@ -56,7 +56,7 @@ public class TestManagerUser {
             "{ \"DATOS_USUARIO\":[{ \"USUARIO\": \"juanito619lopez\" }] }\n"
             +"<fin_solicitud_realizada!>\n";
         AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepureva);
-        analizer.Anilisar();
+        analizer.Analyze();
         boolean goodText= false;
         for (RequestAnalyzer element : analizer.getListRquest()) {
             goodText = element.getType() == ListRequests.ELIMINAR_USUARIO;
@@ -120,7 +120,7 @@ public class TestManagerUser {
     @Test
     public void testListRequery() {
         AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepurevatestListRequery);
-        analizer.Anilisar();
+        analizer.Analyze();
         boolean goodText= !analizer.isError() && analizer.getListRquest().size() == 5;
         Assertions.assertTrue(goodText);
     }
@@ -128,7 +128,7 @@ public class TestManagerUser {
     @Test
     public void testRequestSyntaxValidatorManagerUser() {
         AnalyzerManagerUser analizer = new AnalyzerManagerUser(textosdepurevatestListRequery);
-        analizer.Anilisar();
+        analizer.Analyze();
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(),new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
         requetSystaxValidator.checkRequests();
         boolean goodText= !analizer.isError() && analizer.getListRquest().size() == 5;

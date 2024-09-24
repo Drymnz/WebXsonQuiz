@@ -46,7 +46,7 @@ public class FirstJUnitTest {
     @Test
     public void testAnalyzerUser() {
         AnalyzerLogin analyzer = new AnalyzerLogin(textosdepureva);
-        analyzer.Anilisar();
+        analyzer.Analyze();
         boolean satisfactoryTest  = false;
         for (RequestAnalyzer iterable_element : analyzer.getListRquest()) {
             satisfactoryTest = iterable_element.getType() == ListRequests.NEW_USER && iterable_element.getList().size() == 4;
@@ -57,7 +57,7 @@ public class FirstJUnitTest {
     @Test
     public void testCreateUser() {
         AnalyzerLogin analyzer = new AnalyzerLogin(textosdepureva);
-        analyzer.Anilisar();
+        analyzer.Analyze();
         boolean satisfactoryTest  = false;
         ConverterToObject converter = new ConverterToObject();
         User newUser = (converter).getRequestAnalyzerToUser(analyzer.getListRquest().get(0));

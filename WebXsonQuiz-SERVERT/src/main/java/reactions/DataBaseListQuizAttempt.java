@@ -24,7 +24,7 @@ public class DataBaseListQuizAttempt {
             this.fileDataBase = new File(ConstantSystem.SYSTEM_DIR,ConstantSystem.NAME_FILE_DATA_BASE_QUIZ_ATTERMPT);
             String json = (new FileInput().cargarArchivoTexto(this.fileDataBase));
             this.analyzer = new AnalyzerDataBaseQuizAttempt(json);
-            this.analyzer.Anilisar();
+            this.analyzer.Analyze();
             this.listQuizAttempt.addAll(analyzer.getListQuizAttempt());
         } 
     }

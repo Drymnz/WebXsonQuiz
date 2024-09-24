@@ -19,7 +19,7 @@ public class AnalyzerManagerUser {
         this.parse = new MyParseUser(this.lexeman);
     }
 
-    public void Anilisar() {
+    public void Analyze() {
         try {
             this.parse.parse();
         } catch (Exception e) {

@@ -53,10 +53,8 @@ private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
 :}
 
 /* Terminales */
-/*sxon*/
-terminal EQUAL,OPEN_VERSION,CLOSE_VERSION,XSON,VERSION;
-terminal COLNO,CLOSE,OPEN;
-terminal String STRING;
+terminal COLNO,CLOSE,OPEN,EQUAL;
+terminal String STRING,ID_TRIVIA;
 /*SIMBOLOS DE OPERACION*/
 terminal SUMAR,RESTAR,DIVIDIR,MULTIPLICAR;
 terminal String REAL_NUMEBERS,STRING_DATE;
@@ -65,38 +63,24 @@ terminal PARENTESIS_A,PARENTESIS_C;
 terminal BRACKETS_O,BRACKETS_C;
 terminal KEYS_O,KEYS_C;
 /*SOLICITUD*/
-terminal  OPEN_REQUEST,FINAL_REQUEST,CLOSE_REQUEST,MAKE_REQUEST,COMA;
-terminal MAKE_REQUESTS,FINAL_REQUESTS;
+terminal MAKE_REQUESTS,FINAL_REQUESTS,COMA;
 //tipos de solicitud
-terminal NEW_USER,MODIFICAR_USUARIO,ELIMINAR_USUARIO;
-terminal USUARIO_ANTIGUO,NUEVO_PASSWORD;
-terminal USER_DATA,NAME_USER,PASS_USER,NAME_PERSONAL_USER,INSTITUCION,DATE;
+terminal NAME_USER,NAME_PERSONAL_USER,INSTITUCION,DATE;
 /*TRIVIAS*/
-terminal NEW_TRIVIA,PARAMETROS_TRIVIA;
-terminal ID_TRIVIA,TIEMPO_PREGUNTA,TEMA,USUARIO_CREACION;
-terminal AGREGAR_COMPONENTE,PARAMETROS_COMPONENTE,XML;
+terminal TIEMPO_PREGUNTA,TEMA,USUARIO_CREACION;
 terminal ID,TRIVIA,CLASE,TEXTO_VISIBLE,RESPUESTA,INDICE,OPCIONES,COLUMNAS,FILAS;
-terminal MODIFICAR_TRIVIA,ELIMINAR_COMPONENTE,ELIMINAR_TRIVIA,MODIFICAR_COMPONENTE;
+/*SQLVK*/
+terminal SELECCIONAR,REPORTE,FILTRAR,POR,USUARIO;
 /* No terminales */
 //operaicones
 non terminal inico_opereacion,operacion,parente;
+//SQL KV
+non terminal sql_kv;
+non terminal id_trivia,id_user;
 //inicio
-non terminal inicio_xson,bucle_inicio;
-non terminal inicio;
-non terminal xson_xml;
+non terminal inicio,bucle_inicio;
 //solicitud
-non terminal solicitud,cerrar_solicitud;
-//non terminal json, obj_json,solicitud_usuario,datas,data;
-non terminal json_del_user, obj_json_del_user,solicitud_usuario_del_user,datas_del_user,data_del_user;
-non terminal json_modificar_user, obj_json_modificar_user,solicitud_usuario_modificar_user,datas_user_modificar_user,datas_user_modificar;
-non terminal json_new_user, obj_json_new_user,solicitud_usuario_new_user,datas_new_user,data_new_user;
-//non terminal json, obj_json,solicitud,datas,data;
-non terminal json_new_trivia, obj_json_new_trivia,solicitud_new_trivia,datas_new_trivia,data_new_trivia;
-non terminal json_add_component,obj_json_add_component,solicitud_add_component,datas_add_component,data_add_component;
-non terminal json_del_trivia, obj_json_del_trivia,solicitud_del_trivia,datas_del_trivia;
 non terminal data;
-non terminal solicitudes,varios_solicitud,solicitud_unit;
-
 /*************************************PRECEDENCIA******************************************************/
 precedence left SUMAR, RESTAR;
 precedence left MULTIPLICAR, DIVIDIR;
@@ -107,305 +91,28 @@ start with inicio;
 /******operaciones matematicas*****/
 inicio ::= bucle_inicio
     | error bucle_inicio
+    |sql_kv
     ;
 
-bucle_inicio 
-  ::= bucle_inicio inicio_xson
-  |inicio_xson
+sql_kv
+  ::= SELECCIONAR REPORTE id_trivia FILTRAR POR USUARIO EQUAL 
   ;
 
-inicio_xson ::= 
-    OPEN_VERSION xson_xml VERSION EQUAL STRING CLOSE_VERSION
-    |solicitud_unit
-    |solicitudes
-    ;
-
-xson_xml
-  ::=XSON
-  |XML
-  ;
-  
-solicitudes
-  ::= OPEN_REQUEST MAKE_REQUESTS CLOSE varios_solicitud OPEN_REQUEST FINAL_REQUESTS CLOSE
+id_trivia
+  ::= ID_TRIVIA  STRING:a {:RESULT = a;:}
   ;
 
-varios_solicitud
-  ::= varios_solicitud solicitud_unit
-  | solicitud_unit
+id_user
+  ::=  STRING:a {:RESULT = a;:}
   ;
 
-solicitud_unit
-  ::= OPEN_REQUEST MAKE_REQUEST COLNO solicitud cerrar_solicitud
+bucle_inicio
+  ::=data
   ;
- 
-cerrar_solicitud 
-  ::= OPEN FINAL_REQUEST CLOSE_REQUEST
-  ;
-
-solicitud ::=
-  NEW_USER CLOSE json_new_user 
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.NEW_USER));
-    dataStack = new ArrayList();
-  :}
-  |MODIFICAR_USUARIO CLOSE json_modificar_user
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.MODIFICAR_USUARIO));
-    dataStack = new ArrayList();
-  :}
-  | ELIMINAR_USUARIO CLOSE json_del_user
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.ELIMINAR_USUARIO));
-    dataStack = new ArrayList();
-  :}
-  | NEW_TRIVIA CLOSE json_new_trivia
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.NEW_TRIVIA));
-    dataStack = new ArrayList();
-  :}
-  | AGREGAR_COMPONENTE CLOSE json_add_component
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.AGREGAR_COMPONENTE));
-    dataStack = new ArrayList();
-  :}
-  | MODIFICAR_TRIVIA CLOSE json_new_trivia
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.MODIFICAR_TRIVIA));
-    dataStack = new ArrayList();
-  :}
-  | ELIMINAR_COMPONENTE CLOSE json_add_component 
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.ELIMINAR_COMPONENTE));
-    dataStack = new ArrayList();
-  :}
-  | ELIMINAR_TRIVIA CLOSE json_del_trivia 
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.ELIMINAR_TRIVIA));
-    dataStack = new ArrayList();
-  :}
-  | MODIFICAR_COMPONENTE CLOSE json_add_component 
-  {:
-    listRquest.add(new RequestAnalyzer(dataStack, ListRequests.MODIFICAR_COMPONENTE));
-    dataStack = new ArrayList();
-  :}
-  ;
-  
-/* json::=
-  KEYS_O obj_json KEYS_C
-  | error
-  | 
-  ;
-
-obj_json 
-  ::= USER_DATA solicitud
-  | error
-  | 
-  ;
-
-solicitud ::=COLNO BRACKETS_O  KEYS_O datas KEYS_C  BRACKETS_C ;
-
-datas 
-  ::= datas COMA  data
-  |data
-  ; */
-/*ELIMINAR LA TRIVIA*/
-
-json_del_trivia::=
-  KEYS_O obj_json_del_trivia KEYS_C
-  | error
-  | 
-  ;
-
-obj_json_del_trivia 
-  ::= PARAMETROS_TRIVIA solicitud_del_trivia
-  | error
-  | 
-  ;
-
-solicitud_del_trivia ::=COLNO BRACKETS_O  KEYS_O datas_del_trivia KEYS_C  BRACKETS_C ;
-
-datas_del_trivia 
-  ::= ID_TRIVIA data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID_TRIVIA,a.toString()));:}
-  ;
-
-/*AGREGAR COMPONENTE DE TRIVIA*/
-
-json_add_component::=
-  KEYS_O obj_json_add_component KEYS_C
-  | error
-  | 
-  ;
-
-obj_json_add_component 
-  ::= PARAMETROS_COMPONENTE solicitud_add_component
-  | error
-  | 
-  ;
-
-solicitud_add_component ::=COLNO BRACKETS_O  KEYS_O datas_add_component KEYS_C  BRACKETS_C ;
-
-datas_add_component 
-  ::= datas_add_component COMA  data_add_component
-  |data_add_component
-  ; 
-
-data_add_component
-  ::=
-  ID data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID,a.toString()));:}
-  |TRIVIA data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TRIVIA,a.toString()));:}
-  |CLASE  data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.CLASE,a.toString()));:}
-  |TEXTO_VISIBLE  data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TEXTO_VISIBLE,a.toString()));:}
-  | RESPUESTA data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.RESPUESTA,a.toString()));:}
-  |INDICE data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.INDICE,a.toString()));:}
-  |OPCIONES data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.OPCIONES,a.toString()));:}
-  |FILAS  data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.FILAS,a.toString()));:}
-  |COLUMNAS data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.COLUMNAS,a.toString()));:}
-  ;
-
-/*NUEVA TRIVIA*/
-
-json_new_trivia::=
-  KEYS_O obj_json_new_trivia KEYS_C
-  | error
-  | 
-  ;
-
-obj_json_new_trivia 
-  ::= PARAMETROS_TRIVIA solicitud_new_trivia
-  | error
-  | 
-  ;
-
-solicitud_new_trivia ::=COLNO BRACKETS_O  KEYS_O datas_new_trivia KEYS_C  BRACKETS_C ;
-
-datas_new_trivia 
-  ::= datas_new_trivia COMA  data_new_trivia
-  |data_new_trivia
-  ;
-
-data_new_trivia
-  ::=
-  ID_TRIVIA data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID_TRIVIA,a.toString()));:}
-  |TIEMPO_PREGUNTA data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TIEMPO_PREGUNTA,a.toString()));:}
-  |NAME_PERSONAL_USER data:a
-   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.NAME,a.toString()));:}
-  |TEMA data:a
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TEMA,a.toString()));:}
-  |USUARIO_CREACION data:a
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO_CREACION,a.toString()));:}
-  |DATE data:a
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.DATE,a.toString()));:}
-  ;
-
-/*ELIMINAR USARIO*/
-json_del_user::=
-  KEYS_O obj_json_del_user KEYS_C
-  | error
-  | 
-  ;
-
-obj_json_del_user 
-  ::= USER_DATA solicitud_usuario_del_user
-  | error
-  | 
-  ;
-
-solicitud_usuario_del_user ::=COLNO BRACKETS_O  KEYS_O datas_del_user KEYS_C  BRACKETS_C ;
-
-datas_del_user 
-  ::= datas_del_user COMA  data_del_user
-  |data_del_user
-  ; 
-data_del_user
-  ::= NAME_USER data:a 
-   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO,a.toString()));:}
-  ;
-/*MODIFICAR USARIO*/
-
-json_modificar_user::=
-  KEYS_O obj_json_modificar_user KEYS_C
-  | error
-  | 
-  ;
-
-obj_json_modificar_user 
-  ::= USER_DATA solicitud_usuario_modificar_user
-  | error
-  | 
-  ;
-
-solicitud_usuario_modificar_user ::=COLNO BRACKETS_O  KEYS_O datas_user_modificar_user KEYS_C  BRACKETS_C ;
-
-datas_user_modificar_user 
-  ::= datas_user_modificar_user COMA  datas_user_modificar
-  |datas_user_modificar
-  ;
-
-datas_user_modificar
-  ::= USUARIO_ANTIGUO data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO_ANTIGUO,a.toString()));:}
-  | NEW_USER data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO,a.toString()));:}
-  | NUEVO_PASSWORD data:a 
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.NUEVO_PASSWORD,a.toString()));:}
-  |INSTITUCION data:a
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.INSTITUTION,a.toString()));:}
-  |DATE data:a
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.DATE,a.toString()));:}
-  ;
-/*NEW USER*/
-json_new_user::=
-  KEYS_O obj_json_new_user KEYS_C
-  | error
-  | 
-  ;
-
-obj_json_new_user 
-  ::= USER_DATA solicitud_usuario_new_user
-  | error
-  | 
-  ;
-
-solicitud_usuario_new_user ::=COLNO BRACKETS_O  KEYS_O datas_new_user KEYS_C  BRACKETS_C ;
-
-datas_new_user 
-  ::= datas_new_user COMA  data_new_user
-  |data_new_user
-  ;
-
-data_new_user::=
-  NAME_USER data:a 
-   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO,a.toString()));:}
-  |PASS_USER data:a 
-   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.PASSWORD,a.toString()));:}
-  |NAME_PERSONAL_USER data:a
-   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.NAME,a.toString()));:}
-  |INSTITUCION data:a
-   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.INSTITUTION,a.toString()));:}
-  |DATE data:a
-  {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.DATE,a.toString()));:}
-  | error
-  | 
-  ;
-/*NEW USER*/
 
 data ::=COLNO STRING:a {:RESULT = a;:}
   | COLNO inico_opereacion:a {:RESULT = a;:}
   | COLNO STRING_DATE:a {:RESULT = a;:}
-  | error
-  | 
   ;
 
 /******operaciones matematicas*****/

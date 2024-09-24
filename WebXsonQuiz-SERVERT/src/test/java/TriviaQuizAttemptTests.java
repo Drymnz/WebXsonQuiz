@@ -1,5 +1,3 @@
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.File;
 import java.util.ArrayList;
 
@@ -10,7 +8,6 @@ import com.cunoc.webxsonquiz.data.servert.QuizAttempt;
 import com.google.gson.Gson;
 
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerDataBaseQuizAttempt;
-import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjetQuizAttempt;
 import fileManager.FileOutput;
 import reactions.ConstantSystem;
 import reactions.DataBaseListQuizAttempt;
@@ -33,7 +30,7 @@ public class TriviaQuizAttemptTests {
     @Test
     public void analyzerTest() {
         AnalyzerDataBaseQuizAttempt analyzer = new AnalyzerDataBaseQuizAttempt(testStringTest);
-        analyzer.Anilisar();
+        analyzer.Analyze();
         Assertions.assertTrue(!analyzer.isError());
     }
 
@@ -41,7 +38,7 @@ public class TriviaQuizAttemptTests {
     public void ConverterAnalyzerToObjectTest() {
         QuizAttempt newQuizAttempt = null;
         AnalyzerDataBaseQuizAttempt analyzer = new AnalyzerDataBaseQuizAttempt(testStringTest);
-        analyzer.Anilisar();
+        analyzer.Analyze();
         newQuizAttempt = (analyzer.getListQuizAttempt().get(0));
         Assertions.assertTrue(newQuizAttempt!=null);
     }

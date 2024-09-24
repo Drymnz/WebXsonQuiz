@@ -21,7 +21,7 @@ public class AnalyzerDataBaseQuizAttempt {
         this.parse = new MyParserDataQuizAttempt(this.lexeman);
     }
 
-    public void Anilisar() {
+    public void Analyze() {
         try {
             this.parse.parse();
         } catch (Exception e) {

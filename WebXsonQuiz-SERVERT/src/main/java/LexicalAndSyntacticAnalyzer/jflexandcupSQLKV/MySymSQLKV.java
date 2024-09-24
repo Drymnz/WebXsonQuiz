@@ -8,81 +8,59 @@ package LexicalAndSyntacticAnalyzer.jflexandcupSQLKV;
 /** CUP generated class containing symbol constants. */
 public class MySymSQLKV {
   /* terminals */
-  public static final int NAME_USER = 36;
-  public static final int COLNO = 7;
-  public static final int NEW_TRIVIA = 41;
-  public static final int MULTIPLICAR = 14;
-  public static final int KEYS_C = 22;
-  public static final int CLOSE_REQUEST = 25;
-  public static final int OPEN_REQUEST = 23;
-  public static final int ID_TRIVIA = 43;
-  public static final int NEW_USER = 30;
-  public static final int PASS_USER = 37;
-  public static final int MAKE_REQUESTS = 28;
-  public static final int ELIMINAR_TRIVIA = 61;
-  public static final int RESPUESTA = 54;
-  public static final int SUMAR = 11;
-  public static final int INDICE = 55;
-  public static final int NAME_PERSONAL_USER = 38;
-  public static final int DATE = 40;
-  public static final int MODIFICAR_USUARIO = 31;
-  public static final int MODIFICAR_TRIVIA = 59;
-  public static final int FINAL_REQUEST = 24;
-  public static final int VERSION = 6;
-  public static final int TRIVIA = 51;
-  public static final int STRING_DATE = 16;
-  public static final int ID = 50;
-  public static final int FINAL_REQUESTS = 29;
-  public static final int USER_DATA = 35;
+  public static final int NAME_USER = 23;
+  public static final int COLNO = 2;
+  public static final int MULTIPLICAR = 11;
+  public static final int KEYS_C = 19;
+  public static final int ID_TRIVIA = 7;
+  public static final int POR = 42;
+  public static final int MAKE_REQUESTS = 20;
+  public static final int SUMAR = 8;
+  public static final int RESPUESTA = 34;
+  public static final int INDICE = 35;
+  public static final int NAME_PERSONAL_USER = 24;
+  public static final int DATE = 26;
+  public static final int USUARIO = 43;
+  public static final int TRIVIA = 31;
+  public static final int SELECCIONAR = 39;
+  public static final int STRING_DATE = 13;
+  public static final int FINAL_REQUESTS = 21;
+  public static final int ID = 30;
   public static final int EOF = 0;
-  public static final int EQUAL = 2;
-  public static final int CLASE = 52;
+  public static final int EQUAL = 5;
+  public static final int CLASE = 32;
   public static final int error = 1;
-  public static final int COMA = 27;
-  public static final int ELIMINAR_USUARIO = 32;
-  public static final int USUARIO_CREACION = 46;
-  public static final int TEMA = 45;
-  public static final int TIEMPO_PREGUNTA = 44;
-  public static final int NUEVO_PASSWORD = 34;
-  public static final int RESTAR = 12;
-  public static final int DIVIDIR = 13;
-  public static final int PARAMETROS_COMPONENTE = 48;
-  public static final int INSTITUCION = 39;
-  public static final int MODIFICAR_COMPONENTE = 62;
-  public static final int PARAMETROS_TRIVIA = 42;
-  public static final int PARENTESIS_C = 18;
-  public static final int BRACKETS_O = 19;
-  public static final int ELIMINAR_COMPONENTE = 60;
-  public static final int PARENTESIS_A = 17;
-  public static final int USUARIO_ANTIGUO = 33;
-  public static final int AGREGAR_COMPONENTE = 47;
-  public static final int OPEN = 9;
-  public static final int MAKE_REQUEST = 26;
-  public static final int STRING = 10;
-  public static final int XML = 49;
-  public static final int BRACKETS_C = 20;
-  public static final int CLOSE_VERSION = 4;
-  public static final int OPEN_VERSION = 3;
-  public static final int COLUMNAS = 57;
-  public static final int CLOSE = 8;
-  public static final int XSON = 5;
-  public static final int FILAS = 58;
-  public static final int KEYS_O = 21;
-  public static final int REAL_NUMEBERS = 15;
-  public static final int TEXTO_VISIBLE = 53;
-  public static final int OPCIONES = 56;
+  public static final int COMA = 22;
+  public static final int USUARIO_CREACION = 29;
+  public static final int TEMA = 28;
+  public static final int TIEMPO_PREGUNTA = 27;
+  public static final int REPORTE = 40;
+  public static final int RESTAR = 9;
+  public static final int DIVIDIR = 10;
+  public static final int INSTITUCION = 25;
+  public static final int PARENTESIS_C = 15;
+  public static final int BRACKETS_O = 16;
+  public static final int PARENTESIS_A = 14;
+  public static final int OPEN = 4;
+  public static final int STRING = 6;
+  public static final int BRACKETS_C = 17;
+  public static final int COLUMNAS = 37;
+  public static final int CLOSE = 3;
+  public static final int FILAS = 38;
+  public static final int KEYS_O = 18;
+  public static final int FILTRAR = 41;
+  public static final int REAL_NUMEBERS = 12;
+  public static final int TEXTO_VISIBLE = 33;
+  public static final int OPCIONES = 36;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "EQUAL",
-  "OPEN_VERSION",
-  "CLOSE_VERSION",
-  "XSON",
-  "VERSION",
   "COLNO",
   "CLOSE",
   "OPEN",
+  "EQUAL",
   "STRING",
+  "ID_TRIVIA",
   "SUMAR",
   "RESTAR",
   "DIVIDIR",
@@ -95,33 +73,16 @@ public class MySymSQLKV {
   "BRACKETS_C",
   "KEYS_O",
   "KEYS_C",
-  "OPEN_REQUEST",
-  "FINAL_REQUEST",
-  "CLOSE_REQUEST",
-  "MAKE_REQUEST",
-  "COMA",
   "MAKE_REQUESTS",
   "FINAL_REQUESTS",
-  "NEW_USER",
-  "MODIFICAR_USUARIO",
-  "ELIMINAR_USUARIO",
-  "USUARIO_ANTIGUO",
-  "NUEVO_PASSWORD",
-  "USER_DATA",
+  "COMA",
   "NAME_USER",
-  "PASS_USER",
   "NAME_PERSONAL_USER",
   "INSTITUCION",
   "DATE",
-  "NEW_TRIVIA",
-  "PARAMETROS_TRIVIA",
-  "ID_TRIVIA",
   "TIEMPO_PREGUNTA",
   "TEMA",
   "USUARIO_CREACION",
-  "AGREGAR_COMPONENTE",
-  "PARAMETROS_COMPONENTE",
-  "XML",
   "ID",
   "TRIVIA",
   "CLASE",
@@ -131,10 +92,11 @@ public class MySymSQLKV {
   "OPCIONES",
   "COLUMNAS",
   "FILAS",
-  "MODIFICAR_TRIVIA",
-  "ELIMINAR_COMPONENTE",
-  "ELIMINAR_TRIVIA",
-  "MODIFICAR_COMPONENTE"
+  "SELECCIONAR",
+  "REPORTE",
+  "FILTRAR",
+  "POR",
+  "USUARIO"
   };
 }
 

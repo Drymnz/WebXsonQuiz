@@ -38,7 +38,7 @@ public class SVUsers extends HttpServlet {
             errorMessage = LanguageConstants.EMPTY_TEXT;
         } else {
             AnalyzerManagerUser analizer = new AnalyzerManagerUser(textArea);
-            analizer.Anilisar();
+            analizer.Analyze();
             RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(),new DataBaseListTrivia(),new User(userId, "", "", "", ""));
             requetSystaxValidator.checkRequests();
             requetSystaxValidator.upDataBase(); 

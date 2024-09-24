@@ -31,7 +31,7 @@ public class TriviaTestsToObject {
     @Test
     public void ParserTestToNewTriviaObject() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(NEW_TRIVIA);
-        trivias.Anilisar();
+        trivias.Analyze();
         ConverterAnalyzerToObjectTrivia converterTrivia = new ConverterAnalyzerToObjectTrivia(new User("", "", "", "", ""));
         Trivia newTrivia = converterTrivia.newTrivia(trivias.getListRquest().get(0));
         Assertions.assertTrue(!trivias.isError() && newTrivia != null);
@@ -51,7 +51,7 @@ public class TriviaTestsToObject {
     @Test
     public void ParserTestToNewComponentTriviaObject() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(ADD_COMPONET);
-        trivias.Anilisar();
+        trivias.Analyze();
         ConverterAnalyzerToObjectComponentTrivia converterComponentTrivia = new ConverterAnalyzerToObjectComponentTrivia();
         ComponentTrivia newComponentTrivia = converterComponentTrivia.newComponent(trivias.getListRquest().get(0));
         Assertions.assertTrue(!trivias.isError() && newComponentTrivia != null);
@@ -147,7 +147,7 @@ public class TriviaTestsToObject {
     @Test
     public void testAllTrivalInObject() {
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(allTriviaComplent);
-        trivias.Anilisar();
+        trivias.Analyze();
         ArrayList<Trivia> listTrivia = new ArrayList<>();
         ArrayList<ComponentTrivia> listComponentTrivia = new ArrayList<>();
         ConverterAnalyzerToObjectComponentTrivia converterComponentTrivia = new ConverterAnalyzerToObjectComponentTrivia();

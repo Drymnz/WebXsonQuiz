@@ -105,7 +105,7 @@ public class RequestServertTrivia {
                 "<!fin_solicitudes_realizada>";
     private ArrayList<Trivia> listTrivias(){
         AnalyzerManagerUser trivias = new AnalyzerManagerUser(allTriviaComplent);
-        trivias.Anilisar();
+        trivias.Analyze();
         ArrayList<Trivia> listTrivia = new ArrayList<>();
         ArrayList<ComponentTrivia> listComponentTrivia = new ArrayList<>();
         ConverterAnalyzerToObjectComponentTrivia converterComponentTrivia = new ConverterAnalyzerToObjectComponentTrivia();
@@ -137,7 +137,7 @@ public class RequestServertTrivia {
         String stringFile = (new FileInput().cargarArchivoTexto(archivoTxt));
 
         AnalyzerDataBaseTrivia analyzer = new AnalyzerDataBaseTrivia(stringFile);
-        analyzer.Anilisar();
+        analyzer.Analyze();
         Assertions.assertTrue(!analyzer.isError());
     }
 
@@ -321,7 +321,7 @@ public class RequestServertTrivia {
     @Test
     public void testRequestSyntaxValidatorManagerTrivia() {
         AnalyzerManagerUser analizer = new AnalyzerManagerUser(solicitudTrivias);
-        analizer.Anilisar();
+        analizer.Analyze();
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(), new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
         requetSystaxValidator.checkRequests();
         boolean goodText= !analizer.isError();
@@ -333,7 +333,7 @@ public class RequestServertTrivia {
     @Test
     public void testReportSystemAccesTrivia() {
         AnalyzerManagerUser analizer = new AnalyzerManagerUser(solicitudTrivias);
-        analizer.Anilisar();
+        analizer.Analyze();
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(), new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
         requetSystaxValidator.checkRequests();
         boolean goodText= !analizer.isError();
