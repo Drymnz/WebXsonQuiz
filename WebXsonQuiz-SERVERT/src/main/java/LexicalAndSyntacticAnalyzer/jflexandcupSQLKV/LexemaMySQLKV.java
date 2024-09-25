@@ -72,16 +72,16 @@ public class LexemaMySQLKV implements java_cup.runtime.Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\10\0\1\1\1\2\4\3\22\0\1\2\1\4\1\5"+
-    "\1\0\1\6\3\0\1\7\1\10\1\11\1\12\1\13"+
-    "\1\14\1\15\1\16\12\17\1\20\1\0\1\21\1\22"+
-    "\1\23\2\0\1\24\1\25\1\26\1\27\1\30\1\31"+
-    "\1\32\1\33\1\34\2\35\1\36\1\37\1\40\1\41"+
-    "\1\42\1\35\1\43\1\44\1\45\1\46\1\47\1\35"+
-    "\1\50\2\35\1\51\1\52\1\53\1\0\1\54\1\0"+
-    "\32\35\1\55\1\1\1\56\7\0\1\3\32\0\1\2"+
-    "\u01df\0\1\2\177\0\13\2\22\0\1\57\12\0\2\3"+
-    "\5\0\1\2\57\0\1\2\240\0\1\2\377\0\u0100\60";
+    "\10\0\1\1\1\2\4\3\22\0\1\2\1\0\1\4"+
+    "\1\0\1\5\2\0\1\6\1\7\1\10\1\11\1\12"+
+    "\1\13\1\14\1\15\1\16\12\17\2\0\1\20\1\21"+
+    "\1\22\2\0\1\23\1\24\1\25\1\26\1\27\1\30"+
+    "\1\31\1\32\1\33\2\32\1\34\1\35\1\36\1\37"+
+    "\1\40\1\32\1\41\1\42\1\43\1\44\5\32\1\0"+
+    "\1\45\2\0\1\46\1\0\32\32\1\0\1\1\10\0"+
+    "\1\3\32\0\1\2\u01df\0\1\2\177\0\13\2\16\0"+
+    "\1\47\16\0\2\3\5\0\1\2\57\0\1\2\240\0"+
+    "\1\2\377\0\u0100\50";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1536];
@@ -108,18 +108,18 @@ public class LexemaMySQLKV implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\1\1\3\1\4\1\5\1\6"+
-    "\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16"+
-    "\5\1\1\17\1\20\1\21\1\22\1\0\1\23\12\0"+
-    "\1\3\25\0\1\12\3\0\1\24\7\0\1\25\55\0"+
-    "\1\26\13\0\1\27\1\0\1\30\11\0\1\31\1\0"+
-    "\1\32\1\33\1\0\1\34\2\0\1\35\1\0\1\36"+
-    "\4\0\1\37\12\0\1\40\4\0\1\41\1\0\1\42"+
-    "\10\0\1\43\4\0\1\44\1\45\5\0\1\46\10\0"+
-    "\1\47\2\0\1\50\2\0\1\51\1\0\1\52";
+    "\1\0\1\1\1\2\1\1\1\3\1\1\1\4\1\5"+
+    "\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15"+
+    "\1\16\12\1\1\0\1\17\2\0\1\20\1\3\1\0"+
+    "\1\21\2\0\1\22\1\23\3\0\1\24\10\0\1\20"+
+    "\1\0\1\25\1\0\1\20\1\0\1\21\1\13\1\26"+
+    "\2\0\1\27\1\30\6\0\1\25\6\0\1\31\6\0"+
+    "\1\32\5\0\1\33\2\0\1\34\2\0\1\35\1\36"+
+    "\2\0\1\37\15\0\1\40\5\0\1\41\4\0\1\42"+
+    "\1\0\1\43";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[213];
+    int [] result = new int[128];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -144,36 +144,25 @@ public class LexemaMySQLKV implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\61\0\142\0\223\0\304\0\61\0\61\0\61"+
-    "\0\61\0\61\0\61\0\365\0\61\0\u0126\0\61\0\61"+
-    "\0\u0157\0\u0188\0\u01b9\0\u01ea\0\u021b\0\61\0\61\0\61"+
-    "\0\61\0\u024c\0\61\0\u027d\0\u02ae\0\u02df\0\u0310\0\u0341"+
-    "\0\u0372\0\u03a3\0\u03d4\0\u0405\0\u0436\0\u0467\0\u0498\0\u04c9"+
-    "\0\u04fa\0\u052b\0\u055c\0\u058d\0\u05be\0\u05ef\0\u0620\0\u0651"+
-    "\0\u0682\0\u06b3\0\u06e4\0\u0715\0\u0746\0\u0777\0\u07a8\0\u07d9"+
-    "\0\u080a\0\u083b\0\u086c\0\u0498\0\u089d\0\u08ce\0\u08ff\0\61"+
-    "\0\u0930\0\u0961\0\u0992\0\u09c3\0\u09f4\0\u0a25\0\u0a56\0\61"+
-    "\0\u0a87\0\u0ab8\0\u0ae9\0\u0b1a\0\u0b4b\0\u0b7c\0\u0bad\0\u0bde"+
-    "\0\u0c0f\0\u0c40\0\u0c71\0\u0ca2\0\u0cd3\0\u0d04\0\u0d35\0\u0d66"+
-    "\0\u0d97\0\u0dc8\0\u0df9\0\u0e2a\0\u0e5b\0\u0e8c\0\u0ebd\0\u0eee"+
-    "\0\u0f1f\0\u0f50\0\u0f81\0\u0fb2\0\u0fe3\0\u1014\0\u1045\0\u1076"+
-    "\0\u10a7\0\u10d8\0\u1109\0\u113a\0\u116b\0\u119c\0\u11cd\0\u11fe"+
-    "\0\u122f\0\u1260\0\u1291\0\u12c2\0\u12f3\0\61\0\u1324\0\u1355"+
-    "\0\u1386\0\u13b7\0\u13e8\0\u1419\0\u144a\0\u147b\0\u14ac\0\u14dd"+
-    "\0\u150e\0\61\0\u153f\0\61\0\u1570\0\u15a1\0\u15d2\0\u1603"+
-    "\0\u1634\0\u1665\0\u1696\0\u16c7\0\u16f8\0\61\0\u1729\0\61"+
-    "\0\61\0\u175a\0\61\0\u178b\0\u17bc\0\61\0\u17ed\0\61"+
-    "\0\u181e\0\u184f\0\u1880\0\u18b1\0\61\0\u18e2\0\u1913\0\u1944"+
-    "\0\u1975\0\u19a6\0\u19d7\0\u1a08\0\u1a39\0\u1a6a\0\u1a9b\0\61"+
-    "\0\u1acc\0\u1afd\0\u1b2e\0\u1b5f\0\61\0\u1b90\0\61\0\u1bc1"+
-    "\0\u1bf2\0\u1c23\0\u1c54\0\u1c85\0\u1cb6\0\u1ce7\0\u1d18\0\61"+
-    "\0\u1d49\0\u1d7a\0\u1dab\0\u1ddc\0\61\0\61\0\u1e0d\0\u1e3e"+
-    "\0\u1e6f\0\u1ea0\0\u1ed1\0\61\0\u1f02\0\u1f33\0\u1f64\0\u1f95"+
-    "\0\u1fc6\0\u1ff7\0\u2028\0\u2059\0\61\0\u208a\0\u20bb\0\61"+
-    "\0\u20ec\0\u211d\0\61\0\u214e\0\61";
+    "\0\0\0\51\0\122\0\173\0\244\0\315\0\51\0\51"+
+    "\0\51\0\51\0\51\0\244\0\51\0\366\0\u011f\0\51"+
+    "\0\u0148\0\u0171\0\u019a\0\u01c3\0\u01ec\0\u0215\0\u023e\0\u0267"+
+    "\0\u0290\0\u02b9\0\u02e2\0\u030b\0\u0334\0\u035d\0\u0386\0\u030b"+
+    "\0\u03af\0\315\0\51\0\u03d8\0\u0401\0\51\0\51\0\u042a"+
+    "\0\u0453\0\u047c\0\51\0\u04a5\0\u04ce\0\u04f7\0\u0520\0\u0549"+
+    "\0\u0572\0\u059b\0\u02e2\0\u02e2\0\u05c4\0\u0334\0\u0334\0\u0334"+
+    "\0\u05ed\0\315\0\u0401\0\51\0\u0616\0\u063f\0\51\0\51"+
+    "\0\u0668\0\u0691\0\u06ba\0\u06e3\0\u070c\0\u0735\0\u02e2\0\u075e"+
+    "\0\u0787\0\u07b0\0\u07d9\0\u0802\0\u082b\0\51\0\u0854\0\u087d"+
+    "\0\u08a6\0\u08cf\0\u08f8\0\u0921\0\51\0\u094a\0\u0973\0\u099c"+
+    "\0\u09c5\0\u09ee\0\51\0\u0a17\0\u0a40\0\u0a69\0\u0a92\0\u0abb"+
+    "\0\51\0\51\0\u0ae4\0\u0b0d\0\u0b36\0\u0b5f\0\u0b88\0\u0bb1"+
+    "\0\u0bda\0\u0c03\0\u0c2c\0\u0c55\0\u0c7e\0\u0ca7\0\u0cd0\0\u0cf9"+
+    "\0\u0d22\0\u0d4b\0\51\0\u0d74\0\u0d9d\0\u0dc6\0\u0def\0\u0e18"+
+    "\0\u0334\0\u0e41\0\u0e6a\0\u0e93\0\u0ebc\0\51\0\u0ee5\0\51";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[213];
+    int [] result = new int[128];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -196,121 +185,54 @@ public class LexemaMySQLKV implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\3\3\1\2\1\4\1\5\1\6\1\7\1\10"+
-    "\1\11\1\12\1\5\1\2\1\13\1\14\1\15\1\16"+
-    "\1\17\1\20\5\2\1\21\10\2\1\22\1\23\1\24"+
-    "\1\2\1\25\2\2\1\26\1\2\1\27\1\5\1\30"+
-    "\1\31\1\2\63\0\3\3\55\0\5\32\1\33\11\32"+
-    "\1\34\6\32\1\35\2\32\1\36\2\32\1\37\3\32"+
-    "\1\40\1\41\1\32\1\42\1\32\1\43\1\44\3\32"+
-    "\1\45\6\32\2\0\2\46\2\0\1\5\5\0\1\5"+
-    "\2\0\1\5\4\0\25\5\3\0\1\5\21\0\1\47"+
-    "\1\0\1\14\45\0\1\50\104\0\1\51\3\0\1\52"+
-    "\65\0\1\53\47\0\1\54\60\0\1\55\74\0\1\56"+
-    "\14\0\5\32\1\33\44\32\1\45\13\32\1\33\11\32"+
-    "\1\57\32\32\1\45\13\32\1\33\30\32\1\60\2\32"+
-    "\1\61\10\32\1\45\13\32\1\33\26\32\1\62\15\32"+
-    "\1\45\13\32\1\33\21\32\1\63\10\32\1\64\11\32"+
-    "\1\45\13\32\1\33\33\32\1\65\10\32\1\45\13\32"+
-    "\1\33\34\32\1\66\7\32\1\45\13\32\1\33\22\32"+
-    "\1\67\21\32\1\45\13\32\1\33\22\32\1\70\3\32"+
-    "\1\71\6\32\1\72\6\32\1\45\13\32\1\33\36\32"+
-    "\1\73\5\32\1\45\11\32\1\0\54\32\3\0\2\46"+
-    "\74\0\1\74\55\0\1\75\72\0\1\76\70\0\1\77"+
-    "\65\0\1\100\57\0\1\101\54\0\1\102\70\0\1\103"+
-    "\12\0\5\32\1\33\11\32\1\104\32\32\1\45\13\32"+
-    "\1\33\16\32\1\105\25\32\1\45\13\32\1\33\30\32"+
-    "\1\106\13\32\1\45\13\32\1\33\30\32\1\107\13\32"+
-    "\1\45\13\32\1\110\44\32\1\45\13\32\1\33\21\32"+
-    "\1\111\14\32\1\112\5\32\1\45\13\32\1\33\31\32"+
-    "\1\113\12\32\1\45\13\32\1\33\20\32\1\114\23\32"+
-    "\1\45\13\32\1\33\36\32\1\115\5\32\1\45\13\32"+
-    "\1\33\31\32\1\116\10\32\1\117\1\32\1\45\13\32"+
-    "\1\33\22\32\1\120\21\32\1\45\13\32\1\33\26\32"+
-    "\1\121\15\32\1\45\13\32\1\33\40\32\1\122\3\32"+
-    "\1\45\6\32\14\0\1\123\77\0\1\124\72\0\1\125"+
-    "\54\0\1\126\47\0\1\127\54\0\1\130\34\0\5\32"+
-    "\1\33\11\32\1\131\32\32\1\45\13\32\1\33\36\32"+
-    "\1\132\5\32\1\45\13\32\1\33\40\32\1\133\3\32"+
-    "\1\45\13\32\1\33\16\32\1\134\25\32\1\45\13\32"+
-    "\1\33\26\32\1\135\15\32\1\45\13\32\1\33\37\32"+
-    "\1\136\4\32\1\45\13\32\1\33\17\32\1\137\24\32"+
-    "\1\45\13\32\1\33\26\32\1\140\15\32\1\45\13\32"+
-    "\1\33\34\32\1\141\7\32\1\45\13\32\1\33\16\32"+
-    "\1\142\25\32\1\45\13\32\1\33\37\32\1\143\4\32"+
-    "\1\45\13\32\1\33\31\32\1\144\12\32\1\45\13\32"+
-    "\1\33\41\32\1\145\2\32\1\45\13\32\1\33\16\32"+
-    "\1\146\25\32\1\45\6\32\14\123\1\147\44\123\24\0"+
-    "\1\150\77\0\1\151\60\0\1\152\43\0\1\153\75\0"+
-    "\1\154\15\0\5\32\1\33\6\32\1\155\35\32\1\45"+
-    "\13\32\1\33\22\32\1\156\21\32\1\45\13\32\1\33"+
-    "\31\32\1\157\12\32\1\45\13\32\1\33\36\32\1\160"+
-    "\5\32\1\45\13\32\1\33\20\32\1\161\23\32\1\45"+
-    "\13\32\1\33\26\32\1\162\15\32\1\45\13\32\1\33"+
-    "\35\32\1\163\6\32\1\45\13\32\1\33\33\32\1\164"+
-    "\10\32\1\45\13\32\1\33\40\32\1\165\3\32\1\45"+
-    "\13\32\1\166\44\32\1\45\13\32\1\33\33\32\1\167"+
-    "\10\32\1\45\13\32\1\33\34\32\1\170\7\32\1\45"+
-    "\13\32\1\33\26\32\1\171\15\32\1\45\13\32\1\33"+
-    "\35\32\1\172\6\32\1\45\6\32\14\123\1\173\44\123"+
-    "\54\0\1\174\30\0\1\175\101\0\1\176\41\0\1\177"+
-    "\66\0\1\200\24\0\5\32\1\33\11\32\1\201\32\32"+
-    "\1\45\13\32\1\202\44\32\1\45\13\32\1\33\32\32"+
-    "\1\203\11\32\1\45\13\32\1\204\44\32\1\45\13\32"+
-    "\1\33\22\32\1\205\21\32\1\45\13\32\1\33\37\32"+
-    "\1\206\4\32\1\45\13\32\1\33\22\32\1\207\21\32"+
-    "\1\45\13\32\1\33\32\32\1\210\11\32\1\45\13\32"+
-    "\1\33\22\32\1\211\21\32\1\45\13\32\1\33\44\32"+
-    "\1\45\1\32\1\212\11\32\1\33\33\32\1\213\10\32"+
-    "\1\45\13\32\1\33\16\32\1\214\25\32\1\45\13\32"+
-    "\1\33\26\32\1\215\15\32\1\45\6\32\14\123\1\173"+
-    "\6\123\1\216\35\123\26\0\1\217\75\0\1\220\45\0"+
-    "\1\221\64\0\1\222\65\0\1\223\17\0\5\32\1\33"+
-    "\11\32\1\224\32\32\1\45\13\32\1\33\16\32\1\225"+
-    "\25\32\1\45\13\32\1\226\44\32\1\45\13\32\1\33"+
-    "\40\32\1\227\3\32\1\45\13\32\1\230\44\32\1\45"+
-    "\13\32\1\33\22\32\1\231\21\32\1\45\13\32\1\33"+
-    "\36\32\1\232\5\32\1\45\13\32\1\33\41\32\1\233"+
-    "\2\32\1\45\13\32\1\33\44\32\1\45\1\32\1\234"+
-    "\11\32\1\235\44\32\1\45\13\32\1\33\33\32\1\236"+
-    "\10\32\1\45\6\32\43\0\1\237\56\0\1\240\17\0"+
-    "\5\32\1\33\6\32\1\241\35\32\1\45\13\32\1\33"+
-    "\36\32\1\242\5\32\1\45\13\32\1\33\20\32\1\243"+
-    "\23\32\1\45\13\32\1\33\36\32\1\244\5\32\1\45"+
-    "\13\32\1\33\37\32\1\245\4\32\1\45\13\32\1\33"+
-    "\26\32\1\246\15\32\1\45\13\32\1\33\34\32\1\247"+
-    "\7\32\1\45\13\32\1\250\44\32\1\45\1\32\1\251"+
-    "\4\32\30\0\1\252\70\0\1\253\20\0\5\32\1\33"+
-    "\11\32\1\254\32\32\1\45\13\32\1\255\44\32\1\45"+
-    "\13\32\1\33\26\32\1\256\15\32\1\45\13\32\1\257"+
-    "\44\32\1\45\13\32\1\33\16\32\1\260\25\32\1\45"+
-    "\13\32\1\33\36\32\1\261\5\32\1\45\13\32\1\33"+
-    "\35\32\1\262\6\32\1\45\13\32\1\33\20\32\1\263"+
-    "\23\32\1\45\6\32\24\0\1\264\60\0\1\265\34\0"+
-    "\5\32\1\33\11\32\1\266\32\32\1\45\13\32\1\33"+
-    "\33\32\1\267\10\32\1\45\13\32\1\270\44\32\1\45"+
-    "\13\32\1\33\26\32\1\271\15\32\1\45\13\32\1\33"+
-    "\22\32\1\272\21\32\1\45\13\32\1\33\35\32\1\273"+
-    "\6\32\1\45\6\32\26\0\1\274\75\0\1\275\15\0"+
-    "\5\32\1\276\44\32\1\45\13\32\1\33\32\32\1\277"+
-    "\11\32\1\45\13\32\1\33\17\32\1\300\24\32\1\45"+
-    "\13\32\1\33\24\32\1\301\17\32\1\45\13\32\1\33"+
-    "\22\32\1\302\21\32\1\45\6\32\34\0\1\303\24\0"+
-    "\5\32\1\304\44\32\1\45\13\32\1\33\30\32\1\305"+
-    "\13\32\1\45\13\32\1\33\40\32\1\306\3\32\1\45"+
-    "\13\32\1\33\16\32\1\307\25\32\1\45\6\32\41\0"+
-    "\1\310\17\0\5\32\1\33\22\32\1\311\21\32\1\45"+
-    "\13\32\1\33\32\32\1\312\11\32\1\45\13\32\1\33"+
-    "\20\32\1\313\23\32\1\45\6\32\40\0\1\314\20\0"+
-    "\5\32\1\315\44\32\1\45\13\32\1\33\37\32\1\316"+
-    "\4\32\1\45\13\32\1\33\26\32\1\317\15\32\1\45"+
-    "\6\32\57\0\1\320\1\0\5\32\1\33\16\32\1\321"+
-    "\25\32\1\45\13\32\1\33\33\32\1\322\10\32\1\45"+
-    "\13\32\1\323\44\32\1\45\13\32\1\33\32\32\1\324"+
-    "\11\32\1\45\13\32\1\325\44\32\1\45\6\32";
+    "\1\2\3\3\1\4\1\5\1\6\1\7\1\10\1\11"+
+    "\1\12\1\13\1\14\1\2\1\15\1\16\1\17\1\20"+
+    "\1\21\1\22\4\2\1\23\5\2\1\24\1\25\1\26"+
+    "\1\27\1\30\1\31\1\32\1\2\1\5\1\33\53\0"+
+    "\3\3\45\0\4\34\1\35\26\34\1\36\11\34\1\37"+
+    "\1\34\1\40\1\34\2\0\2\41\1\0\1\5\6\0"+
+    "\1\5\2\0\1\5\3\0\22\5\1\0\1\5\2\0"+
+    "\6\42\1\43\36\42\1\44\3\42\15\0\1\45\1\0"+
+    "\1\16\52\0\1\46\50\0\1\47\65\0\1\50\45\0"+
+    "\1\51\54\0\1\52\52\0\1\53\46\0\1\54\40\0"+
+    "\1\55\46\0\1\56\1\0\1\57\50\0\1\60\3\0"+
+    "\1\61\57\0\1\62\6\0\4\63\1\64\40\63\1\65"+
+    "\1\63\1\66\1\63\4\34\1\35\40\34\1\37\1\34"+
+    "\1\40\1\34\4\67\1\70\42\67\1\70\1\67\4\34"+
+    "\1\35\31\34\1\71\6\34\1\37\1\34\1\40\4\34"+
+    "\1\67\1\40\42\34\1\40\1\67\2\0\2\41\45\0"+
+    "\6\42\1\72\36\42\1\44\3\42\17\0\1\73\57\0"+
+    "\1\74\56\0\1\75\51\0\1\76\5\0\1\77\46\0"+
+    "\1\100\47\0\1\101\47\0\1\102\45\0\1\103\51\0"+
+    "\1\104\42\0\1\105\65\0\1\106\4\0\4\63\1\64"+
+    "\40\63\1\65\1\63\1\107\1\63\4\34\1\35\35\34"+
+    "\1\110\2\34\1\37\1\34\1\40\1\34\43\0\1\111"+
+    "\31\0\1\112\63\0\1\113\52\0\1\114\36\0\1\115"+
+    "\44\0\1\116\62\0\1\117\36\0\1\120\25\0\4\34"+
+    "\1\35\36\34\1\121\1\34\1\37\1\34\1\40\1\34"+
+    "\41\0\1\122\50\0\1\123\50\0\1\124\36\0\1\125"+
+    "\46\0\1\126\63\0\1\127\51\0\1\130\7\0\4\34"+
+    "\1\35\26\34\1\131\11\34\1\37\1\34\1\40\1\34"+
+    "\23\0\1\132\54\0\1\133\64\0\1\134\32\0\1\135"+
+    "\62\0\1\136\44\0\1\137\15\0\4\34\1\35\36\34"+
+    "\1\140\1\34\1\37\1\34\1\40\1\34\41\0\1\141"+
+    "\36\0\1\142\54\0\1\143\63\0\1\144\41\0\1\145"+
+    "\11\0\4\34\1\35\37\34\1\146\1\37\1\34\1\40"+
+    "\1\34\37\0\1\147\51\0\1\150\56\0\1\151\2\0"+
+    "\4\34\1\35\20\34\1\152\17\34\1\37\1\34\1\40"+
+    "\1\34\36\0\1\153\53\0\1\154\34\0\1\155\23\0"+
+    "\4\34\1\35\26\34\1\156\11\34\1\37\1\34\1\40"+
+    "\1\34\23\0\1\157\54\0\1\160\62\0\1\161\7\0"+
+    "\4\34\1\35\32\34\1\162\5\34\1\37\1\34\1\40"+
+    "\1\34\41\0\1\163\40\0\1\164\46\0\1\165\21\0"+
+    "\4\34\1\35\31\34\1\166\6\34\1\37\1\34\1\40"+
+    "\1\34\44\0\1\167\27\0\1\170\25\0\4\34\1\171"+
+    "\40\34\1\37\1\34\1\40\1\34\36\0\1\172\37\0"+
+    "\1\173\66\0\1\174\40\0\1\175\40\0\1\176\64\0"+
+    "\1\177\47\0\1\200\12\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[8575];
+    int [] result = new int[3854];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -353,17 +275,16 @@ public class LexemaMySQLKV implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\3\1\6\11\1\1\1\11\1\1\2\11"+
-    "\5\1\4\11\1\0\1\11\12\0\1\1\25\0\1\1"+
-    "\3\0\1\11\7\0\1\11\55\0\1\11\13\0\1\11"+
-    "\1\0\1\11\11\0\1\11\1\0\2\11\1\0\1\11"+
-    "\2\0\1\11\1\0\1\11\4\0\1\11\12\0\1\11"+
-    "\4\0\1\11\1\0\1\11\10\0\1\11\4\0\2\11"+
-    "\5\0\1\11\10\0\1\11\2\0\1\11\2\0\1\11"+
-    "\1\0\1\11";
+    "\1\0\1\11\4\1\5\11\1\1\1\11\2\1\1\11"+
+    "\13\1\1\0\1\1\2\0\2\1\1\0\1\11\2\0"+
+    "\2\11\3\0\1\11\10\0\1\1\1\0\1\1\1\0"+
+    "\1\1\1\0\2\1\1\11\2\0\2\11\6\0\1\1"+
+    "\6\0\1\11\6\0\1\11\5\0\1\11\2\0\1\1"+
+    "\2\0\2\11\2\0\1\1\15\0\1\11\5\0\1\1"+
+    "\4\0\1\11\1\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[213];
+    int [] result = new int[128];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -444,7 +365,7 @@ public class LexemaMySQLKV implements java_cup.runtime.Scanner {
     private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
   
     private void print(String token) {
-        //System.out.println(" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
+            System.out.println(token+" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
     }
 
     private void addError(){
@@ -890,212 +811,177 @@ public class LexemaMySQLKV implements java_cup.runtime.Scanner {
                         addError();
             }
           // fall through
-          case 43: break;
+          case 36: break;
           case 2:
             { /* print(); */
             }
           // fall through
-          case 44: break;
+          case 37: break;
           case 3:
-            { print("\"ID_TRIVIA\""); return new Symbol(MySymSQLKV.ID_TRIVIA ,yyline,yycolumn,yytext());
+            { print("ID_TRIVIA"); return new Symbol(MySymSQLKV.ID_TRIVIA ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 45: break;
+          case 38: break;
           case 4:
             { print("("); return new Symbol(MySymSQLKV.PARENTESIS_A,yyline,yycolumn,yytext());
             }
           // fall through
-          case 46: break;
+          case 39: break;
           case 5:
             { print(")"); return new Symbol(MySymSQLKV.PARENTESIS_C,yyline,yycolumn,yytext());
             }
           // fall through
-          case 47: break;
+          case 40: break;
           case 6:
             { print("*"); return new Symbol(MySymSQLKV.MULTIPLICAR,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 48: break;
+          case 41: break;
           case 7:
             { print("+"); return new Symbol(MySymSQLKV.SUMAR,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 49: break;
+          case 42: break;
           case 8:
             { print(","); return new Symbol(MySymSQLKV.COMA,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 50: break;
+          case 43: break;
           case 9:
+            { print("-"); return new Symbol(MySymSQLKV.RESTAR,yyline,yycolumn, (yytext()));
+            }
+          // fall through
+          case 44: break;
+          case 10:
             { print("/"); return new Symbol(MySymSQLKV.DIVIDIR,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 51: break;
-          case 10:
+          case 45: break;
+          case 11:
             { print("REAL_NUMEBERS"); return new Symbol(MySymSQLKV.REAL_NUMEBERS ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 52: break;
-          case 11:
-            { print(":"); return new Symbol(MySymSQLKV.COLNO,yyline,yycolumn, (yytext()));
-            }
-          // fall through
-          case 53: break;
+          case 46: break;
           case 12:
-            { print("<" ); return new Symbol(MySymSQLKV.OPEN ,yyline,yycolumn,yytext());
+            { print("<" ); return new Symbol(MySymSQLKV.LESS_THAN ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 54: break;
+          case 47: break;
           case 13:
             { print("="); return new Symbol(MySymSQLKV.EQUAL,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 55: break;
+          case 48: break;
           case 14:
-            { print(">" ); return new Symbol(MySymSQLKV.CLOSE ,yyline,yycolumn,yytext());
+            { print(">" ); return new Symbol(MySymSQLKV.GREATER_THAN ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 56: break;
+          case 49: break;
           case 15:
-            { print("["); return new Symbol(MySymSQLKV.BRACKETS_O ,yyline,yycolumn,yytext());
+            { print("STRING_FIRS"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 57: break;
+          case 50: break;
           case 16:
-            { print("]"); return new Symbol(MySymSQLKV.BRACKETS_C ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 58: break;
-          case 17:
-            { print("{"); return new Symbol(MySymSQLKV.KEYS_O ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 59: break;
-          case 18:
-            { print("}"); return new Symbol(MySymSQLKV.KEYS_C ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 60: break;
-          case 19:
             { print("STRING"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 61: break;
+          case 51: break;
+          case 17:
+            { print("STRING_THIRD"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 52: break;
+          case 18:
+            { print("<=" ); return new Symbol(MySymSQLKV.LESS_THAN_OR_EQUAL ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 53: break;
+          case 19:
+            { print(">=" ); return new Symbol(MySymSQLKV.GREATER_THAN_OR_EQUAL ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 54: break;
           case 20:
-            { print("<" ); return new Symbol(MySymSQLKV.POR ,yyline,yycolumn,yytext());
+            { print("OR"); return new Symbol(MySymSQLKV.OR,yyline,yycolumn, (yytext()));
             }
           // fall through
-          case 62: break;
+          case 55: break;
           case 21:
-            { print("\"ID\""); return new Symbol(MySymSQLKV.ID ,yyline,yycolumn,yytext());
+            { print("STRING_FOURTH"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 63: break;
+          case 56: break;
           case 22:
+            { print("AND"); return new Symbol(MySymSQLKV.AND,yyline,yycolumn, (yytext()));
+            }
+          // fall through
+          case 57: break;
+          case 23:
+            { print("NOT"); return new Symbol(MySymSQLKV.NOT,yyline,yycolumn, (yytext()));
+            }
+          // fall through
+          case 58: break;
+          case 24:
+            { print("POR" ); return new Symbol(MySymSQLKV.POR ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 59: break;
+          case 25:
             { print("\"TEMA\""); return new Symbol(MySymSQLKV.TEMA ,yyline,yycolumn,yytext());
             }
           // fall through
+          case 60: break;
+          case 26:
+            { print("\"SCORE\""); return new Symbol(MySymSQLKV.SCORE ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 61: break;
+          case 27:
+            { print("\"NOMBRE\""); return new Symbol(MySymSQLKV.NOMBRE ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 62: break;
+          case 28:
+            { print("\"TIEMPO\""); return new Symbol(MySymSQLKV.TIEMPO ,yyline,yycolumn,yytext());
+            }
+          // fall through
+          case 63: break;
+          case 29:
+            { print("FILTRAR" ); return new Symbol(MySymSQLKV.FILTRAR ,yyline,yycolumn,yytext());
+            }
+          // fall through
           case 64: break;
-          case 23:
-            { print("\"CLASE\""); return new Symbol(MySymSQLKV.CLASE ,yyline,yycolumn,yytext());
+          case 30:
+            { print("REPORTE" ); return new Symbol(MySymSQLKV.REPORTE ,yyline,yycolumn,yytext());
             }
           // fall through
           case 65: break;
-          case 24:
-            { print("\"FILAS\""); return new Symbol(MySymSQLKV.FILAS ,yyline,yycolumn,yytext());
+          case 31:
+            { print("USUARIO" ); return new Symbol(MySymSQLKV.USUARIO ,yyline,yycolumn,yytext());
             }
           // fall through
           case 66: break;
-          case 25:
-            { /*COMENTARIO*/
+          case 32:
+            { print("SELECCIONAR" ); return new Symbol(MySymSQLKV.SELECCIONAR ,yyline,yycolumn,yytext());
             }
           // fall through
           case 67: break;
-          case 26:
-            { print("<" ); return new Symbol(MySymSQLKV.FILTRAR ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 68: break;
-          case 27:
-            { print("<" ); return new Symbol(MySymSQLKV.REPORTE ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 69: break;
-          case 28:
-            { print("<" ); return new Symbol(MySymSQLKV.USUARIO ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 70: break;
-          case 29:
-            { print("\"INDICE\""); return new Symbol(MySymSQLKV.INDICE ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 71: break;
-          case 30:
-            { print("\"NOMBRE\""); return new Symbol(MySymSQLKV.NAME_PERSONAL_USER ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 72: break;
-          case 31:
-            { print("\"TRIVIA\""); return new Symbol(MySymSQLKV.TRIVIA ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 73: break;
-          case 32:
-            { print("\"USUARIO\""); return new Symbol(MySymSQLKV.NAME_USER ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 74: break;
           case 33:
-            { print("\"COLUMNAS\""); return new Symbol(MySymSQLKV.COLUMNAS ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 75: break;
-          case 34:
-            { print("\"OPCIONES\""); return new Symbol(MySymSQLKV.OPCIONES ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 76: break;
-          case 35:
-            { print("\"RESPUESTA\""); return new Symbol(MySymSQLKV.RESPUESTA ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 77: break;
-          case 36:
-            { print("<" ); return new Symbol(MySymSQLKV.SELECCIONAR ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 78: break;
-          case 37:
-            { print("DATE"); return new Symbol(MySymSQLKV.STRING_DATE,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 79: break;
-          case 38:
             { print("INSTITUCION"); return new Symbol(MySymSQLKV.INSTITUCION ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 80: break;
-          case 39:
-            { print("\"TEXTO_VISIBLE\""); return new Symbol(MySymSQLKV.TEXTO_VISIBLE ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 81: break;
-          case 40:
-            { print("FECHA_CREACION"); return new Symbol(MySymSQLKV.DATE ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 82: break;
-          case 41:
+          case 68: break;
+          case 34:
             { print("\"TIEMPO_PREGUNTA\""); return new Symbol(MySymSQLKV.TIEMPO_PREGUNTA ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 83: break;
-          case 42:
+          case 69: break;
+          case 35:
             { print("\"USUARIO_CREACION\""); return new Symbol(MySymSQLKV.USUARIO_CREACION ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 84: break;
+          case 70: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

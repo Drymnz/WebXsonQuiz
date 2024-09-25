@@ -28,7 +28,7 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
     private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
   
     private void print(String token) {
-        //System.out.println(" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
+            System.out.println(token+" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
     }
 
     private void addError(){
@@ -45,15 +45,17 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
 %}
 
 INSTITUCION = "\"""I""N""S""T""I""T""U""C""I""O""N""\""
-OPEN_ID = "_"|"-"|"$"
 DIGIT = [0-9]
 WHOLE = {DIGIT}+
 DECIMAL = {WHOLE}[.]{WHOLE}
 REAL_NUMEBERS = {DECIMAL}|{WHOLE}
 
-DATE = "\""{DIGIT}{DIGIT}{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"\""
-
-STRING = \"([^\"\\]|\\.)*\"
+///FIRST, SECOND, THIRD, FOURTH
+STRING_FIRS = \"([^\"\\]|\\.)*\"
+STRING_SECOND  = \'([^\'\\]|\\.)*\'
+STRING_THIRD = '([^']|\\.)*'
+STRING_FOURTH = ’([^’]|\\.)*’ 
+STRING = ([\"]|[\’])([^\"]|[^\’]|[^\\]|\\.)*([\"]|[\’])
 
 espacio =[\n|\r|\t|\f|\b|\s|" "| ]+
 
@@ -62,55 +64,51 @@ ID_TRIVIA = [_\-\$][_\-\$0-9a-zA-Z]*[\s]*
 %%
 
 /*tercer seccion: reglase lexicas*/
-/*INGNORAR*/
-"<!--" ~"-->"              {/*COMENTARIO*/}
-{ID_TRIVIA}             {print("\"ID_TRIVIA\""); return new Symbol(MySymSQLKV.ID_TRIVIA ,yyline,yycolumn,yytext());}
+
+//ID DE LA TRIVIA
 {espacio}               {/* print(); */}
-">"                     {print(">" ); return new Symbol(MySymSQLKV.CLOSE ,yyline,yycolumn,yytext());}
-"<"                     {print("<" ); return new Symbol(MySymSQLKV.OPEN ,yyline,yycolumn,yytext());}
+">"                     {print(">" ); return new Symbol(MySymSQLKV.GREATER_THAN ,yyline,yycolumn,yytext());}
+"<"                     {print("<" ); return new Symbol(MySymSQLKV.LESS_THAN ,yyline,yycolumn,yytext());}
+">="                     {print(">=" ); return new Symbol(MySymSQLKV.GREATER_THAN_OR_EQUAL ,yyline,yycolumn,yytext());}
+"<="                     {print("<=" ); return new Symbol(MySymSQLKV.LESS_THAN_OR_EQUAL ,yyline,yycolumn,yytext());}
 /*PALABRAS CLAVES*/
-"SELECCIONAR"           {print("<" ); return new Symbol(MySymSQLKV.SELECCIONAR ,yyline,yycolumn,yytext());}
-"REPORTE"               {print("<" ); return new Symbol(MySymSQLKV.REPORTE ,yyline,yycolumn,yytext());}
-"FILTRAR"               {print("<" ); return new Symbol(MySymSQLKV.FILTRAR ,yyline,yycolumn,yytext());}
-"POR"                   {print("<" ); return new Symbol(MySymSQLKV.POR ,yyline,yycolumn,yytext());}
-"USUARIO"               {print("<" ); return new Symbol(MySymSQLKV.USUARIO ,yyline,yycolumn,yytext());}
-//DATOS DE TRIVIAS  
-"\"ID\""                    {print("\"ID\""); return new Symbol(MySymSQLKV.ID ,yyline,yycolumn,yytext());}
-"\"INDICE\""                {print("\"INDICE\""); return new Symbol(MySymSQLKV.INDICE ,yyline,yycolumn,yytext());}
-"\"TRIVIA\""                {print("\"TRIVIA\""); return new Symbol(MySymSQLKV.TRIVIA ,yyline,yycolumn,yytext());}
-"\"CLASE\""                 {print("\"CLASE\""); return new Symbol(MySymSQLKV.CLASE ,yyline,yycolumn,yytext());}
-"\"TEXTO_VISIBLE\""         {print("\"TEXTO_VISIBLE\""); return new Symbol(MySymSQLKV.TEXTO_VISIBLE ,yyline,yycolumn,yytext());}
-"\"OPCIONES\""              {print("\"OPCIONES\""); return new Symbol(MySymSQLKV.OPCIONES ,yyline,yycolumn,yytext());}
-"\"FILAS\""                 {print("\"FILAS\""); return new Symbol(MySymSQLKV.FILAS ,yyline,yycolumn,yytext());}
-"\"COLUMNAS\""              {print("\"COLUMNAS\""); return new Symbol(MySymSQLKV.COLUMNAS ,yyline,yycolumn,yytext());}
-"\"RESPUESTA\""             {print("\"RESPUESTA\""); return new Symbol(MySymSQLKV.RESPUESTA ,yyline,yycolumn,yytext());}
-"\"TEMA\""                  {print("\"TEMA\""); return new Symbol(MySymSQLKV.TEMA ,yyline,yycolumn,yytext());}
-"\"USUARIO_CREACION\""      {print("\"USUARIO_CREACION\""); return new Symbol(MySymSQLKV.USUARIO_CREACION ,yyline,yycolumn,yytext());}
-"\"TIEMPO_PREGUNTA\""       {print("\"TIEMPO_PREGUNTA\""); return new Symbol(MySymSQLKV.TIEMPO_PREGUNTA ,yyline,yycolumn,yytext());}
-/*JSON*/
-"{"                     {print("{"); return new Symbol(MySymSQLKV.KEYS_O ,yyline,yycolumn,yytext());}
-"}"                     {print("}"); return new Symbol(MySymSQLKV.KEYS_C ,yyline,yycolumn,yytext());}
-"["                     {print("["); return new Symbol(MySymSQLKV.BRACKETS_O ,yyline,yycolumn,yytext());}
-"]"                     {print("]"); return new Symbol(MySymSQLKV.BRACKETS_C ,yyline,yycolumn,yytext());}
+"SELECCIONAR"           {print("SELECCIONAR" ); return new Symbol(MySymSQLKV.SELECCIONAR ,yyline,yycolumn,yytext());}
+"REPORTE"               {print("REPORTE" ); return new Symbol(MySymSQLKV.REPORTE ,yyline,yycolumn,yytext());}
+"FILTRAR"               {print("FILTRAR" ); return new Symbol(MySymSQLKV.FILTRAR ,yyline,yycolumn,yytext());}
+"POR"                   {print("POR" ); return new Symbol(MySymSQLKV.POR ,yyline,yycolumn,yytext());}
+//ID DEL USUARIO
+"USUARIO"               {print("USUARIO" ); return new Symbol(MySymSQLKV.USUARIO ,yyline,yycolumn,yytext());}
+"TEMA"                      {print("\"TEMA\""); return new Symbol(MySymSQLKV.TEMA ,yyline,yycolumn,yytext());}
+"NOMBRE"                    {print("\"NOMBRE\""); return new Symbol(MySymSQLKV.NOMBRE ,yyline,yycolumn,yytext());}
+"USUARIO_CREACION"          {print("\"USUARIO_CREACION\""); return new Symbol(MySymSQLKV.USUARIO_CREACION ,yyline,yycolumn,yytext());}
+//DATOS DE TRIVIAS NUMERICO
+//TIEMPO DE RESPUESTA DEL USUARIO
+"TIEMPO"                    {print("\"TIEMPO\""); return new Symbol(MySymSQLKV.TIEMPO ,yyline,yycolumn,yytext());}
+"SCORE"                     {print("\"SCORE\""); return new Symbol(MySymSQLKV.SCORE ,yyline,yycolumn,yytext());}
+"TIEMPO_PREGUNTA"           {print("\"TIEMPO_PREGUNTA\""); return new Symbol(MySymSQLKV.TIEMPO_PREGUNTA ,yyline,yycolumn,yytext());}
 //DATA USSER
-"\"USUARIO\""       {print("\"USUARIO\""); return new Symbol(MySymSQLKV.NAME_USER ,yyline,yycolumn,yytext());}
-"\"NOMBRE\""        {print("\"NOMBRE\""); return new Symbol(MySymSQLKV.NAME_PERSONAL_USER ,yyline,yycolumn,yytext());}
 {INSTITUCION}       {print("INSTITUCION"); return new Symbol(MySymSQLKV.INSTITUCION ,yyline,yycolumn,yytext());}
-"\FECHA_CREACION\”" {print("FECHA_CREACION"); return new Symbol(MySymSQLKV.DATE ,yyline,yycolumn,yytext());}
 /*SIMBOLOS ARIMETICOS*/
+"AND"                    {print("AND"); return new Symbol(MySymSQLKV.AND,yyline,yycolumn, (yytext()));}
+"OR"                     {print("OR"); return new Symbol(MySymSQLKV.OR,yyline,yycolumn, (yytext()));}
+"NOT"                    {print("NOT"); return new Symbol(MySymSQLKV.NOT,yyline,yycolumn, (yytext()));}
 "+"                     {print("+"); return new Symbol(MySymSQLKV.SUMAR,yyline,yycolumn, (yytext()));}
 "-"                     {print("-"); return new Symbol(MySymSQLKV.RESTAR,yyline,yycolumn, (yytext()));}
 "/"                     {print("/"); return new Symbol(MySymSQLKV.DIVIDIR,yyline,yycolumn, (yytext()));}
 "*"                     {print("*"); return new Symbol(MySymSQLKV.MULTIPLICAR,yyline,yycolumn, (yytext()));}
 "="                     {print("="); return new Symbol(MySymSQLKV.EQUAL,yyline,yycolumn, (yytext()));}
-":"                     {print(":"); return new Symbol(MySymSQLKV.COLNO,yyline,yycolumn, (yytext()));}
 ","                     {print(","); return new Symbol(MySymSQLKV.COMA,yyline,yycolumn, (yytext()));}
 /*SIMBOLOS DE AGRUPACION*/
 "("                     {print("("); return new Symbol(MySymSQLKV.PARENTESIS_A,yyline,yycolumn,yytext());}
 ")"                     {print(")"); return new Symbol(MySymSQLKV.PARENTESIS_C,yyline,yycolumn,yytext());}
-{DATE}                  {print("DATE"); return new Symbol(MySymSQLKV.STRING_DATE,yyline,yycolumn,yytext());}
-{REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymSQLKV.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
+{ID_TRIVIA}             {print("ID_TRIVIA"); return new Symbol(MySymSQLKV.ID_TRIVIA ,yyline,yycolumn,yytext());}
+{STRING_THIRD}          {print("STRING_THIRD"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
+{STRING_FIRS}           {print("STRING_FIRS"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
+{STRING_SECOND}         {print("STRING_SECOND"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
+{STRING_FOURTH}         {print("STRING_FOURTH"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
 {STRING}                {print("STRING"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
+
+{REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymSQLKV.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
 /*ERROR LEXICO*/
 .                       {
                         //MANEJAR EL ERROR LEXICO

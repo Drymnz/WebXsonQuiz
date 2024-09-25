@@ -8,56 +8,46 @@ package LexicalAndSyntacticAnalyzer.jflexandcupSQLKV;
 /** CUP generated class containing symbol constants. */
 public class MySymSQLKV {
   /* terminals */
-  public static final int NAME_USER = 23;
-  public static final int COLNO = 2;
-  public static final int MULTIPLICAR = 11;
-  public static final int KEYS_C = 19;
-  public static final int ID_TRIVIA = 7;
-  public static final int POR = 42;
-  public static final int MAKE_REQUESTS = 20;
-  public static final int SUMAR = 8;
-  public static final int RESPUESTA = 34;
-  public static final int INDICE = 35;
-  public static final int NAME_PERSONAL_USER = 24;
-  public static final int DATE = 26;
-  public static final int USUARIO = 43;
-  public static final int TRIVIA = 31;
-  public static final int SELECCIONAR = 39;
-  public static final int STRING_DATE = 13;
-  public static final int FINAL_REQUESTS = 21;
-  public static final int ID = 30;
+  public static final int MULTIPLICAR = 12;
+  public static final int DIVIDIR = 11;
+  public static final int AND = 30;
+  public static final int TIEMPO_PREGUNTA = 21;
+  public static final int REPORTE = 26;
+  public static final int GREATER_THAN_OR_EQUAL = 4;
+  public static final int OR = 31;
+  public static final int FECHA_CREACION = 19;
+  public static final int EQUAL = 6;
+  public static final int GREATER_THAN = 2;
+  public static final int REAL_NUMEBERS = 14;
+  public static final int NOT = 32;
+  public static final int SCORE = 24;
+  public static final int POR = 28;
+  public static final int FILTRAR = 27;
+  public static final int TEMA = 22;
+  public static final int COMA = 17;
+  public static final int STRING = 7;
+  public static final int NOMBRE = 18;
   public static final int EOF = 0;
-  public static final int EQUAL = 5;
-  public static final int CLASE = 32;
+  public static final int USUARIO_CREACION = 23;
+  public static final int ID_TRIVIA = 8;
+  public static final int INSTITUCION = 20;
+  public static final int TIEMPO = 13;
+  public static final int LESS_THAN = 3;
+  public static final int RESTAR = 10;
+  public static final int USUARIO = 29;
+  public static final int PARENTESIS_C = 16;
   public static final int error = 1;
-  public static final int COMA = 22;
-  public static final int USUARIO_CREACION = 29;
-  public static final int TEMA = 28;
-  public static final int TIEMPO_PREGUNTA = 27;
-  public static final int REPORTE = 40;
-  public static final int RESTAR = 9;
-  public static final int DIVIDIR = 10;
-  public static final int INSTITUCION = 25;
-  public static final int PARENTESIS_C = 15;
-  public static final int BRACKETS_O = 16;
-  public static final int PARENTESIS_A = 14;
-  public static final int OPEN = 4;
-  public static final int STRING = 6;
-  public static final int BRACKETS_C = 17;
-  public static final int COLUMNAS = 37;
-  public static final int CLOSE = 3;
-  public static final int FILAS = 38;
-  public static final int KEYS_O = 18;
-  public static final int FILTRAR = 41;
-  public static final int REAL_NUMEBERS = 12;
-  public static final int TEXTO_VISIBLE = 33;
-  public static final int OPCIONES = 36;
+  public static final int PARENTESIS_A = 15;
+  public static final int LESS_THAN_OR_EQUAL = 5;
+  public static final int SUMAR = 9;
+  public static final int SELECCIONAR = 25;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "COLNO",
-  "CLOSE",
-  "OPEN",
+  "GREATER_THAN",
+  "LESS_THAN",
+  "GREATER_THAN_OR_EQUAL",
+  "LESS_THAN_OR_EQUAL",
   "EQUAL",
   "STRING",
   "ID_TRIVIA",
@@ -65,38 +55,26 @@ public class MySymSQLKV {
   "RESTAR",
   "DIVIDIR",
   "MULTIPLICAR",
+  "TIEMPO",
   "REAL_NUMEBERS",
-  "STRING_DATE",
   "PARENTESIS_A",
   "PARENTESIS_C",
-  "BRACKETS_O",
-  "BRACKETS_C",
-  "KEYS_O",
-  "KEYS_C",
-  "MAKE_REQUESTS",
-  "FINAL_REQUESTS",
   "COMA",
-  "NAME_USER",
-  "NAME_PERSONAL_USER",
+  "NOMBRE",
+  "FECHA_CREACION",
   "INSTITUCION",
-  "DATE",
   "TIEMPO_PREGUNTA",
   "TEMA",
   "USUARIO_CREACION",
-  "ID",
-  "TRIVIA",
-  "CLASE",
-  "TEXTO_VISIBLE",
-  "RESPUESTA",
-  "INDICE",
-  "OPCIONES",
-  "COLUMNAS",
-  "FILAS",
+  "SCORE",
   "SELECCIONAR",
   "REPORTE",
   "FILTRAR",
   "POR",
-  "USUARIO"
+  "USUARIO",
+  "AND",
+  "OR",
+  "NOT"
   };
 }
 

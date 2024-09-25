@@ -2,12 +2,12 @@ package LexicalAndSyntacticAnalyzer.jflexandcupSQLKV;
 
 import java_cup.runtime.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import LexicalAndSyntacticAnalyzer.analyzer.Token;
 import reports.*;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.*;
 import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
-import LexicalAndSyntacticAnalyzer.ListRequests;
 
 /**
      * ***STAR CODE*******
@@ -15,8 +15,11 @@ import LexicalAndSyntacticAnalyzer.ListRequests;
     parser code {:
 
 private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
+private List<String> listTrivias = new ArrayList();
 private ArrayList<DataAnalyzer> dataStack = new ArrayList();
 private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
+private ArrayList<OperationSQLKV> listOperationSQLKV = new ArrayList();
+
 
 
 	  public MyParseSQLKV(LexemaMySQLKV lexer) {
@@ -53,68 +56,192 @@ private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
 :}
 
 /* Terminales */
-terminal COLNO,CLOSE,OPEN,EQUAL;
+terminal `GREATER_THAN,LESS_THAN,GREATER_THAN_OR_EQUAL,LESS_THAN_OR_EQUAL,EQUAL;
 terminal String STRING,ID_TRIVIA;
 /*SIMBOLOS DE OPERACION*/
-terminal SUMAR,RESTAR,DIVIDIR,MULTIPLICAR;
-terminal String REAL_NUMEBERS,STRING_DATE;
+terminal SUMAR,RESTAR,DIVIDIR,MULTIPLICAR,TIEMPO;
+terminal String REAL_NUMEBERS;
 /*AGRUPACION*/
 terminal PARENTESIS_A,PARENTESIS_C;
-terminal BRACKETS_O,BRACKETS_C;
-terminal KEYS_O,KEYS_C;
 /*SOLICITUD*/
-terminal MAKE_REQUESTS,FINAL_REQUESTS,COMA;
+terminal COMA;
 //tipos de solicitud
-terminal NAME_USER,NAME_PERSONAL_USER,INSTITUCION,DATE;
+terminal NOMBRE,FECHA_CREACION,INSTITUCION;
 /*TRIVIAS*/
-terminal TIEMPO_PREGUNTA,TEMA,USUARIO_CREACION;
-terminal ID,TRIVIA,CLASE,TEXTO_VISIBLE,RESPUESTA,INDICE,OPCIONES,COLUMNAS,FILAS;
+terminal TIEMPO_PREGUNTA,TEMA,USUARIO_CREACION,SCORE;
 /*SQLVK*/
 terminal SELECCIONAR,REPORTE,FILTRAR,POR,USUARIO;
+terminal AND,OR,NOT;
 /* No terminales */
 //operaicones
 non terminal inico_opereacion,operacion,parente;
 //SQL KV
 non terminal sql_kv;
-non terminal id_trivia,id_user;
+non terminal id_trivia;
+non terminal operacion_logic,date_type_string,derviar;
+non terminal date_type_number,operation_date_type_number,operation_date_type_string;
 //inicio
-non terminal inicio,bucle_inicio;
-//solicitud
-non terminal data;
+non terminal inicio;
 /*************************************PRECEDENCIA******************************************************/
 precedence left SUMAR, RESTAR;
 precedence left MULTIPLICAR, DIVIDIR;
 precedence left PARENTESIS_A, PARENTESIS_C;
+precedence left GREATER_THAN,LESS_THAN,GREATER_THAN_OR_EQUAL,LESS_THAN_OR_EQUAL;
+precedence left EQUAL,AND,OR,NOT;
+
 
 /* Gramática */
 start with inicio;
 /******operaciones matematicas*****/
-inicio ::= bucle_inicio
-    | error bucle_inicio
+inicio 
+  ::= error sql_kv
     |sql_kv
     ;
 
 sql_kv
-  ::= SELECCIONAR REPORTE id_trivia FILTRAR POR USUARIO EQUAL id_user
+  ::= SELECCIONAR REPORTE id_trivia FILTRAR POR operacion_logic 
+  ;
+/// como funciona las operaciones
+operacion_logic
+  ::= operation_date_type_string:a
+   {:
+   if (a != null && a instanceof DataAnalyzer) {
+      DataAnalyzer left = (DataAnalyzer) a;
+      listOperationSQLKV.add((new OperationSQLKV(null, left, ListTypeOperationSQLKV.AND)));
+      
+    }
+  :}
+  |operation_date_type_number:a
+  {:
+    if (a != null && a instanceof DataAnalyzer) {
+      DataAnalyzer left = (DataAnalyzer) a;
+      listOperationSQLKV.add((new OperationSQLKV(null, left, ListTypeOperationSQLKV.GREATER_THAN)));
+      
+    }
+  :}
   ;
 
+//String
+operation_date_type_string
+  ::=
+   operation_date_type_string:a AND operation_date_type_string:b
+   {:
+  if (a != null && b != null && a instanceof DataAnalyzer &&  b instanceof DataAnalyzer) {
+      DataAnalyzer left = (DataAnalyzer) a;
+      DataAnalyzer right = (DataAnalyzer) b;
+      listOperationSQLKV.add((new OperationSQLKV(right, left, ListTypeOperationSQLKV.AND)));
+    }
+  :}
+  |operation_date_type_string:a OR  operation_date_type_string:b
+  {:
+  if (a != null && b != null && a instanceof DataAnalyzer &&  b instanceof DataAnalyzer) {
+      DataAnalyzer left = (DataAnalyzer) a;
+      DataAnalyzer right = (DataAnalyzer) b;
+      listOperationSQLKV.add((new OperationSQLKV(right, left, ListTypeOperationSQLKV.OR)));
+      
+    }
+  :}
+  |operation_date_type_string:a NOT operation_date_type_string:b
+  {:
+  if (a != null && b != null && a instanceof DataAnalyzer &&  b instanceof DataAnalyzer) {
+      DataAnalyzer left = (DataAnalyzer) a;
+      DataAnalyzer right = (DataAnalyzer) b;
+      listOperationSQLKV.add((new OperationSQLKV(right, left, ListTypeOperationSQLKV.NOT)));
+      
+    }
+  :}
+  |date_type_string:a {:RESULT = a;:}
+  ;
+
+date_type_string
+  ::=
+  USUARIO derviar:a
+  {:RESULT = new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.ID_USER,a.toString());:}
+  |TEMA derviar:a
+  {:RESULT = new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TEMA,a.toString());:}
+  |NOMBRE derviar:a
+  {:RESULT = new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.NAME,a.toString());:}
+  |USUARIO_CREACION derviar:a
+  {:RESULT = new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.USUARIO_CREACION,a.toString());:}
+  |INSTITUCION derviar:a
+  {:RESULT = new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.INSTITUTION,a.toString());:}
+  ;
+
+derviar
+  ::=EQUAL STRING:a {:RESULT = a;:}
+  ;
+
+////Trivias
 id_trivia
-  ::= ID_TRIVIA:a {:RESULT = a;:}
+  ::= ID_TRIVIA:a 
+  {:
+    listTrivias.add(a.toString());
+  :}
+  |
   ;
 
-id_user
-  ::=  STRING:a {:RESULT = a;:}
+//Numero
+operation_date_type_number
+  ::=
+   operation_date_type_number:a GREATER_THAN operation_date_type_number:b
+   {:
+    if (a != null && b != null && a instanceof DataAnalyzer &&  b instanceof DataAnalyzer) {
+      DataAnalyzer left = (DataAnalyzer) a;
+      DataAnalyzer right = (DataAnalyzer) b;
+      listOperationSQLKV.add((new OperationSQLKV(right, left, ListTypeOperationSQLKV.GREATER_THAN)));
+      
+    }
+  :}
+  |operation_date_type_number:a LESS_THAN operation_date_type_number:b
+  {:
+  if (a != null && b != null && a instanceof DataAnalyzer &&  b instanceof DataAnalyzer) {
+      DataAnalyzer left = (DataAnalyzer) a;
+      DataAnalyzer right = (DataAnalyzer) b;
+      listOperationSQLKV.add((new OperationSQLKV(right, left, ListTypeOperationSQLKV.LESS_THAN)));
+      
+    }
+  :}
+  |operation_date_type_number:a GREATER_THAN_OR_EQUAL operation_date_type_number:b
+  {:
+  if (a != null && b != null && a instanceof DataAnalyzer &&  b instanceof DataAnalyzer) {
+      DataAnalyzer left = (DataAnalyzer) a;
+      DataAnalyzer right = (DataAnalyzer) b;
+      listOperationSQLKV.add((new OperationSQLKV(right, left, ListTypeOperationSQLKV.GREATER_THAN_OR_EQUAL)));
+      
+    }
+  :}
+  |operation_date_type_number:a LESS_THAN_OR_EQUAL operation_date_type_number:b
+  {:
+  if (a != null && b != null && a instanceof DataAnalyzer &&  b instanceof DataAnalyzer) {
+      DataAnalyzer left = (DataAnalyzer) a;
+      DataAnalyzer right = (DataAnalyzer) b;
+      listOperationSQLKV.add((new OperationSQLKV(right, left, ListTypeOperationSQLKV.LESS_THAN_OR_EQUAL)));
+      
+    }
+  :}
+  |operation_date_type_number:a EQUAL operation_date_type_number:b
+  {:
+  if (a != null && b != null && a instanceof DataAnalyzer &&  b instanceof DataAnalyzer) {
+      DataAnalyzer left = (DataAnalyzer) a;
+      DataAnalyzer right = (DataAnalyzer) b;
+      listOperationSQLKV.add((new OperationSQLKV(right, left, ListTypeOperationSQLKV.EQUAL)));
+      
+    }
+  :}
+  |date_type_number:a {:RESULT = a;:}
   ;
 
-bucle_inicio
-  ::=data
+date_type_number
+  ::=
+  inico_opereacion:a 
+  {:RESULT = new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.INDICE,a.toString());:}
+  |TIEMPO:a 
+  {:RESULT = new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.RESPONSE_TIME,a.toString());:}
+  |TIEMPO_PREGUNTA:a 
+  {:RESULT = new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.TIEMPO_PREGUNTA,a.toString());:}
+  |SCORE:a 
+  {:RESULT = new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.SCORE,a.toString());:}
   ;
-
-data ::=COLNO STRING:a {:RESULT = a;:}
-  | COLNO inico_opereacion:a {:RESULT = a;:}
-  | COLNO STRING_DATE:a {:RESULT = a;:}
-  ;
-
 /******operaciones matematicas*****/
 /*A QUI ESTA EL TOTAL DE LA OPERACION*/
 inico_opereacion ::= operacion:a 
