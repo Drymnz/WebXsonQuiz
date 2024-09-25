@@ -3,8 +3,9 @@ package LexicalAndSyntacticAnalyzer.analyzer;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.List;
 
-import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
+import LexicalAndSyntacticAnalyzer.dataAnalyzer.OperationSQLKV;
 import LexicalAndSyntacticAnalyzer.jflexandcupSQLKV.LexemaMySQLKV;
 import LexicalAndSyntacticAnalyzer.jflexandcupSQLKV.MyParseSQLKV;
 import reports.ReportErrorInterpreter;
@@ -40,8 +41,13 @@ public class AnalyzerSQLKV {
         return returnListErro;
     }
 
-    //Returnar el listado de Rquest
-    public ArrayList<RequestAnalyzer> getListRquest(){
-      return this.parse.getListRquest();
+    //Returnar el listado de nombres de trivias
+    public List<String> getListNameTrivias() {
+        return this.parse.getListNameTrivias();
+    }
+
+    //Returnar el listado de operaciones
+    public ArrayList<OperationSQLKV>  getListOperationSQLKV() {
+        return this.parse.getListOperationSQLKV();
     }
 }

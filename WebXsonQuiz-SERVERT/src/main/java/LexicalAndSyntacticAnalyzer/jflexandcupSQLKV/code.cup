@@ -16,8 +16,6 @@ import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 
 private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
 private List<String> listTrivias = new ArrayList();
-private ArrayList<DataAnalyzer> dataStack = new ArrayList();
-private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
 private ArrayList<OperationSQLKV> listOperationSQLKV = new ArrayList();
 
 
@@ -45,9 +43,14 @@ private ArrayList<OperationSQLKV> listOperationSQLKV = new ArrayList();
         return this.listError;
     }
 
-    //Returnar el listado de Rquest
-    public ArrayList<RequestAnalyzer> getListRquest(){
-      return this.listRquest;
+    //Returnar el listado de nombres de trivias
+    public List<String> getListNameTrivias() {
+        return this.listTrivias;
+    }
+
+   //Returnar el listado de operaciones
+    public ArrayList<OperationSQLKV>  getListOperationSQLKV() {
+        return this.listOperationSQLKV;
     }
 
     /**
@@ -80,6 +83,7 @@ non terminal sql_kv;
 non terminal id_trivia;
 non terminal operacion_logic,date_type_string,derviar;
 non terminal date_type_number,operation_date_type_number,operation_date_type_string;
+non terminal various_trivia;
 //inicio
 non terminal inicio;
 /*************************************PRECEDENCIA******************************************************/
@@ -99,7 +103,7 @@ inicio
     ;
 
 sql_kv
-  ::= SELECCIONAR REPORTE id_trivia FILTRAR POR operacion_logic 
+  ::= SELECCIONAR REPORTE various_trivia FILTRAR POR operacion_logic 
   ;
 /// como funciona las operaciones
 operacion_logic
@@ -172,6 +176,12 @@ derviar
   ;
 
 ////Trivias
+
+various_trivia
+  ::= various_trivia COMA id_trivia
+  |id_trivia
+  ;
+
 id_trivia
   ::= ID_TRIVIA:a 
   {:

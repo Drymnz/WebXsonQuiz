@@ -28,7 +28,7 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
     private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
   
     private void print(String token) {
-            System.out.println(token+" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
+            //System.out.println(token+" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
     }
 
     private void addError(){
@@ -52,7 +52,6 @@ REAL_NUMEBERS = {DECIMAL}|{WHOLE}
 
 ///FIRST, SECOND, THIRD, FOURTH
 STRING_FIRS = \"([^\"\\]|\\.)*\"
-STRING_SECOND  = \'([^\'\\]|\\.)*\'
 STRING_THIRD = '([^']|\\.)*'
 STRING_FOURTH = ’([^’]|\\.)*’ 
 STRING = ([\"]|[\’])([^\"]|[^\’]|[^\\]|\\.)*([\"]|[\’])
@@ -104,10 +103,8 @@ ID_TRIVIA = [_\-\$][_\-\$0-9a-zA-Z]*[\s]*
 {ID_TRIVIA}             {print("ID_TRIVIA"); return new Symbol(MySymSQLKV.ID_TRIVIA ,yyline,yycolumn,yytext());}
 {STRING_THIRD}          {print("STRING_THIRD"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
 {STRING_FIRS}           {print("STRING_FIRS"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
-{STRING_SECOND}         {print("STRING_SECOND"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
 {STRING_FOURTH}         {print("STRING_FOURTH"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
 {STRING}                {print("STRING"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
-
 {REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymSQLKV.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
 /*ERROR LEXICO*/
 .                       {
