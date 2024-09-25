@@ -39,7 +39,7 @@ public class ReportingSQLKVLanguageTests {
         Assertions.assertTrue(!analyzer.isError());
     }
 
-    private String firstTestTexLoad = "SELECCIONAR REPORTE $geographyQuiz FILTRAR POR USUARIO = \"BJ\"";
+    private String firstTestTexLoad = "SELECCIONAR REPORTE $trivia FILTRAR POR USUARIO = \"BJ\"";
 
     @Test
     public void firstTestTexLoadObject() {
@@ -49,7 +49,7 @@ public class ReportingSQLKVLanguageTests {
         Assertions.assertTrue(!analyzer.isError() && !listFilter.isEmpty());
     }
 
-    private String secondTestTextLoad = "SELECCIONAR REPORTE $geographyQuiz FILTRAR POR TIEMPO < 100";
+    private String secondTestTextLoad = "SELECCIONAR REPORTE $trivia FILTRAR POR TIEMPO < 100";
 
     @Test
     public void secondTestTextLoad() {
@@ -65,6 +65,7 @@ public class ReportingSQLKVLanguageTests {
     public void thirdTestTextLoad() {
         AnalyzerSQLKV analyzer = new AnalyzerSQLKV(thirdTestTextLoad);
         analyzer.Analyze();
+
         ArrayList<QuizAttempt> listFilter = (new Filter(new DataBaseListQuizAttempt(), analyzer)).filterList();
         Assertions.assertTrue(!analyzer.isError() && !listFilter.isEmpty());
     }

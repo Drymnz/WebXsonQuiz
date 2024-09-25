@@ -39,14 +39,15 @@
                 <div class="editor">
                     <h2>Editor XSON</h2>
                     <form action="${pageContext.request.contextPath}/SvUsers" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
-                        <input type="hidden" name="userId" value="<%= usuario != null ? usuario.getId() : "" %>">
+                        <input type="hidden" name="userId" value="<%= usuario != null ? usuario.getId() : ""%>">
                         <%  if ((textArea != null) && !textArea.isEmpty()) {%>
-                        <textarea name="textArea" class="code-input" placeholder="Ingrese el usuario">
+                        <textarea name="textArea" id="codeInput" class="code-input" placeholder="Ingrese el usuario">
                             <%=textArea%>
                         </textarea>
                         <%} else {%>
-                        <textarea name="textArea" class="code-input" placeholder="Ingrese el usuario"></textarea>
+                        <textarea name="textArea" id="codeInput" class="code-input" placeholder="Ingrese el usuario"></textarea>
                         <%}%>
+                        <div id="position">Fila: 1, Columna: 1</div>
                         <button type="submit" class="execute-btn">Login</button>
                     </form>
                 </div>
@@ -64,4 +65,28 @@
             </div>
         </div>
     </body>
+    <!-- Enlace al archivo JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var textarea = document.getElementById('codeInput');
+            var positionDisplay = document.getElementById('position');
+
+            function updateCursorPosition() {
+                var cursorPosition = textarea.selectionStart;
+                var textBeforeCursor = textarea.value.substring(0, cursorPosition);
+                var lines = textBeforeCursor.split('\n');
+                var currentLine = lines.length;
+                var currentColumn = lines[lines.length - 1].length + 1;
+
+                positionDisplay.textContent = 'Fila: ' + currentLine + ', Columna: ' + currentColumn;
+            }
+
+            textarea.addEventListener('input', updateCursorPosition);
+            textarea.addEventListener('click', updateCursorPosition);
+            textarea.addEventListener('keyup', updateCursorPosition);
+
+            // Inicializar la posición
+            updateCursorPosition();
+        });
+    </script>
 </html>

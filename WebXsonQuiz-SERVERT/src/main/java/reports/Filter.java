@@ -33,7 +33,7 @@ public class Filter {
                     this.addAnd(operationSQLKV);
                     break;
                 case OR:
-                    this.addAnd(operationSQLKV);
+                    this.addOr(operationSQLKV);
                     break;
                 case NOT:
                     break;
@@ -112,6 +112,23 @@ public class Filter {
     }
 
     private void addAnd(OperationSQLKV operationSQLKV) {
+        if (operationSQLKV.getRight() == null) {
+            deletettemBecauseItDoesNotComplyTypeString(operationSQLKV.getLeft());
+        } else {
+            String right = returnarStringData(operationSQLKV.getLeft());
+            String left = returnarStringData(operationSQLKV.getRight());
+            for (int i = 0; i < this.listFilterReturn.size(); i++) {
+                QuizAttempt element = this.listFilterReturn.get(i);
+                if (!this.listFilterReturn.get(i).getUser().equals(right)) {
+                    if (!this.listFilterReturn.get(i).getUser().equals(left)) {
+                        this.listFilterReturn.remove(i);
+                        i --;
+                    }
+                }
+            }
+        }
+    }
+    private void addOr(OperationSQLKV operationSQLKV) {
         if (operationSQLKV.getRight() == null) {
             deletettemBecauseItDoesNotComplyTypeString(operationSQLKV.getLeft());
         } else {
