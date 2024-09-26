@@ -32,13 +32,7 @@
                     }
                 %>
             </header>
-            <nav>
-                <ul>
-                    <li><a href="user_manager.jsp">Gestor de Usuarios</a></li>
-                    <li><a href="report.jsp">Reportes</a></li>
-                    <li><a href="#">Cerrar Sesión</a></li>
-                </ul>
-            </nav>
+            <%@ include file="navigation_bar.jsp" %>
             <div class="main-content">
                 <div class="editor">
                     <h2>Editor XSON</h2>

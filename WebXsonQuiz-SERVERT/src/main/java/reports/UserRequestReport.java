@@ -8,6 +8,11 @@ import reactions.RequestSyntaxValidatorManagerUser;
 
 public class UserRequestReport {
     private RequestSyntaxValidatorManagerUser guide;
+    private final String MAKE_REQUESTS = "<!envio_respuestas>";
+    private final String END_REQUESTS_COMPLETED = "<!fin_envio_respuestas>";
+    private final String MAKE_REQUEST = "<!envio_respuesta:";
+    private final String END_REQUEST_COMPLETED = " <!fin_envio_respuesta>";
+
 
     public UserRequestReport(RequestSyntaxValidatorManagerUser guide) {
         this.guide = guide;
@@ -17,16 +22,16 @@ public class UserRequestReport {
         if (this.guide == null || !(this.thereAreReports()))
             return null;
         String returnString = "<?xson version=”1.0” ?>";
-        returnString += this.moreThanOneReports() ? "\n<!realizar_solicitudes>" : "";
+        returnString += this.moreThanOneReports() ? "\n"+this.MAKE_REQUESTS : "";
         for (RequestAnalyzer element : this.guide.getListRequest()) {
             returnString += "\n" + this.changeVariants(element, true);
-            returnString += "<!fin_envio_respuestas>";
+            returnString += "\n"+this.END_REQUESTS_COMPLETED ;
         }
         for (RequestAnalyzer element : this.guide.getListErrorRequest()) {
             returnString += "\n" + this.changeVariants(element, false);
-            returnString += "<!fin_envio_respuestas>";
+            returnString += "\n"+this.END_REQUESTS_COMPLETED ;
         }
-        returnString += this.moreThanOneReports() ? "\n<!envio_respuestas>" : "";
+        returnString += this.moreThanOneReports() ? "\n"+this.END_REQUEST_COMPLETED : "";
         return returnString;
     }
 
@@ -98,27 +103,27 @@ public class UserRequestReport {
                 : LanguageConstants.DENIED_REQUEST;
         switch (type) {
             case ELIMINAR_USUARIO:
-                return "<!realizar_solicitud: \"ELIMINAR_USUARIO\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"ELIMINAR_USUARIO\"" + stringAcceptanceOrRrror + "\"\">";
             case LOGIN_USER:
-                return "<!realizar_solicitud: \"LOGIN_USUARIO\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"LOGIN_USUARIO\"" + stringAcceptanceOrRrror + "\"\">";
             case MODIFICAR_USUARIO:
-                return "<!realizar_solicitud: \"MODIFICAR_USUARIO\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"MODIFICAR_USUARIO\"" + stringAcceptanceOrRrror + "\"\">";
             case NEW_USER:
-                return "<!realizar_solicitud: \"USUARIO_NUEVO\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"USUARIO_NUEVO\"" + stringAcceptanceOrRrror + "\"\">";
             case NEW_TRIVIA:
-                return "<!realizar_solicitud: \"NUEVA_TRIVIA\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"NUEVA_TRIVIA\"" + stringAcceptanceOrRrror + "\"\">";
             case MODIFICAR_TRIVIA:
-                return "<!realizar_solicitud: \"MODIFICAR_TRIVIA\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"MODIFICAR_TRIVIA\"" + stringAcceptanceOrRrror + "\"\">";
             case ELIMINAR_TRIVIA:
-                return "<!realizar_solicitud: \"ELIMINAR_TRIVIA\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"ELIMINAR_TRIVIA\"" + stringAcceptanceOrRrror + "\"\">";
             case AGREGAR_COMPONENTE:
-                return "<!realizar_solicitud: \"AGREGAR_COMPONENTE\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"AGREGAR_COMPONENTE\"" + stringAcceptanceOrRrror + "\"\">";
             case MODIFICAR_COMPONENTE:
-                return "<!realizar_solicitud: \"MODIFICAR_COMPONENTE\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"MODIFICAR_COMPONENTE\"" + stringAcceptanceOrRrror + "\"\">";
             case ELIMINAR_COMPONENTE:
-                return "<!realizar_solicitud: \"ELIMINAR_COMPONENTE\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"ELIMINAR_COMPONENTE\"" + stringAcceptanceOrRrror + "\"\">";
             default:
-                return "<!realizar_solicitud: \"UNKNOWN\"" + stringAcceptanceOrRrror + "\"\">";
+                return this.MAKE_REQUEST+ "\"UNKNOWN\"" + stringAcceptanceOrRrror + "\"\">";
         }
     }
 

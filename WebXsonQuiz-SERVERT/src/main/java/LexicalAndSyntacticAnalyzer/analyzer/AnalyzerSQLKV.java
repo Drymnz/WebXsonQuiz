@@ -50,4 +50,5 @@ public class AnalyzerSQLKV {
     public ArrayList<OperationSQLKV>  getListOperationSQLKV() {
         return this.parse.getListOperationSQLKV();
     }
+
 }

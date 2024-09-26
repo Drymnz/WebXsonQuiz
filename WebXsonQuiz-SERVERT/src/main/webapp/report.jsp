@@ -3,6 +3,8 @@
     Created on : 15 sep 2024, 12:19:39 a.m.
     Author     : drymnz
 --%>
+<%@page import="reports.ReportErrorInterpreter"%>
+<%@page import="LexicalAndSyntacticAnalyzer.analyzer.Token"%>
 <%@page import="com.cunoc.webxsonquiz.data.servert.QuizAttempt"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.cunoc.webxsonquiz.data.servert.User"%>
@@ -18,6 +20,7 @@
             User usuario = (User) session.getAttribute("usuario");
             ArrayList<QuizAttempt> listQuizAttempt = (ArrayList<QuizAttempt>) request.getAttribute("listQuizAttempt");
             String textArea = (String) request.getAttribute("resultsText");
+            ArrayList<ReportErrorInterpreter> listError = (ArrayList<ReportErrorInterpreter>) request.getAttribute("listErrores");
         %>
     </head>
     <body>
@@ -30,13 +33,7 @@
                     }
                 %>
             </header>
-            <nav>
-                <ul>
-                    <li><a href="user_manager.jsp">Gestor de Usuarios</a></li>
-                    <li><a href="report.jsp">Reportes</a></li>
-                    <li><a href="#">Cerrar Sesión</a></li>
-                </ul>
-            </nav>
+            <%@ include file="navigation_bar.jsp" %>
             <div class="main-content">
                 <div class="editor">
                     <h2>Consultas SQLKV</h2>
@@ -52,6 +49,30 @@
                         <button type="submit" class="execute-btn">Ejecutar Consulta</button>
                     </form>
                 </div>
+                        <%  if (listError != null) {  %>
+                <div class="results">
+                    <h2>Resultados de Errores Lexico y Sintactico</h2>
+                    <table>
+                        <tr>
+                            <th>Linea</th>
+                            <th>Columna</th>
+                            <th>Lexema</th>
+                            <th>Tipo de error</th>
+                            <th>Descripcion</th>
+                        </tr>
+                        <% for (ReportErrorInterpreter element : listError) {%>
+                        <tr>
+                            <%Token token = element.getToke();%>
+                            <td><%= token.getLine()%></td>
+                            <td><%= token.getColumna()%></td>
+                            <td><%= token.getLexeme()%></td>
+                            <td><%= element.getType().toString()%></td>
+                            <td><%= element.getDescription() %></td>
+                        </tr>
+                        <%}%>
+                    </table>
+                </div>
+                <%}%>
                 <%  if (listQuizAttempt != null) {  %>
                 <div class="results">
                     <h2>Resultados</h2>

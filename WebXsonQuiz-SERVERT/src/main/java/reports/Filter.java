@@ -118,7 +118,6 @@ public class Filter {
             String right = returnarStringData(operationSQLKV.getLeft());
             String left = returnarStringData(operationSQLKV.getRight());
             for (int i = 0; i < this.listFilterReturn.size(); i++) {
-                QuizAttempt element = this.listFilterReturn.get(i);
                 if (!this.listFilterReturn.get(i).getUser().equals(right)) {
                     if (!this.listFilterReturn.get(i).getUser().equals(left)) {
                         this.listFilterReturn.remove(i);
@@ -135,7 +134,6 @@ public class Filter {
             String right = returnarStringData(operationSQLKV.getLeft());
             String left = returnarStringData(operationSQLKV.getRight());
             for (int i = 0; i < this.listFilterReturn.size(); i++) {
-                QuizAttempt element = this.listFilterReturn.get(i);
                 if (!this.listFilterReturn.get(i).getUser().equals(right)) {
                     if (!this.listFilterReturn.get(i).getUser().equals(left)) {
                         this.listFilterReturn.remove(i);

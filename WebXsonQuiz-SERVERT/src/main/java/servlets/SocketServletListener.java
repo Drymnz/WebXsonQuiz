@@ -14,16 +14,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import Lengua.LanguageConstants;
-import com.cunoc.webxsonquiz.data.servert.User;
-import com.google.gson.Gson;
-import fileManager.FileInput;
-import fileManager.FileOutput;
 import modelServert.ModelDatabaseFileManager;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import reactions.ConstantSystem;
 import servlets.socket.ClientHandler;
 
 /**
