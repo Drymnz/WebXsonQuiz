@@ -28,7 +28,7 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
     private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
   
     private void print(String token) {
-        System.out.println(token+" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
+        //System.out.println(token+" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
     }
 
     private void addError(){
@@ -55,6 +55,8 @@ DATE = "\""{DIGIT}{DIGIT}{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"\""
 STRING = \"([^\"\\]|\\.)*\"
 
 CASE_SENTI = ([a-zA-Z]+|_)+
+
+ID_TRIVIA = \"[_|-|$]([^\"\\]|\\.)*\"
 
 espacio =[\n|\r|\t|\f|\b|\s| ]+
 
@@ -135,6 +137,7 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 /*SIMBOLOS DE AGRUPACION*/
 "("                     {print("("); return new Symbol(MySymUser.PARENTESIS_A,yyline,yycolumn,yytext());}
 ")"                     {print(")"); return new Symbol(MySymUser.PARENTESIS_C,yyline,yycolumn,yytext());}
+{ID_TRIVIA}             {print("ID_TRIVIA_SPECIAL"); return new Symbol(MySymUser.ID_TRIVIA_SPECIAL,yyline,yycolumn,yytext().replaceAll("\"",""));}
 {DATE}                  {print("DATE"); return new Symbol(MySymUser.STRING_DATE,yyline,yycolumn,yytext());}
 {REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymUser.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
 {STRING}                {print("STRING"); return new Symbol(MySymUser.STRING ,yyline,yycolumn,yytext());}

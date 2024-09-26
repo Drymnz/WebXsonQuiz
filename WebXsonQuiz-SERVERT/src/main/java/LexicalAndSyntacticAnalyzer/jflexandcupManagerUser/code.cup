@@ -56,7 +56,7 @@ private ArrayList<RequestAnalyzer> listRquest = new ArrayList();
 /*sxon*/
 terminal EQUAL,OPEN_VERSION,CLOSE_VERSION,XSON,VERSION;
 terminal COLNO,CLOSE,OPEN;
-terminal String STRING;
+terminal String STRING,ID_TRIVIA_SPECIAL;
 /*SIMBOLOS DE OPERACION*/
 terminal SUMAR,RESTAR,DIVIDIR,MULTIPLICAR;
 terminal String REAL_NUMEBERS,STRING_DATE;
@@ -94,7 +94,7 @@ non terminal json_new_user, obj_json_new_user,solicitud_usuario_new_user,datas_n
 non terminal json_new_trivia, obj_json_new_trivia,solicitud_new_trivia,datas_new_trivia,data_new_trivia;
 non terminal json_add_component,obj_json_add_component,solicitud_add_component,datas_add_component,data_add_component;
 non terminal json_del_trivia, obj_json_del_trivia,solicitud_del_trivia,datas_del_trivia;
-non terminal data;
+non terminal data,especial;
 non terminal solicitudes,varios_solicitud,solicitud_unit;
 
 /*************************************PRECEDENCIA******************************************************/
@@ -193,7 +193,7 @@ solicitud ::=
 /* json::=
   KEYS_O obj_json KEYS_C
   | error
-  | 
+  | a
   ;
 
 obj_json 
@@ -292,7 +292,14 @@ datas_new_trivia
   ::= datas_new_trivia COMA  data_new_trivia
   |data_new_trivia
   ;
+/*
 
+data ::=COLNO STRING:a {:RESULT = a;:}
+  | COLNO inico_opereacion:a {:RESULT = a;:}
+  | COLNO STRING_DATE:a {:RESULT = a;:}
+  | COLNO ID_TRIVIA_SPECIAL:a {:RESULT = a;:}
+  
+*/
 data_new_trivia
   ::=
   ID_TRIVIA data:a 
@@ -309,6 +316,10 @@ data_new_trivia
   {:if(a!=null)dataStack.add(new DataAnalyzer(new Token(cur_token.left+1,cur_token.right +1,a.toString()),ListTypeData.DATE,a.toString()));:}
   ;
 
+especial
+  ::= 
+  COLNO ID_TRIVIA_SPECIAL:a {:RESULT = a;:}
+  ;
 /*ELIMINAR USARIO*/
 json_del_user::=
   KEYS_O obj_json_del_user KEYS_C
@@ -404,6 +415,7 @@ data_new_user::=
 data ::=COLNO STRING:a {:RESULT = a;:}
   | COLNO inico_opereacion:a {:RESULT = a;:}
   | COLNO STRING_DATE:a {:RESULT = a;:}
+  | COLNO ID_TRIVIA_SPECIAL:a {:RESULT = a;:}
   | error
   | 
   ;
