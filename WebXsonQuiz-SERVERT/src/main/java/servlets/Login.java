@@ -38,7 +38,8 @@ public class Login extends HttpServlet {
         if (user == null || user.trim().isEmpty()) {
             errorMessage = LanguageConstants.EMPTY_TEXT;
         } else {
-            User userclient = (new SystemAcess(user)).loginSystem();
+            SystemAcess systemAcess = (new SystemAcess(user));
+            User userclient = systemAcess.loginSystem();
             if (userclient != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("usuario", userclient);
@@ -46,6 +47,7 @@ public class Login extends HttpServlet {
                 return; // Importante: salir del método después de la redirección
             } else {
                 errorMessage = LanguageConstants.DATA_USER_INCORECT;
+                errorMessage += "\n"+systemAcess.getErrorToken();
             }
         }
         

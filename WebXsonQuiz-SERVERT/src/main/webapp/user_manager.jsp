@@ -4,6 +4,9 @@
     Author     : drymnz
 --%>
 
+<%@page import="LexicalAndSyntacticAnalyzer.analyzer.Token"%>
+<%@page import="reports.ReportErrorInterpreter"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.cunoc.webxsonquiz.data.servert.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,6 +19,7 @@
             // Obtener el objeto Usuario almacenado en la sesión
             User usuario = (User) session.getAttribute("usuario");
             String textArea = (String) request.getAttribute("resultsText");
+            ArrayList<ReportErrorInterpreter> listError = (ArrayList<ReportErrorInterpreter>) request.getAttribute("listErrores");
         %>
     </head>
     <body>
@@ -51,17 +55,30 @@
                         <button type="submit" class="execute-btn">Login</button>
                     </form>
                 </div>
+                <%  if (listError != null) {  %>
                 <div class="results">
-                    <h2>Resultados</h2>
+                    <h2>Resultados de Errores Lexico y Sintactico</h2>
                     <table>
                         <tr>
-                            <th>ID User</th>
-                            <th>Nombre</th>
-                            <th>Institucion</th>
-                            <th>Fecha de creacion</th>
+                            <th>Linea</th>
+                            <th>Columna</th>
+                            <th>Lexema</th>
+                            <th>Tipo de error</th>
+                            <th>Descripcion</th>
                         </tr>
+                        <% for (ReportErrorInterpreter element : listError) {%>
+                        <tr>
+                            <%Token token = element.getToke();%>
+                            <td><%= token.getLine()%></td>
+                            <td><%= token.getColumna()%></td>
+                            <td><%= token.getLexeme()%></td>
+                            <td><%= element.getType().toString()%></td>
+                            <td><%= element.getDescription() %></td>
+                        </tr>
+                        <%}%>
                     </table>
                 </div>
+                <%}%>
             </div>
         </div>
     </body>

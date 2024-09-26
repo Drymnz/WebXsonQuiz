@@ -12,6 +12,7 @@ import LexicalAndSyntacticAnalyzer.dataAnalyzer.RequestAnalyzer;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjectComponentTrivia;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterAnalyzerToObjectTrivia;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
+import reports.ReportErrorInterpreter;
 
 public class RequestSyntaxValidatorManagerUser {
     private AnalyzerManagerUser analizer;
@@ -39,6 +40,14 @@ public class RequestSyntaxValidatorManagerUser {
 
     public ArrayList<RequestAnalyzer> getListErrorRequest() {
         return this.listErrorRequest;
+    }
+
+    public boolean isErroLexicoOrSyntanc(){
+        return this.analizer.isError();
+    }
+
+    public ArrayList<ReportErrorInterpreter> getListError(){
+        return this.analizer.getListError();
     }
 
     //Check Solicitud
@@ -158,7 +167,7 @@ public class RequestSyntaxValidatorManagerUser {
     }
 
     private boolean checkUserNew(RequestAnalyzer data) {
-        User checkOne = (new ConverterToObject()).createUserListDataAnalyzerLogin(data.getList());
+        User checkOne = (new ConverterToObject()).minimumRequirementsNewUsario(data.getList());
         if ((checkOne == null)) return false;
         User checkDataBase = this.getUserDataBaseId(checkOne.getId());
         if ((checkDataBase != null)) return false;

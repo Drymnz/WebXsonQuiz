@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
 import com.cunoc.webxsonquiz.data.servert.User;
+import java.util.ArrayList;
 import reactions.DataBaseListTrivia;
 import reactions.DataBaseListUser;
 import reactions.RequestSyntaxValidatorManagerUser;
+import reports.ReportErrorInterpreter;
 import reports.UserRequestReport;
 
 /**
@@ -32,22 +34,26 @@ public class SVUsers extends HttpServlet {
         String textArea = request.getParameter("textArea");
         String userId = request.getParameter("userId");
 
-        String errorMessage = null;
-        
-        if (textArea == null || textArea.trim().isEmpty() || userId == null || userId.trim().isEmpty() ) {
-            errorMessage = LanguageConstants.EMPTY_TEXT;
+        ArrayList<ReportErrorInterpreter> errorMessage = new ArrayList();
+
+        if (textArea == null || textArea.trim().isEmpty() || userId == null || userId.trim().isEmpty()) {
+
         } else {
             AnalyzerManagerUser analizer = new AnalyzerManagerUser(textArea);
             analizer.Analyze();
-            RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(),new DataBaseListTrivia(),new User(userId, "", "", "", ""));
-            requetSystaxValidator.checkRequests();
-            requetSystaxValidator.upDataBase(); 
-            request.setAttribute("resultsText", (new UserRequestReport(requetSystaxValidator).reportString()));
-            request.getRequestDispatcher("user_manager.jsp").forward(request, response);
+            RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer, new DataBaseListUser(), new DataBaseListTrivia(), new User(userId, "", "", "", ""));
+            if (requetSystaxValidator.isErroLexicoOrSyntanc()) {
+                errorMessage = requetSystaxValidator.getListError();
+            } else {
+                requetSystaxValidator.checkRequests();
+                requetSystaxValidator.upDataBase();
+                request.setAttribute("resultsText", (new UserRequestReport(requetSystaxValidator).reportString()));
+                request.getRequestDispatcher("user_manager.jsp").forward(request, response);
+            }
         }
-        
-        if (errorMessage != null) {
-            request.setAttribute("results", errorMessage);
+
+        if (!errorMessage.isEmpty()) {
+            request.setAttribute("listErrores", errorMessage);
             request.getRequestDispatcher("/user_manager.jsp").forward(request, response);
         }
     }

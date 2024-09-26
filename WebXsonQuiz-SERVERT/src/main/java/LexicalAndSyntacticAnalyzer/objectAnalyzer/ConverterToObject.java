@@ -25,6 +25,17 @@ public class ConverterToObject {
         return createUserListDataAnalyzer(listDataAnalyzer,list);
     }
 
+    public User minimumRequirementsNewUsario(ArrayList<DataAnalyzer> listDataAnalyzer ){
+        boolean[] list = { false, false, false, false };
+        User newUser = createUserListDataAnalyzer(listDataAnalyzer,list);
+        if(newUser.getId().isEmpty())return null;
+        if(newUser.getPassword().isEmpty())return null;
+        if(newUser.getInstitution().isEmpty())return null;
+        if(newUser.getName().isEmpty())return null;
+        if(newUser.getDate().isEmpty())return null;
+        return newUser;
+    }
+
     public User createUserListDataAnalyzer(ArrayList<DataAnalyzer> listDataAnalyzer, boolean[] list ){
         String id = "";
         String password= "";

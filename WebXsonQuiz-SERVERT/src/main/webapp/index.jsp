@@ -29,11 +29,11 @@
                     String errorMessage = (String) request.getAttribute("errorMessage");
                     if (errorMessage != null && !errorMessage.isEmpty()) {
                 %>
-                <div style="color: red;"><%= errorMessage%></div>
+                <div style="color: red;"><p><%= errorMessage%></p></div>
                 <%
                 } else {
                 %>
-                <div>No output yet...</div>
+                <div>Consola: </div>
                 <% }%>
             </div>
         </div>

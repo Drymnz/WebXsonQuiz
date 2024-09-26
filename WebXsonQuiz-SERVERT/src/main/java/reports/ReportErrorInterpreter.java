@@ -27,6 +27,6 @@ public class ReportErrorInterpreter {
     
     @Override
     public String toString() {
-        return "-type:"+type.toString()+"-toke"+toke.toString()+"description"+description.toString();
+        return "< type: "+type.toString()+" -toke: "+toke.toString()+" -description: "+description.toString() + " >";
     }
 }
