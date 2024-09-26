@@ -79,21 +79,5 @@ public class TestDataBaseUser {
         satisfactoryTest = listaUser.size() == 3;
         Assertions.assertTrue(satisfactoryTest);
     }
-   
-    @org.junit.jupiter.api.BeforeAll
-    public static void setUpClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
-    }
-
+    
 }

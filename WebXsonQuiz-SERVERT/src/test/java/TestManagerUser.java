@@ -18,8 +18,6 @@ import org.junit.jupiter.api.Assertions;
 
 public class TestManagerUser {
 
-    
-
     @Test
     public void testNesUser() {
         String textosdepureva = "<!realizar_solicitud: \"USUARIO_NUEVO\" > \n" + //

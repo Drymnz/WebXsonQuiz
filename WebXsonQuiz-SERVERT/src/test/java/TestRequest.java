@@ -4,9 +4,6 @@ import reactions.SystemAcess;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerLogin;
 import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
 import com.cunoc.webxsonquiz.data.servert.User;
-
-
-
 import org.junit.jupiter.api.Assertions;
 
 /**
@@ -15,7 +12,7 @@ import org.junit.jupiter.api.Assertions;
  */
 public class TestRequest {
 
-    private String textosdepureva = "<!realizar_solicitud: \"LOGIN_USUARIO\" > \n" + //
+    private String textosdepureva = "<!realiZar_solicitud: \"LOGIN_USUARIO\" > \n" + //
             "{ \"DATOS_USUARIO\":[{ \"USUARIO\": \"juanito619\", \"PASSWORD\": \"12345678\" } ]} <fin_solicitud_realizada!>\n"
             + //
             "";
@@ -34,7 +31,6 @@ public class TestRequest {
         satisfactoryTest = checkLogin.getId().equals(newUser.getId())
                 && checkLogin.getPassword().equals(newUser.getPassword());
         Assertions.assertTrue(!analyzer.isError() && satisfactoryTest);
-        //Assertions.assertTrue(true);
     }
 
     @Test

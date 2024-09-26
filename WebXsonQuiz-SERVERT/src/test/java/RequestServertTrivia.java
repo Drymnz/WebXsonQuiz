@@ -29,14 +29,6 @@ import org.junit.jupiter.api.Assertions;
  */
 public class RequestServertTrivia {
 
-    
-    /*
-     * this.fileDataBase = new File(ConstantSystem.SYSTEM_DIR,
-     * ConstantSystem.NAME_FILE_DATA_BASE_USER);
-     * String json = (new FileInput().cargarArchivoTexto(this.fileDataBase));
-     * this.analyzer = new AnalyzerDataBase(json);
-     */
-
     @Test
     public void testToSaveTriviaToDataFile() {
         ArrayList<Trivia> listTrivia = listTrivias();

@@ -51,5 +51,4 @@ public class TriviaQuizAttemptTests {
         Assertions.assertTrue(dataBaseQA.upDataBase());
     }
 
-
 }

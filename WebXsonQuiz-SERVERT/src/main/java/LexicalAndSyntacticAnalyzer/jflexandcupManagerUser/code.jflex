@@ -28,7 +28,7 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
     private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
   
     private void print(String token) {
-        //System.out.println(" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
+        System.out.println(token+" < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
     }
 
     private void addError(){
@@ -53,6 +53,8 @@ REAL_NUMEBERS = {DECIMAL}|{WHOLE}
 DATE = "\""{DIGIT}{DIGIT}{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"\""
 
 STRING = \"([^\"\\]|\\.)*\"
+
+CASE_SENTI = ([a-zA-Z]+|_)+
 
 espacio =[\n|\r|\t|\f|\b|\s| ]+
 
@@ -137,6 +139,27 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 {REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymUser.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
 {STRING}                {print("STRING"); return new Symbol(MySymUser.STRING ,yyline,yycolumn,yytext());}
 /*ERROR LEXICO*/
+{CASE_SENTI}               {
+                             String lowercaseText = yytext().toLowerCase();
+                                     switch(lowercaseText) {
+                                         case "xson":
+                                            print("xson"); 
+                                            return new Symbol(MySymUser.XSON ,yyline,yycolumn,yytext());
+                                         case "version":
+                                            print("version"); 
+                                            return new Symbol(MySymUser.VERSION ,yyline,yycolumn,yytext());
+                                        case "realizar_solicitud":
+                                            print("realizar_solicitud"); 
+                                            return new Symbol(MySymUser.MAKE_REQUEST ,yyline,yycolumn,yytext());
+                                        case "fin_solicitud_realizada":
+                                            print("fin_solicitud_realizada"); 
+                                            return new Symbol(MySymUser.FINAL_REQUEST ,yyline,yycolumn,yytext());
+                                        default:
+                                            print("ERROR");
+                                            addError();
+                                            break;
+                                     }
+                        }
 .                       {
                         //MANEJAR EL ERROR LEXICO
                         print("ERROR");

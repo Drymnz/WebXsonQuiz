@@ -42,6 +42,7 @@ public class SystemAcess {
     private User userWantToAccess(){
         AnalyzerLogin analyzer = new AnalyzerLogin(this.textAnalyzer);
         analyzer.Analyze();
+        if(analyzer.getListRquest().size()<1) return null;
         RequestAnalyzer userLogin = analyzer.getListRquest().get(0);
         if (!(userLogin.getType() == ListRequests.LOGIN_USER)) return null;
         ConverterToObject converter = new ConverterToObject();

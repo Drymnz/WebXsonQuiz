@@ -45,14 +45,9 @@ import LexicalAndSyntacticAnalyzer.analyzer.Token;
     /*FINAL-CODE*/
 %}
 
-DIGIT = [0-9]
-WHOLE = {DIGIT}+
-DECIMAL = {WHOLE}[.]{WHOLE}
-REAL_NUMEBERS = {DECIMAL}|{WHOLE}
-
-DATE = "\""{DIGIT}{DIGIT}{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"-"{DIGIT}{DIGIT}"\""
-
 STRING = \"([^\"\\]|\\.)*\"
+
+CASE_SENTI = ([a-zA-Z]+|_)+
 
 espacio =[\n|\r|\t|\f|\b|\s| ]+
 
@@ -73,7 +68,6 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "realizar_solicitud"        {print("realizar_solicitud"); return new Symbol(MySymLoginUser.MAKE_REQUEST ,yyline,yycolumn,yytext());}
 "fin_solicitud_realizada"   {print("fin_solicitud_realizada"); return new Symbol(MySymLoginUser.FINAL_REQUEST ,yyline,yycolumn,yytext());}
 //TIPOS DE SOLICITUD
-"\"USUARIO_NUEVO\""     {print("\"USUARIO_NUEVO\""); return new Symbol(MySymLoginUser.NEW_USER ,yyline,yycolumn,yytext());}
 "\"LOGIN_USUARIO\""     {print("\"LOGIN_USUARIO\""); return new Symbol(MySymLoginUser.LOGIN_USER ,yyline,yycolumn,yytext());}
 /*JSON*/
 "{"                     {print("{"); return new Symbol(MySymLoginUser.KEYS_O ,yyline,yycolumn,yytext());}
@@ -85,24 +79,35 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 //DATA USSER
 "\"USUARIO\""       {print("\"USUARIO\""); return new Symbol(MySymLoginUser.NAME_USER ,yyline,yycolumn,yytext());}
 "\"PASSWORD\""      {print("\"PASSWORD\""); return new Symbol(MySymLoginUser.PASS_USER ,yyline,yycolumn,yytext());}
-"\"NOMBRE\""        {print("\"NOMBRE\""); return new Symbol(MySymLoginUser.NAME_PERSONAL_USER ,yyline,yycolumn,yytext());}
-"\“INSTITUCION\”"   {print("INSTITUCION"); return new Symbol(MySymLoginUser.INSTITUCION ,yyline,yycolumn,yytext());}
-"\FECHA_CREACION\”" {print("INSTITUCION"); return new Symbol(MySymLoginUser.DATE ,yyline,yycolumn,yytext());}
 /*SIMBOLOS ARIMETICOS*/
-"+"                     {print("+"); return new Symbol(MySymLoginUser.SUMAR,yyline,yycolumn, (yytext()));}
-"-"                     {print("-"); return new Symbol(MySymLoginUser.RESTAR,yyline,yycolumn, (yytext()));}
-"/"                     {print("/"); return new Symbol(MySymLoginUser.DIVIDIR,yyline,yycolumn, (yytext()));}
-"*"                     {print("*"); return new Symbol(MySymLoginUser.MULTIPLICAR,yyline,yycolumn, (yytext()));}
 "="                     {print("="); return new Symbol(MySymLoginUser.EQUAL,yyline,yycolumn, (yytext()));}
 ":"                     {print(":"); return new Symbol(MySymLoginUser.COLNO,yyline,yycolumn, (yytext()));}
 ","                     {print(","); return new Symbol(MySymLoginUser.COMA,yyline,yycolumn, (yytext()));}
 /*SIMBOLOS DE AGRUPACION*/
-"("                     {print("("); return new Symbol(MySymLoginUser.PARENTESIS_A,yyline,yycolumn,yytext());}
-")"                     {print(")"); return new Symbol(MySymLoginUser.PARENTESIS_C,yyline,yycolumn,yytext());}
-{DATE}                  {print("DATE"); return new Symbol(MySymLoginUser.STRING_DATE,yyline,yycolumn,yytext());}
-{REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymLoginUser.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
 {STRING}                {print("STRING"); return new Symbol(MySymLoginUser.STRING ,yyline,yycolumn,yytext());}
 /*ERROR LEXICO*/
+//Solucion de lo de case sentisi
+{CASE_SENTI}               {
+                             String lowercaseText = yytext().toLowerCase();
+                                     switch(lowercaseText) {
+                                         case "xson":
+                                            print("xson"); 
+                                            return new Symbol(MySymLoginUser.XSON ,yyline,yycolumn,yytext());
+                                         case "version":
+                                            print("version"); 
+                                            return new Symbol(MySymLoginUser.VERSION ,yyline,yycolumn,yytext());
+                                        case "realizar_solicitud":
+                                            print("realizar_solicitud"); 
+                                            return new Symbol(MySymLoginUser.MAKE_REQUEST ,yyline,yycolumn,yytext());
+                                        case "fin_solicitud_realizada":
+                                            print("fin_solicitud_realizada"); 
+                                            return new Symbol(MySymLoginUser.FINAL_REQUEST ,yyline,yycolumn,yytext());
+                                        default:
+                                            print("ERROR");
+                                            addError();
+                                            break;
+                                     }
+                        }
 .                       {
                         //MANEJAR EL ERROR LEXICO
                         print("ERROR");
