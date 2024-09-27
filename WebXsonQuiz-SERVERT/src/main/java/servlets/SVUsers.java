@@ -45,7 +45,9 @@ public class SVUsers extends HttpServlet {
             if (analizer.isError()) {
                 errorMessage = analizer.getListError();
             } else {
-                RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer, new DataBaseListUser(), new DataBaseListTrivia(), new User(userId, "", "", "", ""));
+                RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser
+                (analizer, new DataBaseListUser(), new DataBaseListTrivia(), new User(userId, "", "", "", ""))
+                ;
                 requetSystaxValidator.checkRequests();
                 requetSystaxValidator.upDataBase();
                 request.setAttribute("resultsText", (new UserRequestReport(requetSystaxValidator).reportString()));

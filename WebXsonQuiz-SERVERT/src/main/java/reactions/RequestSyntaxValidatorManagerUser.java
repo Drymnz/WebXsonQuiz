@@ -22,6 +22,11 @@ public class RequestSyntaxValidatorManagerUser {
     private DataBaseListTrivia dataBaseTrivia;
     private User user = null;
 
+    public RequestSyntaxValidatorManagerUser(DataBaseListUser dataBaseUser,DataBaseListTrivia dataBaseTrivia,User user) {
+        this.dataBaseUser = dataBaseUser;
+        this.dataBaseTrivia = dataBaseTrivia;
+        this.user = user;
+    }
 
     public RequestSyntaxValidatorManagerUser(AnalyzerManagerUser analizer,DataBaseListUser dataBaseUser,DataBaseListTrivia dataBaseTrivia,User user) {
         this.dataBaseUser = dataBaseUser;
@@ -163,6 +168,13 @@ public class RequestSyntaxValidatorManagerUser {
         Trivia checkDataBase = this.getTriviaDataBaseId(checkOne.getId());
         if ((checkDataBase != null)) return false;
         this.dataBaseTrivia.getListTrivias().add(checkOne);
+        return true;
+    }
+
+    public boolean checkNewTrivia(Trivia newTrivia){
+        Trivia checkDataBase = this.getTriviaDataBaseId(newTrivia.getId());
+        if ((checkDataBase != null)) return false;
+        this.dataBaseTrivia.getListTrivias().add(newTrivia);
         return true;
     }
 

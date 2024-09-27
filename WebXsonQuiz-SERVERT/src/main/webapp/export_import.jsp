@@ -9,10 +9,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="stely_menu.css.css">
+
+        <link rel="stylesheet" href="stely_menu.css">
         <%
             // Obtener el objeto Usuario almacenado en la sesión
             User usuario = (User) session.getAttribute("usuario");
+            String error = (String) request.getAttribute("mensaje");
             ArrayList<Trivia> listTrivia = (ArrayList<Trivia>) request.getAttribute("listTrivia");
             ArrayList<ReportErrorInterpreter> listError = (ArrayList<ReportErrorInterpreter>) request.getAttribute("listErrores");
         %>
@@ -35,9 +37,19 @@
                         <button class="execute-btn" >Actualizar</button> 
                     </form>
                     <form action="${pageContext.request.contextPath}/ExportImport" method="POST" enctype="multipart/form-data">
-                        <input class="execute-btn"  type="file" name="file" accept=".xtriv" required>
+                        <input type="hidden" name="userId" value="<%= usuario != null ? usuario.getId() : ""%>">
+                        <div class="file-input-wrapper">
+                            <input type="file" name="file" id="fileInput" accept=".xtriv" required>
+                            <label for="fileInput" class="file-label">Seleccionar archivo</label>
+                        </div>
+                        <span class="file-name" id="fileName"></span>
                         <button class="execute-btn" type="submit">Importar</button>
                     </form>
+                    <%  if (error != null) {%>
+                    <p>Mensaje: <%= error%></p> <br>
+                    <%
+                        }
+                    %>
                     <%  if (listTrivia != null) {  %>
                     <div class="results">
                         <h2>Resultados</h2>
@@ -62,7 +74,7 @@
                                 <td>
                                     <form action="${pageContext.request.contextPath}/ExportImport" method="GET">
                                         <input type="hidden" name="triviaId" value="<%= element.getId()%>">
-                                        <button type="submit">Exportar</button>
+                                        <button class="execute-btn"  type="submit">Exportar</button>
                                     </form>
                                 </td>
                             </tr>
@@ -97,5 +109,11 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.getElementById('fileInput').addEventListener('change', function () {
+                var fileName = this.files[0].name;
+                document.getElementById('fileName').textContent = fileName;
+            });
+        </script>
     </body>
 </html>
