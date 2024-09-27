@@ -2,6 +2,8 @@ package modelServert;
 
 import com.cunoc.webxsonquiz.data.servert.QuizAttempt;
 import com.cunoc.webxsonquiz.data.servert.Trivia;
+import com.cunoc.webxsonquiz.data.servert.User;
+
 import java.util.ArrayList;
 
 import reactions.DataBaseListQuizAttempt;
@@ -16,6 +18,7 @@ import servlets.socket.ClientHandler;
 public class ModelClientHandler {
 
     private ClientHandler client;
+    private SystemAcess systemAcees = null;
 
     public ModelClientHandler(ClientHandler client) {
         this.client = client;
@@ -27,7 +30,10 @@ public class ModelClientHandler {
             if (text.isEmpty()) {
                 return false;
             }
-            this.client.setUserclient((new SystemAcess(text)).loginSystem());
+            this.systemAcees = new SystemAcess(text);
+            User userCliente = systemAcees.loginSystem();
+            if (userCliente == null) return false;
+            this.client.setUserclient(userCliente);
             System.out.println(this.client.getUserclient().toString());
             return this.client.getUserclient() != null;
         }
@@ -46,14 +52,21 @@ public class ModelClientHandler {
                     return false;
                 } else {
                     boolean login = this.loginClient(text);
-                    String nameCliente = this.client.getClientSocket() != null ? this.client.getUserclient().getId() : this.client.getClientSocket().getLocalAddress().getHostAddress();
                     if (login) {
-                        System.out.println("Entro: " + nameCliente);
+                        System.out.println("Entro: " + this.client.getClientSocket() != null ? this.client.getUserclient().getId() : this.client.getClientSocket().getLocalAddress().getHostAddress());
                         return this.client.getUserclient();
-
                     } else {
-                        System.out.println("Intento de cliente: " + nameCliente);
-                        return false;
+                        System.out.println("Intento de cliente: " + this.client.getClientSocket().getLocalAddress().getHostAddress());
+                        if (this.systemAcees != null) {
+                            System.out.println(this.systemAcees.getErrorToken());
+                            if (this.systemAcees.getErrorToken() != null) {
+                                return this.systemAcees.getErrorToken();
+                            } else {
+                                return false;
+                            }
+                        } else {
+                            return "";
+                        }
                     }
                 }
             } else if (getCliente instanceof ArrayList) {

@@ -43,29 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun connectedToServer(ip: String, port: Int) {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect { uiState ->
-                    when (uiState) {
-                        is MainUIState.Error -> {
-                            this@MainActivity.disebleCompi(false)
-                        }
 
-                        MainUIState.Loging -> {}
-                        is MainUIState.Success -> {
-                            //&& !this@MainActivity.firtsSocket
-                            if (uiState.socket.getSocket()!!.isConnected && !this@MainActivity.firtsSocket) {
-                                this@MainActivity.disebleCompi(true)
-                                this@MainActivity.setSocket(uiState.socket)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        viewModel.connectionToServer(ip, port)
-    }
 
     fun disebleCompi(enable: Boolean) {
         this.firtsSocket = enable
@@ -102,6 +80,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun connectedToServer(ip: String, port: Int) {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { uiState ->
+                    when (uiState) {
+                        is MainUIState.Error -> {
+                            this@MainActivity.disebleCompi(false)
+                        }
+
+                        MainUIState.Loging -> {}
+                        is MainUIState.Success -> {
+                            //&& !this@MainActivity.firtsSocket
+                            if (uiState.socket.getSocket()!!.isConnected && !this@MainActivity.firtsSocket) {
+                                this@MainActivity.disebleCompi(true)
+                                this@MainActivity.setSocket(uiState.socket)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        viewModel.connectionToServer(ip, port)
+    }
+
     fun clickCompi(view: View) {
         Log.i("clickCompi,MainActivity", findViewById<EditText>(R.id.textArea).getText().toString())
         if (stateFlow.value.equals(this.INICIO)) {
@@ -113,12 +115,16 @@ class MainActivity : AppCompatActivity() {
                         // receiving message`
                         val report = this@MainActivity.conectionServert?.sendMessage(newValue)
                         if (report != null) {
-                            println(report.toString())
-                            if (report is Boolean) {
-                                this@MainActivity.irTrivias(report, this@MainActivity, null)
+                            if(report is Boolean){
+                                this@MainActivity.irTrivias(false, this@MainActivity, null, "")
                             }
+                            if (report is String) {///Trabajando
+                                this@MainActivity.irTrivias(false, this@MainActivity, null, report)
+                            }else
                             if (report is User) {
-                                this@MainActivity.irTrivias(true, this@MainActivity, report)
+                                this@MainActivity.irTrivias(true, this@MainActivity, report, "")
+                            }else {
+                                this@MainActivity.irTrivias(false, this@MainActivity, null, "")
                             }
                         }
                     }
@@ -145,7 +151,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    suspend fun irTrivias(requestServert: Boolean, context: Context, user: User?) {
+    suspend fun irTrivias(requestServert: Boolean, context: Context, user: User?, text:String) {
         val messText: String =
             if (requestServert) getString(R.string.login_true) else getString(R.string.connected_false)
         this@MainActivity.messeg(context, messText)
@@ -160,6 +166,9 @@ class MainActivity : AppCompatActivity() {
                 ) // Enviar la conexión
                 startActivity(intent)
             }
+        }else{
+            val textView:TextView = findViewById<EditText>(R.id.textArea)
+            textView.text = text
         }
     }
 
