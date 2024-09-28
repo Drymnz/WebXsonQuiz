@@ -38,7 +38,7 @@ private ArrayList<QuizAttempt> listQuizAttempt = new ArrayList();
         int columna = cur_token.right +1;
         String lexema = (this.cur_token.value!=null)? this.cur_token.value.toString() : "Token no existe";
         Token token = new Token(line, columna, lexema);
-        this.listError.add(new ReportErrorInterpreter(type, token, ReportingConstants.ERROR_SICTATICO));
+        this.listError.add(new ReportErrorInterpreter(type, token, (new InterpretSyntaticError(this.stack)).descriptionParser(this)));
     }
 
     //Returnar el listado de errores
