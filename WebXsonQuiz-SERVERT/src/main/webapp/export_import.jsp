@@ -14,6 +14,11 @@
         <%
             // Obtener el objeto Usuario almacenado en la sesión
             User usuario = (User) session.getAttribute("usuario");
+            if (usuario == null) {
+                // Si no hay usuario en sesión, redirigir a la página de inicio de sesión
+                response.sendRedirect("login.jsp");
+                return; // Finalizar el procesamiento de la página actual
+            }
             String error = (String) request.getAttribute("mensaje");
             ArrayList<Trivia> listTrivia = (ArrayList<Trivia>) request.getAttribute("listTrivia");
             ArrayList<ReportErrorInterpreter> listError = (ArrayList<ReportErrorInterpreter>) request.getAttribute("listErrores");

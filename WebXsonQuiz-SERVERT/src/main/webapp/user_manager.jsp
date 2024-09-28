@@ -18,6 +18,11 @@
         <%
             // Obtener el objeto Usuario almacenado en la sesión
             User usuario = (User) session.getAttribute("usuario");
+            if (usuario == null) {
+                // Si no hay usuario en sesión, redirigir a la página de inicio de sesión
+                response.sendRedirect("login.jsp");
+                return; // Finalizar el procesamiento de la página actual
+            }
             String textArea = (String) request.getAttribute("resultsText");
             ArrayList<ReportErrorInterpreter> listError = (ArrayList<ReportErrorInterpreter>) request.getAttribute("listErrores");
         %>
@@ -67,7 +72,7 @@
                             <td><%= token.getColumna()%></td>
                             <td><%= token.getLexeme()%></td>
                             <td><%= element.getType().toString()%></td>
-                            <td><%= element.getDescription() %></td>
+                            <td><%= element.getDescription()%></td>
                         </tr>
                         <%}%>
                     </table>

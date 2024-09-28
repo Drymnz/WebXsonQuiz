@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
+        <%
+            session.invalidate(); // Cerrar sesión
+        %>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Simple IDE</title>
@@ -30,16 +33,16 @@
                     if (errorMessage != null && !errorMessage.isEmpty()) {
                 %>
                 <div style="color: red;"><p><%= errorMessage%></p></div>
-                <%
-                } else {
-                %>
+                        <%
+                        } else {
+                        %>
                 <div>Consola: </div>
                 <% }%>
             </div>
         </div>
     </body>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var textarea = document.getElementById('codeInput');
             var positionDisplay = document.getElementById('position');
 
