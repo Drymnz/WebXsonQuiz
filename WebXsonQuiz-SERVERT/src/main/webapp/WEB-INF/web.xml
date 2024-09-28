@@ -3,9 +3,18 @@
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
    version="4.0">
+
+    <!-- Configuración de la sesión -->
     <session-config>
         <session-timeout>
             45
         </session-timeout>
     </session-config>
+
+    <!-- Configuración de la página de error 404 -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error404.jsp</location> <!-- Aquí indicas la ruta de tu página personalizada -->
+    </error-page>
+
 </web-app>
