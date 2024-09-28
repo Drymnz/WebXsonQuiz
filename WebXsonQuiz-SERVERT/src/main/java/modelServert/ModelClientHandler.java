@@ -65,7 +65,7 @@ public class ModelClientHandler {
                                 return false;
                             }
                         } else {
-                            return "";
+                            return false;
                         }
                     }
                 }

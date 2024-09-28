@@ -65,7 +65,7 @@ public class SVUsers extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userId = request.getParameter("userId");
 
-        ArrayList<Trivia> listTrivia = new ArrayList();
+        ArrayList<Trivia> listTrivia =null;
 
         if (userId == null || userId.trim().isEmpty()) {
             //errorMessage = LanguageConstants.EMPTY_TEXT;

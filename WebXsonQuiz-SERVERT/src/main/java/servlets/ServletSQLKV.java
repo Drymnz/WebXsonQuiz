@@ -30,7 +30,7 @@ public class ServletSQLKV extends HttpServlet {
 
         String textArea = request.getParameter("textArea");
 
-        ArrayList<ReportErrorInterpreter> errorMessage = new ArrayList();
+        ArrayList<ReportErrorInterpreter> errorMessage = null;
 
         if (textArea == null || textArea.trim().isEmpty()) {
             //errorMessage = LanguageConstants.EMPTY_TEXT;
@@ -46,7 +46,7 @@ public class ServletSQLKV extends HttpServlet {
             }
         }
 
-        if (!errorMessage.isEmpty()) {
+        if (errorMessage != null) {
             request.setAttribute("listErrores", errorMessage);
             request.getRequestDispatcher("/report.jsp").forward(request, response);
         }

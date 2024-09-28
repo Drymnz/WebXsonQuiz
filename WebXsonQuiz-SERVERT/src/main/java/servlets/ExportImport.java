@@ -1,7 +1,6 @@
 package servlets;
 
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerDataBaseTrivia;
-import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
 
 import com.cunoc.webxsonquiz.data.servert.Trivia;
 import com.cunoc.webxsonquiz.data.servert.User;
