@@ -1,9 +1,9 @@
 # WebXsonQuiz
-<img src='/recursos-git/img_001'>
+<img src='/recursos-git/img_001.png'>
 
 Bienvenido al Sistema de Trivias, una plataforma diseñada para crear, gestionar y responder trivias de manera eficiente. Este README le guiará a través de las principales funciones del sistema, tanto en su versión web como en la aplicación móvil.
 
-<img src='/recursos-git/img_002'>
+<img src='/recursos-git/img_002.jpg'>
 
 ## Características
 
@@ -14,7 +14,7 @@ Bienvenido al Sistema de Trivias, una plataforma diseñada para crear, gestionar
 - Servidor que gestiona la comunicación entre aplicaciones y almacena datos
 
 
-<img src='/recursos-git/img_003'>
+<img src='/recursos-git/img_003.png'>
 
 ### Comunicación y Protocolos
 - Uso de sockets para la comunicación entre el servidor y las aplicaciones
