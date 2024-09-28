@@ -39,9 +39,8 @@ private ArrayList<ComponentTrivia> listComponentTrivia = new ArrayList<>();
         TypeIntreprete type = TypeIntreprete.SYNTACTIC;
         int line = cur_token.left+1;
         int columna = cur_token.right +1;
-        String lexema = this.cur_token.value.toString();
+        String lexema = (this.cur_token.value!=null)? this.cur_token.value.toString() : "Token no existe";
         Token token = new Token(line, columna, lexema);
-        System.out.println(token.toString());
         this.listError.add(new ReportErrorInterpreter(type, token, ReportingConstants.ERROR_SICTATICO));
     }
 

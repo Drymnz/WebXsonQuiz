@@ -223,9 +223,8 @@ private ArrayList<OperationSQLKV> listOperationSQLKV = new ArrayList();
         TypeIntreprete type = TypeIntreprete.SYNTACTIC;
         int line = cur_token.left+1;
         int columna = cur_token.right +1;
-        String lexema = this.cur_token.value.toString();
+        String lexema = (this.cur_token.value!=null)? this.cur_token.value.toString() : "Token no existe";
         Token token = new Token(line, columna, lexema);
-        System.out.println(token.toString());
         this.listError.add(new ReportErrorInterpreter(type, token, ReportingConstants.ERROR_SICTATICO));
     }
 
@@ -234,12 +233,12 @@ private ArrayList<OperationSQLKV> listOperationSQLKV = new ArrayList();
         return this.listError;
     }
 
-    //Returnar el listado de errores
+    //Returnar el listado de nombres de trivias
     public List<String> getListNameTrivias() {
         return this.listTrivias;
     }
 
-    //Returnar el listado de errores
+   //Returnar el listado de operaciones
     public ArrayList<OperationSQLKV>  getListOperationSQLKV() {
         return this.listOperationSQLKV;
     }
