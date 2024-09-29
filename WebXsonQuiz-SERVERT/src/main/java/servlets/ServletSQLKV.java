@@ -20,10 +20,6 @@ import reports.ReportErrorInterpreter;
 @WebServlet(name = "ServletSQLKV", urlPatterns = {"/ServletSQLKV"})
 public class ServletSQLKV extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,9 +28,7 @@ public class ServletSQLKV extends HttpServlet {
 
         ArrayList<ReportErrorInterpreter> errorMessage = null;
 
-        if (textArea == null || textArea.trim().isEmpty()) {
-            //errorMessage = LanguageConstants.EMPTY_TEXT;
-        } else {
+        if (textArea != null || !textArea.trim().isEmpty()) {
             AnalyzerSQLKV analyzer = new AnalyzerSQLKV(textArea);
             analyzer.Analyze();
             if (analyzer.isError()) {
@@ -44,19 +38,13 @@ public class ServletSQLKV extends HttpServlet {
                 request.setAttribute("listQuizAttempt", listFilter);
                 request.getRequestDispatcher("/report.jsp").forward(request, response);
             }
-        }
+        } 
 
         if (errorMessage != null) {
             request.setAttribute("listErrores", errorMessage);
             request.getRequestDispatcher("/report.jsp").forward(request, response);
         }
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
     }
 
 }

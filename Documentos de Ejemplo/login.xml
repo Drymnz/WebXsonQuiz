@@ -1,0 +1,7 @@
+<!realizar_solicitud: "LOGIN_USUARIO" > 
+{ "DATOS_USUARIO":
+[{ 
+    "USUARIO": "juan_perez", 
+    "PASSWORD": "nu3v0_p@ssw0rd_456" 
+} ]} 
+<fin_solicitud_realizada!>

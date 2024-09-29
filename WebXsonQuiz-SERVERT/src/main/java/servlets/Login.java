@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import Lengua.LanguageConstants;
@@ -24,11 +20,6 @@ import reactions.SystemAcess;
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,7 +38,9 @@ public class Login extends HttpServlet {
                 return; // Importante: salir del método después de la redirección
             } else {
                 errorMessage = LanguageConstants.DATA_USER_INCORECT;
-                errorMessage += "\n"+systemAcess.getErrorToken();
+                if (systemAcess.getErrorToken() != null) {
+                    errorMessage += "\n"+systemAcess.getErrorToken();
+                }
             }
         }
         

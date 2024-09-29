@@ -1,0 +1,176 @@
+  <?xml version="1.0" ?>
+  <!realizar_solicitudes>
+  <!-- Trivia sobre Historia de México -->
+  <!-- 0 -->
+  <!realizar_solicitud: "NUEVA_TRIVIA" >
+  { "PARAMETROS_TRIVIA":[{
+    "ID_TRIVIA": "$trivia_historia_mexico",
+    "TIEMPO_PREGUNTA": 30,
+    "NOMBRE": "Historia de México",
+    "TEMA": "historia"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 1 -->
+  <!realizar_solicitud: "AGREGAR_COMPONENTE" >
+  { "PARAMETROS_COMPONENTE":[{
+    "ID": "$_independencia_mexico",
+    "TRIVIA": "$trivia_historia_mexico",
+    "CLASE": "CAMPO_TEXTO",
+    "TEXTO_VISIBLE": "¿En qué año inició la guerra de Independencia de México?",
+    "RESPUESTA": "1810"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 2 -->
+  <!realizar_solicitud: "AGREGAR_COMPONENTE" >
+  { "PARAMETROS_COMPONENTE":[{
+    "ID": "$_revolucion_mexicana",
+    "TRIVIA": "$trivia_historia_mexico",
+    "CLASE": "RADIO",
+    "TEXTO_VISIBLE": "¿Quién fue el iniciador de la Revolución Mexicana?",
+    "OPCIONES": "Francisco I. Madero|Porfirio Díaz|Emiliano Zapata|Pancho Villa",
+    "RESPUESTA": "Francisco I. Madero"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 3 -->
+  <!realizar_solicitud: "MODIFICAR_TRIVIA" >
+  { "PARAMETROS_TRIVIA":[{
+    "ID_TRIVIA": "$trivia_historia_mexico",
+    "TIEMPO_PREGUNTA": 45,
+    "NOMBRE": "Historia y Revolución de México"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 4 -->
+  <!realizar_solicitud: "AGREGAR_COMPONENTE" >
+  { "PARAMETROS_COMPONENTE":[{
+    "ID": "$_heroes_revolucion",
+    "TRIVIA": "$trivia_historia_mexico",
+    "CLASE": "CHECKBOX",
+    "TEXTO_VISIBLE": "Seleccione a los líderes de la Revolución Mexicana:",
+    "OPCIONES": "Francisco I. Madero|Porfirio Díaz|Emiliano Zapata|Pancho Villa|Venustiano Carranza",
+    "RESPUESTA": "Francisco I. Madero|Emiliano Zapata|Pancho Villa|Venustiano Carranza"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- Trivia sobre Literatura Española -->
+  <!-- 5 -->
+  <!realizar_solicitud: "NUEVA_TRIVIA" >
+  { "PARAMETROS_TRIVIA":[{
+    "ID_TRIVIA": "$trivia_literatura_espanola",
+    "TIEMPO_PREGUNTA": 40,
+    "NOMBRE": "Literatura Española",
+    "TEMA": "literatura"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 6 -->
+  <!realizar_solicitud: "AGREGAR_COMPONENTE" >
+  { "PARAMETROS_COMPONENTE":[{
+    "ID": "$_autor_quijote",
+    "TRIVIA": "$trivia_literatura_espanola",
+    "CLASE": "CAMPO_TEXTO",
+    "TEXTO_VISIBLE": "¿Quién escribió 'Don Quijote de la Mancha'?",
+    "RESPUESTA": "Miguel de Cervantes"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 7 -->
+  <!realizar_solicitud: "AGREGAR_COMPONENTE" >
+  { "PARAMETROS_COMPONENTE":[{
+    "ID": "$_generacion_98",
+    "TRIVIA": "$trivia_literatura_espanola",
+    "CLASE": "CHECKBOX",
+    "TEXTO_VISIBLE": "Seleccione a los autores pertenecientes a la Generación del 98:",
+    "OPCIONES": "Miguel de Unamuno|Antonio Machado|Pío Baroja|Federico García Lorca|Valle-Inclán",
+    "RESPUESTA": "Miguel de Unamuno|Antonio Machado|Pío Baroja|Valle-Inclán"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 8 -->
+  <!realizar_solicitud: "MODIFICAR_TRIVIA" >
+  { "PARAMETROS_TRIVIA":[{
+    "ID_TRIVIA": "$trivia_literatura_espanola",
+    "TIEMPO_PREGUNTA": 50,
+    "NOMBRE": "Literatura Española Clásica y Moderna"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 9 -->
+  <!realizar_solicitud: "AGREGAR_COMPONENTE" >
+  { "PARAMETROS_COMPONENTE":[{
+    "ID": "$_obra_lorca",
+    "TRIVIA": "$trivia_literatura_espanola",
+    "CLASE": "RADIO",
+    "TEXTO_VISIBLE": "¿Cuál de estas obras pertenece a Federico García Lorca?",
+    "OPCIONES": "La Regenta|Bodas de Sangre|Don Juan Tenorio|La Celestina",
+    "RESPUESTA": "Bodas de Sangre"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+
+  <!-- Trivia sobre Ciencia y Tecnología -->
+  <!-- 10 -->
+  <!realizar_solicitud: "NUEVA_TRIVIA" >
+  { "PARAMETROS_TRIVIA":[{
+    "ID_TRIVIA": "$trivia_ciencia_tecnologia",
+    "TIEMPO_PREGUNTA": 35,
+    "NOMBRE": "Ciencia y Tecnología",
+    "TEMA": "ciencia"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 11 -->
+  <!realizar_solicitud: "AGREGAR_COMPONENTE" >
+  { "PARAMETROS_COMPONENTE":[{
+    "ID": "$_teoria_relatividad",
+    "TRIVIA": "$trivia_ciencia_tecnologia",
+    "CLASE": "CAMPO_TEXTO",
+    "TEXTO_VISIBLE": "¿Quién propuso la Teoría de la Relatividad?",
+    "RESPUESTA": "Albert Einstein"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 12 -->
+  <!realizar_solicitud: "AGREGAR_COMPONENTE" >
+  { "PARAMETROS_COMPONENTE":[{
+    "ID": "$_elementos_tabla_periodica",
+    "TRIVIA": "$trivia_ciencia_tecnologia",
+    "CLASE": "RADIO",
+    "TEXTO_VISIBLE": "¿Cuántos elementos tiene la tabla periódica actual?",
+    "OPCIONES": "92|108|118|120",
+    "RESPUESTA": "118"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 13 -->
+  <!realizar_solicitud: "MODIFICAR_TRIVIA" >
+  { "PARAMETROS_TRIVIA":[{
+    "ID_TRIVIA": "$trivia_ciencia_tecnologia",
+    "TIEMPO_PREGUNTA": 45,
+    "NOMBRE": "Avances en Ciencia y Tecnología"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 14 -->
+  <!realizar_solicitud: "AGREGAR_COMPONENTE" >
+  { "PARAMETROS_COMPONENTE":[{
+    "ID": "$_inventos_siglo_xx",
+    "TRIVIA": "$trivia_ciencia_tecnologia",
+    "CLASE": "CHECKBOX",
+    "TEXTO_VISIBLE": "Seleccione los inventos del siglo XX:",
+    "OPCIONES": "Teléfono|Internet|Avión|Computadora personal|Imprenta",
+    "RESPUESTA": "Internet|Avión|Computadora personal"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!-- 15 -->
+  <!realizar_solicitud: "ELIMINAR_TRIVIA" >
+  { "PARAMETROS_TRIVIA":[{
+    "ID_TRIVIA": "$trivia_ciencia_tecnologia"
+  }
+  ]}
+  <fin_solicitud_realizada!>
+  <!fin_solicitudes_realizada>

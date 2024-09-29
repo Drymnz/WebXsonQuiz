@@ -24,11 +24,6 @@ import reports.UserRequestReport;
 @WebServlet(name = "SVUsers", urlPatterns = {"/SvUsers"})
 public class SVUsers extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,17 +32,13 @@ public class SVUsers extends HttpServlet {
 
         ArrayList<ReportErrorInterpreter> errorMessage = new ArrayList();
 
-        if (textArea == null || textArea.trim().isEmpty() || userId == null || userId.trim().isEmpty()) {
-
-        } else {
+        if (textArea != null || !textArea.trim().isEmpty() || userId != null || !userId.trim().isEmpty()) {
             AnalyzerManagerUser analizer = new AnalyzerManagerUser(textArea);
             analizer.Analyze();
             if (analizer.isError()) {
                 errorMessage = analizer.getListError();
             } else {
-                RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser
-                (analizer, new DataBaseListUser(), new DataBaseListTrivia(), new User(userId, "", "", "", ""))
-                ;
+                RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer, new DataBaseListUser(), new DataBaseListTrivia(), new User(userId, "", "", "", ""));
                 requetSystaxValidator.checkRequests();
                 requetSystaxValidator.upDataBase();
                 request.setAttribute("resultsText", (new UserRequestReport(requetSystaxValidator).reportString()));
@@ -65,16 +56,13 @@ public class SVUsers extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userId = request.getParameter("userId");
 
-        ArrayList<Trivia> listTrivia =null;
+        ArrayList<Trivia> listTrivia = null;
 
-        if (userId == null || userId.trim().isEmpty()) {
-            //errorMessage = LanguageConstants.EMPTY_TEXT;
-        } else {
-            listTrivia = (new FilterTriviasData(new DataBaseListTrivia())).getListTriviasAll();
-            //listTrivia = (new FilterTriviasData(new DataBaseListTrivia())).getListTriviasByIdUser(userId);
+        if (userId != null || !userId.trim().isEmpty()) {
+            //listTrivia = (new FilterTriviasData(new DataBaseListTrivia())).getListTriviasAll();
+            listTrivia = (new FilterTriviasData(new DataBaseListTrivia())).getListTriviasByIdUser(userId);
             request.setAttribute("listTrivia", listTrivia);
             request.getRequestDispatcher("/export_import.jsp").forward(request, response);
-        }
-
+        } 
     }
 }

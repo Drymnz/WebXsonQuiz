@@ -1,0 +1,86 @@
+<?xson version="1.0" ?>
+<!realizar_solicitudes>
+<!-- 0 -->
+<!realizar_solicitud: "NUEVA_TRIVIA" >
+{ "PARAMETROS_TRIVIA":[{
+  "ID_TRIVIA": "$trivia_cultura_guatemala",
+  "TIEMPO_PREGUNTA": 45,
+  "NOMBRE": "Cultura de Guatemala",
+  "TEMA": "cultura"
+}
+]}
+<fin_solicitud_realizada!>
+<!-- 0 -->
+<!realizar_solicitud: "AGREGAR_COMPONENTE" >
+{ "PARAMETROS_COMPONENTE":[{
+  "ID": "$_himno_guatemala",
+  "TRIVIA": "$trivia_cultura_guatemala",
+  "CLASE": "CAMPO_TEXTO",
+  "TEXTO_VISIBLE": "Nombre del autor de la letra del Himno de Guatemala: ",
+  "RESPUESTA": "José Joaquín Palma"
+}
+]}
+<fin_solicitud_realizada!>
+<!-- 1 -->
+<!realizar_solicitud: "AGREGAR_COMPONENTE" >
+{ "PARAMETROS_COMPONENTE":[{
+  "ID": "$_soldado_presidente",
+  "TRIVIA": "$trivia_cultura_guatemala",
+  "CLASE": "RADIO",
+  "TEXTO_VISIBLE": "¿A quién se le conoce como el soldado del pueblo?",
+  "OPCIONES": "Jacobo Arbenz|José Arévalo|Jorge Ubico|Otto Pérez Molina",
+  "RESPUESTA": "Jacobo Arbenz"
+}
+]}
+<fin_solicitud_realizada!>
+<!-- 2 -->
+<!realizar_solicitud: "AGREGAR_COMPONENTE" >
+{ "PARAMETROS_COMPONENTE":[{
+  "ID": "$_revolucion_octubre",
+  "TRIVIA": "$trivia_cultura_guatemala",
+  "CLASE": "CHECKBOX",
+  "TEXTO_VISIBLE": "¿Quiénes fueron parte de la revolución del 20 de octubre?",
+  "OPCIONES": "Jacobo Arbenz|José Arévalo|Jorge Ubico|Juan José Arévalo",
+  "RESPUESTA": "Jacobo Arbenz|José Arévalo|Juan José Arévalo"
+}
+]}
+<fin_solicitud_realizada!>
+<!-- 1 -->
+<!realizar_solicitud: "MODIFICAR_TRIVIA" >
+{ "PARAMETROS_TRIVIA":[{
+  "ID_TRIVIA": "$trivia_cultura_guatemala",
+  "TIEMPO_PREGUNTA": 60,
+  "NOMBRE": "Historia y Cultura de Guatemala"
+}
+]}
+<fin_solicitud_realizada!>
+<!-- 3 -->
+<!realizar_solicitud: "ELIMINAR_COMPONENTE" >
+{ "PARAMETROS_COMPONENTE":[{
+  "ID": "$_soldado_presidente",
+  "TRIVIA": "$trivia_cultura_guatemala"
+}
+]}
+<fin_solicitud_realizada!>
+<!--  -->
+<!realizar_solicitud: "MODIFICAR_COMPONENTE" >
+{ "PARAMETROS_COMPONENTE":[{
+  "ID": "$_revolucion_octubre",
+  "TRIVIA": "$trivia_cultura_guatemala",
+  "CLASE": "CHECKBOX",
+  "INDICE": "2",
+  "TEXTO_VISIBLE": "Seleccione a los líderes de la Revolución del 20 de octubre de 1944:",
+  "OPCIONES": "Jacobo Arbenz|José Arévalo|Jorge Ubico|Juan José Arévalo|Manuel Estrada Cabrera",
+  "RESPUESTA": "Jacobo Arbenz|José Arévalo|Juan José Arévalo"
+}
+]}
+<fin_solicitud_realizada!>
+<!-- 3 -->
+<!realizar_solicitud: "ELIMINAR_TRIVIA" >
+{ "PARAMETROS_TRIVIA":[{
+  "ID_TRIVIA": "$trivia_cultura_guatemala"
+}
+]}
+<fin_solicitud_realizada!>
+
+<!fin_solicitudes_realizada>
