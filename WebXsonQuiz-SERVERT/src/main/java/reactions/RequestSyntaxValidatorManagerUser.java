@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import com.cunoc.webxsonquiz.data.servert.ComponentTrivia;
 import com.cunoc.webxsonquiz.data.servert.Trivia;
 import com.cunoc.webxsonquiz.data.servert.User;
-import com.password4j.Hash;
 import com.password4j.Password;
 
 import Lengua.LanguageConstants;

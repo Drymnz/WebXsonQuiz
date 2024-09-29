@@ -72,7 +72,7 @@ public class ModelClientHandler {
             } else if (getCliente instanceof ArrayList) {
                 this.client.setIndex(0);
                 this.client.setListTriviaDataBase((new DataBaseListTrivia().getListTrivias()));
-                if (this.client.getListTriviaDataBase().size() > this.client.getIndex()) {
+                if (this.client.getListTriviaDataBase() != null && this.client.getListTriviaDataBase().size() > this.client.getIndex()) {
                     Trivia newTrivia = this.client.getListTriviaDataBase().get(this.client.getIndex());
                     System.out.println("Le manda las trivias " + (this.client.getIndex() + 1) + "/" + this.client.getListTriviaDataBase().size() + " => " + this.client.getClientSocket().getLocalAddress().getHostAddress());
                     return newTrivia;

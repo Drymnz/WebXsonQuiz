@@ -8,13 +8,10 @@ import com.cunoc.webxsonquiz.data.servert.QuizAttempt;
 import com.cunoc.webxsonquiz.data.servert.Trivia;
 import com.cunoc.webxsonquiz.data.servert.User;
 import com.google.gson.Gson;
-import com.password4j.Hash;
-import com.password4j.Password;
 
 import fileManager.FileInput;
 import fileManager.FileOutput;
 import reactions.ConstantSystem;
-import reactions.DataBaseListTrivia;
 import reactions.DataBaseListUser;
 import reactions.RequestSyntaxValidatorManagerUser;
 
