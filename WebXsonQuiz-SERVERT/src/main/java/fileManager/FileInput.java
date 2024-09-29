@@ -41,6 +41,7 @@ public class FileInput {
         // Retornar el texto extraído
         String readString = extraje.toString();
         readString = readString.replace("\\u0027", "'");
+        readString = readString.replace("\\u003d", "=");
         return readString;
     }
 

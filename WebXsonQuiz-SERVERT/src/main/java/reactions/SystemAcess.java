@@ -1,6 +1,8 @@
 package reactions;
 
 import LexicalAndSyntacticAnalyzer.ListRequests;
+
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerLogin;
@@ -9,6 +11,7 @@ import LexicalAndSyntacticAnalyzer.objectAnalyzer.ConverterToObject;
 import reports.ConverterTokenToString;
 
 import com.cunoc.webxsonquiz.data.servert.User;
+import com.password4j.Password;
 
 public class SystemAcess {
     private String textAnalyzer;
@@ -40,8 +43,13 @@ public class SystemAcess {
         }
     }
 
-    private boolean isEquetUser(User one, User two) {
-        return one.getId().equals(two.getId()) && one.getPassword().equals(two.getPassword());
+    private boolean isEquetUser(User userClient, User UserWantToAccess) {
+        String password = UserWantToAccess.getPassword();
+        byte[] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
+        String utf8Password = new String(passwordBytes, StandardCharsets.UTF_8);
+        String hash = userClient.getPassword();
+        boolean passwordBoolean = Password.check(utf8Password,hash ).withArgon2();
+        return userClient.getId().equals(UserWantToAccess.getId()) && passwordBoolean;
     }
 
     private User userWantToAccess() {

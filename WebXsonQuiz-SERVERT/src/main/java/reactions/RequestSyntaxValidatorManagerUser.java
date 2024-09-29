@@ -1,10 +1,13 @@
 package reactions;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import com.cunoc.webxsonquiz.data.servert.ComponentTrivia;
 import com.cunoc.webxsonquiz.data.servert.Trivia;
 import com.cunoc.webxsonquiz.data.servert.User;
+import com.password4j.Hash;
+import com.password4j.Password;
 
 import Lengua.LanguageConstants;
 import LexicalAndSyntacticAnalyzer.analyzer.AnalyzerManagerUser;
@@ -183,8 +186,20 @@ public class RequestSyntaxValidatorManagerUser {
         if ((checkOne == null)) return false;
         User checkDataBase = this.getUserDataBaseId(checkOne.getId());
         if ((checkDataBase != null)) return false;
+        checkOne = encriptarPassword(checkOne);
         this.dataBaseUser.getListUsers().add(checkOne);
         return true;
+    }
+
+    private User encriptarPassword(User encriptarUser){
+        encriptarUser.setPassword(encriptar(encriptarUser.getPassword()));
+        return encriptarUser;
+    }
+
+    public static String encriptar(String password){
+        byte[] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
+        String utf8Password = new String(passwordBytes, StandardCharsets.UTF_8);
+        return Password.hash(utf8Password).withArgon2().getResult();
     }
 
     private boolean checkUserModify(RequestAnalyzer data) {

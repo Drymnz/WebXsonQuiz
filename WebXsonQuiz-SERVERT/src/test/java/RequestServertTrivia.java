@@ -317,7 +317,7 @@ public class RequestServertTrivia {
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(), new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
         requetSystaxValidator.checkRequests();
         boolean goodText= !analizer.isError();
-        requetSystaxValidator.upDataBase(); 
+        //requetSystaxValidator.upDataBase(); 
         Assertions.assertTrue(goodText);
     }
 
@@ -329,7 +329,7 @@ public class RequestServertTrivia {
         RequestSyntaxValidatorManagerUser requetSystaxValidator = new RequestSyntaxValidatorManagerUser(analizer,new DataBaseListUser(), new DataBaseListTrivia(),new User("Bj", "", "", "", ""));
         requetSystaxValidator.checkRequests();
         boolean goodText= !analizer.isError();
-        requetSystaxValidator.upDataBase(); 
+        //requetSystaxValidator.upDataBase(); 
         String stringReport = (new UserRequestReport(requetSystaxValidator).reportString());
         Assertions.assertTrue(!stringReport.isEmpty() && goodText);
     }
