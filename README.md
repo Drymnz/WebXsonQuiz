@@ -179,10 +179,56 @@ Sigue el asistente del instalador.
 }]}
 <fin_solicitud_realizada!>
 ```
+# Importación y Exportación de Trivias
 
-## Aplicación Móvil
-Inicia sesión en la aplicación móvil, ingresa los datos del socket (IP y PUERTO), selecciona una trivia de la lista y responde dentro del tiempo establecido.
+## 5.3. Importación y Exportación de Trivias
 
-## Glosario de Términos
-- **Trivia**: Conjunto de preguntas sobre un tema específico.
-- **Componente**: Elemento individual de una trivia (pregunta, opciones, etc.).
+- **Para importar:** Seleccione "Importar Trivia" y cargue un archivo `.xtriv`.
+- **Para exportar:** Seleccione la trivia deseada y haga clic en "Exportar Trivia".
+
+## 5.4. Ejecución de Consultas SQLKV
+
+### Para obtener reportes:
+
+1. Acceda a la sección de reportes.
+2. Escriba su consulta SQLKV. Ejemplo:
+   ```
+   SELECCIONAR REPORTE $trivia FILTRAR POR TIEMPO < 100
+   ```
+
+# Aplicación Móvil
+
+## 6. Vista de la aplicación móvil.
+
+### 6.1. Acceso a Trivias
+
+1. Inicie sesión en la aplicación móvil.
+2. Ingrese los datos del socket, que son el IP y el PUERTO.
+
+   **Ejemplo de solicitud:**
+   ```json
+   <!realizar_solicitud: "LOGIN_USUARIO" >
+   { "DATOS_USUARIO":[{
+   "USUARIO": "juanito619",
+   "PASSWORD": "12345678"
+   }
+   ]}
+   <fin_solicitud_realizada!>
+   ```
+
+   Visualizará la conexión correcta y una lista de trivias disponibles.
+
+### 6.2. Responder Trivias
+
+1. Seleccione una trivia de la lista.
+2. Lea cada pregunta cuidadosamente.
+3. Responda dentro del tiempo establecido.
+
+   Al finalizar, verá su puntuación basada en respuestas correctas y tiempo.
+
+# Glosario de Términos
+
+- **Trivia:** Conjunto de preguntas sobre un tema específico.
+- **Componente:** Elemento individual de una trivia (pregunta, opciones de respuesta, etc.).
+- **SQLKV:** Lenguaje de consulta para generar reportes en el sistema.
+- **.xtriv:** Formato de archivo para importar y exportar trivias.
