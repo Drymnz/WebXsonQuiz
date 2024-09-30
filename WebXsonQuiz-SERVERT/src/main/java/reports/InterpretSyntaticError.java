@@ -19,7 +19,9 @@ import java_cup.runtime.lr_parser;
 public class InterpretSyntaticError {
 
     private final String ERROR_IF_THERE_IS_NO_TOKEN_TO_PARSE = "No hay nada que analizar en token";
-    private final String THE_NEXT_TOKEN_WAS_NOT_EXPECTED_CHECK_THE_DOCUMENTATION = "El token siguiente no era esperado. Revisa la documentación.";
+    private final String THE_NEXT_TOKEN_WAS_NOT_EXPECTED_CHECK_THE_DOCUMENTATION = "Token inesperado. Revisa la gramática y la documentación.";
+    private final String INITIAL_SUGGESTION = "\n- Sugerencia: El error ocurrió después del token. => \"";
+    private final String FINAL_SUGGESTION = " \" Confirma si el token es correcto y está bien ubicado.";
 
     private Stack stack;// la pila
 
@@ -48,7 +50,7 @@ public class InterpretSyntaticError {
         if (lastToken.equals("EOF") || lastToken.equals("error")) {
             return this.ERROR_IF_THERE_IS_NO_TOKEN_TO_PARSE;
         } else {
-            return this.THE_NEXT_TOKEN_WAS_NOT_EXPECTED_CHECK_THE_DOCUMENTATION + " Despues de  => " + lastToken;
+            return this.THE_NEXT_TOKEN_WAS_NOT_EXPECTED_CHECK_THE_DOCUMENTATION + this.INITIAL_SUGGESTION + lastToken + this.FINAL_SUGGESTION;
         }
     }
     

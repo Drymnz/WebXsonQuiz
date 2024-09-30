@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Administador de Usuarios/Trivias</title>
         <link rel="stylesheet" href="stely_menu.css">
         <%
             // Obtener el objeto Usuario almacenado en la sesión
@@ -30,7 +30,7 @@
     <body>
         <div class="container">
             <header>
-                <h1>Sistema de Creación de Trivias</h1>
+                <h1>Bienvenido a WebXsonQuiz</h1>
                 <%  if (usuario != null) {%>
                 Nombre: <%= usuario.getId()%><br>
                 <%

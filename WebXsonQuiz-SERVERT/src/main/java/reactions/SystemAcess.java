@@ -44,12 +44,14 @@ public class SystemAcess {
     }
 
     private boolean isEquetUser(User userClient, User UserWantToAccess) {
+        boolean equalsId = userClient.getId().equals(UserWantToAccess.getId());
+        if(!equalsId) return false;
         String password = UserWantToAccess.getPassword();
-        byte[] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
-        String utf8Password = new String(passwordBytes, StandardCharsets.UTF_8);
         String hash = userClient.getPassword();
-        boolean passwordBoolean = Password.check(utf8Password,hash ).withArgon2();
-        return userClient.getId().equals(UserWantToAccess.getId()) && passwordBoolean;
+        byte[] passwordBytes = hash.getBytes(StandardCharsets.UTF_8);
+        String utf8Password = new String(passwordBytes, StandardCharsets.UTF_8);
+        boolean passwordBoolean = Password.check(password,utf8Password ).withArgon2();
+        return equalsId && passwordBoolean;
     }
 
     private User userWantToAccess() {

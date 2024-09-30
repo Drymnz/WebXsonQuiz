@@ -93,7 +93,7 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 {STRING}                {print("STRING"); return new Symbol(MySymLoginDataBaseTrivias.STRING ,yyline,yycolumn,yytext());}
 {REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymLoginDataBaseTrivias.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
 /*ERROR LEXICO*/
-.                       {
+([a-zA-Z0-9])+          {
                         //MANEJAR EL ERROR LEXICO
                         print("ERROR");
                         addError();
