@@ -112,3 +112,8 @@ ID_TRIVIA = [_\-\$][_\-\$0-9a-zA-Z]*[\s]*
                         print("ERROR");
                         addError();
                         }
+.                       {
+                        //MANEJAR EL ERROR LEXICO
+                        print("ERROR");
+                        addError();
+                        }                        

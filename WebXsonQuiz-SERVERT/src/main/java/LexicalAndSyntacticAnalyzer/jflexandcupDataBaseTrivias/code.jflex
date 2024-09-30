@@ -98,3 +98,8 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
                         print("ERROR");
                         addError();
                         }
+.                     {
+                        //MANEJAR EL ERROR LEXICO
+                        print("ERROR");
+                        addError();
+                        }
