@@ -107,7 +107,7 @@ ID_TRIVIA = [_\-\$][_\-\$0-9a-zA-Z]*[\s]*
 {STRING}                {print("STRING"); return new Symbol(MySymSQLKV.STRING ,yyline,yycolumn,yytext());}
 {REAL_NUMEBERS}         {print("REAL_NUMEBERS"); return new Symbol(MySymSQLKV.REAL_NUMEBERS ,yyline,yycolumn,yytext());}
 /*ERROR LEXICO*/
-.                       {
+([a-zA-Z0-9])+          {
                         //MANEJAR EL ERROR LEXICO
                         print("ERROR");
                         addError();
